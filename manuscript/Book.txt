@@ -1,3 +1,8 @@
 001-in-lieu-of-an-introduction.txt
 002-ruby-vs-ybur.txt
 003-ruby-is-for-fun.txt
+004.txt
+005.txt
+006.txt
+007.txt
+008.txt
