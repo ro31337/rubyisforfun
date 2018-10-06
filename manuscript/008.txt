@@ -1,0 +1,13 @@
+# Part I. First steps
+
+## Runtime environment
+
+Runtime environment is an important concept. The concept of “environment” itself will be introduced later, but it’s not the same thing. Runtime environment is where and “by whom” your programs will be launched in Ruby. Let’s say a qualified chemist conducts an experiment in a test tube, a big glass jar and even his or her own bath. It can be used by any “interpreter” (program-launching program) in Windows, Mac and Linux.
+
+When the author first started with a computer, there was only one runtime environment, because there was no choice. When the computer was switched on, a cursor and the letters “OK” came on, meaning a program could be loaded. Now computers have become more intelligent, and a newbie also has to understand how to launch a program, where to enter the program text, “with what” to launch the written program and which runtime environment is best. 
+
+In fact. it is not particularly important to us which actual program the system is launched in. These days a program written in any of the popular programming languages can be launched in three OS: Windows, MacOS and Linux. Usually no changes are required in the program itself. If there are, they are minimal.
+
+Statistics on the use of operating systems shows that the most popular one today is Windows. So we will begin with Windows, although it is not the best choice. The reason we decided to do this is to get us as quickly as possible into the run of things, so that any starting programmer can write a required program as quickly as possible. After all, setting up the runtime environment is not usually a very simple matter for beginners, and its apparent complexity may scare off a student at the first stage.
+
+In spite of the fact that we shall begin by launching our programs in the Windows OS, we advise strongly against using the Windows for _launching programs_ in Ruby, However, if you like, this OS can be used for _writing programs_. In any case, the authors recommend installing Linux as soon as possible (the _Linux Mint Cinnamon_ edition, as the simplest installation medium), and using it. If you use Mac, there is no need to install Linux.

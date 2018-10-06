@@ -1,0 +1,19 @@
+## What we will study
+
+As stated earlier, there are many trends in software development. Each trend is unique and requires its own know-how. The author believes that there are currently at least two “tried and tested” trends in programming which give the maximum result in the minimum time. “Results” here means both cash compensation and knowing how to do something with your own hands.
+
+The first is mobile development – programs for mobile phones (Android, iPhone), tablets (iPad) and other devices.
+
+The second is web programming (or web development).
+
+However, mobile development itself often means optimizing the code for mobile devices in all sorts of ways. The programming language and SDK (software development kit) is very often bound up with a certain style of development. And this style is very different from the _classic_ object-oriented programming, it is more procedural. With procedural programming, you can’t always make full use of the language’s capabilities, though this is not always important, particularly if your aim is to earn a salary.
+
+A second aspect of program development for mobile devices is that there are two main mobile platforms at the present time. One belongs to Apple Corporation, the other to Google.  How these platforms will develop in the future depends entirely on the policy of these companies.
+
+In the case of web programming in Ruby, it all looks somewhat different. The language itself is being developed and supported by the programmers themselves. The web framework Rails – about which more later – is also supported exclusively by the community. This enables programmers from all over the world to create a convenient tool just as they want, without having to look over their shoulder at the policy of any company.
+
+Furthermore, programming in Ruby is rarely used on mobile devices, therefore in practice, they hardly ever have to be “specially” optimized. But the main difference between Ruby and the mobile development languages is that Ruby is a dynamic language – not in the sense that it is developing dynamically (though it is), but that it includes what is called _dynamic typing_ of data as mentioned earlier.
+
+The main advantage of dynamic typing compared with static is that there are fewer rules and less strictness, which gives a higher rate of development of apps by the programmer (admittedly at the cost of slower performance of the written programs, and of “sufficient” reliability. But performance rate does not particularly interest us, since Ruby is not used for developing mobile apps, although it is more often than not a key link on the server and facilitates the functioning of mobile apps for iOS, Android, etc.).
+
+No doubt other programming trends not checked by the authors of this book do exist. For example, the development of computer games. A lifetime would probably not be enough to “check” all the trends, so we will leave this task to more inquisitive minds, and restrict ourselves to what is actually in demand in the market, permits “rapid input” and is more or less interesting rather than boring.

@@ -1,0 +1,9 @@
+## Web programming or something else?
+
+The book “Ruby is for fun” is divided into two parts. In Part One (which you are reading now), we consider the basis of the Ruby language and its use from the so-called command line. Part Two (upcoming) will include web programming and the Rails framework.
+
+“_Wait!_” the observant reader will say. “_Surely we’ve just been talking about web programming? Yet it’s going to be in Part Two as well?_”
+
+Quite true. The point is that Ruby is quite a powerful tool in itself. Students of the online Ruby school have found work even without knowledge of web programming. The basics of the language and the ability to find and use the required libraries already make possible the creation of quite useful apps which can be used for data processing (for example, so-called “web-scraping”) to create script configurations and to control an operating system (which will definitely come in handy for any system administrator), for working with files of different formats etc. 
+
+The ability to use a language for jobs of various kinds not connected with web programming gives an indisputable advantage  before you start web programming. Web programming itself involves the knowledge of certain generally accepted concepts. And we’ll now be able to solve these problems using a tool we are already learning how to handle.

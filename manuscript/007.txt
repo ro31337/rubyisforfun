@@ -1,0 +1,22 @@
+## Your advantage
+
+Before we start creating our first program, it is important to remind ourselves what is not related to programming. Everyone has different life experience. Some may have come to programming from music, some from finance. Any musician will find it vastly simpler to write a program for teaching people to read music. It will be simpler for a financier to write a program for a commercial balance sheet. What does your advantage consist of?
+
+As you study Ruby, the question of creating your own program or series of programs based on your ideas will keep cropping up. This is necessary for the following reasons.
+
+Firstly, any program usually concerns some business problem. Programmers are paid money to optimize business processes, simplify real life and save the time that people spend on all sorts of actions. For example, imagine a queue in some state institution in 1986. Many people have gathered in the waiting room and are waiting their turn. And now imagine that there is a programmer who has written an “electronic queue” program. Anyone can sign up to be seen, and come precisely at the appointed time. He or she could use the time that would have been wasted in the queue, e.g. teaching a math lesson to school-kids.
+
+The economic benefit is obvious. Time that would have been spent in the queue can now be put to good use. And all because a useful website has been created. It is the same with your knowledge. Knowledge of any subject field is a valuable asset in itself. Try to see your advantage, think in what way you can improve the world. It’s a good thing to have several ideas written down on paper. As you work with this book, you can come back to it and ask yourself: Could I do this with Ruby?
+
+Secondly, by using your advantage in a particular field, you can create a program simply to demonstrate your knowledge. Even the simplest program written by a professional musician will delight programmers of great experience, which musicians are not.
+
+Don’t throw your programs away, even the most naïve of them can be improved later. They will also come in handy when you are looking for work. It is far better to have some code sample available than not to have one. Your programs may seem insignificant, but in getting a job it is not one isolated program that matters, but the combination of everything you have demonstrated: a knowledge of programming, programs you have written, your resume, domain knowledge, an active GitHub account and an active blog about programming.
+
+Thirdly, if you are not working on your project, your success will depend on chance, It is hard to predict in just what group you will end up or what software quality standards there will be in your company. People are naturally hopeful about the future, but experience shows that in real life, everything is somewhat different, and success often depends on chance.
+
+It’s a pity to find yourself in a company with bureaucratic complexities or working in a group of people with low technical qualifications. Furthermore, the newbie programmer may not even recognize these signs, and consequently can suffer depression and disappointment in his or her chosen profession. But in fact programming should give you satisfaction. And your own project is your landmark, an indicator of your level of improvement and insurance against bad luck.
+
+In any difficult situation in your new work, you can say to yourself: “_Yes, maybe I’m not very productive in this job, but here is my project and here is a demonstration of my technical qualifications. So the problem is most likely not in me but in something else._” Furthermore, this argument can always be used for a dialog with your manager, and the project itself can be added to your resume. Your project depends only on you, and there is a better-than-zero probability that one day your own project will start bringing in money for you.
+
+X> ## Do this
+X> Keep an ideas notebook. Write in it absolutely all the ideas that come into your head. You may return to them a week, a month or a year later. 

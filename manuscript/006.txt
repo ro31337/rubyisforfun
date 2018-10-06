@@ -1,0 +1,19 @@
+## How much do programmers earn?
+
+This is a very important question for those who know nothing about programming. But before answering it, I want to go back.
+
+Since Ruby is mainly a language for web programming, it is Ruby on which programmers base remote work.  The idea of working remotely on one project is particularly prevalent in web programming.
+
+This is understandable. To create software for aircraft, for example, it is more useful to be in a science center working hand in hand with colleagues there.  But in the case of web projects, it is often unimportant where the developer is actually located. The team “_37 signals_”, the developers of which are in various places around the world and even in different time zones, has also contributed to the remote development concept. It was in “_37 signals_” that the first version of Rails, probably the most popular framework for web development, appeared.
+
+It has been proved over the last ten years that remote development is possible. You don’t always need to keep a team of programmers all in the same office. This is a huge plus for Ruby programmers: it means that they are not tied to any specific location, and can work for a company in the USA from a small town in Greece or Spain, for example. And that way they will receive a salary far in excess of what they could get locally.
+
+If you look at [the statistics of remote working](https://remoteok.io/stats.php), Ruby holds second place for the number of vacancies available. First place goes to JavaScript, but only because a basic knowledge of JavaScript is essential, and is required along with other languages: Java, PHP, Ruby etc. But “pure JavaScript” (Node.js) for full-stack programming is only in third place.
+
+It is worth noting that the number of jobs in a certain language is not the most important indicator, and it can be of no importance at all in making the right choice for the rest of your life. We are only speaking of what we know now. It’s very hard to predict several years ahead in the IT industry. But undoubtedly, the good news is that you don’t need thousands of jobs, you only need to find one. Nor is it all that important how much time you spend looking for a job – a week, two weeks or two months, you’ll certainly find one.
+
+Here we come to statistics collected by Ruby School students. How much do Ruby programmers earn? Before answering, we will stipulate that we are only talking about remote working. The remote salary market is more stable. It was balanced out by programmers from different countries, and a certain value was arrived at for it. There is no sense in comparing salaries “on the spot”: a Ruby programmer can (perhaps even must) work remotely, in most cases this is more profitable. It is also assumed that programmers have a basic knowledge of English, so that they can communicate with clients from other countries.
+
+Salary categories can be divided into three parts. They may differ depending on type of work (remote or in an office) and on geographical location (immaterial if you are working remotely). At the present time the hourly rate for a programmer with one year’s experience is from 15 to 30 US dollars an hour. From one to three years, roughly from 30 to 50. From three years upward,  roughly from 50 dollars an hour. On reaching the 50-dollar level, it all becomes very individual. By the way, the average number of hours a month is 160.
+
+From our own experience, it is quite possible, with no special talents, to master Ruby programming in one year and find your first remote-working job. Many Ruby School students have done so, and you can find confirmation of these words on our website.
