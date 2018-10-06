@@ -16,21 +16,21 @@ JavaScript was not initially created in accordance with this principle. It is mo
 
 We can show that JavaScript is not as simple as it looks at first glance. Let us consider a Ruby program for sorting numbers:
 
-{title="Example: Simple program to sort four numbers in Ruby", lang=ruby}
+{title="Example: Simple program to sort four numbers in Ruby", lang=ruby, line-numbers=off}
 ```ruby
 [11, 3, 2, 1].sort()
 ```
 
 The above program has to sort the numbers 11, 3, 2 and 1 into rising order (it is not important for now if you don’t understand this syntax, we’ll deal with that subject later). The result of the Ruby program’s work is: 1, 2, 3, 11. No surprise there! But let us write the same program in JavaScript:
 
-{title="Example: Incorrect program to sort four numbers in JavaScript", lang=javascript}
+{title="Example: Incorrect program to sort four numbers in JavaScript", lang=javascript, line-numbers=off}
 ```javascript
 [11, 3, 2, 1].sort();
 ```
 
 In this case, the syntax is very similar, and differs only in the semicolon at the end. But what will the result be? Even experienced JavaScript programmers cannot always give the correct answer. The program’s results are quite unexpected: 1, 11, 2, 3. Why this is so is a question of history. But to sort numbers in JavaScript, you have to write:
 
-{title="Example: Correct program to sort four numbers in JavaScript", lang=javascript}
+{title="Example: Correct program to sort four numbers in JavaScript", lang=javascript, line-numbers=off}
 ```javascript
 [11, 3, 2, 1].sort((a, b) => a - b);
 ```
