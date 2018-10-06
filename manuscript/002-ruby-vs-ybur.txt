@@ -2,14 +2,14 @@
 
 The language "Ybur" is Ruby in reverse. It is an exotic programming language which no-one knows except me. I've only just thought it up and I don’t know what it does. Let us compare Ybur and Ruby using the three parameters described above.
 
-**Finding work quickly.**
+### Finding work quickly
 
 Ruby is a very popular language, it is easy to find work where it is used.
 Ybur? No-one’s ever heard of it, finding work using it is impossible.
 
 There is no need to compare the other parameters. In other words, if what is important to you is not programming in itself (though that’s no bad thing either), but the possibility of earning money in the foreseeable future, Ruby is not a bad choice. It is quite a popular language. Of course, other popular programming languages exist too. We might say that JavaScript is the most popular. But let us compare JavaScript and Ruby.
 
-**Learning something simple and interesting.**
+### Learning something simple and interesting
 
 Ruby incorporates the Principle of Least Surprise, and that is not at all bad.
 JavaScript was not initially created in accordance with this principle. It is more complicated than Ruby, because it is completely asynchronous (you’ll have to take my word for that for the time being).
@@ -37,7 +37,7 @@ In this case, the syntax is very similar, and differs only in the semicolon at t
 
 Once you understand it, it isn’t difficult. But the question is something else. Do you want to waste time on such fine points in the initial stage? JavaScript is much in demand, and every Ruby programmer must know it at a minimal level. But I must say I would want a _very great deal of money_ to be a full-time JavaScript developer.
 
-**Could come in useful in the future.**
+### Could come in useful in the future
 
 JavaScript is developing very dynamically. Knowledge gained ten years ago is not always up-to-date (in this case I am speaking of popular frameworks - sets of tools). In Ruby’s case, the Rails framework has existed for more than ten years. Knowledge gained ten years ago is still applicable.
 
