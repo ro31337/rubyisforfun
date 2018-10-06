@@ -1,0 +1,35 @@
+# Front Matter
+
+## In lieu of an introduction
+
+In the 21st century, programming has become one of the most important sciences in any economy. Processes which used to take place without the aid of computers have been partly or completely optimized. Businesses and private individuals have realized how useful electronic machines are, and the age of a flourishing IT industry has begin.
+
+Certain specific trends have formed within all this variety of technologies. The most convenient tools for carrying out particular tasks have been determined. Programming languages have undergone significant changes. It is not as easy for the ordinary reader to understand all these languages and technologies as it might appear at first glance.
+
+It became obvious at a certain point that “programmer” is one of the professions of the 21st century. But how do you become a programmer? In which direction should you apply your efforts? What needs to be studied, and what does not? What is the most efficient use of your time in mastering any technology?
+
+Before answering these questions, the most important question of all must be answered. Why is it necessary to become a programmer? What’s the sense of it?
+
+Some will want to become a programmer to develop micro-programs for intercontinental ballistic missiles and the space industry. Some will want to become a programmer to create their own games. Some will want to learn programming in electronic tables to calculate taxes more efficiently.
+
+But the purpose of this book is more mundane. The author assumes that to the question “Why do I need to become a programmer?” will give the answer “to earn money as a programmer.” Such an answer is usually given by people who have already tried some profession and want to use their time more efficiently to earn good money.
+
+They could also be young people forced to keep up with the times and to learn technologies, and the quickest way of getting a result from such knowledge, as quickly as possible. Furthermore, this means a result not only in the form of the knowledge of how to write this or that program, but a result in terms of money.
+
+Knowledge of any field in programming assumes a knowledge of the basics of the language, along with elementary theory (which is different for each field), basic concepts and definitions, and also a knowledge of tools other than the basic ones (such as an operating system, utilities and auxiliary programs).
+
+There is a vast number of fields. They include game development, scientific research of various kinds, data processing and analysis, web programming, programming for mobile devices, and so on. It is not possible to be a specialist in all these at the same time.
+
+So the person starting, or wishing to start, on programming faces a choice. Where to apply? What to study?
+
+If you are a scientist at a research institute, your choice will most likely fall on the language "python" or "C++", since a large number of libraries for data processing and analysis exists for these languages.
+
+If for example, you work as a watchman and are quite contented with your work, you could study some exotic programming language not much required in the market, simply to avoid being bored.
+
+If you live in a society in which ever-increasing accounts are paid every month, where you need to think not only of today, but of tomorrow, your choice will be different. You will need to study something in high demand very quickly, to find work as soon as possible.
+
+The language “Ruby”, used in web programming, is something between “finding work quickly”, “studying something simple and interesting” and “will come in useful in the future”. Ruby not only enables you to compile boring programs while working in an office, but can also be useful at home, in everyday life. (One of my recent programs was about teaching how to play the guitar).
+
+Furthermore, the philosophy of the language itself assumes that the study and use of programs will not be boring. For example, one of the principles of the language is the Principle of Least Surprise, which is explained as follows: “whatever you do, you will most likely succeed”. That is inspiring, you must agree!
+
+Other programming languages also exist. I am not saying they are bad, not at all. Each language is good for a certain purpose. But let us remember our own task and make the comparison with some other languages.

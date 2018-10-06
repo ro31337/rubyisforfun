@@ -1,0 +1,46 @@
+## Ruby vs. Ybur
+
+The language "Ybur" is Ruby in reverse. It is an exotic programming language which no-one knows except me. I've only just thought it up and I don’t know what it does. Let us compare Ybur and Ruby using the three parameters described above.
+
+**Finding work quickly.**
+
+Ruby is a very popular language, it is easy to find work where it is used.
+Ybur? No-one’s ever heard of it, finding work using it is impossible.
+
+There is no need to compare the other parameters. In other words, if what is important to you is not programming in itself (though that’s no bad thing either), but the possibility of earning money in the foreseeable future, Ruby is not a bad choice. It is quite a popular language. Of course, other popular programming languages exist too. We might say that JavaScript is the most popular. But let us compare JavaScript and Ruby.
+
+**Learning something simple and interesting.**
+
+Ruby incorporates the Principle of Least Surprise, and that is not at all bad.
+JavaScript was not initially created in accordance with this principle. It is more complicated than Ruby, because it is completely asynchronous (you’ll have to take my word for that for the time being).
+
+We can show that JavaScript is not as simple as it looks at first glance. Let us consider a Ruby program for sorting numbers:
+
+{title="Example: Simple program to sort four numbers in Ruby", lang=ruby}
+```ruby
+[11, 3, 2, 1].sort()
+```
+
+The above program has to sort the numbers 11, 3, 2 and 1 into rising order (it is not important for now if you don’t understand this syntax, we’ll deal with that subject later). The result of the Ruby program’s work is: 1, 2, 3, 11. No surprise there! But let us write the same program in JavaScript:
+
+{title="Example: Incorrect program to sort four numbers in JavaScript", lang=javascript}
+```javascript
+[11, 3, 2, 1].sort();
+```
+
+In this case, the syntax is very similar, and differs only in the semicolon at the end. But what will the result be? Even experienced JavaScript programmers cannot always give the correct answer. The program’s results are quite unexpected: 1, 11, 2, 3. Why this is so is a question of history. But to sort numbers in JavaScript, you have to write:
+
+{title="Example: Correct program to sort four numbers in JavaScript", lang=javascript}
+```javascript
+[11, 3, 2, 1].sort((a, b) => a - b);
+```
+
+Once you understand it, it isn’t difficult. But the question is something else. Do you want to waste time on such fine points in the initial stage? JavaScript is much in demand, and every Ruby programmer must know it at a minimal level. But I must say I would want a _very great deal of money_ to be a full-time JavaScript developer.
+
+**Could come in useful in the future.**
+
+JavaScript is developing very dynamically. Knowledge gained ten years ago is not always up-to-date (in this case I am speaking of popular frameworks - sets of tools). In Ruby’s case, the Rails framework has existed for more than ten years. Knowledge gained ten years ago is still applicable.
+
+Incidentally, it is worth making a separate comment about the applicability of knowledge. Knowledge of shell-scripting languages is still applicable. Little has changed in more than 30 years. Knowledge of the basics of Computer Science is still applicable in interviews and at work (this knowledge has hardly aged at all). So it is definitly something you want to learn at some point of time.
+
+But no-one can make precise predictions about the applicability of a particular _programming language_ in the future. However, one may look as the statistics for recent years. At the time this book was being written, Microsoft bought GitHub, written in Ruby, for 7.5 billion dollars. In other words, the language is in fine form today and widely used. Updates are being issued, the speed and syntax are being improved. And the number of available libraries makes a rapid solution of virtually any problem possible (within the framework of the field called web programming).

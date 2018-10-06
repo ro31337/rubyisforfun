@@ -1,0 +1,11 @@
+## Ruby is for fun
+
+In our opinion, programming language should not only solve certain business problems, but should also be easy enough to use every day without problems.
+
+For example, Java is a fine tool for solving business problems. But it has to be treated with respect. The language is statically-typed (we’ll come back to this topic). The type of data on which different operations are carried out must be specified. This takes time, and is fully justified in the business field, where it is better to spend several times as long on development, rather than having to pay for mistakes later.
+
+In the case of Ruby, the program can be written quickly, in a simple way. It is not all that reliable (which can be a problem sometimes), but many companies, particularly startups, have come to the conclusion that it is _reliable enough_, and the relatively slow speed of program execution is not a problem either. After all, in today’s world we often have to do something quickly to get quick investments, to attract the first customers, take advantage of momentum while competitors are still trying to find their way.
+
+From the author’s personal point of view, Ruby is a good tool for doing something of my own - some project of mine, a program which can be shared with others, attract attention or earn money.
+
+In other words, Ruby is an efficient and interesting language, not only for work but for its own sake too.
