@@ -56,7 +56,7 @@ But what exactly `puts 1+1` does? Before we answer this question, here is exerci
 
 In other words, `puts` just shows result on the screen. It's a combination of words "put" and "string". There are other, but similar commands in other computer languages to put results on the screen. For example in BASIC you need to type `print`, in C programmers often use `printf` (you can also do `printf` in Ruby!).
 
-But why do we keep `puts` at the very beginning? In fact, we need sum up two numbers first, and only after that we need to print result on the screen. Programmers say "method (or function) accepts parameter". So, in other words, want to "put string", and this string is going to be `1+1`. This is our parameter. Can you see how we just split this line into two parts?
+But why do we keep `puts` at the very beginning? In fact, we need to sum up two numbers first, and only after that we need to print result on the screen. Programmers say "method (or function) accepts parameter". So, in other words, want to "put string", and this string is going to be `1+1`. This is our parameter. Can you see how we just split this line into two parts?
 
 Ruby offers alternative syntax for this line, which is little bit more illustrative:
 
