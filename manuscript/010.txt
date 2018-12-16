@@ -1,0 +1,9 @@
+## Hello, I'm your REPL
+
+With the case of `1 + 1` program from previous chapter, interpreter performs two actions: read (R) and evaluate (E). We had no "print" action (`puts` in our case), so there was no any result on the screen. In other words, to see results we need to perform three actions:
+
+* Read (R)
+* Evaluate (E)
+* Print (P)
+
+It would be also nice if we could avoid running `ruby` command from the terminal every time, so we can execute programs in constant loop (L). 
