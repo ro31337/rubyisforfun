@@ -1,0 +1,24 @@
+## Hello, I'm your file manager
+
+If you craft programs for more than 20 years, you know that there is hardly too much tools from the past which are relevant today. It is one of many reasons we're using Ruby now: the knowledge gained 10 years ago is still relevant and wasn't devalued over the time. But besides Ruby there are some other useful tools that still work like a charm.
+
+One of these tools is a file manager. There are many flavors of file managers, the most popular one for Windows is [FAR Manager](https://www.farmanager.com/index.php?l=en):
+
+TODO: FAR Image
+
+Like it was mentioned before, working with a file system crucial for any programmer, you should be confident in creating files, directories, copying, editing, removing files from your computer. File manager helps you a lot.
+
+Most programming books do not cover this topic, giving you brief overview of essential shell commands. Authors assume you already know it, and there is no emphasis on how to work with a file system efficiently, easy and fast. But we highly recommend installing and using file managers in your everyday work. File managers are far easier than shell commands, and it's worth putting some time into it, while learning file system the hard way, through shell commands. Sometimes we just need to get things done and move on, instead of spending time poking around with this or another shell command.
+
+Because of that you don't need to remember the list of shell commands given below. Eventually you will remember all of them. Moreover, these commands are for Linux/MacOS only. But some key combinations are for Windows. Good news is that there is unspoken rule, unwritten convention between authors of file managers, and all of them have kind of the same commands and hot keys.
+
+A careful reader will say "_Wait a minute! We want to get rid of Windows, but at the same time going to learn some FAR Manager commands?_"
+
+Well, it's true, but with few caveats.
+
+File manager is kinda ubiquitous tool. There are different flavors of file managers. A long time ago, in the age of DOS (Disk Operating System, outdated operating system from Microsoft) one of the first file managers was released - _Norton Commander_. There is a file manager for Linux and MacOS called _Midnight Commander_:
+
+TODO: image of MC
+
+
+
