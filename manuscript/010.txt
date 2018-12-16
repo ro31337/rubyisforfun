@@ -6,4 +6,20 @@ With the case of `1 + 1` program from previous chapter, interpreter performs two
 * Evaluate (E)
 * Print (P)
 
-It would be also nice if we could avoid running `ruby` command from the terminal every time, so we can execute programs in constant loop (L). 
+It would be also nice if we could avoid running `ruby` command from terminal every time, so we can execute programs in constant loop (L). It turns out this functionality is already there! REPL acronym stands for Read Evaluate Print Loop.
+
+It's very similar to Ruby interpreter, but accepts _Enter_ key as the end of your program. Instead of exiting on Ctrl+D (end of input), it just starts reading the input again. REPL is pretty well-known definition, and not tied to the Ruby language infrastructure. Other languages have their REPLs too. Ruby's REPL called `irb`. You can type this command from your shell:
+
+```
+$ irb
+2.5.1 :001 >
+``` 
+
+Weird numbers at the beginning of the line is just the Ruby version (2.5.1). The same output is for `ruby -v` command. `001` indicates the first string. In the future you'll see how you can type multi-line mini-programs to REPL. Since REPL acronym already contains "Print" word in it, you don't have to type `puts`. Whatever you do, result will be printed on your screen.
+
+X> ## Exercise 
+X> Calculate the number of _seconds_ in a day, inside of a REPL without using `puts`. 
+
+Principle of a least surprise says that to exit REPL you should type `exit`. Let's do it... And it works!
+
+We would like to point out that that authors rarely use default `irb` as a REPL. There is a better alternative called [Pry](http://pryrepl.org/). It has the same functionality, but offers more flexibility and configuration (to be discussed later in this book).
