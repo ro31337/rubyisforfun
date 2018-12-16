@@ -1,0 +1,30 @@
+## Running a program from a file
+
+Running a program from a file isn't too much more difficult that running it from a terminal. You just pass argument to a Ruby interpreter with a file name:
+
+```
+$ ruby app.rb
+```
+
+In the example above interpreter will read a program from a file `app.rb`, and execute it the same way as it would be executed if you typed your program to Ruby and pressed Ctrl+D.
+
+But the question is, where and how one should save this program, where to type it, which code editor you should use? Let's answer the first "where" question, because answer implies that student is familiar with file system. But there could be some traps and pitfalls.  
+
+If you use Windows, consider installing Linux Mint Cinnamon edition[^mint] as soon as you can. If you're on Mac, you don't need to do anything special.
+
+On Windows we will need to create a folder (or "directory") on disk C: and name it "projects". On Mac and Linux we'll need to create this directory inside of home directory. After that we'll need to switch to this directory, create a file there, and run this file.
+
+In other words, at this point of time you need to know how to do four things:
+
+1. Create directory
+2. Change directory (switch to directory)
+3. Create a file in directory and put some text content to this file
+4. Run this file (we know how to do that already: `ruby app.rb`)
+
+Here we could give you some Linux/MacOS commands and quit explaining Windows, but market has different opinion. Statistics show that at least half of our readers are using Windows. We hope you'll follow our advice and install Linux (again, no need to install Linux if you're on Mac), but we'll give you brief details of each operating system, including Windows. Just keep in mind that it's absolutely impossible to be a good Ruby hacker on Windows.
+
+Skill of navigating the file system is crucial for any programmer. Like a librarian should know the location of every book in the library, programmer should know how to navigate the file system, how to search files, create, copy, and delete files. You should have a picture of the file system you're working with in your head.
+
+But in practice, it's been found that most of the students don't have a good understanding, and the right skill to navigate and work with a file system. We could give you a list of essential commands and ask to remember the list, but the more humane way is to actually explain, give options, details, and let you know about the tools that can help you on your way. So let's spend some time on learning a file system, and get familiar with a file manager.
+
+[^mint]: Linux Mint Cinnamon is free Ubuntu Linux based operating system, recommended by book authors as the most friendly and intuitive.
