@@ -16,9 +16,23 @@ A careful reader will say "_Wait a minute! We want to get rid of Windows, but at
 
 Well, it's true, but with few caveats.
 
-File manager is kinda ubiquitous tool. There are different flavors of file managers. A long time ago, in the age of DOS (Disk Operating System, outdated operating system from Microsoft) one of the first file managers was released - _Norton Commander_. There is a file manager for Linux and MacOS called _Midnight Commander_:
+File manager is kind of ubiquitous tool. There are many flavors of file managers. _Norton Commander_ is one of the first file managers, released in the age of DOS (Disk Operating System, outdated operating system from Microsoft released in 1981). _Midnight Commander_ is another file manager for Linux/MacOS, and it's quite popular today:
 
 TODO: image of MC
 
+There are some other flavors of file managers. However, _FAR Manager_ is so useful tool, so programmers have [ported](https://github.com/elfmz/far2l) this manager to Linux and MacOS. You can find setup instructions by following the link above, but we'll cover it here for MacOS (link for Windows users is available at the beginning at this chapter):
 
+1. Install [HomeBrew](https://brew.sh/) if it's not installed.
+2. Run the following command in your terminal (can take up to 15 minutes):
+
+```
+$ brew install yurikoles/yurikoles/far2l
+```
+
+You can try installing FAR manager on Linux, but you can also try _Midnight Commander_. Installation instructions are as follows:
+
+```
+$ sudo apt-get update
+$ sudo apt-get install mc
+```
 
