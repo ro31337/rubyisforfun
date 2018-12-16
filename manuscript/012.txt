@@ -31,7 +31,7 @@ $ brew install yurikoles/yurikoles/far2l
 
 3. Run FAR manager from your terminal with `far2l` command. Keep in mind that after running Far manager it will "block" your terminal window, you won't be able to type anything until you close Far. The workaround for this is to run another terminal window, or open new terminal tab with ⌘+T combination.
 
-![Far Manager running on MacOS](images/012-far-mac.jpg)
+![Far Manager running on MacOS](images/012-far-mac.png)
 
 You can try installing FAR manager on Linux by yourself, following [instructions](https://github.com/elfmz/far2l#contributing-hacking) - which can be tricky for absolute beginners, but doable. You can also try _Midnight Commander_. Installation instructions are as follows:
 
