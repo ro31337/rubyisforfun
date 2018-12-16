@@ -18,5 +18,5 @@ It’s a pity to find yourself in a company with bureaucratic complexities or wo
 
 In any difficult situation in your new work, you can say to yourself: “_Yes, maybe I’m not very productive in this job, but here is my project and here is a demonstration of my technical qualifications. So the problem is most likely not in me but in something else._” Furthermore, this argument can always be used for a dialog with your manager, and the project itself can be added to your resume. Your project depends only on you, and there is a better-than-zero probability that one day your own project will start bringing in money for you.
 
-X> ##
+X> ## Exercise
 X> Keep an ideas notebook. Write in it absolutely all the ideas that come into your head. You may return to them a week, a month or a year later. 

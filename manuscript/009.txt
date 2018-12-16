@@ -60,6 +60,7 @@ But why do we keep `puts` at the very beginning? In fact, we need sum up two num
 
 Ruby offers alternative syntax for this line, which is little bit more illustrative:
 
+{title="Ruby program to sum up two numbers and passing result of operation to 'puts' function as parameter", lang=ruby, line-numbers=off}
 ```ruby
 puts(1+1)
 ```
@@ -89,17 +90,19 @@ This is a purely math problem: multiply the number of seconds in one minute by t
 How let's write a Ruby program to calculate this expression:
 
 {$$}
-5 ^ 5 * 4 ^ 4 * 3 ^ 3 * 2 ^ 2 * 1 ^ 1
-{$$}
+5^5 * 4^4 * 3^3 * 2^2 * 1^1
+{/$$}
 
 For the power function in Ruby you have to use `**`. For example, `5 ** 3`  is `5 * 5 * 5` and it equals `125`. So the Ruby program is as follows:
 
+{title="Ruby program to calculate math expression mentioned above", lang=ruby, line-numbers=off}
 ```ruby
 puts 5**5 * 4**4 * 3**3 * 2**2 * 1**1
 ```
 
-It's hard to believe, but the result of this operation is the exactly the same as in our previous example: the amount of milliseconds in a day, both programs will produce `86400000`! There is no any explanation to this, just a fun fact. As exercise, try to run the following program and guess what is going to happen?
+It's hard to believe, but the result of this operation is exactly the same as in our previous example: the amount of milliseconds in a day! Both programs will produce `86400000`. There is no any explanation to this, just a fun fact. As exercise, try to run the following program and guess what is going to happen?
 
+{title="Try to guess what will be printed on the screen?", lang=ruby, line-numbers=off}
 ```ruby
 puts 60 * 60 * 24 * 1000 == 5**5 * 4**4 * 3**3 * 2**2 * 1**1  
 ```
