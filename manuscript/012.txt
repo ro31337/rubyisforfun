@@ -4,7 +4,7 @@ If you craft programs for more than 20 years, you know that there is hardly too 
 
 One of these tools is a file manager. There are many flavors of file managers, the most popular one for Windows is [FAR Manager](https://www.farmanager.com/index.php?l=en):
 
-TODO: FAR Image
+![Far Manager running on Windows](images/012-far.png)
 
 Like it was mentioned before, working with a file system crucial for any programmer, you should be confident in creating files, directories, copying, editing, removing files from your computer. File manager helps you a lot.
 
@@ -18,7 +18,7 @@ Well, it's true, but with few caveats.
 
 File manager is kind of ubiquitous tool. There are many flavors of file managers. _Norton Commander_ is one of the first file managers, released in the age of DOS (Disk Operating System, outdated operating system from Microsoft released in 1981). _Midnight Commander_ is another file manager for Linux/MacOS, and it's quite popular today:
 
-TODO: image of MC
+![Midnight Commander running on Linux](images/012-mc.png)
 
 There are some other flavors of file managers. However, _FAR Manager_ is so useful tool, so programmers have [ported](https://github.com/elfmz/far2l) this manager to Linux and MacOS. You can find setup instructions by following the link above, but we'll cover it here for MacOS (link for Windows users is available at the beginning at this chapter):
 
