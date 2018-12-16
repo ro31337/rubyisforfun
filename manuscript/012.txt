@@ -1,6 +1,6 @@
 ## Hello, I'm your file manager
 
-If you craft programs for more than 20 years, you know that there is hardly too much tools from the past which are relevant today. It is one of many reasons we're using Ruby now: the knowledge gained 10 years ago is still relevant and wasn't devalued over the time. But besides Ruby there are some other useful tools that still work like a charm.
+If you craft programs for more than 20 years, you know that there is hardly too much tools from the past which are relevant today. It is one of many reasons we're using Ruby now: the knowledge gained 10 years ago is still relevant and wasn't devalued over the time. But besides Ruby there are some other tools that still work and quite useful.
 
 One of these tools is a file manager. There are many flavors of file managers, the most popular one for Windows is [FAR Manager](https://www.farmanager.com/index.php?l=en):
 
@@ -40,3 +40,9 @@ $ sudo apt-get update
 $ sudo apt-get install mc
 ```
 
+Type `mc` to run Midnight Commander.
+
+X> ## Exercise 
+X> If you're on Windows, install Far Manager now, and plan switching to Linux Mint Cinnamon in the course of the next few weeks (don't forget to backup your data before installing Linux!). If you're on Mac or Linux, install Far Manager (recommended), Midnight Commander, or other file manager you like (you can google them by "best file manager for MacOS").
+
+Don't be discouraged if this chapter was a little bit rough for you. Keep in mind that whatever you do, you'll be able to run your programs in the cloud. For example, services like [Repl.it](https://repl.it/) offer hassle-free programming environment right in your browser (they also offer some free plans at the time of writing). It's not a way to go if you're looking to be a great software engineer, but it's definitely a great backup plan! If nothing works on your computer, go the cloud and try setting things up locally later!
