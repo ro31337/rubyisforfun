@@ -6,4 +6,7 @@ And here is where miscommunication begins. If file system is tree-like, why the 
 
 ![Tree structure. Children's art from one of Silicon Valley kindergartens. Curious programmer will ask "where is the root here?" The point is that the root node is located at the very top, which is unusual for the tree. Or do we talk about branches that grop up? There is some uncertainty, but don't let that cool you off.](images/013-tree.png)
 
+Regardless of how you call it, trees do have less branches at the top, and more at the bottom, which is not the case for the file system. In a file system all files and directories are usually sorted in alphabetical and ascending order. Probably there is no any other good analogy, and now we assume that file system is a tree-like, and it is sort of true.   
+
+By the way, we highly recommend to find out how to sort files in your file manager. One of the tricks here is to sort by modification date in descending order. With this order you'll see recently modified files at the top. And a programmer usually works with the most recent files. Sometimes only knowing the names of recently modified files in your work directory can give you a sense of what is going on with your project (and it's one of the reasons why every beginner needs a file manager). When you'll try this sort mode, you will never look back, it's so useful!
 
