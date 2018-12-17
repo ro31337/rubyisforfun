@@ -1,0 +1,14 @@
+## File system navigation
+
+File system navigation is just switching between directories to see what's inside, to get the list of files, their names and other attributes. In Far Manager you can use Up, Down keys and Enter to switch into directory (we often say "to change directory"). Use Tab to switch from left to right panel and vice versa.
+
+In bash (zsh or other type of shell) there are commands you need to type from your keyboard in terminal to change directories and get the list of files. It's much easier to do in file managers, but you will definitely remember these shell commands over the time: 
+
+```
+$ cd my_dir # switch to directory my_dir (or "change directory")
+$ cd .. # go one level up
+$ ls # list of files
+```
+
+Note: pound sign `#` (or hash) indicates the comment. Everything after this sign will be ignored by your shell.
+

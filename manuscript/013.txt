@@ -4,7 +4,7 @@ Software engineers say that file system looks like a tree. Every branch is direc
 
 And here is where miscommunication begins. If file system is tree-like, why the main directory is called root and not the trunk? In fact, branches always grow off the trunk. Also, when we imagine the tree, we assume that tree grows up. However, in all file managers branches (directories) grow down. You need to press Down key to move your cursor one position down the directory tree. Maybe it's better to say that the top directory is not the root, but trunk?   
 
-![Tree structure. Children's art from one of Silicon Valley kindergartens. Curious programmer will ask "where is the root here?" The point is that the root node is located at the very top, which is unusual for the tree. Or do we talk about branches that grop up? There is some uncertainty, but don't let that cool you off.](images/013-tree.png)
+![Tree structure. Children's art from one of Silicon Valley kindergartens. Curious programmer will ask "where is the root here?" The point is that the root node is located at the very top, which is unusual for the tree. Or do we talk about branches that grow up? There is some uncertainty, but don't let that cool you off.](images/013-tree.png)
 
 Regardless of how you call it, trees do have less branches at the top, and more at the bottom, which is not the case for the file system. In a file system all files and directories are usually sorted in alphabetical and ascending order. Probably there is no any other good analogy, and now we assume that file system is a tree-like, and it is sort of true.   
 
