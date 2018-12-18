@@ -12,3 +12,13 @@ $ ls # list of files
 
 Note: pound sign `#` (or hash) indicates the comment. Everything after this sign will be ignored by your shell.
 
+`cd` command is pretty straightforward and easy to remember. But `ls` is a bit tricky. It turns out that there's something else in the file system: hidden files! On Linux and MacOS file names of hidden files start with `.` (dot), so they are often referred as dot-files. To show all the files, including hidden you need to type `ls -a` (`-a` here is parameter to `ls` command and means "all"). But the most useful command is `ls -lah`:
+
+* `l` stands for "long format" or "long listing". This long listing has file attributes, file owner information, size in bytes and modification date.
+* `a` tells that we want to show _all_ files.
+* `h` is the flag to show meta information in human-readable format. For example, instead of "1000000000 bytes" we'll see "1GB".
+
+Note that Far Manager also has the setting to show/hide hidden files, you can reach it by going to Options (F9), Panel Settings, Show Hidden and System Files.
+
+By the way, `h` flag is quite useful, and besides `ls` is often used in other commands. For example, `df -h` stands for "disk filesystem in human readable format" and will display statistics about free space on your hard drives and mounted volumes (like USB stick).
+
