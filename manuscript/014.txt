@@ -20,5 +20,18 @@ Note: pound sign `#` (or hash) indicates the comment. Everything after this sign
 
 Note that Far Manager also has the setting to show/hide hidden files, you can reach it by going to Options (F9), Panel Settings, Show Hidden and System Files.
 
-By the way, `h` flag is quite useful, and besides `ls` is often used in other commands. For example, `df -h` stands for "disk filesystem in human readable format" and will display statistics about free space on your hard drives and mounted volumes (like USB stick).
+By the way, `h` flag is quite useful, and besides `ls` is often used in other commands. For example, `df -h` stands for "disk filesystem in human readable format" and will display statistics about free space on your hard drives and mounted volumes (like USB stick):
 
+![System information in terminal](images/014-sysinfo-terminal.png)
+
+Hit Ctrl+L in Far Manager to get the same useful system information about free and used disk space, memory, and so on. To hide this panel click Ctrl+L again:
+
+![Right panel with system information in Far Manager](images/014-sysinfo.png)
+
+Quite often you can switch on and off (toggle) different pieces of functionality by pressing the same key. For example, hit F3 to view a file in Far Manager and open built-in file viewer. To exit "view file" mode press F3 again. The same trick works in Midnight Commander.
+
+We've gotten familiar with few shell commands (you don't need to remember all of them, but may want to write down in your notepad or add a bookmark), but in file manager it's all achievable with few keystrokes. As you can see, it's much easier to remember, and result is more clear. Beginners not only able to see the contents of a file system without a need to remember `ls` command and its parameters, but also can navigate file system easily with arrow keys.
+
+Despite all the experience with shell commands, author of this book often jumps back to the file manager.   
+
+  
