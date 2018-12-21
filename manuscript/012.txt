@@ -2,17 +2,17 @@
 
 If you craft programs for more than 20 years, you know that there is hardly too much tools from the past which are relevant today. It is one of many reasons we're using Ruby now: the knowledge gained 10 years ago is still relevant and wasn't devalued over the time. But besides Ruby there are some other tools that still work and quite useful.
 
-One of these tools is a file manager. There are many flavors of file managers, the most popular one for Windows is [FAR Manager](https://www.farmanager.com/index.php?l=en):
+One of these tools is a file manager. There are many flavors of file managers, the most popular one for Windows is [Far Manager](https://www.farmanager.com/index.php?l=en):
 
 ![Far Manager running on Windows](images/012-far.png)
 
-Like it was mentioned before, working with a file system crucial for any programmer, you should be confident in creating files, directories, copying, editing, removing files from your computer. File manager helps you a lot.
+Like it was mentioned before, working with a file system is crucial for any programmer, you should be confident with creating files, directories, copying, editing, removing files from your computer. File manager helps you a lot.
 
-Most programming books do not cover this topic, giving you brief overview of essential shell commands. Authors assume you already know it, and there is no emphasis on how to work with a file system efficiently, easy and fast. But we highly recommend installing and using file managers in your everyday work. File managers are far easier than shell commands, and it's worth putting some time into it, while learning file system the hard way, through shell commands. Sometimes we just need to get things done and move on, instead of spending time poking around with this or another shell command.
+Most programming books do not cover this topic, giving you brief overview of essential shell commands. These authors assume you already know how to deal with files, and there is no emphasis on how to work with a file system efficiently, easy and fast. But we highly recommend installing and using file managers in your everyday work. File managers are far easier than shell commands, and it's worth putting some time into it. At the same time learn file system the hard way, through shell commands. Sometimes we just need to get things done and move on, instead of spending time poking around with this or another shell command.
 
-Because of that you don't need to remember the list of shell commands given below. Eventually you will remember all of them. Moreover, these commands are for Linux/MacOS only. But some key combinations are for Windows. Good news is that there is unspoken rule, unwritten convention between authors of file managers, and all of them have kind of the same commands and hot keys.
+Because of that you don't need to remember the list of shell commands given below. Eventually you will remember all of them. Moreover, these commands are for Linux/MacOS only. But some key combinations are for Windows. Good news is that there is unspoken rule, unwritten convention between authors of file managers: all of them have kind of the same commands and hot keys.
 
-A careful reader will say "_Wait a minute! We want to get rid of Windows, but at the same time going to learn some FAR Manager commands?_"
+A careful reader will say "_Wait a minute! We want to get rid of Windows, but at the same time about to learn some Far Manager commands?_"
 
 Well, it's true, but with few caveats.
 
@@ -20,15 +20,15 @@ File manager is kind of ubiquitous tool. There are many flavors of file managers
 
 ![Midnight Commander running on Linux](images/012-mc.png)
 
-There are some other flavors of file managers. However, _FAR Manager_ is so useful tool, so programmers have [ported](https://github.com/elfmz/far2l) this manager to Linux and MacOS. You can find setup instructions by following the link above, but we'll cover it here for MacOS (link for Windows users is available at the beginning at this chapter):
+There are some other flavors of file managers. However, _Far Manager_ is so useful tool, so programmers have [ported](https://github.com/elfmz/far2l) this manager to Linux and MacOS. You can find setup instructions by following the link above, but we'll cover it here for MacOS (link for Windows users is available at the beginning at this chapter):
 
 1. Install [HomeBrew](https://brew.sh/) if it's not installed.
 2. Run the following command in your terminal (can take up to 15 minutes): `brew install yurikoles/yurikoles/far2l`
-3. Run FAR manager from your terminal with `far2l` command. Keep in mind that after running Far manager it will "block" your terminal window, you won't be able to type anything until you close Far. The workaround for this is to run another terminal window, or open new terminal tab with ⌘+T combination.
+3. Run Far Manager from your terminal with `far2l` command. Keep in mind that after running Far Manager it will "block" your terminal window, you won't be able to type anything until you close Far. The workaround for this is to run another terminal window, or open new terminal tab with ⌘+T combination.
 
 ![Far Manager running on MacOS](images/012-far-mac.png)
 
-You can try installing FAR manager on Linux by yourself, following [instructions](https://github.com/elfmz/far2l#contributing-hacking) - which can be tricky for absolute beginners, but doable. You can also try _Midnight Commander_. Installation instructions are as follows:
+You can try installing Far Manager on Linux by yourself, following [instructions](https://github.com/elfmz/far2l#contributing-hacking) - which can be tricky for absolute beginners, but doable. You can also try _Midnight Commander_. Installation instructions are as follows:
 
 ```
 $ sudo apt-get update
@@ -40,4 +40,4 @@ Type `mc` to run Midnight Commander.
 X> ## Exercise 
 X> If you're on Windows, install Far Manager now, and plan switching to Linux Mint Cinnamon in the course of the next few weeks (don't forget to backup your data before installing Linux!). If you're on Mac or Linux, install Far Manager (recommended), Midnight Commander, or other file manager you like (you can google them by "best file manager for MacOS").
 
-Don't be discouraged if this chapter was a little bit rough for you. Keep in mind that whatever you do, you'll be able to run your programs in the cloud. For example, services like [Repl.it](https://repl.it/) offer hassle-free programming environment right in your browser (they also offer some free plans at the time of writing). It's not a way to go if you're looking to be a great software engineer, but it's definitely a great backup plan! If nothing works on your computer, go the cloud and try setting things up locally later!
+Don't be discouraged if this chapter was a little bit rough for you. Keep in mind that whatever you do, you'll be able to run your Ruby programs in the cloud. For example, services like [Repl.it](https://repl.it/) offer hassle-free programming environment right in your browser (they also offer some free plans at the time of writing). It's not a way to go if you're looking to be a great software engineer, but it's definitely a great backup plan! If nothing works on your computer, go the cloud and try setting things up locally later!
