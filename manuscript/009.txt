@@ -1,4 +1,4 @@
-##  Setting up Windows for your first program
+##  Setting up Windows (MacOS, Linux) for your first program
 
 Terminal (also known as "console", "shell", "command line") is a friend of any Ruby hacker. To run programs we're going to build together, we need some sort of central console, a place from _where_ these programs will be executed. _Terminal_ is the name of this central console.
 
