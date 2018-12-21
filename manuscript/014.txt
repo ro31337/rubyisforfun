@@ -32,6 +32,7 @@ Quite often you can switch on and off (toggle) different pieces of functionality
 
 We've gotten familiar with few shell commands (you don't need to remember all of them, but may want to write down in your notepad or add a bookmark), but in file manager it's all achievable with few keystrokes. As you can see, it's much easier to remember, and result is more clear. Beginners not only able to see the contents of a file system without a need to remember `ls` command and its parameters, but also can navigate file system easily with arrow keys.
 
-Despite all the experience with shell commands, author of this book often jumps back to the file manager.   
+Despite all the experience with shell commands, author of this book often jumps back to the file manager when necessary. This tool is also quite useful on new projects with directory structure you're not familiar with.
 
-  
+X> ## Exercise 
+X> Walk around file system on your computer with file manager and look at directories and files you have. Use F3 key to toggle the file view.
