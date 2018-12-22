@@ -1,0 +1,48 @@
+## Console ninja, shell survival guide
+
+The first step for the beginners would be getting familiar with file system basics by using file manager. We could give you comprehensive shell commands crash course, but how many folks would lie on the ground sobbing after that? That's not our goal. We don't want you to have computer science degree before you write your first program. Our goal is to create programs with fun. But before we do that, we'll give you a list of essential commands you don't need to remember (make a bookmark and you'll probably get to this page later, may be even in a year or two).
+
+Create directory ("**M**a**k**e **Dir**ectory") with a name `one` (F7 in Far Manager):
+
+```
+$ mkdir one
+```
+
+Make a set of nested directories: directory `one` will contain directory `two`, and directory `two` will contain directory `three` (still F7 in Far Manager, flag `-p` stands for "path"):
+
+```
+$ mkdir -p one/two/three
+```
+
+Print file contents in your terminal (`file.txt` is a file name):
+
+```
+$ cat file.txt 
+```
+
+Trick: there is alternative to `cat` called `bat` -- "A cat with wings", improvement over the `cat`. You need to [install bat](https://github.com/sharkdp/bat), and it gives you color formatting, line numbers, and some other improvements.
+
+Imagine that `file.txt` is very large and you don't want to have the entire file contents on the screen, but only _first_ 10 lines. You can do it with `head`:
+
+```
+$ head -10 file.txt
+```  
+
+Show last 10 lines of `file.txt`:
+
+```
+$ tail -10 file.txt
+```
+
+If there is a huge log file, and some program is constantly writing to this file, you may want to see the recent additions to the file, without restarting `tail` command every time. You can do it with `-f` (follow) flag:
+
+```
+$ tail -f file.txt
+``` 
+
+Press standard combination of Ctrl+C to quit from the command above.
+
+Use `mv` (move) command to rename files (F6 in Far Manager). Technically, renaming and moving a file is the same thing for a computer. The point is that file system has file allocation table and actual file contents on the disk. Table contains only meta information about the file, like name, modification date, and the _pointer_ to the actual physical location of file data.
+
+So when you rename a file, you update only file name in this table, without moving the file data. So renaming (or "moving") takes only few milliseconds of computer time if this operation is happening on the same disk. However, if you move (or "rename") the file from one disk to another, operating system will update file allocation table, copy the actual contents of a file, and unlink (remove) the file from origin location. That's why it can take up to several minutes or hours when file is huge.
+
