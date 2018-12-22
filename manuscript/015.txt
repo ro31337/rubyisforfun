@@ -44,5 +44,77 @@ Press standard combination of Ctrl+C to quit from the command above.
 
 Use `mv` (move) command to rename files (F6 in Far Manager). Technically, renaming and moving a file is the same thing for a computer. The point is that file system has file allocation table and actual file contents on the disk. Table contains only meta information about the file, like name, modification date, and the _pointer_ to the actual physical location of file data.
 
-So when you rename a file, you update only file name in this table, without moving the file data. So renaming (or "moving") takes only few milliseconds of computer time if this operation is happening on the same disk. However, if you move (or "rename") the file from one disk to another, operating system will update file allocation table, copy the actual contents of a file, and unlink (remove) the file from origin location. That's why it can take up to several minutes or hours when file is huge.
+So when you rename a file, in fact you update only file name in this table, without moving the file data. So renaming (or "moving") takes only few milliseconds if this operation is performed on the same disk (even for very large files). However, if you move (or "rename") the file _from one disk to another_, operating system will:
+
+1. Update file allocation table on both disks
+2. _Copy_ the actual contents of a file
+3. Unlink (remove) the file from origin location.
+ 
+That's why it can take up to several minutes or even hours when file is large.
+
+```
+$ mv file1.txt file2.txt # rename one file to another
+$ mv file.txt .. # move file one level up
+$ mv file.txt ../.. # move file two levels up
+$ mv file.txt ~ # move file to home directory
+$ mv file.txt /Volumes/MyUSB # move file to USB flash drive (MacOS)
+$ mv file.txt /mnt/MyUSB # move file to USB flash drive (Linux)
+```
+
+Note that `MyUSB` above is the name of your flash drive and can be different on your computer. 
+
+Copy file:
+
+```
+$ cp file1.txt file2.txt
+```
+
+Copy file to directory:
+
+```
+$ cp file1.txt my_directory
+```
+
+X> ## Exercise 
+X> Open up your terminal. List files (`ls -lah`). Create directory `my_directory`. List all files again, make sure directory exists now. Pick any file from current directory and copy this file to directory you just created. Use file manager to ensure you did the right job.
+
+Copy file one level up:
+
+```
+$ cp file1.txt ..
+```
+
+Copy file two levels up:
+
+```
+$ cp file1.txt ../..
+```
+
+Here comes command some experienced programmers aren't familiar with: copy multiple files to directory:
+
+```
+$ cp {file1.txt,file2.txt} my_directory
+```
+
+To copy multiple files in Far Manager you will need to select them first. It can be done with Insert (Ins) key. However, some laptop keyboards do not have this key. In this case use combination of "Shift+Up" or "Shift+Down" to select files on the panel. Selected files will be highlighted in yellow. When files have been selected, press F5 to open copy dialog.
+
+If you had already installed [Oh My Zsh](https://ohmyz.sh/) instead of default "Bash" shell, you can click Tab any time you want to avoid typing the full file name. For example, type `cp {f` and press Tab to see the list of available files you can include in your copy command. Same trick works for `cp`, `mv` and some other shell commands.
+
+Find all files in current directory by name (command below will find all files with `rb` extension):
+
+```
+$ find . -name '*.rb' 
+```
+
+Find all files in current directory that have `bla` as a part of the name:
+
+```
+$ find . -name '*bla*' 
+```
+
+Find files without directories with `rb` extension:
+
+```
+$ find . -name '*.rb' -type f
+```
 
