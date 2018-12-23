@@ -1,4 +1,4 @@
-## Running a program from a file
+## Running a Program From a File
 
 Running a program from a file isn't too much more difficult that running it from a terminal. You just pass argument to a Ruby interpreter with a file name:
 

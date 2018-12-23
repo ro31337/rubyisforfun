@@ -1,4 +1,4 @@
-## Your advantage
+## Your Advantage
 
 Before we start creating our first program, it is important to remind ourselves what is not related to programming. Everyone has different life experience. Some may have come to programming from music, some from finance. Any musician will find it vastly simpler to write a program for teaching people to read music. It will be simpler for a financier to write a program for a commercial balance sheet. What does your advantage consist of?
 

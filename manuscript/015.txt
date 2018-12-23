@@ -1,8 +1,8 @@
-## Console ninja, shell survival guide
+## Shell Survival Guide
 
 The first step for the beginners would be getting familiar with file system basics by using file manager. We could give you comprehensive shell commands crash course, but how many folks would lie on the ground sobbing after that? That's not our goal. We don't want you to have computer science degree before you write your first program. Our goal is to create programs with fun. But before we do that, we'll give you a list of essential commands you don't need to remember (make a bookmark and you'll probably get to this page later, may be even in a year or two).
 
-Create directory ("**M**a**k**e **Dir**ectory") with a name `one` (F7 in Far Manager):
+Create directory (or "make directory") with a name `one` (F7 in Far Manager):
 
 ```
 $ mkdir one
@@ -127,8 +127,33 @@ As you can see, there are many ways of finding files in _current directory_. Cur
 * `.` - current directory. Example (find all files with `log` extension):
 
               $ find . -name '*.log'
-      
-* `..` - directory of one level up. Example (find all files with `log` extension in directory of one level up): 
+
+* `..` - directory of one level up. Example (find all files with `log` extension in directory of one level up):
 
               $ find .. -name '*.log'
-      
+
+* `../..` - directory of two levels up. Example:
+
+              $ find ../.. -name '*.log'
+
+* `~` - home directory (directory of current user). Example:
+
+              $ find ~ -name '*.log'
+
+* `/` - root (top level) directory. Example:
+
+              $ find / -name '*.log'
+
+X> ## Exercise 
+X> Try to find all log files in your root directory.
+
+Far Manager has built-in dialog (which is quite friendly) for searching files. You can search files by using Alt+F7 combination. By default search file mask is `*.*` (all files). You can also specify a substring you want to be present in these files.
+
+Here is how you can search for "something" substring in all Ruby files in current directory:
+
+```
+$ find . -name '*.rb' -type f | xargs grep something 
+```
+
+The first part should be already familiar to you. The part after pipe operator `|` accepts lines and executes the `grep` command for each line passing incoming line as parameter at the end of this command, for example `grep something file1.rb`. Don't worry if this syntax looks too complex for you at the moment. Eventually you will remember this command or another command. Searching through the files in current directory is one of essential things every programmer does many times a day.
+

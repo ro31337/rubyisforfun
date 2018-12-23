@@ -1,4 +1,4 @@
-## File system essentials
+## File System Essentials
 
 Software engineers say that file system looks like a tree. Every branch is directory, each directory may have one or more sub-directories (other branches) or files (leaves). Directory can be empty. The top, main directory often called _root_ directory (don't confuse it with _home_ directory, which is the root place for all the files for the _current user_).
 

@@ -1,6 +1,6 @@
 # Front Matter
 
-## In lieu of an introduction
+## In Lieu Of an Introduction
 
 In the 21st century, programming has become one of the most important sciences in any economy. Processes which used to take place without the aid of computers have been partly or completely optimized. Businesses and private individuals have realized how useful electronic machines are, and the age of a flourishing IT industry has begin.
 

@@ -1,4 +1,4 @@
-## Web programming or something else?
+## Web Programming Or Something Else?
 
 The book “Ruby is for fun” is divided into two parts. In Part One (which you are reading now), we consider the basis of the Ruby language and its use from the so-called command line. Part Two (upcoming) will include web programming and the Rails framework.
 

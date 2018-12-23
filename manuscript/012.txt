@@ -1,4 +1,4 @@
-## Hello, I'm your file manager
+## Hello, I'm Your File Manager
 
 If you craft programs for more than 20 years, you know that there is hardly too much tools from the past which are relevant today. It is one of many reasons we're using Ruby now: the knowledge gained 10 years ago is still relevant and wasn't devalued over the time. But besides Ruby there are some other tools that still work and quite useful.
 

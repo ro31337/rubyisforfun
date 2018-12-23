@@ -1,6 +1,6 @@
-# Part I. First steps
+# Part I. First Steps
 
-## Runtime environment
+## Runtime Environment
 
 Runtime environment is an important concept. The concept of “environment” itself will be introduced later, but it’s not the same thing. Runtime environment is where and “by whom” your programs will be launched in Ruby. Let’s say a qualified chemist conducts an experiment in a test tube, a big glass jar and even his or her own bath. It can be used by any “interpreter” (program-launching program) in Windows, Mac and Linux.
 

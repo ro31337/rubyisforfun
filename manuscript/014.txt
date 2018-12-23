@@ -1,4 +1,4 @@
-## File system navigation
+## File System Navigation
 
 File system navigation is just switching between directories to see what's inside, to get the list of files, their names and other attributes. In Far Manager you can use Up, Down keys and Enter to switch into directory (we often say "to change directory"). Use Tab to switch from left to right panel and vice versa.
 

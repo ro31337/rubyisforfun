@@ -1,4 +1,4 @@
-## Ruby is for fun
+## Ruby Is For Fun
 
 In our opinion, programming language should not only solve certain business problems, but should also be easy enough to use every day without problems.
 
