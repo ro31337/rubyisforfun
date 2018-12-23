@@ -157,3 +157,76 @@ $ find . -name '*.rb' -type f | xargs grep something
 
 The first part should be already familiar to you. The part after pipe operator `|` accepts lines and executes the `grep` command for each line passing incoming line as parameter at the end of this command, for example `grep something file1.rb`. Don't worry if this syntax looks too complex for you at the moment. Eventually you will remember this command or another command. Searching through the files in current directory is one of essential things every programmer does many times a day.
 
+How would you create empty file right in your terminal? There is useful `touch command`:
+
+```
+$ touch file.txt
+```
+
+This command will update date and time of the file it already exists. If you want to create a file and put some data in it, use `cat` the following way:
+
+```
+$ cat > file.txt
+```
+
+Then type your data, for example `foo bar`, and press Ctrl+D (sometimes you need to press Ctrl+D twice). If 
+
+X> ## Exercise 
+X> Create a text file and put your name to this file. Use `ls -lah` command to make sure file has been already created. Use `cat file.txt` to see the contents of the file.
+
+E> ## Be Careful
+E>
+E> `cat > file.txt` will overwrite contents of the file without any warnings.
+
+Add data to the end of file, the following command will _not_ overwrite existing file. If file is not present, it will be created:
+
+```
+$ cat >> file.txt
+```
+
+Few notes about file system. You know that root directory is referred to as `/`, and home directory as `~`. Home directory is the directory of current user. You can find out the name of current user by typing `whoami` ("Who Am I?") command:
+
+```
+$ whoami
+ninja
+``` 
+
+Interesting fact that there is `whereami` command in Ruby debugger [Pry](https://github.com/deivid-rodriguez/pry-byebug) (will be described later), it shows the place where are you currently at while debugging a program.
+
+Print working directory (current directory):
+
+```
+$ pwd
+/home/ninja
+```
+
+Show home directory path:
+
+```
+$ echo ~
+/home/ninja
+```
+
+Tilde `~` can be used as a part of path:
+
+```
+$ mkdir ~/tmp # Create tmp directory inside of your home directory
+$ cp file.txt ~/tmp # Copy file.txt to newly created directory
+```
+
+By the way, create `~/tmp` directory now for your temporary files. Existing directory located `/tmp` is intended for system files and gets wiped out on computer restart.
+
+Remove file. **Be careful, this command will not ask for confirmation**:
+
+```
+$ rm file.txt
+```
+
+Remove entire directory:
+
+```
+$ rm -r my_directory
+```
+
+It's worth mentioning, that `-r` (recursive) also used for some other shell commands.  It tells the command that we want to perform recursive operation with this or another directory.
+
