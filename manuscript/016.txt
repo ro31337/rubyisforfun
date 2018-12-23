@@ -1,0 +1,36 @@
+## Text Editors
+
+There is plenty of text editors out there for all operating systems: MacOS, Linux, Windows, but we'll be discussing only _code_ editors. What's the difference between text editors and code editors? Well, often text editors do not save the file in plain format. For example, Microsoft Word saves the file along with meta information like formatting, font settings, images, and so on. But our code should be "plain".
+
+In other words, what we type on keyboard should be saved to file. You are already familiar with minimalistic code editor:
+
+```
+$ cat > app.rb
+puts "Hello"
+```
+
+Type anything from your keyboard and press Ctrl+D (sometimes you need to press Ctrl+D twice). Everything you typed will be saved to `app.rb`. Note that contents of `app.rb` will be replaced in this case, and if you need to _add_ data to the end of file, you need to use `>>` instead of just `>`.
+
+Now you can see what was written to this file the following way:
+
+```
+$ cat app.rb
+puts "Hello"
+```
+
+You can also look at hexadecimal output, followed by raw data:
+
+```
+$ cat app.rb | hexdump -C
+00000000  70 75 74 73 20 22 48 65  6c 6c 6f 22 0a           |puts "Hello".|
+0000000d
+```
+
+Similar output can be achieved via Far Manager: select the file, press F3, and then toggle hex view with F4:
+
+![Raw contents of app.rb (Far Manager view)](images/016-raw-file.png)
+
+But dealing with raw `cat` command is hard. Once you pressed Enter, there is no way to go back and make changes. You can't use left and right arrow keys to navigate your program. And nobody is using `cat` command for writing programs (except maybe for the purpose of showing your excellence on interview).
+
+There are many convenient code editors that were designed to edit the code and help a programmer. If editor is simple, it can be used for editing
+
