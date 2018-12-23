@@ -228,5 +228,12 @@ Remove entire directory:
 $ rm -r my_directory
 ```
 
-It's worth mentioning, that `-r` (recursive) also used for some other shell commands.  It tells the command that we want to perform recursive operation with this or another directory.
+It's worth mentioning, that `-r` (recursive flag) is also used for some other shell commands.  It tells hat we want to perform operation recursively with this or another directory.
 
+E> ## Don't Do This
+E>
+E> There are some bad jokes on programming websites, mentioning `rm -rf /` command. This single command will remove everything on your computer and will make your operating system unusable in seconds. Moreover, flag `-f` stands for "force". So you won't be asked for any confirmations.
+
+Copy `cp` command mentioned above has its alternative called `scp` - SSH Copy. `cp` command works for local files, but with `scp` you can copy a file from one computer to another. We are not going to provide examples, but keep that in mind if you need to copy a file from one computer to another. For example, there is a log file on the server and you want to download this log file for error investigation.
+
+We're done with essential shell commands and ninja training. As you can see, there are numerous for basic file operations, but as a first step we highly recommend using file manager, switching back to your terminal time to time.
