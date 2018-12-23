@@ -214,7 +214,7 @@ $ mkdir ~/tmp # Create tmp directory inside of your home directory
 $ cp file.txt ~/tmp # Copy file.txt to newly created directory
 ```
 
-By the way, create `~/tmp` directory now for your temporary files. Existing directory located `/tmp` is intended for system files and gets wiped out on computer restart.
+By the way, create `~/tmp` directory now for your temporary files. Existing directory located at `/tmp` is intended for system files and gets wiped out on computer restart.
 
 Remove file. **Be careful, this command will not ask for confirmation**:
 
@@ -236,4 +236,4 @@ E> There are some bad jokes on programming websites, mentioning `rm -rf /` comma
 
 Copy `cp` command mentioned above has its alternative called `scp` - SSH Copy. `cp` command works for local files, but with `scp` you can copy a file from one computer to another. We are not going to provide examples, but keep that in mind if you need to copy a file from one computer to another. For example, there is a log file on the server and you want to download this log file for error investigation.
 
-We're done with essential shell commands and ninja training. As you can see, there are numerous for basic file operations, but as a first step we highly recommend using file manager, switching back to your terminal time to time.
+We're done with essential shell commands and ninja training. As you can see, there are numerous basic file operations you will need to remember eventually, but as a first step we highly recommend using file manager, switching back to your terminal time to time.
