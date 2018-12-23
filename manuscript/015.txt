@@ -76,7 +76,7 @@ $ cp file1.txt my_directory
 ```
 
 X> ## Exercise 
-X> Open up your terminal. List files (`ls -lah`). Create directory `my_directory`. List all files again, make sure directory exists now. Pick any file from current directory and copy this file to directory you just created. Use file manager to ensure you did the right job.
+X> Open up your terminal. List all files (`ls -lah`). Create directory with the name `my_directory`. List all files again, make sure directory exists now. Pick any file from current directory and copy this file to directory you just created. Use file manager to ensure you did the right job.
 
 Copy file one level up:
 
@@ -118,13 +118,21 @@ Find files without directories with `rb` extension:
 $ find . -name '*.rb' -type f
 ```
 
+E> ## Keep this in mind
+E>
+E> Often people do mistake and provide two hyphens `--` instead of one `-` to `find` command. For example, parameter with two hyphens like `--name` or `--type f` is incorrect. You must use one hyphen with `find`. However, some other Linux commands accept two hyphens. Don't get confused!
+
 As you can see, there are many ways of finding files in _current directory_. Current directory is indicated by dot right after `find` command (separated by space). Directory of one level up is indicated by two dots. Directory of two levels up is indicated by `../..` (two dots, slash, two dots). Here is the short list of directory shortcuts with examples of `find` command:
 
 * `.` - current directory. Example (find all files with `log` extension):
-        ```
-        $ find . -name '*.log'
-        ```
+
+              ```
+              $ find . -name '*.log'
+              ```
+      
 * `..` - directory of one level up. Example (find all files with `log` extension in directory of one level up): 
-        ```
-        $ find .. -name '*.log'
-        ```
+
+              ```
+              $ find .. -name '*.log'
+              ```
+      
