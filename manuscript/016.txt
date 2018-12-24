@@ -32,5 +32,17 @@ Similar output can be achieved via Far Manager: select the file, press F3, and t
 
 But dealing with raw `cat` command is hard. Once you pressed Enter, there is no way to go back and make changes. You can't use left and right arrow keys to navigate your program. And nobody is using `cat` command for writing programs (except maybe for the purpose of showing your excellence on interview).
 
-There are many convenient code editors that were designed to edit the code and help a programmer. If editor is simple, it can be used for editing
+There are many convenient code editors that were designed to edit code and help a programmer. If editor is simple, it can be used for both editing text and code. Nano is one of the easiest code/text editors and installed on almost any operating system (except Windows):
+
+```
+$ nano app.rb
+```
+
+![Nano editor, works right in your terminal](images/016-nano.png)
+
+Footer has hints for available commands. For example, you can quit Nano by pressing Ctrl+X. There are much more advanced code editors like Vim and Emacs. Unfortunately, more advanced editors require more time to capture their functionality. You will probably see many "holy wars" on Internet about picking the right code editor. However, picking the right editor itself won't help you acquiring computer language knowledge and programming skills. So it's not very important which code editor you'll be using.
+
+Code editors like cat, nano, vim, emacs are all _console_ editors. It means you run the command from your terminal and you don't need to quit the terminal. It's just a text on your screen. They're quite useful when you work with remote machines. For example, you've logged in to the server and want to edit or view some files. You can do that without quitting the terminal.
+
+But on your own machine you're free to run any programs. And there are some code editors with graphic elements (like icons, different font styles, colors, and so on). Often these editors offer much more possibilities (like live error checking, debugging, bookmarks) and make a life of a programmer much easier.
 
