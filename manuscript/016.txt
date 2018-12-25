@@ -44,5 +44,37 @@ Footer has hints for available commands. For example, you can quit Nano by press
 
 Code editors like cat, nano, vim, emacs are all _console_ editors. It means you run the command from your terminal and you don't need to quit the terminal. It's just a text on your screen. They're quite useful when you work with remote machines. For example, you've logged in to the server and want to edit or view some files. You can do that without quitting the terminal.
 
-But on your own machine you're free to run any programs. And there are some code editors with graphic elements (like icons, different font styles, colors, and so on). Often these editors offer much more possibilities (like live error checking, debugging, bookmarks) and make a life of a programmer much easier.
+But on your own machine you're free to run any programs. And there are some code editors with graphic elements (like icons, different font styles, colors, and so on). Often these editors offer much more useful features (like live error checking, debugging, bookmarks) and make a life of a programmer much easier:
 
+* [VsCode](https://code.visualstudio.com/), Visual Studio Code (don't get confused with "Visual Studio")
+* [RubyMine](https://www.jetbrains.com/ruby/) (requires subscription)
+* [Atom](https://atom.io/)
+* [Sublime Text](https://www.sublimetext.com/) (fixed price)
+
+RubyMine is not just a code editor, but Interactive Development Environment. Comprehensive tool for writing code with many features. Beginners can pick any of these editors. RubyMine offers great support on first steps, offering hints and tips. Other editors can be configured to offer this kind of support as well. However, we won't be covering this topic in our book.
+
+At the very beginning it's worth using built-in code/text editor in your file manager. For example, you can create new file in Far Manager with Shift+F4 combination. At later steps feel free to use any code editor you like.
+
+Also, you should be able to run your code editors from console:
+
+```
+$ code . # Will open VsCode for current directory
+$ code ~/tmp # Will open VsCode for tmp directory
+```
+
+But sometimes you need to integrate editor with your shell. In VsCode it's achievable with:
+
+1. Cmd+P combination (or Ctrl+P on Linux/Windows). It will open up navigation bar.
+2. Type `>` in navigation bar to switch from file navigation to settings navigation.
+3. Type `shell` and select "Install code in path" menu item.
+
+![Integrating VsCode with shell](images/016-vscode.png)
+
+Atom editor can be configured the similar way, and can be executed from shell with `atom` command:
+
+```
+$ atom .
+```
+
+X> ## Exercise 
+X> Install text editor (VsCode if you don't have any preference). Try to create few files, like `1.txt`, `2.txt`, `3.txt` and so on. In every file put the name of a person you know. Check your results with file manager. Delete files by using text editor UI.
