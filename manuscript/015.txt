@@ -228,7 +228,7 @@ Remove entire directory:
 $ rm -r my_directory
 ```
 
-It's worth mentioning, that `-r` (recursive flag) is also used for some other shell commands.  It tells hat we want to perform operation recursively with this or another directory.
+It's worth mentioning, that `-r` (recursive flag) is also used for some other shell commands.  It tells that we want to perform operation recursively with this or another directory.
 
 E> ## Don't Do This
 E>
