@@ -1,0 +1,29 @@
+## Your First Program
+
+In fact, your first program was `1+1`. But this time let's create a file with the name `app.rb` in your code editor with the following content:
+
+{title="Your first program", lang=ruby, line-numbers=off}
+```ruby
+puts "I would hug you, but I’m just a text"
+```
+
+Save the file and run Ruby interpreter with parameter `app.rb`:
+
+```
+$ ruby app.rb
+I would hug you, but I’m just a text
+```
+
+You can also type `ruby app.rb` in your file manager, but when you press Enter, result will disappear! The subtlety is that program runs, "works off", and quits. Control gets returned back to terminal or file manager. That's why we do not see result on the screen when you run a program from file manager. But we can toggle the output screen (hide panels) by clicking Ctrl+O.
+
+Congratulations! You've written something meaningful and saved your program to disk. Let's improve it a little bit:
+
+{title="Print a text and wait for Enter key", lang=ruby, line-numbers=off}
+```ruby
+puts "I would hug you, but I’m just a text"
+gets
+```
+
+In the program above we put a string on the screen and awaiting for the user input. Not just for any input, but for the whole string. Instruction `gets` stands for "get string", and string is not a character, it's a sequence of characters. That's why we can type any letters and must press Enter. Or we can press Enter without typing any letters, in this case `gets` will _return_ empty string (we'll discuss _return values_ later).
+
+Run the program above and see what happens. If
