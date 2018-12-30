@@ -22,7 +22,7 @@ You can also look at hexadecimal output, followed by raw data:
 
 ```
 $ cat app.rb | hexdump -C
-00000000  70 75 74 73 20 22 48 65  6c 6c 6f 22 0a           |puts "Hello".|
+00000000  70 75 74 73 20 22 48 65  6c 6c 6f 22 0a  |puts "Hello".|
 0000000d
 ```
 
