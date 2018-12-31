@@ -27,6 +27,24 @@ Your age is
 
 Number we typed stored in variable with the name `age`. We could name it any way we want, for example `a`. But in this case on line 4 will look like `puts a`. When it comes to naming variables, there are some important naming conventions out there, search for "naming conventions for variables in Ruby".
 
-In Ruby and JavaScript we'll see three naming conventions:
+In Ruby and JavaScript you'll see three common naming conventions:
 
-* Snake case
+* Snake case. Underscode `_` between words. Example: `client_age`, `user_password`, `user_password_expiration_date`. Used in Ruby and often in databases for naming tables and columns.
+* Camel case. Word starts with lowercase letter, words are separated by the following uppercase letter. For example: `clientAge`, `userPassword`, `userPasswordExpirationDate`. Often used in JavaScript.
+* Kebab case. Words are separated by hyphen. For example: `client-age`, `user-password`, `user-password-expiration-date`. Often used in HTML. For example:
+
+        ```html
+        <input type="text" name="login" data-error-highlight-color="red">
+        ```
+
+We need to remember only the first naming convention at the moment, because it's used in Ruby: if variable contains of multiple words, use underscore. It should be noted that ideal variable name should be named by using one word only. Two or more words is usually indicator of too broad context, but it's out of topic for this book. Programmers agree that naming variables often isn't something easy:
+
+> There are only two hard things in Computer Science: cache invalidation and naming things.
+>
+> -- Phil Karlton
+
+If you came up with variable name which is too long, don't try to artificially lower the character count (for example, by renaming `client_password_expiration_date` to `cped`). At this stage, leave it as it is, and get back to your code later to see if you can do any refactoring (code improvement).
+
+In addition to naming conventions, there are some variable naming rules that come from Ruby language itself: variables should start with letter and must contain only alphanumeric characters or underscore.
+
+ 
