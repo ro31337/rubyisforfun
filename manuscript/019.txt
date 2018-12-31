@@ -1,0 +1,92 @@
+## Strings Addition and Multiplication
+
+Let's look at the program from previous chapter. Can we do better?
+
+{lang=ruby, line-numbers=on}
+```ruby
+puts "Your age?"
+age = gets
+puts "Your age is"
+puts age
+```
+
+We can replace line 3 and 4 with a single line. For example:
+
+{lang=ruby, line-numbers=on}
+```ruby
+puts "Your age?"
+age = gets
+puts "Your age is" + age
+```
+
+Result:
+
+```
+Your age?
+30
+Your age is30
+```
+
+Something is missing, isn't it? That's right, the space is missing between words "is" and "30". As you can see from example above, we can sum up two strings. From a purely math point of view it's nonsense, but strings do concatenate (join) in computer memory. Run the following code in REPL or as a program:
+
+{lang=ruby, line-numbers=off}
+```ruby
+"My name is " + "Roman" + " and my age is " + "30"
+```
+
+Result:
+
+```
+My name is Roman and my age is 30
+```
+
+Now try to add these two numbers, both represented as a string, try to guess what would be the answer?
+
+```
+"100" + "500"
+```
+
+Spoiler: answer is "100500". In other words, if number is represented as a string (comes in quotes), Ruby will treat this number as a string. But if we just type  `100 + 500`  (without quotes), produced result will be `600`.
+
+It turns out that you can also multiply string by a number:
+
+{lang=ruby, line-numbers=off}
+```ruby
+"10" * 5
+ => "1010101010"
+```
+
+Result is `"10"` repeated 5 times. If we leave space after 10, result will be represented in a more illustrative way:
+
+{lang=ruby, line-numbers=off}
+```ruby
+"10 " * 5
+ => "10 10 10 10 10 "
+```
+
+As it was mentioned before, `"10 "` is just a string, and we can use any string we want:
+
+{lang=ruby, line-numbers=off}
+```ruby
+"I'm cool! " * 10
+ => "I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! "
+```
+
+But in practice, we sometimes multiply by 80 (legacy text screen width). We can multiply strings like `"*"`, `"="`, or `"-"` by 80 to logically separate our screen output. For example:
+
+{lang=ruby, line-numbers=off}
+```ruby
+puts "Your age?"
+age = gets
+puts "=" * 80
+puts "Your age is " + age
+```
+
+Result:
+
+```
+Your age?
+30
+==================================================
+Your age is 30
+```
