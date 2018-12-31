@@ -1,0 +1,54 @@
+## Data Types
+
+We've figured out that we can sum up two strings with `+`. Also, we know that we can multiply string by a number. While experimenting we found that there are at least two types of data: strings and numbers (integers). And the number itself, but in quotes is a string. Let's see at how Ruby understands what is a number and what is a string:
+
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> "blabla".class
+ => String
+> "123".class
+ => String
+> 123.class
+ => Integer
+```
+
+Documentation says that everything is an object in Ruby. So the result of any operation is object. Every object "implements method" called `class`. Expression "implements method" means that some programmer, developer of Ruby language, made a tiny sub-program (or sub-routine) that we can run if we know its name. To call a small program we should type dot and the name of this program.
+
+In our case above the name of this sub-program (or "method", "function") is `class`. By the way, don't get confused. There is a method `class` that we call above by specifying dot at the beginning, and `class` keyword that defines a class of objects -- we'll cover it later in this book. If real-life objects could have methods, we would see something like this:
+
+```
+Apple.slice
+Apple.amount_of_seeds
+Apple.amount_of_worms
+River.water_temperature
+River.amount_of_fish
+```
+
+And so on. So that's how every object in Ruby has method `class`:
+
+```
+Object.class
+```
+
+In example above `123` (without quotes) and `"blabla"` are objects. Type of `123` is _Integer_. And type of `"blabla"` is _String_. Type of any object can be obtained by calling `.class`.
+
+Of course, every has documentation with the list of supported methods. We encourage you to look up documentation every time you have questions, and every time you work with this or another type of object. Documentation example for different object types:
+
+* [Object](https://ruby-doc.org/core-2.5.1/Object.html)
+* [String](https://ruby-doc.org/core-2.5.1/Object.html)
+* [Integer](https://ruby-doc.org/core-2.5.1/Object.html)
+
+Documentation is quite easy to find if you search for "ruby object docs" or "ruby string docs". Documentation covers everything we can do with an object, and it's a "gold mine" of information, you shouldn't ignore it, it should be your best friend. Programmer who doesn't like or lazy about looking up documentation will hardly ever succeed.
+
+Documentation example for `Object.class`: https://ruby-doc.org/core-2.5.1/Object.html#method-i-class
+
+Documentation example about multiplying string by a number: https://ruby-doc.org/core-2.5.1/String.html#method-i-2A -- look at the interesting example of multiplying string by zero (result is empty string).
+
+There are also many other types of objects in Ruby, most important of them will be covered in the next chapters. 
+
+X> ## Exercise 
+X> Open up your REPL and find out the data type for `""`. What's the data type for `0` (zero)? What's the data type for `-1`? What the data type for approximate Pi-number: `3.14`?
+
+X> ## Exercise 
+X> We know that `.class` method returns some sort of _result_ for any object. REPL reads, evaluates and prints this result. But if everything is an object, it means that _result_ is an object too. But does this object has a type? It should. What type of result method `.class` will return? Try to find this out by putting `.class` right after `123.class` this way: `123.class.class`. First part of this expression will return result. And the second part will return type of this result.
