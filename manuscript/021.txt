@@ -9,5 +9,39 @@ $ irb
  => true
 ```
 
-In example above we're calling `is_a?` method for `123` object and passing parameter `Integer`. Method returns true. In other words, `123` is a type of _Integer_.
+In example above we're calling `is_a?` method for `123` object and passing parameter `Integer`. Method returns true. In other words, `123` is a type of _Integer_. The similar way we can test if `123` is `String`:
 
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> 123.is_a?(String)
+ => false
+```
+
+Answer is false, `123` is not a String, but `"123"` and any other string is:
+
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> "123".is_a?(String)
+ => true
+> "blabla".is_a?(String)
+ => true
+```
+
+By calling `is_a?` we're kinda asking question in English "Is this a... ?", "Is this object a string?"
+
+We've confirmed that `123` is _Integer_, and `"blabla"` is _String_. Now let's make sure integers and strings are objects:
+
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> 123.is_a?(Object)
+ => true
+> "blabla".is_a?(Object)
+ => true
+```
+
+Great, numbers and strings are objects in Ruby! In other words, `123` is _Integer_ and _Object_ at the same time. And `"blabla"` is _String_ and _Object_ at the same time. In other words, there can be multiple objects, and objects _can implement_ multiple types.
+
+We'll discuss later in this book what object really is. We don't need to remember `is_a?` method at the moment, how to call this method, and what it returns (in computer literature it is called "method signature", sometimes API - Application Program Interface). But it's worth remembering `.class`, so you can any time check the type an object (or the type of result of some operation).
