@@ -36,8 +36,8 @@ In example above `123` (without quotes) and `"blabla"` are objects. Type of `123
 Of course, every has documentation with the list of supported methods. We encourage you to look up documentation every time you have questions, and every time you work with this or another type of object. Documentation example for different object types:
 
 * [Object](https://ruby-doc.org/core-2.5.1/Object.html)
-* [String](https://ruby-doc.org/core-2.5.1/Object.html)
-* [Integer](https://ruby-doc.org/core-2.5.1/Object.html)
+* [String](https://ruby-doc.org/core-2.5.1/String.html)
+* [Integer](https://ruby-doc.org/core-2.5.1/Integer.html)
 
 Documentation is quite easy to find if you search for "ruby object docs" or "ruby string docs". Documentation covers everything we can do with an object, and it's a "gold mine" of information, you shouldn't ignore it, it should be your best friend. Programmer who doesn't like or lazy about looking up documentation will hardly ever succeed.
 
