@@ -1,0 +1,13 @@
+## Everything Is An Object (Proof)
+
+We know that `123.class` returns _Integer_, and `"blabla".class` returns _String_. But any object also has `is_a?` method, which returns _true_ or _false_, depending on parameter you're passing to this method:
+
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> 123.is_a?(Integer)
+ => true
+```
+
+In example above we're calling `is_a?` method for `123` object and passing parameter `Integer`. Method returns true. In other words, `123` is a type of _Integer_.
+

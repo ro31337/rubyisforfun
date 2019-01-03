@@ -27,7 +27,7 @@ Your age?
 Your age is30
 ```
 
-Something is missing, isn't it? That's right, the space is missing between words "is" and "30". As you can see from example above, we can sum up two strings. From a purely math point of view it's nonsense, but strings do concatenate (join) in computer memory. Run the following code in REPL or as a program:
+Something is missing, isn't it? That's right, the space is missing between words "is" and "30". As you can see from example above, we can join two strings. From a purely math point of view adding up two strings is nonsense, but strings do concatenate (join) in computer memory. Run the following code in REPL or as a program:
 
 {lang=ruby, line-numbers=off}
 ```ruby
