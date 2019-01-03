@@ -1,0 +1,58 @@
+## Fractional Numbers
+
+Consider some popular type castings that we're already familiar with. One or another object may have one or more of the following methods:
+
+* `.to_i` - convert something to Integer (for example, convert string to a number)
+* `.to_s` - convert something to String (for example, number to string)
+* `.to_f` - convert something to fraction (for example, convert string to fraction)
+
+Run REPL to see what the fraction is:
+
+```
+$ irb
+> 3.14.class
+ => Float 
+```
+
+But... wait! It's "Float", not fraction! Why is that? In computer literature term _floating point_ is derived from the fact that there is no fixed number of digits before and after the decimal point. For example, it can be `3.14` (2 digits) or `3.141592` (6 digits). That is, the decimal point can "float". So fraction with "floating point" is represented by the class called "Float".
+
+Also, we have right to represent any integer as a float:
+
+```
+$ irb
+> 123.class
+ => Integer
+> 123.0.class
+ => Float
+```
+
+But why do we have `Float` type? For the same reason we have fractions, to do "accurate enough" math calculations. For precise calculations we must use type [BigDecimal](https://ruby-doc.org/stdlib-2.5.3/libdoc/bigdecimal/rdoc/BigDecimal.html).
+
+Let's jump into differences between _Float_ and _BigDecimal_ real quick, so you understand it from the very beginning. From _Float_ documentation:
+
+> Float objects represent inexact real numbers using the native architecture's double-precision floating point representation
+
+From _BigDecimal_ documentation:
+
+> BigDecimal provides similar support for very large or very accurate floating point numbers... Decimal arithmetic is also useful for general calculation, because it provides the correct answers people expect...
+
+What? "Correct answers people expect"? Isn't that something computers were built for? Why there is a need to emphasize that? The answer is easy.
+
+_Float_ documentation says "inexact real numbers" and "native architecture". It means that all operations are performed natively on your computer's CPU (Central Processor Unit, the main chip), which has capacity of 32 or 64 bits. These operations can be performed very quick, but 64 bits is just 8 bytes like "abcdefgh", and that's it!
+
+Imagine we want to land Curiosity on Mars and we need to perform some calculations with Pi constant to certain level of precision, like 3.141592653589793238462643383279502884197169399375105820974944592307816406286... But this value will not fit into 64 bits, it's well over 8 bytes! So it can't be calculated "natively" on CPU. If you try it, the value will be rounded to 3.141592653589793, and Curiosity spacecraft can land somewhere else.
+
+But if you really need this type of precision, you still can perform Curiosity calculations with Ruby! But you should use _BigDecimal_. In this case values will be stored in RAM (Random Access Memory), calculation will be much slower, because your CPU will need to read and write from RAM, instead of just using one of its internal registers.
+
+In other words, when you need "correct answers people expect", use _BigDecimal_. If you're okay with "inexact real numbers using the native architecture", use _Float_. We don't need to be very precise at the moment, so we'll use _Float_. Let's write a program to calculate 30% tax for our salary:
+
+{title="Program to calculate 30% tax", lang=ruby, line-numbers=on}
+```ruby
+puts "Your salary?"
+salary = gets.to_i
+tax_rate = 0.3
+puts "Tax:"
+puts salary * tax_rate
+```
+
+Try to run this program and see how it works.
