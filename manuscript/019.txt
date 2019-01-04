@@ -1,4 +1,4 @@
-## Strings Addition and Multiplication
+## String Addition and Multiplication
 
 Let's look at the program from previous chapter. Can we do better?
 
