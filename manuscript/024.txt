@@ -1,0 +1,137 @@
+## String Interpolation
+
+Readability of a program can be significantly improved by taking advantage of string interpolation:
+
+{title="String interpolation example", lang=ruby, line-numbers=on}
+```ruby
+puts "Your age?"
+age = gets.to_i
+age_months = age * 12
+puts "Your age is #{age_months}"
+```
+
+There is no need for type casting on line 4. Every _Object_ in Ruby can be converted to a string (`to_s` method is responsible for that). That's why there is a common syntax for every type called "interpolation".
+
+The trick is that the expression gets _evaluated_ inside of curly braces. We have very simple expression inside of curly braces, just `age_months`, but it can be any Ruby code (for example, `2 + 2`). And at the end final result gets converted to a string. Look at another example:
+
+{lang=ruby, line-numbers=on}
+```ruby
+puts "Your age?"
+age = gets.to_i
+puts "Your age is #{age * 12}"
+```
+
+Only 3 lines of code! There is no need for extra variable, because we can evaluate expression right inside of curly braces, result will be the same.
+
+At first glance, there is little improvement. Even old JavaScript syntax allows to use `+` for strings and numbers:
+
+{title="String interpolation in old JavaScript", lang=js, line-numbers=off}
+```
+$ node
+> "Your age is " + 30 * 12
+'Your age is 360'
+```
+
+But newer JavaScript (ES6+) also has string interpolation syntax. There was need for that, but many programmers found that it simplifies a program, and adds mode readability:
+
+{title="String interpolation in newer JavaScript (ES6)", lang=js, line-numbers=off}
+```
+$ node
+> `Your age is ${30 * 12}`
+'Your age is 360'
+>
+```
+
+Keep in mind that for interpolation in JavaScript you'll need backticks, and in Ruby double quotes.
+
+Interpolation is quite useful when you deal with multiple variables. For example:
+
+{lang=ruby, line-numbers=on}
+```ruby
+puts "Your name?"
+name = gets
+
+puts "Your age?"
+age = gets.to_i
+
+puts "Your city?"
+city = gets
+
+puts "=" * 80
+puts "You are #{name}, your age in months is #{age * 12}, and you are from #{city}"
+```
+
+Result:
+
+```
+Your name?
+Roman
+Your age?
+30
+Your city?
+San Francisco
+========================================================================
+You are Roman
+, your age in months is 360, and you are from San Francisco
+```
+
+Almost works, there are some quirks though. We used string interpolation on the last line, and were able to output all the information with only one line. However, something is not right. Do you see new line right after "Roman"? What is happening here?
+
+The thing is `gets` function returns a string with special character `\n`. This character is not visible on the screen, but when your terminal sees that, it moves the caret to the next (new) line. This special character is called "new line character". It's only one byte in standard character table (ASCII) with position number 10. 
+
+Let's prove that `gets` returns a string with new line character at the end. Run this in your REPL:
+
+{lang=ruby, line-numbers=on}
+```ruby
+$ irb
+> x = gets
+Hi
+ => "Hi\n"
+> x.class
+ => String
+> x.size
+ => 3
+```
+
+We assigned a value to variable `x`, and this value comes from `gets` (you need to type "Hi"). As we already know, REPL prints the result of operation, so we see `Hi\n`. So it says there is a new line character at the end of this string. Then we check the type of this object with `.class`, and it's _String_. And after that we used `.size` to find out the length of this string, and it shows 3, and it makes sense because we touched our keyboard exactly three times: one time for letter "H", second time for letter "i", and then we pressed "Enter". So the code for "Enter" key is still there.
+
+When we did interpolation in our program above, new line character was there. That's why our output was misaligned. Let's fix our program:
+
+{lang=ruby, line-numbers=on}
+```ruby
+puts "Your name?"
+name = gets.chomp
+
+puts "Your age?"
+age = gets.to_i
+
+puts "Your city?"
+city = gets.chomp
+
+puts "=" * 80
+puts "You are #{name}, your age in months is #{age * 12}, and you are from #{city}"
+```
+
+Result:
+
+```
+$ ruby app.rb
+Your name?
+Roman
+Your age?
+30
+Your city?
+San Francisco
+========================================================================
+You are Roman, your age in months is 360, and you are from San Francisco
+```
+
+And it works! We used `chomp` method for _String_ class to remove new line characters from the end.
+
+It's important to remember that interpolation only works with double quotes. Single quotes like `'` can be used in Ruby as well, but interpolation is not supported for single quotes. Moreover, some tools for code analysis (like Rubocop) will complain about double quotes without interpolation inside. The rule of thumb here is to use single quotes when you don't need interpolation, and to use double quotes when you actually need string interpolation.
+
+X> ## Exercise 1
+X> Find and read documentation for `chomp` and `size` methods for _String_ class.
+
+X> ## Exercise 2
+X> Write a program to calculate your average daily salary. User should be able to type annual income, and program should calculate daily salary. Modify the program so it also calculates monthly salary.
