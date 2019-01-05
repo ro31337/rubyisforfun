@@ -29,13 +29,31 @@ Number we typed stored in variable with the name `age`. We could name it any way
 
 In Ruby and JavaScript you'll see three common naming conventions:
 
-* Snake case. Underscode `_` between words. Example: `client_age`, `user_password`, `user_password_expiration_date`. Used in Ruby and often in databases for naming tables and columns.
-* Camel case. Word starts with lowercase letter, words are separated by the following uppercase letter. For example: `clientAge`, `userPassword`, `userPasswordExpirationDate`. Often used in JavaScript.
-* Kebab case. Words are separated by hyphen. For example: `client-age`, `user-password`, `user-password-expiration-date`. Often used in HTML. For example:
+* Snake case. Underscore `_` between words. Examples:
 
-        ```html
+        client_age
+        user_password
+        user_password_expiration_date
+
+  Snake case is used in Ruby and often in databases for tables and columns.
+
+* Camel case. Word starts with lowercase letter, words are separated by the following uppercase letter. For example:
+
+        clientAge
+        userPassword
+        userPasswordExpirationDate
+
+  Camel case is often used in JavaScript and statically typed languages (Golang, Java, etc.)
+
+* Kebab case. Words are separated by hyphen. For example:
+
+        client-age
+        user-password
+        user-password-expiration-date
+
+  Kebab case is often used in HTML. For example:
+
         <input type="text" name="login" data-error-highlight-color="red">
-        ```
 
 We need to remember only the first naming convention at the moment, because it's used in Ruby: if variable contains of multiple words, use underscore. It should be noted that ideal variable name should be named by using one word only. Two or more words is usually indicator of too broad context, but it's out of topic for this book. Programmers agree that naming variables often isn't something easy:
 

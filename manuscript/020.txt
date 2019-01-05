@@ -1,3 +1,5 @@
+# Part II. Essentials
+
 ## Data Types
 
 In previous chapters we had figured out how to join two strings with `+`. Also, we know that we can multiply string by a number. While experimenting we found that there are at least two types of data: strings and numbers (integers). And the number itself, but in quotes is a string. Let's see at how Ruby understands what is a number and what is a string:
