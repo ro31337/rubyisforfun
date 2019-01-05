@@ -1,0 +1,66 @@
+## Bang!
+
+Another interesting challenge we should tackle is "bang", "exclamation mark", or just `!` at the end of some method.  Let's look at Ruby program below (if you're using non-English characters on Windows, you may have some difficulties):
+
+{lang=ruby, line-numbers=on}
+```ruby
+x = 'I AM COOL'
+x = x.downcase
+puts x
+``` 
+
+Note that text is "I AM COOL", not "I'M COOL" - you can do that too, but keep it in double quotes (because this phrase contains apostrophe).
+
+Result:
+
+```
+$ ruby app.rb
+i am cool
+```
+
+We defined variable with value "I AM COOL", all capital letters. On the second line we redefined the variable and assigned new value, the result of `x.downcase` operation. Since initially `x` is _String_, we have the right to call any method for _String_ class. And we're calling ["downcase" method for class String](https://ruby-doc.org/core-2.5.1/String.html#method-i-downcase). This method translates upper case letters to lower case, and we see this result on the screen.
+
+But the most interesting part here is line 2: `x = x.downcase`. There is alternative syntax for that in Ruby, and instead of reassigning variable, we can just type `x.downcase!`. It looks similar, but with alternative syntax Ruby will understand that it needs to perform operation on the object itself. In other words, line 2 in the program above has two parts:
+
+* `x.downcase`
+* `x = result of operation` (or `y = result of operation`, we can use any other variable here)
+
+And with `x.downcase!` it's only one part: do `downcase` operation on this object `x`.
+
+But not every method supports such functionality, in every single case you will need to lookup documentation. Also, bang-methods in Ruby are considered dangerous, because these methods always change the _state_ of object. But why it's dangerous? - curious read will ask - We are just changing the value of this particular object, and that's it! But it's not that simple. 
+
+Look at the following program. No tricks here, just try to guess what will be printed on the screen:
+
+{lang=ruby, line-numbers=on}
+```ruby
+a = 'HI'
+b = a
+a = 'xxx'
+puts b
+```
+
+We have two variables: _a_ and _b_. We assign the value of _a_ to variable _b_ on line 2. On other words, _b_ equals to `HI` now. On line 3 we replace the value of variable _a_ with `xxx`. Because we can, there is no too much sense for that now, but you'll understand later why we did that. What will be printed on the screen? Nothing out of the ordinary, just `HI`.
+
+Now let's modify this program a little bit, everything is the same, except line 3:
+
+{lang=ruby, line-numbers=on}
+```ruby
+a = 'HI'
+b = a
+a.downcase!
+puts b
+```  
+
+Note that we didn't touch variable _b_. But we did "dangerous operation" with _a_. What will be printed on the screen? There is a trick here. It turns out that dangerous operation will affect variable _b_ and change its value. Try it yourself and you'll see `hi` on the screen (instead of `HI` from previous example).
+
+Explanation is about how Ruby works internally. There is no need for a beginner to know all the details, but it's worth mentioning that every variable keeps an address to the actual data. This address is a pointer to location in computer memory, and the value of this pointer is something like 123456789. But the actual data can be found by using this address.
+
+It's similar to apartments house with multiple doorbells. New variable is similar to a doorbell that _leads_ to this or another apartment. Doorbell is not apartment itself, but it's associated with it. When we assign variable `b = a` we just say that doorbell _b_ now _leads_ to the same apartment as doorbell _a_. These doorbells don't know about each other. But when we do dangerous operation, we change the _state_ of the apartment, its internals. So both doorbells remain the same, they will keep the same numbers on them, but they will now lead to apartment with modified state.
+
+There is no any magic in bang-methods. In the next chapters we will shed some light on how to create your own classes and objects, and you'll be able to make your own bang-methods. Some popular web frameworks (like Rails) have their own dangerous methods, like `save!` (it saves an object to a database). And exclamation mark implies that this method is dangerous:
+
+* It changes the state of the object, so all references now will point to modified object.
+* If something goes wrong, this method will generate exception (we'll cover this topic later in this book).
+
+X> ## Exercise 
+X> Find out if there are any other bang methods for _String_ class.
