@@ -10,9 +10,9 @@ age_months = age * 12
 puts "Your age is #{age_months}"
 ```
 
-There is no need for type casting on line 4. Every _Object_ in Ruby can be converted to a string (`to_s` method is responsible for that). That's why there is a common syntax for every type called "interpolation".
+There is no need for type casting on line 4. Every _Object_ in Ruby can be converted to a string (`to_s` method is responsible for that). That's why there is a common syntax for every type, and it's called "interpolation".
 
-The trick is that the expression gets _evaluated_ inside of curly braces. We have very simple expression inside of curly braces, just `age_months`, but it can be any Ruby code (for example, `2 + 2`). And at the end final result gets converted to a string. Look at another example:
+The trick is the expression gets _evaluated_ inside of curly braces. We have very simple expression inside of curly braces, just `age_months`, but it can be any Ruby code (for example, `2 + 2`). And at the end final result gets converted to a string. Look at another example:
 
 {lang=ruby, line-numbers=on}
 ```ruby
@@ -61,6 +61,8 @@ puts "=" * 80
 puts "You are #{name}, your age in months is #{age * 12}, and you are from #{city}"
 ```
 
+Note: example above has 12 lines, but the last line was too long for Leanpub book, and was wrapped automatically. In your editor you can remove `\` sign and continue on line 11.
+
 Result:
 
 ```
@@ -81,7 +83,7 @@ The thing is `gets` function returns a string with special character `\n`. This 
 
 Let's prove that `gets` returns a string with new line character at the end. Run this in your REPL:
 
-{lang=ruby, line-numbers=on}
+{lang=ruby, line-numbers=off}
 ```ruby
 $ irb
 > x = gets
@@ -93,9 +95,9 @@ Hi
  => 3
 ```
 
-We assigned a value to variable `x`, and this value comes from `gets` (you need to type "Hi"). As we already know, REPL prints the result of operation, so we see `Hi\n`. So it says there is a new line character at the end of this string. Then we check the type of this object with `.class`, and it's _String_. And after that we used `.size` to find out the length of this string, and it shows 3, and it makes sense because we touched our keyboard exactly three times: one time for letter "H", second time for letter "i", and then we pressed "Enter". So the code for "Enter" key is still there.
+We've assigned a value to variable `x`, and this value comes from `gets` (you need to type "Hi"). As we already know, REPL prints the result of operation, so we see `Hi\n`. So it says there is a new line character at the end of this string. Then we check the type of this object with `.class`, and it's _String_. After that we use `.size` to find out the length of this string, and it shows 3 (and it makes sense because we touched our keyboard exactly three times: one time for letter "H", second time for letter "i", and then we pressed "Enter"). So the code for "Enter" key is still there.
 
-When we did interpolation in our program above, new line character was there. That's why our output was misaligned. Let's fix our program:
+When we did interpolation in our program above, new line character was there as well. That's why our output was misaligned. Let's fix our program:
 
 {lang=ruby, line-numbers=on}
 ```ruby
@@ -126,9 +128,9 @@ San Francisco
 You are Roman, your age in months is 360, and you are from San Francisco
 ```
 
-And it works! We used `chomp` method for _String_ class to remove new line characters from the end.
+It works! We used `chomp` method for _String_ class to remove new line characters from the end.
 
-It's important to remember that interpolation only works with double quotes. Single quotes like `'` can be used in Ruby as well, but interpolation is not supported for single quotes. Moreover, some tools for code analysis (like Rubocop) will complain about double quotes without interpolation inside. The rule of thumb here is to use single quotes when you don't need interpolation, and to use double quotes when you actually need string interpolation.
+It's important to remember that interpolation only works with double quotes. Single quotes like `'` can be used in Ruby as well, but interpolation is not supported intentionally for single quotes. Moreover, some tools for code analysis (like Rubocop) will complain about double quotes without interpolation inside. The rule of thumb here is to use single quotes when you don't need interpolation, and to use double quotes when you actually need string interpolation.
 
 X> ## Exercise 1
 X> Find and read documentation for `chomp` and `size` methods for _String_ class.

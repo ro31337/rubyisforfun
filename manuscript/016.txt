@@ -51,7 +51,7 @@ But on your own machine you're free to run any programs. And there are some code
 * [Atom](https://atom.io/)
 * [Sublime Text](https://www.sublimetext.com/) (fixed price)
 
-RubyMine is not just a code editor, but Interactive Development Environment. Comprehensive tool for writing code with many features. Beginners can pick any of these editors. RubyMine offers great support on first steps, offering hints and tips. Other editors can be configured to offer this kind of support as well. However, we won't be covering this topic in our book.
+RubyMine is not just a code editor, but Interactive Development Environment (IDE). Comprehensive tool for writing code with many features. Beginners can pick any of these editors. RubyMine offers great support on first steps, offering hints and tips. Other editors can be configured to offer this kind of support as well. However, we won't be covering this topic in our book.
 
 At the very beginning it's worth using built-in code/text editor in your file manager. For example, you can create new file in Far Manager with Shift+F4 combination. At later steps feel free to use any code editor you like.
 

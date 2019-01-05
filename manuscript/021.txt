@@ -18,7 +18,7 @@ $ irb
  => false
 ```
 
-Answer is false, `123` is not a String, but `"123"` and any other string is:
+Answer is false, `123` is not _String_, but `"123"` (in quotes) is _String_:
 
 {lang=ruby, line-numbers=off}
 ```ruby
@@ -29,7 +29,7 @@ $ irb
  => true
 ```
 
-By calling `is_a?` we're kinda asking question in English "Is this a... ?", "Is this object a string?"
+By calling `is_a?` we're kinda asking question in plain English "**Is** this **a**... ?", "Is this object a string?"
 
 We've confirmed that `123` is _Integer_, and `"blabla"` is _String_. Now let's make sure integers and strings are objects:
 
@@ -44,4 +44,4 @@ $ irb
 
 Great, numbers and strings are objects in Ruby! In other words, `123` is _Integer_ and _Object_ at the same time. And `"blabla"` is _String_ and _Object_ at the same time. In other words, there can be multiple objects, and objects _can implement_ multiple types.
 
-We'll discuss later in this book what object really is. We don't need to remember `is_a?` method at the moment, how to call this method, and what it returns (in computer literature it is called "method signature", sometimes API - Application Program Interface). But it's worth remembering `.class`, so you can any time check the type an object (or the type of result of some operation).
+We'll discuss later in this book what object really is. We don't need to remember `is_a?` method at the moment, how to call this method, and what it returns (in computer literature it is called "method signature", sometimes API - Application Program Interface). But it's worth remembering `.class`, so you can any time check the type of any object (or the type of result of some operation).

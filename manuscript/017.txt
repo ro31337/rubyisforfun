@@ -28,7 +28,7 @@ In the program above we put a string on the screen and awaiting for the user inp
 
 Run the program above and see what happens. If you run the program from file manager, result won't "disappear", because Ruby will be waiting for your input.
 
-Now let's write super simple program to learn foreign language. Let's take three random Spanish words: la pelota (ball), la puerta (door), la paz (peace). Imagine that you need to learn these words. How would you do that using a computer? One of the way is to emulate a teacher. Computer will ask questions, and we'll be just spelling translation out loud:
+Now let's write super simple program to learn foreign language. Let's take three random Spanish words: la pelota (ball), la puerta (door), la paz (peace). Imagine that you need to learn these words. How would you do that using a computer? One of the ways is to emulate a teacher. Computer will ask questions, and we'll be just spelling translation out loud:
 
 {title="Foreign language teacher program", lang=ruby, line-numbers=on}
 ```ruby
@@ -62,7 +62,7 @@ Few notes about the listing above. As you may have already noticed, there are co
 X> ## Exercise 
 X> Finish the program above if you understand music theory. If you don't, create a program to learn 10 foreign words. Try to add some comments to your program so you can understand it better.
 
-Another note is about encoding. Since our program has only characters from A to Z, there is no need to specify any encoding. However, if you want to use Chinese, Russian, etc. characters , you have two options:
+Another note is about encoding. Since our program has only characters from A to Z, there is no need to specify any encoding. However, if you want to use Chinese, Russian, etc. characters, you have two options:
 
 * If you're on Windows, first line of your program should be `# encoding: cp866` ("cp866" is the name of encoding). Also, the file should be saved using this encoding.
 * You don't need to do anything if you're on MacOS or Linux

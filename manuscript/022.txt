@@ -1,8 +1,8 @@
 ## Type Casting (type conversion)
 
-Let's write a program to calculate your age in months. We'll ask for the age in years, and the program will do calculation by multiplying this number by 12. Based on our knowledge from previous chapters we should have something like this: 
+Let's write a program to calculate your age in months. We'll ask for the age in years, and our program will do calculation by multiplying this number by 12. Based on our knowledge from previous chapters we should have something like this: 
 
-{title="Incorrect program to calculate age in months", lang=ruby, line-numbers=on}
+{title="(Warning: incorrect program to calculate age in months)", lang=ruby, line-numbers=on}
 ```ruby
 puts "Your age?"
 age = gets
@@ -10,7 +10,7 @@ age_months = age * 12
 puts "Your age is " + age_months
 ```
 
-What's happening here? We defined the `age_months` variable, which represents the age in months multiplied by 12. It should work, but something is not right. Can you spot the mistake? Here is the result of running this program:
+What's happening here? We defined `age_months` variable, which represents the age in years multiplied by 12. It should work, but something is not right. Can you spot the mistake? Here is the result of running this program:
 
 ```
 Your age?
@@ -29,7 +29,7 @@ Your age is 30
 30
 ```
 
-Uh-oh! There definitely must be some mistake. It turns out that we multiply _String_ by a number (_Integer_). Try to run a program again and type `blabla`:
+Uh-oh! There definitely must be some mistake. It turns out that we multiply _String_ by a number (_Integer_). Try to run this program again and type `blabla`:
 
 ```
 Your age?
@@ -48,9 +48,9 @@ blabla
 blabla
 ```
 
-The type of `age` variable is _String_. And when we multiply _String_ by _Integer_, the result is the very long string repeated 12 times. To fix this program we should multiply _Integer_ by _Integer_. We already did it before, when had calculated the number of milliseconds in a day, everything was correct. This time we just need to convert (or "cast") type _String_ into _Integer_.
+The type of `age` variable is _String_. And when we multiply _String_ by _Integer_, the result is the very long string (short string of "blabla" repeated 12 times). To fix this program we should multiply _Integer_ by _Integer_. We already did it before, when had calculated the number of milliseconds in a day, everything was correct. This time we just need to convert (or "cast") type _String_ into _Integer_.
 
-How we can do that? Quick documentation search for `gets` function (or "method", do you remember that words "function" and "method" are synonyms?) shows that this function retuns results with a type of String. And it's understandable, because `gets` is "get string". What we need now is "get integer" function. And if we believe in Ruby's principle of a least surprise, it should be `geti`, let's check that:
+How we can do that? Quick documentation search for `gets` function (or "method", do you remember that words "function" and "method" are synonyms?) shows that this function returns results with a type of _String_. And it's understandable, because `gets` is "get string". What we need now is "get integer" function. And if we believe in Ruby's principle of a least surprise, it should be `geti`, let's check that:
 
 ```
 $ irb
@@ -59,7 +59,7 @@ NameError (undefined local variable or method `geti' for main:Object
 Did you mean?  gets)
 ```
 
-Oops! It didn't work. But it was a nice try. There is no such method `geti`, but something tells it can be implemented one day. Let's think what else we can do to fix our program?
+Oops! It didn't work. But it was a nice try. There is no such method `geti`, but something tells it will be implemented one day. Let's think what else we can do to fix our program?
 
 There is one way to convert string into a number in JavaScript language (and every Ruby programmer should think about JavaScript a little bit). The trick is to multiply string by 1 (`node` below is JavaScript interpreter, it works if Node.js is installed on your computer):
 
@@ -69,7 +69,7 @@ $ node
 123
 ```
 
-Can we do the same trick in Ruby? Let's try:
+Can we do the same trick in Ruby? Let's try in REPL:
 
 ```ruby
 > "123" * 1
@@ -78,7 +78,7 @@ Can we do the same trick in Ruby? Let's try:
  => String
 ```
 
-No luck, it's still string. But there should be other ways. Open up "String" class documentation to see the whole bunch of methods starting with `to`. There is `to_i` among these methods, which means "to Integer", and it's exactly what we need. `to_i` is not something obvious, but in this case Ruby developers wanted to stay lean, and we have `to_i` instead of `to_integer`.
+No luck, it's still _String_. But there should be other ways. Open up "String" class documentation to see the whole bunch of methods starting with `to`. There is `to_i` among these methods, which means "to Integer", and it's exactly what we need. `to_i` is not something obvious, but in this case Ruby developers wanted to stay lean, and we have `to_i` instead of `to_integer`.
 
 So, to convert a string into number we should use `to_i` function:
 
@@ -127,7 +127,7 @@ Your age?
 Your age is 360
 ```
 
-Finally, it works! We did a great job and used type casting two times, on lines 3 and 4. There are some other ways to write this program, and often it's just up to a programmer to decide which approach is better. For example, we can do type casting on line 2, without touching line 3:
+Finally it works! We did a great job and used type casting two times, on lines 3 and 4. There are some other ways to write this program, and often it's just up to a programmer to decide which approach is better. For example, we can do type casting on line 2, without touching line 3 (still keeping type casting on line 4):
 
 {lang=ruby, line-numbers=on}
 ```ruby

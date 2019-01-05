@@ -72,7 +72,7 @@ As it was mentioned before, `"10 "` is just a string, and we can use any string 
  => "I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! I'm cool! "
 ```
 
-But in practice, we sometimes multiply by 80 (legacy text screen width). We can multiply strings like `"*"`, `"="`, or `"-"` by 80 to logically separate our screen output. For example:
+But in practice, developers often multiply a single character by 80 (legacy text screen width). We can multiply strings like `"*"`, `"="`, or `"-"` by 80 to logically separate results from input. For example:
 
 {lang=ruby, line-numbers=off}
 ```ruby
@@ -87,6 +87,6 @@ Result:
 ```
 Your age?
 30
-==================================================
+========================================================================
 Your age is 30
 ```

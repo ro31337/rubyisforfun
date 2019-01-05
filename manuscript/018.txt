@@ -25,17 +25,17 @@ Your age is
 20
 ```
 
-Number we typed stored in variable with the name `age`. We could name it any way we want, for example `a`. But in this case on line 4 will look like `puts a`. When it comes to naming variables, there are some important naming conventions out there, search for "naming conventions for variables in Ruby".
+Number we typed was stored in variable with the name `age`. We could name it any way we want, for example `a`. But in this case line 4 will look like `puts a`. When it comes to naming variables, there are some important naming conventions out there, you can find them by typing "naming conventions for variables in Ruby" in your favorite search engine (we hope you're using [DuckDuckGo](https://duckduckgo.com/)).
 
-In Ruby and JavaScript you'll see three common naming conventions:
+But Ruby and JavaScript you'll see three common naming conventions:
 
-* Snake case. Underscore `_` between words. Examples:
+* Snake case. Underscore `"_"` between words. Examples:
 
         client_age
         user_password
         user_password_expiration_date
 
-  Snake case is used in Ruby and often in databases for tables and columns.
+  Snake case is used in Ruby and often in databases for tables and column names.
 
 * Camel case. Word starts with lowercase letter, words are separated by the following uppercase letter. For example:
 
@@ -55,13 +55,13 @@ In Ruby and JavaScript you'll see three common naming conventions:
 
         <input type="text" name="login" data-error-highlight-color="red">
 
-We need to remember only the first naming convention at the moment, because it's used in Ruby: if variable contains of multiple words, use underscore. It should be noted that ideal variable name should be named by using one word only. Two or more words is usually indicator of too broad context, but it's out of topic for this book. Programmers agree that naming variables often isn't something easy:
+We need to remember only the first naming convention at the moment, because it's used in Ruby: if variable has multiple words, use underscore. It should be noted that ideally variable should be named by using one word only. Two or more words is usually indicator of too broad context, but it's out of topic for this book. Programmers agree that sometimes naming variables isn't something easy:
 
 > There are only two hard things in Computer Science: cache invalidation and naming things.
 >
 > -- Phil Karlton
 
-If you came up with variable name which is too long, don't try to artificially lower the character count (for example, by renaming `client_password_expiration_date` to `cped`). At this stage, leave it as it is, and get back to your code later to see if you can do any refactoring (code improvement).
+If you came up with variable name which is too long, don't try to artificially lower the character count (for example, by renaming `client_password_expiration_date` to `cped`). At this stage, leave it as it is, and get back to your code later to see if you can do any _refactoring_ (code improvement).
 
 In addition to naming conventions, there are some variable naming rules that come from Ruby language itself: variables should start with letter and must contain only alphanumeric characters or underscore.
 
