@@ -1,0 +1,82 @@
+## Blocks
+
+Ruby has its own definition of _code block_. Usually when we look at a program, we can visually separate blocks or chunks of code. For example, first 3 lines are responsible for user input, next 5 lines for output, and so on. Even though we can call these lines blocks of code from purely visual point of view, there are _code blocks_ in Ruby, and they have special meaning.  
+
+_Code block_ in Ruby is a part of a program that we pass somewhere (to function), so it will get executed under some circumstances. One wonders, why do we need to pass it while we can execute the block right away? Actually passing a code block to a function makes sense in the following cases:
+
+* This code needs to be executed certain amount of times. For example, we want to show the message "Boston Red Sox Are World Champions!" 10 times. Instead of just using `puts` ten times, we can take advantage of Ruby code blocks and pass the block to some function (we'll discover how to do it later in this chapter). In this case program can be written in one line instead of ten.
+* Depending on some conditions code can be executed or not. And sometimes decision isn't up to a programmer, there could be some circumstances. In other words, if you see a _code block_, it doesn't mean that it will be executed for sure.
+
+Syntax for code blocks in Ruby can be done in two ways:
+
+* If block is large and it takes multiple lines, you should use keywords `do` and `end`.
+* If it's only one line, you can use curly braces: `{` and `}`
+
+If you use this or another syntax, result will be the same. Curly braces work great for simple expressions. And between `do` and `end` we can keep as many lines as we want. Keep in mind that usually it's not recommended to have huge code blocks.
+
+Let's try to use code blocks and see what happens:
+
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> 10.times { puts 'Boston Red Sox Are World Champions!' }
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+Boston Red Sox Are World Champions!
+...
+```
+
+Let's take a closer look. What is `10`? Which class we're dealing with? Yes, we're already familiar with this class, it is _Integer_. Lookup documentation for _Integer_ class and [scroll down](https://ruby-doc.org/core-2.5.1/Integer.html#method-i-times) to "times" method. We can see that method "accepts" block. Actually, you can pass a block to _any_ method, even to the method that doesn't accept any block, because it's up to the method to execute this block or not. Method "times" always executes the block.
+
+So what do we have now? We have object `10`, and this object "knows" about its state, internally there is a number 10 somewhere. There is method "times" implemented by Ruby language developer, and this method executes this block 10 times.
+
+Remember that you can pass a block to any method, then it's just up to the method what to do with the block. And if you want to know what is going to happen, you should lookup documentation. For example, the following code is perfectly valid:
+
+{lang=ruby, line-numbers=off}
+```ruby
+gets { puts 'OK' } 
+```
+
+There won't be any error, but this program makes no sense! Method "gets" doesn't know what to do with a block, and it will be ignored.
+
+Here is how you can pass multi-line block to "times" method:
+
+{lang=ruby, line-numbers=off}
+```ruby
+10.times do
+  puts "Boston Red Sox Are World Champions!"
+  puts "(and New York Yankees too)"
+end
+```
+
+Run this program on your computer and see what happens. And here is outline of what is happening above:
+
+* There is object `10` of class _Integer_
+* We're calling method "times" on this object
+* We're passing the _code block_ to method "times". This code block has 2 lines.
+
+Author's story: when I was about 8, my father showed me the first program written with BASIC language:
+
+{lang=basic, line-numbers=off}
+```basic
+10 PRINT "Roman ";
+20 GOTO 10
+```
+
+10 and 20 are line numbers, and there is infinite loop. Program prints the name and does this again, and again. Because there is no line feed, entire screen fills with exactly the same string, and visually all of it shifts to the left. You can do the same trick with Ruby:
+
+{lang=ruby, line-numbers=off}
+```ruby
+loop do
+  print "Roman "
+end
+```
+
+Program above has infinite loop. `print` method is similar to `puts`, but the only difference is that there is no line feed (no new line).
