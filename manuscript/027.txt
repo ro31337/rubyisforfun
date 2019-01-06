@@ -1,0 +1,104 @@
+## Blocks With Parameters
+
+Object that executes your block can pass a parameter. It depends on implementation, some objects do pass parameters to your blocks, others don't. It's up to a programmer if you want to use this parameter or want to ignore it. So far, we've been always ignoring this information, but technically parameter was always there. Let's see how we can use it.
+
+In case below we have object of `24` with type _Integer_. Let's write a program called "Piggy Bank", this piggy bank will accept 500 dollars every month, and will save this money. What we want to know is how much money it has after 24 months.
+
+{title="Piggy Bank program, version 1", lang=ruby, line-numbers=on}
+```ruby
+sum = 0
+
+24.times do |n|
+  sum = sum + 500
+  puts "Month #{n}, piggy bank has #{sum} dollars"
+end
+```
+
+Result:
+
+```
+Month 0, piggy bank has 500 dollars
+Month 1, piggy bank has 1000 dollars
+Month 2, piggy bank has 1500 dollars
+Month 3, piggy bank has 2000 dollars
+...
+Month 22, piggy bank has 11500 dollars
+Month 23, piggy bank has 12000 dollars
+```
+
+Well, result was little bit unpredictable. For some reason the count starts from zero: "Month 0". Actually, it was expected, and the only confusing part is the variable naming. Usually "n" means "natural number", and natural numbers can be used for counting[^natural_numbers] (one apple, two apples, three apples, …). But in our case _n_ can be 0, and it can confuse some programmers.
+
+[^natural_numbers]: However, some definitions begin natural numbers with 0. This situation is strange because mathematics is normally a very precise science and there is normally broad agreement about such definitions.
+
+Usually one uses _n_, _m_, etc. for natural numbers. And if we're talking about _index_, it starts with zero, and the more appropriate name for variable will be _i_, _j_, and so on. It's not a mistake if you named variable incorrectly (and definition of correctness is only up to you), but the code has two readers: computer and human. And human is not only you, but also somebody else: your colleagues, friends, random people online who came across your published code, and also _the future you_. That's why you need to write the most predictable code you can. Moreover, Ruby is about least surprise, and community expects the same from other Ruby developers.
+
+With this in mind we can rewrite the program:
+
+{title="Piggy Bank program, version 2", lang=ruby, line-numbers=on}
+```ruby
+sum = 0
+
+24.times do |i|
+  sum = sum + 500
+  puts "Month #{i}, piggy bank has #{sum} dollars"
+end
+```
+
+But renaming variable is not enough, months still start from 0:
+
+```
+Month 0, piggy bank has 500 dollars
+...
+``` 
+
+We don't count apples starting from zero, and practically speaking there is no too much sense in counting months starting from zero. So let's take advantage of string interpolation and replace expression `i` with `i + 1`:
+
+{title="Piggy Bank program, version 3", lang=ruby, line-numbers=on}
+```ruby
+sum = 0
+
+24.times do |i|
+  sum = sum + 500
+  puts "Month #{i + 1}, piggy bank has #{sum} dollars"
+end
+```
+
+Now it works as expected:
+
+```
+Month 1, piggy bank has 500 dollars
+...
+Month 24, piggy bank has 12000 dollars
+```
+
+For the sake of experiment imagine you have not just a piggy bank, but "Magic Piggy Bank, model 10"! It will generate the revenue of 10% every month for any money you put in:
+
+{title="Magic Piggy Bank program", lang=ruby, line-numbers=on}
+```ruby
+sum = 0
+
+24.times do |i|
+  sum = sum + 500 + sum * 0.1
+  puts "Month #{i + 1}, magic piggy bank has #{sum}"
+end
+```
+
+So the improvement is only to add "`+ sum * 0.1`" on line 4, and here is result:
+
+```
+Month 1, magic piggy bank has 500.0
+Month 2, magic piggy bank has 1050.0
+Month 3, magic piggy bank has 1655.0
+Month 4, magic piggy bank has 2320.5
+...
+Month 23, magic piggy bank has 39771.512162761865
+Month 24, magic piggy bank has 44248.66337903805
+```
+
+In other words, Magic Piggy Bank will generate $44248 instead of just saved $12000.
+
+X> ## Exercise 1
+X> You're planning to buy a house for $500.000 and your employer credit union is offering zero percent interest rate for 30 years. To pay off this house you need to pay $16.666 every year (it can be calculated by dividing $500K by 30). Write a program which will show the amount left to pay for each year.
+
+X> ## Exercise 2
+X> Modify the program from exercise 1 to meet the following criteria. Your interest rate is 4% a year for _remaining_ amount. For every year calculate how much _interest in dollars_ you need to pay for using bank's money.

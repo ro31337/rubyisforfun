@@ -1,0 +1,6 @@
+
+`...`
+
+The full version of the book is available at [http://rubyisforfun.com](http://rubyisforfun.com)
+
+`...`
