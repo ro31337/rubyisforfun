@@ -1,0 +1,105 @@
+## Methods Of Integer Class
+
+There is no too much methods for _Integer_ class, and it's worth looking at documentation to get a better understanding of what's there available for a programmer. However, we'll take a close look to some of them.
+
+### `even?` and `odd?`
+
+`even?` or `odd?` -- two methods of _Integer_ class, method names "come" with question mark at the end.
+
+We can check any _Integer_ if it's even or odd using two methods above. Since question mark at the end of the method comes up for the first time in this book, let's see why it's there.
+
+Question mark just indicates that method returns type _Boolean_. Well, technically there is no any _Boolean_ in Ruby, we've just introduced it for the purpose of this book. There are two actual types you will see: _TrueClass_ and _FalseClass_. In other words, there is `true` and `false` keywords in Ruby language, and you can use these keywords (see examples below).
+
+Something unambiguous in real life can be represented by true or false, usually these methods start with prefix "`is_`". For example:
+
+```ruby
+girlfriend.is_pregnant?
+```
+
+There is no any other options possible when you're using boolean, it's either true or false. Question mark is optional in Ruby language, but expected by community. It's highly recommended to have "`?`" and the end of methods that return boolean value.
+
+Let's look at example:
+
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> 1.even?
+false
+> 1.odd?
+true
+> 2.even?
+true
+> 2.odd?
+false
+> 10 % 2 == 0 # our own implementation of "even?" method
+true
+```
+
+The last line from our REPL dialog has two parts:
+
+* `10 % 2` - divide by two, and returns remainder (which will be `0` or `1`)
+*  `== 0` - comparison with zero, returns true or false
+
+### `upto` and `downto`
+
+`upto` and `downto` methods of _Integer_ class accept parameter and call provided block for certain amount of times. We're already familiar with `times` method, which starts counting from zero. You can do the same with `upto`. For example:
+
+{lang=ruby, line-numbers=off}
+```ruby
+> 3.times { |i| puts "I'm robot #{i}" }
+I'm robot 0
+I'm robot 1
+I'm robot 2
+...
+> 0.upto(2) { |i| puts "I'm robot #{i}" }
+I'm robot 0
+I'm robot 1
+I'm robot 2
+```
+
+The output is the same, but `upto` is more flexible, because it accepts parameter (`2` in program above).  With this parameter we can specify "from" and "to" values, like:
+
+{lang=ruby, line-numbers=off}
+```ruby
+> 1000.upto(1002) { |i| puts "I'm robot #{i}" }
+I'm robot 1000
+I'm robot 1001
+I'm robot 1002
+```
+
+`downto` is similar, but it counts backwards:
+
+{lang=ruby, line-numbers=off}
+```ruby
+puts "Launching missiles..."
+5.downto(1) { |i| puts "#{i} seconds left" }
+puts "Boom!"
+```
+
+Result:
+
+```
+Launching missiles...
+5 seconds left
+4 seconds left
+3 seconds left
+2 seconds left
+1 seconds left
+Boom!
+```
+
+Well, of course you can do block with `do...end` and result will be the same:
+
+```
+puts "Launching missles..."
+5.downto(0) do |i|
+  puts "#{i} seconds left"
+end
+puts "Boom!"
+```
+
+X> ## Exercise 1
+X> Put all numbers to the screen starting from 50 to 100.
+
+X> ## Exercise 2
+X> Put all numbers to the screen starting from 50 to 100 with parity next to the number. If number is even, print "true", if it's odd, print "false".
