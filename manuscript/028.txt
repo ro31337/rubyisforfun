@@ -90,7 +90,8 @@ Boom!
 
 Well, of course you can do block with `do...end` and result will be the same:
 
-```
+{lang=ruby, line-numbers=off}
+```ruby
 puts "Launching missles..."
 5.downto(0) do |i|
   puts "#{i} seconds left"
