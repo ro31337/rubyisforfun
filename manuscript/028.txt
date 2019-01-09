@@ -44,8 +44,7 @@ The last line from our REPL dialog has two parts:
 
 `upto` and `downto` methods of _Integer_ class accept parameter and call provided block for certain amount of times. We're already familiar with `times` method, which starts counting from zero. You can do the same with `upto`. For example:
 
-{lang=ruby, line-numbers=off}
-```ruby
+```
 > 3.times { |i| puts "I'm robot #{i}" }
 I'm robot 0
 I'm robot 1
@@ -59,8 +58,7 @@ I'm robot 2
 
 The output is the same, but `upto` is more flexible, because it accepts parameter (`2` in program above).  With this parameter we can specify "from" and "to" values, like:
 
-{lang=ruby, line-numbers=off}
-```ruby
+```
 > 1000.upto(1002) { |i| puts "I'm robot #{i}" }
 I'm robot 1000
 I'm robot 1001

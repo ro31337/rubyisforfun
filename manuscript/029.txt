@@ -1,0 +1,71 @@
+## Testing Variables And Branching
+
+One of the foundations of any programming language is variable comparison (or variable testing). Depending on comparison result we can execute this or another part of a program. Example scenario: if age of the user is less than 18, ask for additional information or block access for this user.
+
+There is a special vocabulary around this functionality, let's take a closer look:
+
+* _Branching_. It is implied that a program may have multiple branches, chunks of code, which can be executed if certain condition is met.
+* _Branch_ , _block_,  _code block_ -- usually few lines of code which can get executed (or not) under certain conditions.
+* _Comparison_, _testing_, "_if statement_" -- comparison itself, just checking if variable/value equals, or not equals, greater, less than, truthy, falsy, and so on. Experienced programmers often use word _test_, which basically means "testing the variable for certain value". In Linux (MacOS, or POSIX-compatible) operating systems, one can get documentation about testing variables in _shell_ (not Ruby):
+
+        $ man test
+        ...
+        test - check file types and compare values
+
+Later in this book we'll cover very basic _unit testing_ and create our own tests. Those will be also tests, but different kind of tests. Usually unit tests have multiple lines of code, and variable testing is something really easy, one-two lines of code.
+
+Let's see how variable comparison works:
+
+{lang=ruby, line-numbers=on}
+```ruby
+puts 'Your age?'
+age = gets.to_i
+if age > 18
+  puts 'Access granted'
+end
+```
+
+Result:
+
+```
+$ ruby app.rb
+Your age?
+20
+Access granted
+
+$ ruby app.rb
+Your age?
+10
+```
+
+We used "if" statement to compare variable `age` and value `18`. If expression `age > 18` is true, then our block gets executed. This block on line 4 has only one line, but we can add more if we want. If expression `age > 18` is false, then block inside won't get executed.
+
+Usually we use two space indentation for all blocks. It won't affect the behavior of a program, but will make it more readable. Also, tools for code analysis, like Rubocop, will give you a warning if you won't follow this rule.
+
+Now we're getting closer to the data type we've discussed in previous chapters. Let's see what it is with REPL:
+
+```ruby
+$ irb
+> true.class
+ => TrueClass
+> false.class
+ => FalseClass
+> true.is_a?(Boolean)
+[ERROR]
+```
+
+Yes, we know that there is no single type for "true" and "false" in Ruby. There are _TrueClass_ and _FalseClass_, but these classes have the same functionality, only the behavior is completely opposite. In C language "true" and "false" are represented as "int" (integer).
+
+There are few ways to compare variables or values, here is the list of comparison operators:
+
+* `>` - more than
+* `<` - less than
+* `==` - equals
+* `!=` - not equals
+* `>=` - more or equals
+* `<=` - less or equals
+* `<=>` - (only in Ruby) spaceship operator. Yes, it looks like space ship! We won't be covering it, but it can be useful when you implement sorting. For example, you want to sort an array of animals by amount of ears each animal has.
+* `===` - (only JavaScript) strictly equals
+* `!==` - (only JavaScript) strictly not equals
+
+
