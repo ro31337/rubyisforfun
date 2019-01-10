@@ -6,7 +6,7 @@ There is a special vocabulary around this functionality, let's take a closer loo
 
 * _Branching_. It is implied that a program may have multiple branches, chunks of code, which can be executed if certain condition is met.
 * _Branch_ , _block_,  _code block_ -- usually few lines of code which can get executed (or not) under certain conditions.
-* _Comparison_, _testing_, "_if statement_" -- comparison itself, just checking if variable/value equals, or not equals, greater, less than, truthy, falsy, and so on. Experienced programmers often use word _test_, which basically means "testing the variable for certain value". In Linux (MacOS, or POSIX-compatible) operating systems, one can get documentation about testing variables in _shell_ (not Ruby):
+* _Comparison_, _testing_, "_if statement_", _condition_ -- comparison itself, just checking if variable/value equals, or not equals, greater, less than, truthy, falsy, and so on. Experienced programmers often use word _test_, which basically means "testing the variable for certain value". In Linux (MacOS, or POSIX-compatible) operating systems, one can get documentation about testing variables in _shell_ (not Ruby):
 
         $ man test
         ...
@@ -68,4 +68,37 @@ There are few ways to compare variables or values, here is the list of compariso
 * `===` - (only JavaScript) strictly equals
 * `!==` - (only JavaScript) strictly not equals
 
+JavaScript is quite interesting, isn't it? There are two types of comparisons: strict (`===`) and the more commonly used (`==`, also known as "type-converting comparison"). With less strict comparison we can compare two different types like strings and numbers, ducks and ostriches (they're all birds), and so on:
+
+```
+$ node
+> '5' == 5
+true
+```
+
+But with strict comparison in JavaScript we can compare only objects of the same type:
+
+```
+$ node
+> '5' === 5
+false
+```
+
+Luckily, Ruby has only one type of comparison, and if you compare objects of different types, result will be always `false`:
+
+```
+$ irb
+> '5' == 5
+ => false  
+```
+
+By the way, there was one intentional mistake in our program at the beginning on this chapter, can you spot it? We had `age > 18` condition, when actually we need `age >= 18`, because we want to include users of age of 18 and want allow them to visit our imaginary website.
+
+If condition is simple, we can use so-called one-liner. It's the syntax that has two parts, but written as one line:
+
+```ruby
+exit if age < 18 
+```
+
+The code above looks like plain English sentence: "exit if age less than 18", which makes our program even more readable.
 
