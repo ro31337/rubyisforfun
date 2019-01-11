@@ -6,7 +6,7 @@ There is a special vocabulary around this functionality, let's take a closer loo
 
 * _Branching_. It is implied that a program may have multiple branches, chunks of code, which can be executed if certain condition is met.
 * _Branch_ , _block_,  _code block_ -- usually few lines of code which can get executed (or not) under certain conditions.
-* _Comparison_, _testing_, "_if statement_", _condition_ -- comparison itself, just checking if variable/value equals, or not equals, greater, less than, truthy, falsy, and so on. Experienced programmers often use word _test_, which basically means "testing the variable for certain value". In Linux (MacOS, or POSIX-compatible) operating systems, one can get documentation about testing variables in _shell_ (not Ruby):
+* _Comparison_, _testing_, _test_, "_if statement_", _condition_ -- comparison itself, just checking if variable/value equals, or not equals, greater, less than, truthy, falsy, and so on. Experienced programmers often use word _test_, which basically means "testing the variable for certain value". In Linux (MacOS, or POSIX-compatible) operating systems, one can get documentation about testing variables in _shell_ (not Ruby):
 
         $ man test
         ...
@@ -127,13 +127,10 @@ X> Fill out four tables below, try to figure out what would be result (true or f
 
 **Table 3:**
 
-```
-|Expression:| `true > false` | `false > true` | `true == true` | 
+|Expression:| `true > false` | `false > true` | `true == true` |
 |Your guess:|                |                |                |
-```
 
 **Table 4:**
-
 
 |Expression:| `false == false` | `false != true` |
 |Your guess:|                  |                 |
