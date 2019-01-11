@@ -117,20 +117,20 @@ X> Fill out four tables below, try to figure out what would be the result (true 
 
 **Table 1:**
 
-|Expression:| `1 > 1` | `1 < 1` | `1 >= 2` | `1 == 1` | `1 != 1` |
-|Your guess:|         |         |          |          |          |
+|Expression: | `1 > 1` | `1 < 1` | `1 >= 2` | `1 == 1` | `1 != 1` |
+|Your answer:|         |         |          |          |          |
 
 **Table 2:**
 
-|Expression:| `1 > 2` | `1 < 2` | `1 <= 2` | `1 == 2` | `1 != 2` |
-|Your guess:|         |         |          |          |          |
+|Expression: | `1 > 2` | `1 < 2` | `1 <= 2` | `1 == 2` | `1 != 2` |
+|Your answer:|         |         |          |          |          |
 
 **Table 3:**
 
-|Expression:| `true > false` | `false > true` | `true == true` |
-|Your guess:|                |                |                |
+|Expression: | `true > false` | `false > true` | `true == true` |
+|Your answer:|                |                |                |
 
 **Table 4:**
 
-|Expression:| `false == false` | `false != true` |
-|Your guess:|                  |                 |
+|Expression: | `false == false` | `false != true` |
+|Your answer:|                  |                 |
