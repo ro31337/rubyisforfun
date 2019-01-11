@@ -113,7 +113,7 @@ end
 Sometimes one-liners make sense and make your program more readable. Moreover, some of them look like plain English sentences, what could be easier?
 
 X> ## Exercise
-X> Fill out four tables below, try to figure out what would be result (true or false) for each condition below? Check your answers by executing expressions in REPL.
+X> Fill out four tables below, try to figure out what would be the result (true or false) for each condition below? Check your answers by executing expressions in REPL.
 
 **Table 1:**
 
