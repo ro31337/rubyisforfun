@@ -25,7 +25,7 @@ Only 3 lines of code! There is no need for extra variable, because we can evalua
 
 At first glance, there is little improvement. Even old JavaScript syntax allows to use `+` for strings and numbers:
 
-{title="String interpolation in old JavaScript", lang=js, line-numbers=off}
+{title="String concatenation in old JavaScript", lang=js, line-numbers=off}
 ```
 $ node
 > "Your age is " + 30 * 12
