@@ -100,5 +100,26 @@ If condition is simple, we can use so-called one-liner. It's the syntax that has
 exit if age < 18 
 ```
 
-The code above looks like plain English sentence: "exit if age less than 18", which makes our program even more readable.
+The code above looks like plain English sentence: "exit if age less than 18", which makes our program even more readable. But in this case we just exit the program without any messages. If we want to add condition, our branch will take 2 lines (line 2 and line 3):
 
+{lang=ruby, line-numbers=on}
+```ruby
+if age < 18
+  puts 'Access denied'
+  exit
+end
+```
+
+Sometimes one-liners make sense and make your program more readable. Moreover, some of them look like plain English sentences, what could be easier?
+
+X> ## Exercise
+X> Fill out tables below, try to figure out what would be the result of operation for Ruby language? Check your results by executing expressions in  REPL.
+
+|Expression:| `1 > 1` | `1 < 1` | `1 >= 2` | `1 == 1` | `1 != 1` |
+|Your guess:|         |         |          |          |          |
+
+|Expression:| `1 > 2` | `1 < 2` | `1 <= 2` | `1 == 2` | `1 != 2` |
+|Your guess:|         |         |          |          |          |
+
+|Expression:| `true > false` | `false > true` | `true == true` | `false == false` | `false != true` |
+|Your guess:|                |                |                |                  |                 |
