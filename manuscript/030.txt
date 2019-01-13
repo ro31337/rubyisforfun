@@ -1,0 +1,62 @@
+## Combining Conditions
+
+We can combine conditions that go right after "`if`"-statement. Sometimes we need to perform multiple checks:
+
+{lang=ruby, line-numbers=off}
+```ruby
+if ...
+  puts ...
+end
+```
+
+There are two ways of combining conditions: "AND" and "OR". Each way can be represented by characters `&&` (double ampersand) and `||` (double pipe). Example in REPL:
+
+{lang=ruby, line-numbers=off}
+```ruby
+$ irb
+> 1 == 1 && 2 == 2
+ => true
+> 1 == 5 && 2 == 2
+ => false
+> 1 == 5 || 2 == 2
+ => true
+``` 
+
+Note that you can also use `and` keyword instead of `&&` and `or` instead of `||`, try it yourself with example above! However, tools like Rubocop [do not recommend](https://github.com/rubocop-hq/ruby-style-guide#no-and-or-or) doing that: "The minimal added readability is just not worth the high probability of introducing subtle bugs".
+
+First example above is quite clear, we just check if "one equals one and two equals two", result should be "true".
+
+Next condition is more interesting, first part checks if "one equals give", which gives us "false", and the second part checks if "two equals two", which is "true". The final condition sounds like "Is false and true gives true?". It's like asking two of your friends, first lies, and another is telling truth, will at the end you'll give 100% truth? No, you won't. In fact, the second condition will be never executed if first condition is false. Ruby interpreter will just save your resources, because you use `&&`.
+
+Third condition is almost the same, there are two parts: "false" and "true", but we're using `||` ("or") to combine these conditions. So here we're interested in one OR another result. It's like about buying something expensive for your own birthday, and you're asking your friends for advice. If only one of them says "yes", you gonna buy this new guitar you always wanted.
+
+Let's look at the real program:
+
+{lang=ruby, line-numbers=off}
+```ruby
+puts 'Your age?'
+age = gets.to_i
+puts 'Do you agree to our terms and conditions (y/n)'
+answer = gets.chomp.downcase
+if age >= 18 and answer == 'y'
+  puts 'Access granted'
+end
+```
+
+Result:
+
+```
+$ ruby app.rb
+Your age?
+21
+Do you agree to our terms and conditions (y/n)
+n
+
+$ ruby app.rb
+Your age?
+21
+Do you agree to our terms and conditions (y/n)
+y
+Access granted
+```
+
