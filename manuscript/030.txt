@@ -60,3 +60,15 @@ y
 Access granted
 ```
 
+So one should type the age and agree to terms and conditions to visit our imaginary website. Then program checks if age is 18 or above, and if the user agrees to terms and conditions. If all these conditions have been met, user is granted access to the website. Note that "18 or above" was specified with `>=`. We could also do it another way:
+
+```ruby
+if (age > 18 || age == 18) && answer == 'y'
+```
+
+X> ## Exercise 1
+X> Fill out  the table below, try to figure out what would be the result (true or false) for each condition? Check your answers by executing expressions in REPL.
+
+|Expression: | `0 == 0 && 2 + 2 == 4` | `1 == 2 && 2 == 1` | `1 == 2 || 2 == 1` |
+|Your answer:|                        |                    |                     |
+
