@@ -38,7 +38,7 @@ puts 'Your age?'
 age = gets.to_i
 puts 'Do you agree to our terms and conditions (y/n)'
 answer = gets.chomp.downcase
-if age >= 18 and answer == 'y'
+if age >= 18 && answer == 'y'
   puts 'Access granted'
 end
 ```
@@ -67,11 +67,19 @@ if (age > 18 || age == 18) && answer == 'y'
 ```
 
 X> ## Exercise 1
-X> Fill out the table below, try to figure out what would be the result (true or false) for each condition? Check your answers by executing expressions in REPL.
+X> Try to figure out what would be the result (true or false) for each condition below? Check your answers by executing expressions in REPL.
 
-|Expression: | `0 == 0 && 2 + 2 == 4` | `1 == 2 && 2 == 1` | `1 == 2 || 2 == 1` |
-|Your answer:|                        |                    |                     |
+Expression:  `0 == 0 && 2 + 2 == 4`
+Your answer:
+
+Expression: `1 == 2 && 2 == 1`
+Your answer:
+
+Expression:  `1 == 2 || 2 == 1` 
+Your answer:
 
 X> ## Exercise 2
 X> Write a program that will ask for login and password. If login is "admin" and password is "12345", it should print "Granted access to online banking".
 
+X> ## Exercise 3
+X> You're writing application to sell the land on the Moon. Any land of less than 4 acres or less costs $1000. Land from 4, but less than 8 acres costs $1500. And everything above 8 acres costs $150 for one acre. Write a program that asks width and length of the land, calculates the area, and shows the price of the land.
