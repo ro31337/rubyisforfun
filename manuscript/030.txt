@@ -67,8 +67,11 @@ if (age > 18 || age == 18) && answer == 'y'
 ```
 
 X> ## Exercise 1
-X> Fill out  the table below, try to figure out what would be the result (true or false) for each condition? Check your answers by executing expressions in REPL.
+X> Fill out the table below, try to figure out what would be the result (true or false) for each condition? Check your answers by executing expressions in REPL.
 
 |Expression: | `0 == 0 && 2 + 2 == 4` | `1 == 2 && 2 == 1` | `1 == 2 || 2 == 1` |
 |Your answer:|                        |                    |                     |
+
+X> ## Exercise 2
+X> Write a program that will ask for login and password. If login is "admin" and password is "12345", it should print "Granted access to online banking".
 
