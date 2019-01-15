@@ -1,0 +1,109 @@
+
+## Some Useful Methods of Ruby Language
+
+Do you remember this program from previous chapter:
+
+{lang=ruby, line-numbers=off}
+```ruby
+puts 'Launching missiles...'
+5.downto(0) do |i|
+  puts "#{i} seconds left"
+end
+puts 'Boom!'
+```
+
+It just counts from five to zero and shows "Boom!" message. When user runs this program, he or she gets results instantly, because there is no any delay. It should count seconds, but all programs run as fast as it is possible, unless otherwise specified. Ruby doesn't know that we count seconds, because "seconds left" is just a string. We can type any string we want. So we need to explicitly specify the real delay. Let's do it now:
+
+{lang=ruby, line-numbers=off}
+```ruby
+puts 'Launching missiles...'
+5.downto(0) do |i|
+  puts "#{i} seconds left"
+  sleep 1
+end
+puts 'Boom!'
+```
+
+Method "sleep" takes one parameter - the number of seconds it should "sleep". You can also specify fractional numbers. For example, `0.5` is half of a second (500 milliseconds).
+
+Programmers usually don't use "sleep" in real programs too often, because programs should execute as fast as it's possible, right? But often we can use it while testing our software. For example, we can create the following test: "type login, password, click on the button, wait 10 seconds to see if everything's okay". But this approach is also questionable, and some programmers don't like it, they say if test requires "sleep", then it means something is fundamentally wrong. But from author's experience it's not always possible to get rid of "sleep", sometimes it's required.
+
+Interesting detail is that there is no "sleep" in JavaScript, because this language is asynchronous by its nature. "Sleep" call (in all languages) is _blocking call_. In other words, it blocks the flow of the program for certain number of seconds. But this is exactly what JavaScript designers were trying to avoid, they didn't want to introduce any blocking calls, in other words everything in JavaScript is _asynchronous_. It doesn't mean you can add delay, you just do it the different, non-blocking way. Sleep in JavaScript is little bit more complicated comparing to Ruby.
+
+If JavaScript program should work without _any_ blocking calls, then it means it's true for absolutely everything, not just for "sleep". Imagine that we need to read (or copy) a huge file into memory from disk. But we can't block, and reading a huge file takes time. What would you do and how would you solve that? Engineers of JavaScript introduced so called "callbacks", something that gets executed at the end of operation. You don't need to remember that, but we've decided it's worth explaining how it works, because 99% of Ruby programmers will need to write JavaScript code one day.
+
+Here is the simplified version of our Ruby program above:
+
+{title="Correct (and simplified) Ruby program to launch missile", lang=ruby, line-numbers=off}
+```ruby
+puts 'Launching missile, get ready...'
+sleep 1
+puts 'Warning, 1 second has passed, launching now...'
+puts 'Boom!'
+```
+
+Look at how incorrect (but exactly the same) program _in JavaScript_ can be implemented by unexperienced programmer:
+
+{title="Incorrect JavaScript program to launch missile", lang=js, line-numbers=off}
+```js
+console.log('Launching missile, get ready...');
+
+setTimeout(function() {
+  console.log('Warning, 1 second has passed, launching now...');
+}, 1000);
+
+console.log('Boom!');
+```
+
+Output of incorrect program:
+
+```
+Launching missile, get ready...
+Boom!
+Warning, 1 second has passed, launching now...
+```
+
+In other words, we're getting a warning about missile launch _after_ the missile has exploded already. But that's not right! And that's why we need to _think_ asynchronously in JavaScript. Actually, it's easier than it looks from the first sight, and for successful launch we need to move last line to `setTimeout` block:
+
+{title="Correct JavaScript program to launch missile", lang=js, line-numbers=off}
+```js
+console.log('Launching missile, get ready...');
+
+setTimeout(function() {
+  console.log('Warning, 1 second has passed, launching now...');
+  console.log('Boom!');
+}, 1000);
+```
+
+But imagine we need to wait one more time, like this:
+
+{title="Correct (and simplified) Ruby program to launch missile, version 2", lang=ruby, line-numbers=off}
+```ruby
+puts 'Launching missile, get ready...'
+sleep 1
+puts 'Warning, 1 second has passed, launching now...'
+sleep 1 # This line was added
+puts 'Boom!'
+```
+
+Correct JavaScript program will look like:
+
+{title="Correct JavaScript program to launch missile", lang=js, line-numbers=off}
+```js
+console.log('Launching missile, get ready...');
+
+setTimeout(function() {
+  console.log('Warning, 1 second has passed, launching now...');
+  
+  setTimeout(function() {
+    console.log('Boom!');
+  }, 1000);
+
+}, 1000);
+```
+
+Our JavaScript code is becoming more nested while we keep adding more asynchronous operations, and our Ruby program remains "flat". It is one of the fundamental differences between synchronous (Ruby) and asynchronous (JavaScript) languages, and one of the reasons why you need to understand synchronous language before you write any code with asynchronous.
+
+When we add more blocking calls to JavaScript, we have more callbacks, code becomes more nested, less readable, and programmers call it "callback hell". There was attempt to solve "callback hell" in newer version of JavaScript called ES6 (ECMA Script version 6) with new `await` keyword. Program remains flat, but programmer still needs to understand underlying asynchronous concepts. JavaScript was invented long time ago and it's improving over the time, but sometimes it isn't something one can easily grok in 5 minutes. You'll definitely need more patience with JavaScript than you need it with Ruby.
+
+However, learning minimal JavaScript isn't a big issue for any Ruby programmer. It's quite easy to tackle fundamentals by your own or over the time for two reasons: 1) Ruby gives good foundation for understanding other languages 2) Want it or not, all web developers will deal with JavaScript code time to time, just make sure you read documentation and don't delay your minimal JavaScript education.

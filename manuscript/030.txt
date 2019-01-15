@@ -82,4 +82,4 @@ X> ## Exercise 2
 X> Write a program that will ask for login and password. If login is "admin" and password is "12345", it should print "Granted access to online banking".
 
 X> ## Exercise 3
-X> You're writing application to sell the land on the Moon. Any land of less than 4 acres or less costs $1000. Land from 4, but less than 8 acres costs $1500. And everything above 8 acres costs $150 for one acre. Write a program that asks width and length of the land, calculates the area, and shows the price of the land.
+X> You're writing a program to sell a land on the Moon. Any land of less than 50 square meters costs $1000. Land from 50, but less than 100 square meters will cost $1500. And 100 square meters or above is $25 for one square meter. Write a program that asks width and length of the land user wants to buy, calculates the area, and shows the price of the land.
