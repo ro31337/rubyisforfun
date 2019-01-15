@@ -70,12 +70,17 @@ X> ## Exercise 1
 X> Try to figure out what would be the result (true or false) for each condition below? Check your answers by executing expressions in REPL.
 
 Expression:  `0 == 0 && 2 + 2 == 4`
+
 Your answer:
+
 
 Expression: `1 == 2 && 2 == 1`
+
 Your answer:
 
+
 Expression:  `1 == 2 || 2 == 1` 
+
 Your answer:
 
 X> ## Exercise 2

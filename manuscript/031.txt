@@ -88,7 +88,7 @@ puts 'Boom!'
 
 Correct JavaScript program will look like:
 
-{title="Correct JavaScript program to launch missile", lang=js, line-numbers=off}
+{title="Correct JavaScript program to launch missile, version 2", lang=js, line-numbers=off}
 ```js
 console.log('Launching missile, get ready...');
 
