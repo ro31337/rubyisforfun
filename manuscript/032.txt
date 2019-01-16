@@ -1,0 +1,121 @@
+## Random Numbers
+
+There are lots of scientific works about random numbers generation. Think about this: computer is something precise, how it may have truly random numbers? Most personal computers from the last century were generating pseudo-random numbers, and after computer restart these numbers were the same. So the "Sea Battle" game was always predictable, and author of this book learned how to win this game pretty easily, because you already know those "random" location of ships.
+
+Explanation for this behavior is pretty straightforward, computers should rely on random data, and there were no any ways to get this random data from. But in modern operating systems random numbers generator takes into account lots of parameters: delays between pressed keys, mouse movements, network events, and so on. All this information collected from the real world serves as foundation for random number algorithms.
+
+But what if this information is not enough? What if we just turned on our computer, made a couple of mouse movements and want to get the sequence of billions of random numbers? The vector of random numbers is defined by random information from real world, but how many vectors we may have?
+
+It looks like a lot, but in real world things are little bit different. Here is the real life story. One online poker website published code for shuffling cards. They wanted to be transparent with their players about how their software works, and algorithm looked like this:
+
+```
+for i := 1 to 52 do begin
+  r := random(52) + 1;
+  swap := card[r];
+  card[r] := card[i];
+  card[i] := swap;
+end;
+```
+
+It looks pretty straightforward, but this tiny program has four bugs. First bug is that `r` variable will never equal to `0`, and it's used as _index_ (we'll cover indexes later in this book). So one card is always at the same position while shuffling. Second bug is that shuffle isn't uniform (see [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) for details). Ruby [Array object](https://ruby-doc.org/core-2.5.1/Array.html#method-i-shuffle) has built-in uniform method for shuffling.
+
+But the main bug is that `random()` call uses 32-bit _seed value_. It means that there is capacity for "only" 2 in the power of 32 unique combinations (~4 billion). And since underlying implementation of `random()` is using the number of milliseconds from the midnight, it gives only 86.4 predictable combinations. This number looks big, but the real number of possible combinations in real life is factorial of 52 (many many times more than that). So after synchronization and first five cards it was possible to predict the rest of the sequence.
+
+Example above just shows vulnerability of algorithm implemented on the real website. So if you're working on something important and you need to deal with random numbers, you should always look for reliable and proven ways to deal with randomness. The ideal solution for any computer would be special device that generates such numbers, but for our purposes we should be good with built-in Ruby methods. These methods are using operating system under the hood, and "reliable enough". Here is how you can generate random numbers in Ruby:
+
+```
+$ irb
+> rand(1..5)
+4
+> rand(1..5)
+1
+```
+
+We already know how to pass parameters to any function in Ruby, there are two ways:
+
+* with parentheses, like: `puts('hello')`
+* or without parentheses, like: `puts 'hello'`
+
+Code above is passing "tricky" parameter "`1..5`" called _Range_ (type of object). With this syntax we specify "from" and "to" values. In other words, we're telling Ruby "generate random number from 1 to 5". But the trick is that we don't pass two parameters, but only one. If you pass two, you'll get the error:
+
+```
+$ irb
+> rand(1, 5)
+ArgumentError: wrong number of arguments (given 2, expected 0..1)
+```
+
+But what exactly is `1..5`? Let's check it in REPL as we did it before for other objects:
+
+```
+$ irb
+> (1..5).class
+=> Range
+```
+
+Now we know what it is. It's just a class in Ruby responsible for the range, and the name if this class is _Range_. This class is quite useful, and [documentation](https://ruby-doc.org/core-2.5.1/Range.html) has lots of interesting examples. But let's make sure it's not a kind of magic, and we can initialize this class like any other variable:
+
+```
+$ irb
+> x = 1..5
+=> 1..5
+> rand(x)
+=> 4
+```
+
+We initialized variable `x`, assigned value, and we can pass _one_ parameter to `rand` function. Now we have proof that `rand` accepts one parameter. Now let's combine `rand` and `sleep`:
+
+```
+$ irb
+> sleep rand(1..5)
+```
+
+One-line program above will delay for the random number of seconds, from 1 to 5. As you can see, this tiny program `sleep rand(1..5)` has three parts:
+
+* `sleep`
+* `rand`
+* `1..5`
+
+And can be written the with or without parentheses. All lines below are identical:
+
+```
+$ irb
+> sleep rand(1..5)
+> sleep rand 1..5
+> sleep(rand(1..5))
+```
+
+Last line illustrates what was said before, and what programmer wants from Ruby:
+
+* Execute `1..5` first, get the value, because we need it for the `rand` call
+* Execute `rand` with result of `1..5`
+* Execute `sleep` with result of `rand` (random number from specified range)
+
+It's up to a programmer to use parentheses or not. But to avoid mess it's recommended to use Rubocop, so your style won't be too much different from other team members.
+
+It's also worth mentioning that you can calculate random fractional numbers with `rand`:
+
+```
+$ irb
+> rand(0.03..0.09)
+=> 0.03920647825951599
+> rand(0.03..0.09)
+=> 0.06772359081051581
+```
+
+X> ## Exercise 1
+X> Look at [documentation about Range class](https://ruby-doc.org/core-2.5.1/Range.html).
+
+X> ## Exercise 2
+X> Write a program that will print random number from 500 to 510
+
+X> ## Exercise 3
+X> Write a program that will print random fractional number from 0 to 1. For example, 0.54321 or 0.123456.
+
+X> ## Exercise 4
+X> Write a program that will print random fractional number from 2 to 4.
+
+
+
+
+
+
