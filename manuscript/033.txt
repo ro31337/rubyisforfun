@@ -1,0 +1,65 @@
+## Guess The Number Game
+
+Guess the Number is a fun game that challenges user to find a number based on greater than or less than feedback. Let's do it simple first, and then we'll improve our solution.
+
+{title="Guess the number game, version 1", lang=ruby, line-numbers=on}
+```ruby
+number = rand(1..10)
+print 'Hi! I picked the number from 1 to 10, try to guess: '
+
+loop do
+  input = gets.to_i
+
+  if input == number
+    puts 'You guessed it!'
+    exit
+  end
+
+  if input != number
+    print 'Nope, try again: '
+  end
+end
+```
+
+At this point you should have enough knowledge to understand the program above. Try to read the program and understand how exactly it works. Congratulations if you understand everything, it's a huge progress! Here is the sample output:
+
+```
+Hi! I picked the number from 1 to 10, try to guess: 6
+Nope, try again: 3
+Nope, try again: 8
+Nope, try again: 9
+You guessed it!
+```
+
+First line is where we pick the random number and save the value to `number` variable. On line 4 we define infinite loop with `loop do...end` syntax. We define variable `input` inside of `loop` block. Input represents the user input.
+
+User input is the type of _Integer_, so we have the right to compare this input to picked number. There won't be any error if you compare two different types, but result of such comparison will be always "false". Despite the fact that we run infinite loop, we can exit from a program with `exit` keyword. We do it on line 9 which gets executed only when condition `input == number` is met.
+
+At this point of time we don't know how to define our own methods (or functions), so we use `exit` keyword to quit the program. But with more Ruby knowledge you can improve program and add more features, like asking a user if she or he wants to play again.
+
+Second if-block (defined on lines 12-14) has "if user input is not equal to picked number" test. Keep in mind that we use `print` instead of `puts` because `print` doesn't move cursor on the next line (if you don't understand it, run this program and compare two versions - with `print` and `puts`).
+
+But this simple program can be _refactored_ (improved):
+
+{title="Guess the number game, version 2", lang=ruby, line-numbers=on}
+```ruby
+number = rand(1..10)
+print 'Hi! I picked the number from 1 to 10, try to guess: '
+
+loop do
+  input = gets.to_i
+
+  if input == number
+    puts 'You guessed it!'
+    exit
+  else
+    print 'Nope, try again: '
+  end
+end
+```
+
+We combined two independent if-blocks into one if-else block. Indeed, why do we need two blocks when we combine it into one when we have only two possible flows: number guessed and number not guessed.
+
+X> ## Exercise
+X> Modify the program above so it picks the number from 1 to `1_000_000` (one million, you can use underscore for numbers in Ruby to improve readability of your program). But guessing this huge number can be a difficult task. So add a hint every time guess is incorrect: if picked number is greater than user input, show "picked number is greater than what you have typed" message; if picked number is less than user input, show "picked number is less than what you have typed". Math says that you'll need not more than 20 attempts to guess any number this way. Check it yourself!
+
