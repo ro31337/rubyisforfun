@@ -1,0 +1,114 @@
+# Part III. Having Fun
+
+## Ternary Operator
+
+Ternary operator is quite useful feature of any language, and it's implemented in Ruby the same way as it is implemented in C, Java, Python, JavaScript and so on. Some programmers use this operator for a long time, but don't familiar with its name. But we recommend to remember its name, because it's always nice to use correct naming and show your knowledge when speaking to a colleague:
+
+> Dear colleague, why don't we just replace this beautiful branching with ternary operator?
+
+Despite the scary name, syntax is pretty straightforward:
+
+```ruby
+something_is_truthy ? do_this() : else_this()
+```
+
+For example:
+
+```ruby
+is_it_raining? ? stay_home() : go_party()
+```
+
+Which is 100% the same as the following code, but with "if...else":
+
+```ruby
+if is_it_raining?
+  stay_home()
+else
+  go_party()
+end
+```
+
+Note that you can always omit empty parentheses in Ruby in favor of code readability. Parentheses just indicate that we're calling a method with no arguments (parameters). But Ruby is smart enough to understand what we mean:
+
+```ruby
+if is_it_raining?
+  stay_home
+else
+  go_party
+end
+```
+
+Or just:
+
+```ruby
+is_it_raining? ? stay_home : go_party
+```
+
+Note double question mark in one-line above. We did in intentionally, and we just assume that there is a method with question mark defined somewhere, like this (we'll cover methods definition later in this book):
+
+```ruby
+def is_it_raining?
+  # ... do something, like call to external weather service ...
+end
+```
+
+Method `is_it_raining?` always returns "true" or "false", in other words _Boolean_ type (we invented this type in previous chapters). And Ruby's naming conventions say that if method returns _Boolean_, we should define this method with question mark at the end, so it looks like question in plain English: "Is it raining?".
+
+But if result depends on some variable, one-liner ternary operator may look like (note one question mark only, the mandatory question mark for ternary operator):
+
+```ruby
+x ? stay_home() : go_party()
+```
+
+Or just:
+
+```ruby
+x ? stay_home : go_party
+```
+
+As you can see from examples above, ternary operator has more compact syntax and can save us couple of lines on the screen -- your program will look less lengthy, and (hopefully) more readable to you and your fellow colleagues. But the disadvantage of ternary operator is that it only looks neat when you need to perform one instruction. It's better to use "if...else" when you need to do something complex.
+
+Result of operation can be also saved to variable. In the example below we save result of ternary expression to `result` variable:
+
+```ruby
+x = is_it_raining?
+result = x ? stay_home : go_party
+```
+
+`result` will now keep the return value of `stay_home` or `go_party` method. In example above `result` could be the number of drinks one drunk[^drunk]: "if I stay home, I will watch Netflix and will drink from 0 to 1 beer; but if I go party I will drink from 1 to 2 beers". So `result` will keep just the number in our example, and `x` variable will hold "true" or "false" indicating if it is raining outside.
+
+Two lines above can be rewritten with "if...else" clause:
+
+```ruby
+x = is_it_raining?
+result = if x
+  stay_home
+else
+  go_party
+end
+```
+
+X> ## Exercise
+X> Rewrite the following examples with ternary operator:
+
+**Example 1:**
+
+```ruby
+if friends_are_also_coming?
+  go_party
+else
+  stay_home
+end
+```
+
+**Example 2:**
+
+```ruby
+if friends_are_also_coming? && !is_it_raining
+  go_party
+else
+  stay_home
+end
+```
+
+[^drunk]: We hope you're yoga-mantras-smoothie-falafel person and don't drink alcohol?
