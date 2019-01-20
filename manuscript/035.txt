@@ -1,0 +1,27 @@
+## Loading Indicator
+
+Loading indicator (or "progress bar") is one of the easiest visual ways to let a user know about the process happening in background. For example, downloading a file or formatting your hard drive takes time. But for the sake of better user experience programmers and UI designers have invented loading indicator.
+
+Let's practice and write a program to show a message about formatting hard drive (don't worry, there won't be any real formatting, only visual part):
+
+{lang=ruby, line-numbers=on}
+```ruby
+print 'Formatting hard drive'
+100_000.times do
+  print '.'
+  sleep rand(0.05..0.5)
+end
+```
+
+Look at the program above and try to guess how it works. There is random delay from 0.05 to 0.5 seconds, and visual effect because of this looks realistic. As it was mentioned before, `print` doesn't print "new line" character `\n` at the end (but `puts` does), so dots on the screen are printed one after another. Try it yourself!
+
+And now is the riddle, what do you think the following one-line program will print to the screen?
+
+```ruby
+print "one\rtwo"
+```
+
+(note that we're using double quotes). The right answer is "two". But why? `print` just prints symbol by symbol, and for the very short period of time, probably nanoseconds, there will be "`one`" printed on the screen. Then it finds special character `\r`, which stands for "carriage return", and it moves cursor back to the beginning of the line. Now when cursor is at the beginning of the line "`one`" word will be replaced by "`two`".
+
+X> ## Exercise
+X> Implement loading indicator by using symbols `/`, `-`, `\`, `|`.  Make it animated: show these symbols one by one on the same place (at the beginning of the line). Use delay so your animated loading indicator doesn't spin too fast.
