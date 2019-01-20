@@ -1,0 +1,78 @@
+## Methods
+
+Methods (or functions) are usually small chunks of code that you can reuse. Until this moment we haven't reused the code that we had written (expect for code inside of blocks, like in `loop do...end`). But with methods we can improve and optimize our programs by splitting it into multiple logical blocks.
+
+Methods shouldn't necessarily make our program shorter. The main idea is to define logical parts and make a program more readable for a human. Sometimes this process is called "refactoring" (there are many refactoring techniques, and this particular technique is called "extract method"). The result this refactoring is logical blocks of code extraction into one or more methods, so this code can be reused later in a program again.
+
+But we can introduce methods for our own convenience. Do you remember we were using the following code to convert user input to a number?
+
+```ruby
+age = gets.to_i
+```
+
+Code above gets user input and converts it from _String_ to _Integer_ (with `.to_i`) and saves result to `age` variable. This expression doesn't look self-explanatory to someone who is looking to the code for the first time. Let's improve it a bit, so it will (hopefully) become easier to understand:
+
+{lang=ruby, line-numbers=on}
+```ruby
+def get_number
+  gets.to_i
+end
+
+age = get_number
+```
+
+Code is the same, but on lines 1-3 we defined a method with `def...end` syntax. This method won't get executed, until we explicitly call it (on line 5 in our case). Now it looks little bit easier, especially if we want to initialize multiple variables this way:
+
+```ruby
+age = get_number
+salary = get_number
+rockets = get_number
+```
+
+Methods in Ruby always return value, even if it seems they don't return any. Result of the last expression is the return value for a method. In our case above we have only one line inside of `get_number` method (`gets.to_i`) and since it's the last line, method `get_number` will return result of this expression. But if for some reason we want to return value earlier, we can use `return` keyword:
+
+{lang=ruby, line-numbers=on}
+```ruby
+def check_if_world_is_crazy?
+  if 2 + 2 == 4
+    return false
+  end
+
+  puts "Jesus, I can't believe that"
+  true
+end
+```
+
+Last line can be written as `return true`, but it's up to you (and coding conventions, Rubocop is the right tool to check your style). Method can also accept parameters:
+
+{lang=ruby, line-numbers=on}
+```ruby
+def get_number(what)
+  print "Enter #{what}: "
+  gets.to_i
+end
+
+age = get_number('age')
+salary = get_number('salary')
+rockets = get_number('number of missiles to launch')
+```
+
+Result:
+
+```
+Enter age: 10
+Enter salary: 3000
+Enter number of missiles to launch: 5
+```
+
+Would you agree that program above looks much more readable than the following?
+
+```ruby
+print 'Enter age:'
+age = gets.to_i
+print 'Enter salary:'
+salary = gets.to_i
+print 'Enter number of missiles to launch:'
+rockets = gets.to_i
+```
+
