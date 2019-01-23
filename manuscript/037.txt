@@ -192,6 +192,7 @@ X> ## Exercise 2
 X> Lookup documentation for "ruby case statements" and replace `if...else` with `case...when`.
 
 X> ## Exercise 3
-X> Improve the program, so every iteration we not only lose, but also get random number of humans and machines. Theoretically, this battle may never end, but with low initial number of humans and machines at the beginning (like 10 or 100 instead of 10000) there can be a case when one side randomly wins.  
+X> Improve the program, so every iteration we not only lose, but also get random number of humans and machines. Theoretically, this battle may never end, but with low initial number of humans and machines at the beginning (like 10 or 100 instead of 10000) there can be a case when one side randomly wins. 
+
 X> ## Exercise 4
 X> Improve the program and add at least 3 events, so your output looks more interesting. Use your imagination.
