@@ -1,0 +1,197 @@
+## Judgement Day Emulator
+
+Let's practice a bit to sum up everything we know about methods. The machines have taken over the world. The is a struggle for survival. Who will survive: humanity or machines? Now it's up to destiny to decide our future. Well, actually up to the random number generator.
+
+Program will show the steam of upcoming events happening in the world. It would be much more interesting if we could do it by using some graphics, but in our case it will all depend on observer's imagination. One may like or program and even use it as screensaver.
+
+Important note: this program can be done the different and better way. But we still have limited Ruby knowledge, so our goal is more to practice, rather than delivering a piece of art. 
+
+First, let's agree that there are only 10000 humans and the same number of machines left. With every iteration we'll have only one random event. And the number of humans and machines will be decreasing with the same probability. Victory is when there are no more machines (or humans) left. Let's proceed with a solution.
+
+We'll start with definition of victory and the main loop with two variables:
+
+```ruby
+humans = 10_000
+machines = 10_000
+
+loop do
+  if check_victory?
+    exit
+  end
+  ...
+end
+```
+
+Variables `humans` and `machines` represent the information about survivors. 
+
+Method `check_victory?` returns _Boolean_ type value if one side has won (it doesn't matter which one). If there is a victory, we just `exit` the program. If there is no victory, we continue iteration inside of infinite loop. Let's also print information about who actually won the battle inside of this method.
+
+Now we need to define a couple of events that can happen. Let's call them `event1`, `event2`, and `event3`. We'll be calling this or another method depending on random number provided by `rand`. It's like throwing dice with only 3 distinct values from 1 to 3:
+
+```ruby
+def event1
+  # ...
+end
+
+def event2
+  # ...
+end
+
+def event3
+  # ...
+end
+
+# ...
+
+dice = rand(1..3)
+
+if dice == 1
+  event1
+elsif dice == 2
+  event2
+elsif dice == 3
+  event3
+end
+```
+
+We used `elsif` keyword above (we're already familiar with `else`). `elsif` is one of the less intuitive abbreviations in Ruby, and it just means `else if`.
+
+And we'll finish our loop with `sleep` statement, which will delay the execution of our program by certain amount of seconds (from `0.3` to `1.5`):
+
+```ruby
+sleep rand(0.3..1.5)
+```
+
+Complete version of the program:
+
+{title="Judgement Day Emulator, version 1", lang=ruby, line-numbers=on}
+```ruby
+########################################
+# DEFINE VARIABLES
+########################################
+
+@humans = 10_000
+@machines = 10_000
+
+########################################
+# AUXILIARY METHODS
+########################################
+
+# Method returns random value: true or false
+def luck?
+  rand(0..1) == 1
+end
+
+def boom
+  diff = rand(1..5)
+  if luck?
+    @machines -= diff
+    puts "#{diff} machines destroyed"
+  else
+    @humans -= diff
+    puts "#{diff} humans killed"
+  end
+end
+
+# Method returns the random city name
+def random_city
+  dice = rand(1..5)
+  if dice == 1
+    'San Francisco'
+  elsif dice == 2
+    'Moscow'
+  elsif dice == 3
+    'Beijing'
+  elsif dice == 4
+    'London'
+  else
+    'Seoul'
+  end
+end
+
+def random_sleep
+  sleep rand(0.3..1.5)
+end
+
+def stats
+  puts "#{@humans} humans and #{@machines} machines left"
+end
+
+########################################
+# EVENTS
+########################################
+
+def event1
+  puts "Missile launched against #{random_city}"
+  random_sleep
+  boom
+end
+
+def event2
+  puts "Nuclear weapon used against #{random_city}"
+  random_sleep
+  boom
+end
+
+def event3
+  puts "Group of soldiers have breached defence in #{random_city}"
+  random_sleep
+  boom
+end
+
+########################################
+# CHECKING VICTORY
+########################################
+
+def check_victory?
+  false
+end
+
+########################################
+# MAIN LOOP
+########################################
+
+loop do
+  if check_victory?
+    exit
+  end
+
+  dice = rand(1..3)
+
+  if dice == 1
+    event1
+  elsif dice == 2
+    event2
+  elsif dice == 3
+    event3
+  end
+
+  stats
+  random_sleep
+end
+```
+
+Sample result:
+
+```
+Nuclear weapon used against London
+3 machines destroyed
+10000 humans and 9997 machines left
+Group of soldiers have breached defence in London
+2 machines destroyed
+10000 humans and 9995 machines left
+Nuclear weapon used against Seoul
+4 humans killed
+...
+```
+
+X> ## Exercise 1
+X> Implement `check_victory?` method (now it just returns `false`). In case of victory it should show information about who actually won the battle and who lost. Replace `10_000` with `10` so it will be easier to work on this program (you won't need to wait too long to see how your method works).
+
+X> ## Exercise 2
+X> Lookup documentation for "ruby case statements" and replace `if...else` with `case...when`.
+
+X> ## Exercise 3
+X> Improve the program, so every iteration we not only lose, but also get random number of humans and machines. Theoretically, this battle may never end, but with low initial number of humans and machines at the beginning (like 10 or 100 instead of 10000) there can be a case when one side randomly wins.  
+X> ## Exercise 4
+X> Improve the program and add at least 3 events, so your output looks more interesting. Use your imagination.
