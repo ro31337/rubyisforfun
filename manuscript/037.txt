@@ -28,6 +28,7 @@ Method `check_victory?` returns _Boolean_ type value if one side has won (it doe
 
 Now we need to define a couple of events that can happen. Let's call them `event1`, `event2`, and `event3`. We'll be calling this or another method depending on random number provided by `rand`. It's like throwing dice with only 3 distinct values from 1 to 3:
 
+{title="Sketch of the program we're going to make", lang=ruby, line-numbers=off}
 ```ruby
 def event1
   # ...
@@ -64,7 +65,7 @@ sleep rand(0.3..1.5)
 
 Complete version of the program:
 
-{title="Judgement Day Emulator, version 1", lang=ruby, line-numbers=on}
+{title="Judgement Day Emulator, version 1", lang=ruby, line-numbers=off}
 ```ruby
 ########################################
 # DEFINE VARIABLES
@@ -93,7 +94,7 @@ def boom
   end
 end
 
-# Method returns the random city name
+# Method returns random city name
 def random_city
   dice = rand(1..5)
   if dice == 1

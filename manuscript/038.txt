@@ -1,0 +1,67 @@
+## Instance and Local Variables
+
+Careful reader would have already noticed unknown prefix `@` before variable name. In Ruby you can't access variables out of scope of the current method. The exception is _instance variables_ (this may sound confusing, but we'll cover what "instance" is later, now just think of them as global-ish variables). For example, the following Ruby code won't be executed and will produce error:
+
+{title="Program that doesn't work", lang=ruby, line-numbers=off}
+```ruby
+x = 123
+
+def print_x
+  puts x
+end
+
+print_x
+```
+ 
+The error message is "undefined local variable or method `x' for main:Object (NameError)". But what is "main"? It turns out that any program in Ruby is wrapped by "main" class. It's very easy to prove if you run this program:
+
+```ruby
+puts self
+puts self.class
+```
+
+Output:
+
+```
+main
+Object
+```
+
+In other words, `main` is top-level scope in Ruby. You don't have to worry about that too much now, but knowing that is the key to understanding why method can't access variable defined outside of the method. Variable `x` in the program above is not _local_ variable. Local variable is any variable defined inside of a method. You can access local variables as you would usually do:
+
+```ruby
+def calc_something
+  x = 2 + 2
+  puts x
+end
+```
+
+But to access instance variables you should define this variable with `@` prefix. With this in mind, we can rewrite program that didn't work:
+
+{title="Program that works now (compare to program above)", lang=ruby, line-numbers=off}
+```ruby
+@x = 123
+
+def print_x
+  puts @x
+end
+
+print_x
+```
+
+Now `print_x` can access this variable.
+
+JavaScript is little bit different. Method can access variable defined in its parent scope. This syntax is called "closure":
+
+{title="JavaScript program that works", lang=js, line-numbers=off}
+```js
+x = 123
+
+function printX() {
+  console.log(x);
+}
+
+printX();
+``` 
+
+In other words, different languages have different features. These features are defined by the nature of a language and for the purpose of particular language. JavaScript is asynchronous event-driven language and closures are just useful when events are happening (for example, used is clicking on the element).

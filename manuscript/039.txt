@@ -1,0 +1,27 @@
+## Programming Slot Machine
+
+We'll practice a bit and sum up everything we know so far, and implement simple one-armed bandit game. We will put some money in the bank, pull the handle and see what happens. 
+
+Let's outline our plan. Variable `balance` will represent the amount of money we have in the bank. We'll have three reels (positions, or slots) and few images. Traditionally, slot machines have fruit images, cherry, bell, and number "7". To simplify our task we'll be just using numbers from 0 to 5 instead of mentioned images - we can always come back to it and make improvements later.
+
+Variables `x`, `y`, `z` will represent the reels. Each reel can hold only one value (from 0 to 5) at a time. This value will be defined by random number generator.
+
+Next step is to define what "win" and "lose" means: when all three variables `x`, `y`, `z` are equal, we'll be enforcing following rules:
+
+* If all numbers are zeroes, we lose everything
+* If all variables are ones, we add $10 to our balance
+* If all variables are twos, we add $20 to our balance
+* Otherwise we charge 50 cents for attempt
+
+Program should work until we have money on our balance. Elementary age check will be helpful:
+
+```ruby
+print "What's your age: "
+age = gets.to_i
+if age < 18
+  puts 'Sorry, but you should be at least 18'
+  exit
+end
+```
+
+
