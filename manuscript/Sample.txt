@@ -3,8 +3,6 @@
 003-ruby-is-for-fun.txt
 004.txt
 005.txt
-006.txt
-007.txt
 Separator.txt
 021.txt
 Separator.txt
@@ -14,3 +12,5 @@ Separator.txt
 034.txt
 Separator.txt
 037.txt
+Separator.txt
+039.txt

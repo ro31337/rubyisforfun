@@ -19,9 +19,150 @@ Program should work until we have money on our balance. Elementary age check wil
 print "What's your age: "
 age = gets.to_i
 if age < 18
-  puts 'Sorry, but you should be at least 18'
+  puts 'Sorry, but you should be at least 18 to play'
   exit
 end
 ```
+
+`balance` variable keeps the balance (initialized with $20), also define the infinite loop: 
+
+```ruby
+balance = 20
+loop do
+  # ..
+end
+```
+
+Wait for Enter key inside of the loop:
+
+```ruby
+  puts 'Press Enter to pull the handle...'
+  gets
+```
+
+Initialize variables `x`, `y`, `z`:
+
+```ruby
+  x = rand(0..5)
+  y = rand(0..5)
+  z = rand(0..5)
+```
+
+Print result of a single draw:
+
+```ruby
+  puts "Result: #{x} #{y} #{z}"
+```
+
+Check first condition "If all numbers are zeroes, we lose everything":
+
+```ruby
+  if x == 0 && y == 0 && z == 0
+    balance = 0
+    puts 'You lost your money'
+  end 
+```
+
+Check second condition "If all variables are ones, we add $10 to our balance":
+
+```ruby
+  elsif x == 1 && y == 1 && z == 1
+    balance += 10
+    puts 'You won $10'
+  end
+```
+
+Add third condition "If all variables are twos, we add $20 to our balance" and also the last case "Otherwise we charge 50 cents for attempt". Here is the complete code for all conditions:
+
+```ruby
+  if x == 0 && y == 0 && z == 0
+    balance = 0
+    puts 'You lost your money'
+  elsif x == 1 && y == 1 && z == 1
+    balance += 10
+    puts 'You won $10'
+  elsif x == 2 && y == 2 && z == 2
+    balance += 20
+    puts 'You won $20'
+  else
+    balance -= 0.5
+    puts 'You lost 50 cents'
+  end
+```
+
+At the end show the final result:
+
+```ruby
+  puts "Your balance is #{balance} dollars"  
+```
+
+Complete program:
+
+{title="Slot Machine Program", lang=ruby, line-numbers=off}
+```ruby
+print "What's your age: "
+age = gets.to_i
+if age < 18
+  puts 'Sorry, but you should be at least 18 to play'
+  exit
+end
+
+balance = 20
+loop do
+  puts 'Press Enter to pull the handle...'
+  gets
+  
+  x = rand(0..5)
+  y = rand(0..5)
+  z = rand(0..5)
+  
+  puts "Result: #{x} #{y} #{z}"
+  
+  if x == 0 && y == 0 && z == 0
+    balance = 0
+    puts 'You lost your money'
+  elsif x == 1 && y == 1 && z == 1
+    balance += 10
+    puts 'You won $10'
+  elsif x == 2 && y == 2 && z == 2
+    balance += 20
+    puts 'You won $20'
+  else
+    balance -= 0.5
+    puts 'You lost 50 cents'
+  end
+
+  puts "Your balance is #{balance} dollars"  
+end
+```
+
+Result:
+
+```
+What's your age: 20
+Press Enter to pull the handle...
+
+Result: 5 5 3
+You lost 50 cents
+Your balance is 19.5 dollars
+Press Enter to pull the handle...
+
+...
+
+Result: 1 1 1
+You won $10
+Your balance is 29.5 dollars
+Press Enter to pull the handle...
+```
+
+You must agree that there is nothing complex here and program works. With knowledge we gained in last chapters we can build simple text games, do some basic calculations, make other useful applications. Ruby programs are small, elegant, and very easy to read and understand. And this is exactly what makes programming fun!
+
+In next chapters we'll cover essential data structures, will find out what classes and objects are, will get familiar with some tools, we'll have foundation for absolutely amazing things you can do with Ruby programming!
+
+X> ## Exercise 1
+X> Define method that will return random number. Make sure program works with this method. After that apply [animation](https://goo.gl/hpk49x) to variables `x`, `y`, and `z`.
+
+X> ## Exercise 2
+X> Add more conditions to the game, like 333, 444, and so on. Use your imagination.
 
 
