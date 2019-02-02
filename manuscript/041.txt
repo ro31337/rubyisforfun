@@ -1,0 +1,76 @@
+## Few Words About "Each"
+
+Array is [represented](https://ruby-doc.org/core-2.5.2/Array.html) by _Array_ type and this type implements method `each`. You are already familiar with this method when we were performing action over each element. Technically, method `each` _accepts block_. As we mentioned before, you can pass block to any method, and further behavior of a program depends on what's "under the hood" of this method.
+
+So that method `each` runs what's inside the block for each element of array. In other words, it runs (usually tiny) sub-program for every item:
+
+```ruby
+arr.each do |item|
+  # here we have sub-program
+  # it may have multiple lines
+end
+```
+
+Or it can be done with one line:
+
+```ruby
+arr.each { |item| ...here we have 1-line sub-program... }
+```
+
+Examples above show that blocks accept parameters (`item` in our case). This parameter comes from `each` method, and it's just next element of array. Everything between `do` and `end` (or between `{` and `}`) is block. This way ruby implements iteration over array (or "array iteration", "iteration over each element of array", "array traversal").
+
+We can specify any name as parameter. In example from previous chapter (iteration over cities) we used `word` as parameter name. Phone book application has `element` as parameter name. And in this chapter we have `item`. The only rule here is parameter name should be understandable for you and your team (ideally, tools like Rubocop must be also okay with that).
+
+Method `each` looks like calling your own method:
+
+```ruby
+def my_method(word)
+  puts "Word #{word} has #{word.size} letters"
+end
+```
+
+Compare it with `each`:
+
+```ruby
+arr.each do |word|
+  puts "В слове #{word} #{word.size} букв"
+end
+```
+
+It's sad that in Ruby you can't pass the name of a method to `each`:
+
+```ruby
+arr.each my_method
+```
+
+It would be a nice language feature. Note: actually, you can write the similar code, but 1) not exactly this way 2) with some limitations 3) nobody doesn't do it anyway.
+
+Method `each` is also implemented in some other types. Iteration over something is operation which is pretty often used by programmers here and there, and you'll see iteration in some not very obvious places. For example, iteration over string (object of _String_ type):
+
+```
+$ irb
+> 'hello'.each_char { |x| puts x }
+h
+e
+l
+l
+o
+```
+
+ Method `each` for _Range_ type:
+
+```ruby
+(1001..1005).each do |x|
+  puts "I'm robot #{x}"
+end
+```
+
+Result:
+
+```
+I'm robot 1001
+I'm robot 1002
+I'm robot 1003
+I'm robot 1004
+I'm robot 1005
+```

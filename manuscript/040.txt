@@ -1,0 +1,98 @@
+## Arrays
+
+Array is just a set of data. For example, array of tenants living in apartment building. Or array of numbers where each number has some meaning (for example, employee salary). Or array of objects: each object represents employee with multiple properties like salary, age, name, and so on.
+
+In Ruby each element in array can be of different type. In other words, arrays look like a bucket where we can put apples, pears, some tape recordings, and a couple of aircraft ships. But usually arrays are homogeneous: all items (or "elements") are of the same type.
+
+But the question is why do we need arrays? Why would we need to put something into array? The question is quite simple: arrays are useful, because they represent a _set_ of some data and we can perform bulk operations over this data. Let's say we have a list of visited cities:
+
+```ruby
+arr = ['San Francisco', 'Moscow', 'London', 'New York']
+```
+
+We initialized array with four elements inside of type _String_. Ruby knows it's array because we used square brackets for array definition. We can perform variety of different useful operations over this data. For example, get the number of elements (visited cities):
+
+```
+$ irb
+...
+> arr.size
+=> 4
+```
+
+Or just sort array in alphabetical order:
+
+```
+$ irb
+...
+> arr.sort
+=> ["London", "Moscow", "New York", "San Francisco"]
+```
+
+Or we can _iterate_ over array (walk over each element):
+
+```ruby  
+arr = ['San Francisco', 'Moscow', 'London', 'New York']
+arr.each do |word|
+  puts "Word #{word} has #{word.size} letters"
+end
+```
+
+Output:
+
+```
+Word San Francisco has 13 letters
+Word Moscow has 6 letters
+Word London has 6 letters
+Word New York has 8 letters
+```
+
+And nothing prevents developer from defining empty array:
+
+```ruby
+arr = []
+```
+
+But why would we need an empty array? For the same purpose we need empty bucket -- to put something inside on later steps. There are many ways to put something into array, but there are two standard ways:
+
+* `arr.push(123)`  - method `push` also implemented in some other languages (like JavaScript), and some programmers prefer this way.
+* `arr << 123` - double arrow shows to _where_ we want to put something.
+
+And trivial phonebook program could look like this:
+
+{title="Trivial Phone Book Program, version 1", lang=ruby, line-numbers=on}
+```ruby
+arr = []
+
+loop do
+  print 'Type name and number (empty string to finish): '
+  entry = gets.chomp
+  break if entry.empty?
+  arr << entry
+end
+
+puts 'Your phone book:'
+
+arr.each do |element|
+  puts element
+end
+```
+
+Result:
+
+```
+Type name and number (empty string to finish): Saul 12345
+Type name and number (empty string to finish): Mummy (555) 111-22-33
+Type name and number (empty string to finish): Honey (555) 12345
+Type name and number (empty string to finish): Honey 2 (555) 98765
+Type name and number (empty string to finish):
+Your phone book:
+Saul 12345
+Mummy (555) 111-22-33
+Honey (555) 12345
+Honey 2 (555) 98765
+```
+
+Of course, this phone book application is minimalistic and lacks lots of features, program doesn't save any data to disk, no search by name or phone number, but it works! We were able to save data temporarily and show the list of contacts on the screen. We can invoke `arr.sort` to sort all elements in our phonebook, so result looks much better!
+
+X> ## Exercise 1
+X> Run this program and think about adding `arr.sort` line. Where would you put it?
