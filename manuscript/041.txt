@@ -33,7 +33,7 @@ Compare it with `each`:
 
 ```ruby
 arr.each do |word|
-  puts "В слове #{word} #{word.size} букв"
+  puts "Word #{word} has #{word.size} letters"
 end
 ```
 

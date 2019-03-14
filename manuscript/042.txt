@@ -1,0 +1,68 @@
+## Initializing Array
+
+In this chapter we'll cover how to initialize simple, one-dimensional array. There could be arrays with multiple dimensions, but when it comes to arrays only, for beginner programmers two dimensions is usually enough. Make sure you practice initializing, accessing, and iterating over 1D and 2D arrays, because it's a very common pitfall on interviews. Sometimes initializing arrays correctly is half the battle.
+
+We are already familiar with the following syntax that creates empty array:
+
+```ruby
+arr = []
+```
+
+If we want to initialize array with pre-defined values, program looks little bit different:
+
+```ruby
+arr = ['one', 'two', 'three']
+```
+
+You can also get the size (length) of array with `arr.size`. Please note that methods in Ruby language often have the same names. _String_ class has `size` method, and it returns the size of a string in characters. But `size` of _Array_ class will return the number of elements in this array. _String_ class has `each_char` method so one can iterate over the each character in particular string. But arrays have similar "`each`" method for iterating over each element. In other words, principle of a least surprise helps, and often you can guess the method for this or another class. We'll be covering other types in this book soon (like _Hash_), try to guess what would `size` method return for these types.
+
+Want it or not, there are multiple ways of initializing arrays in Ruby, and result is identical:
+
+```ruby
+arr = []
+```
+
+Alternative syntax:
+
+```ruby
+arr = Array.new
+```
+
+It can be considered as language design flaw, because newbies we'll need to understand two ways of initializing array. But there are always many opinions.
+
+The advantage of latter approach is ability to pass additional parameters, like:
+
+* Size of array (optional). Empty array will be initialized if not provided.
+* Block (optional)
+
+{title="Passing parameter to Array.new", line-numbers=off}
+```
+$ irb
+> arr = Array.new(10)
+=> [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil]
+```
+
+By default array initialized with nil value. Keep in mind that `nil` and "empty" are not the same thing. `nil` is represented by _NilClass_, and when we say "empty", we usually refer to an empty string - string with no characters. `nil` and empty string are different objects and can't be equal in Ruby.
+
+{title="Difference between nil and empty string", line-numbers=off}
+```
+$ irb
+> nil.class
+ => NilClass
+> "".class
+ => String
+ > nil == ""
+ => false
+```
+
+We can also initialize array with some value. Imagine we're bulding a computer game, where `0` is empty space, and `1` is soldier. We want to create array of soldiers. It can be done the following way:
+
+```ruby
+Array.new(10, 1)
+```
+
+Code above creates array with the size of 10 where each element equals to 1:
+
+```
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+```
