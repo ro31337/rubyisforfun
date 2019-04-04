@@ -1,0 +1,83 @@
+## Accessing Array
+
+So far we were iterating over array. But let's look how we can access certain element of array. You can access array by using _index_. Indexes can be tricky, but at the same time they're easy. It's the number of element minus one. In other words, if you're going to access firth element of array, you'll need `index` with the value of 4. Let's create array with five strings in REPL:
+
+```
+> arr = %w(one two three four five)
+=> ["one", "two", "three", "four", "five"] 
+```
+
+And get the size of array:
+
+```
+> arr.size
+=> 5
+```
+
+Size of array is 5. We have five elements inside. Let's actually get the fifth element, we'll need to use index with the value of 4:
+
+```
+> arr[4]
+=> "five"
+```
+
+In other words:
+
+* `arr[0]` returns `one`
+* `arr[1]` returns `two`
+* `arr[2]` returns `three`
+* `arr[3]` returns `four`
+* `arr[4]` returns `five`
+
+And when we know how to evaluate this expression, we can combine it with other methods, like:
+
+```ruby
+puts arr[4]
+```
+
+Or pass the result of expression to your own method as we could do it with variable:
+
+```
+my_own_method(arr[4])
+```
+
+We can also assign (replace) the value of particular _cell_ in array. For example:
+
+```
+# replace "two" with "whatever"
+arr[1] = 'whatever'
+```
+
+Here is the demo of how it works:
+
+{title="Replace value and iterate over array",  lang=ruby, line-numbers=on}
+```ruby
+arr = %w(one two three four five)
+arr[1] = 'whatever'
+arr.each do |word|
+  puts word
+end
+```
+
+Result:
+
+```
+one
+whatever
+three
+four
+five
+```
+
+We could also write this program another way (it's correct unless you have too many elements in your array so your program becomes too long to fit on a screen):
+
+{title="Replace value and print array elements sequentially",  lang=ruby, line-numbers=on}
+```ruby
+arr = %w(one two three four five)
+arr[1] = 'whatever'
+puts arr[0]
+puts arr[1]
+puts arr[2]
+puts arr[3]
+puts arr[4]
+```

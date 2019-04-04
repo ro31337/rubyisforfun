@@ -94,5 +94,5 @@ Honey 2 (555) 98765
 
 Of course, this phone book application is minimalistic and lacks lots of features, program doesn't save any data to disk, no search by name or phone number, but it works! We were able to save data temporarily and show the list of contacts on the screen. We can invoke `arr.sort` to sort all elements in our phonebook, so result looks much better!
 
-X> ## Exercise 1
+X> ## Exercise
 X> Run this program and think about adding `arr.sort` line. Where would you put it?

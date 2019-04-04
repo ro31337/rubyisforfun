@@ -1,0 +1,40 @@
+## Missing Detail
+
+Actually, we're moving little bit fast. Let's step back and look at this syntax used to define an array:
+
+```ruby
+arr = %w(one two three four five)
+```
+
+What `%w` means here? There are a couple of shortcuts in Ruby to define arrays. Here is how we define exactly the same array without any shortcuts:
+
+```ruby
+arr = ["one", "two", "three", "four", "five"]
+```
+
+Or with single quotes (preferred):
+
+```ruby
+arr = ['one', 'two', 'three', 'four', 'five']
+```
+
+But this code looks little bit longer. It's 45 characters, and version with `%w` has only 34 characters. Programmers just wanted to simplify their lives, so they introduced this shortcut syntax with `%w` prefix and parenthesis.
+
+Arrays in all cases are exactly the same, so it's up to you which syntax you prefer. However, some teams have their standards, and from our experience there is a preference for `%w`. In a good team you'll get a warning from a tool like Rubocop if you're not following naming conventions.
+
+There are also objects similar to strings (explained later in this book) called symbols (represented by _Symbol_ class). Just for the reference, you can also define array of symbols both ways.
+
+Standard way:
+
+```ruby
+arr = [:one, :two, :three]
+```
+
+With shortcut (note the `%i` shortcut this time):
+
+```ruby
+arr = %i(one two three)
+```
+
+X> ## Exercise
+X> Open up your REPL and try to define array of string with standard and shortcut way. Do the same for array of symbols.
