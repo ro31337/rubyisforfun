@@ -1,0 +1,35 @@
+## Arrays of Arrays (two-dimensional arrays)
+
+We can specify any type while initializing arrays. For example, _String_:
+
+```ruby
+$ irb
+> Array.new(10, 'hello')
+=> ["hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello", "hello"]
+```
+
+Or _Boolean_ (this type doesn't exist, and in this book we intentionally refer to both types _TrueClass_ and _FalseClass_ as _Boolean_):
+
+```ruby
+$ irb
+> Array.new(10, true)
+=> [true, true, true, true, true, true, true, true, true, true]
+```
+
+Or _Integer_:
+
+```ruby
+$ irb
+> Array.new(10, 123)
+=> [123, 123, 123, 123, 123, 123, 123, 123, 123, 123]
+```
+
+In other words, element in array is arbitrary object. If element is object and array is object too, we can define array of arrays:
+
+```ruby
+$ irb
+> Array.new(10, [])
+ => [[], [], [], [], [], [], [], [], [], []]
+```
+
+If we access this array by _index_, we'll reach an array inside of root array. For example, 
