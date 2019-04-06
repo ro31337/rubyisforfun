@@ -1,0 +1,190 @@
+## Battle of Robots
+
+Let's build a simple game together to sum up all information from previous chapters. We'll have 20 robots and two teams, 10 robots in each. Every team will be represented by its own array with the size of 10. Element of array (cell) may have only one of two values:
+
+* Zero, `0` - when robot is destroyed
+* One, `1` - when robot is still alive
+
+Define two arrays. `1` in example below indicates that we define array with robots who still alive:
+
+```ruby
+arr1 = Array.new(10, 1)
+arr2 = Array.new(10, 1)
+```
+
+Each team will attack after another. But what does it mean "to attack" in our case? If `1` in array is alive robot, and `0` is dead robot, then "to attack" means "changing the value for certain cell in array from 1 to 0". But which cell are we going to attack? We have ten of them for each team. We have two options:
+
+* "Attack" cells one by one sequentially. In other words, at the beginning we attack cell 1 of array 1, then cell 1 of array 2, and so on. Whoever starts attacking first wins the game. Predictable and doesn't sound too interesting.
+* It's much more fun to pick _index_ randomly. Randomness isn't a guarantee that _index_ will remain unique while generating random numbers, so one team can attack the same cell of another team. For example, on a fifth turn second team attacks third cell, but it's possible that this cell was attacked before. So team won't reach its goal in this turn of destroying enemy, because cell already equals to zero. And the number of destroyed enemies will remain the same. With this approach result of the battle is always a matter of luck.
+
+So let's stick with the latter approach and implement our game this way. We already know how to generate random index from 0 to 9:
+
+```ruby
+i = rand(0..9)
+```
+   
+We only need to access the element of array, and replace it with zero if it equals one. And we can find out if cell has been already attacked if its value is zero. Here is the Ruby code that implements this logic:
+
+```ruby
+if arr[i] == 1
+  arr[i] = 0
+  puts "Robot by index #{i} destroyed"
+else
+  puts 'Oops, missed that!'
+end
+```
+
+Team wins if all robots of another team have been destroyed. It would be useful to know how many alive robots do we have in array. Imagine we have the following array:
+
+```ruby
+arr = [1, 0, 1, 0, 1, 1]
+```
+
+How do we get the number of elements equal to 1? Take a break and think about it. We already know at least one approach.
+
+The answer is to use `each` method and increase variable while iterating over array:
+
+{title="Calculate the number of ones in array, naive way",  lang=ruby, line-numbers=on}
+```ruby
+arr = [1, 0, 1, 0, 1, 1]
+x = 0
+arr.each do |element|
+  if element == 1
+    x += 1
+  end
+end
+puts "Array has #{x} ones"
+```
+
+Program above works, but there is also elegant way of doing that. Method `count` of _Array_ class does exactly what we want, but the syntax is easier (please look up documentation before you read example below):
+
+{title="Calculate the number of ones in array by passing block to 'count' method",  lang=ruby, line-numbers=on}
+```ruby
+arr = [1, 0, 1, 0, 1, 1]
+x = arr.count do |x|
+  x == 1
+end
+puts "Array has #{x} ones"
+```
+
+Or the same code with keeping block on one line:
+
+{title="One-liner to calculate the number of ones in array by passing block to 'count' method",  lang=ruby, line-numbers=on}
+```ruby
+arr = [1, 0, 1, 0, 1, 1]
+x = arr.count { |x| x == 1 }
+puts "Array has #{x} ones"
+```
+
+Now we have all we need. Two teams of robots, each team will attack after another. Team wins if all robots of other team has been destroyed. We can implement this game, and important note here is that we don't need any user input, it runs automatically, we'll be just observing.
+
+X> ## Exercise
+X> Try to implement this game by yourself. There is a chance that something can go wrong, but remember that you're here for practice.
+
+Here is how author would implement this game:
+
+```ruby
+###############################
+# DEFINE ARRAYS
+###############################
+
+# array for the first team
+@arr1 = Array.new(10, 1)
+# array for the second team
+@arr2 = Array.new(10, 1)
+
+###############################
+# ATTACK
+###############################
+
+# Method accepts array for attack
+def attack(arr)
+  sleep 1 # Add sleep here, so our program won't run too fast
+  i = rand(0..9)
+  if arr[i] == 1
+    arr[i] = 0
+    puts "Robot by index #{i} has been destroyed"
+  else
+    puts "Missed at index #{i}"
+  end
+  sleep 1 # one more sleep to beautify the output
+end
+
+###############################
+# VICTORY CHECK
+###############################
+
+def victory?
+  robots_left1 = @arr1.count { |x| x == 1 }
+  robots_left2 = @arr2.count { |x| x == 1 }
+
+  if robots_left1 == 0
+    puts "Team 2 wins, #{robots_left2} robots left"
+    return true
+  end
+
+  if robots_left2 == 0
+    puts "Team 1 wins #{robots_left1} robots left"
+    return false
+  end
+
+  false
+end
+
+###############################
+# STATS
+###############################
+
+def stats
+  # number of alive robots for the first and second team
+  cnt1 = @arr1.count { |x| x == 1 }
+  cnt2 = @arr2.count { |x| x == 1 }
+  puts "1st team has #{cnt1} robots left"
+  puts "2nd team has #{cnt2} robots left"
+end
+
+###############################
+# MAIN LOOP
+###############################
+
+loop do
+  puts 'First team is going to attack...'
+  attack(@arr2)
+  exit if victory?
+  stats
+  sleep 3
+  puts # empty line
+
+  puts 'Second team is going to attack...'
+  attack(@arr1)
+  exit if victory?
+  stats
+  sleep 3
+  puts # empty line
+end
+```
+
+Result:
+
+```
+First team is going to attack...
+Robot by index 9 has been destroyed
+1st team has 10 robots left
+2nd team has 9 robots left
+
+Second team is going to attack...
+Robot by index 0 has been destroyed
+1st team has 9 robots left
+2nd team has 9 robots left
+
+...(skip)...
+
+
+```
+
+X> ## Exercise 1
+X> Add more details to stats method so it prints the state of two arrays.
+
+X> ## Exercise 2
+X> Improve program the following way. Each cell in array must represent the percentage of life of a robot from 1 to 100. Initial value should be 100. Each attack should take random number from robot's life value. This random number should be from 30 to 100. If life number is zero or less, we should consider this robot destroyed.
+ 
