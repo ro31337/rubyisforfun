@@ -14,7 +14,7 @@ And get the size of array:
 => 5
 ```
 
-Size of array is 5. We have five elements inside. Let's actually get the fifth element, we'll need to use index with the value of 4:
+Size of array is 5. We have five elements inside. Let's actually get the fifth element, we need index with the value of 4:
 
 ```
 > arr[4]
