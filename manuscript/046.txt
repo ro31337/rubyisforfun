@@ -32,4 +32,134 @@ $ irb
  => [[], [], [], [], [], [], [], [], [], []]
 ```
 
-If we access this array by _index_, we'll reach an array inside of root array. For example, 
+If we access this array by _index_, we'll reach an array inside of root array. For example, index with the value of 4 can be used to access fifth element. Let's try it in REPL:
+
+```ruby
+$ irb
+> arr = Array.new(10, [])
+ => [[], [], [], [], [], [], [], [], [], []]
+> element = arr[4]
+ => []
+> element.class
+ => Array
+```
+
+You can see that we're checking element's class by `.class`, and while accessing element REPL shows us the value (`=> []` line) and it's empty (`[]`). What one can do with empty array? For example, add something:
+
+```ruby
+element.push('something')
+```
+
+And what do we expect? Let's sum up what's been said in this chapter:
+
+* We defined array of arrays with the size of 10: `arr = Array.new(10, [])`
+* This array looks like this: `[[], [], [], [], [], [], [], [], [], []]`
+* We get the firth element: `element = arr[4]`
+* And we add value to this array: `element.push('something')`
+
+Since `element` is array and we add something, it will look like array with the value inside:
+
+```ruby
+['something']
+``` 
+
+And now we expect the `arr` (array of array) to look like:
+
+```ruby
+[[], [], [], [], ['something'], [], [], [], [], []]
+```
+
+Let's check in REPL:
+
+```ruby
+> arr
+=> [["something"], ["something"], ["something"], ["something"], ["something"], ["something"], ["something"], ["something"], ["something"], ["something"]]
+```
+
+Oh no! Something's not right! Here is the program:
+
+```ruby
+arr = Array.new(10, [])
+element = arr[4]
+element.push('something')
+puts arr.inspect # the way to print information like REPL
+```
+
+Where is mistake? If you're programmer converting from another language, it's worth making a break here and think about what could go wrong. This one can be also tricky interview question.
+
+The answer isn't obvious, and you need to have understanding of how Ruby language works, what is _object_, and what is _reference_ (or _pointer_). Do you remember we covered this topic a little bit?
+
+> ...apartments house with multiple doorbells. New variable is similar to a doorbell that _leads_ to this or another apartment. Doorbell is not apartment itself, but it's associated with it.
+
+We can also reproduce this issue with _String_ class:
+
+```ruby
+arr = Array.new(10, 'something')
+element = arr[4]
+element.upcase!
+puts arr.inspect # the way to print information like REPL
+```
+
+Expected result:
+
+```
+["something", "something", "something", "something", "SOMETHING", "something", "something", "something", "something", "something"]
+```
+
+Actual result:
+
+```
+["SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING"]
+```
+
+What's going on here? We're modifying only one element, and all element of array get updated. Actually, it doesn't matter which element we're changing, fifth, or second, or last. Result is always the same. Try it yourself!
+
+The answer to this puzzle is _reference_. When initializing array we're passing the reference to _single_ object:
+
+```ruby
+arr = Array.new(10, 'something')
+```
+
+`'something'` above is _String_ object (everything is object in Ruby). Since we're passing the reference to this single object, array gets initialized with 10 cells that have exactly the same reference value! In other words, there is no _object_ inside a cell, there is _reference to object_.
+
+To avoid this side effect we needs these references to be different, so they point to different objects. And these objects will be placed in different locations in computer memory, but technically they will _look the same_.
+
+It's like having exactly the same type of beer in your six-pack: all bottles look the same, but they're all different. If we change the _state_ of one bottle, it won't affect the state of other bottles. 
+
+With example of apartments house with multiple doorbells imagine the following scenario. We brought a box (array) and want to put 10 doorbells inside of that box. We did that, but all the wires lead to only one specific apartment. It doesn't matter which doorbell we use, we'll get the answer from the same tenants.
+
+If we want to fix that we need these wires to lead to different apartments. So always avoid code like this one, it's wrong:
+
+```ruby
+arr = Array.new(10, []) # <-- WRONG!
+``` 
+
+Only because array inside is supposed to change its state. Why we would need empty array? There is no any sense to that, because one day we'll want to add something to empty array, this is exactly what arrays were created for. But with strings things are actually easier, the following code is totally legit:
+
+```ruby
+arr = Array.new(10, 'something')
+```
+
+But with one caveat: we are not going to use "dangerous" operation on _String_ (or any other type). Dangerous operation is something that changes the _state_ of an object, and usually these methods have exclamation mark at the end, for example: `'something'.upcase!`. Do you understand  why these methods were called "dangerous"?
+
+And we're safe to define arrays with numbers:
+
+```ruby
+arr = Array.new(10, 123)
+```
+
+There are no any dangerous methods on _Integer_ class, even if you can access array, you can't modify it, you can't change its state. You will only be able to replace one object with another, but previous object won't disappear. It will remain in computer memory for a while, until garbage collector find it.
+
+So if you type `arr[4] = 124` you'll replace a _reference_ in array to new object (`124`). And references to previous "`123`"-object will remain untouched. And with numbers we're getting what we expect:
+
+```ruby
+$ irb
+> arr = Array.new(10, 123)
+ => [123, 123, 123, 123, 123, 123, 123, 123, 123, 123]
+> arr[4] = 124
+ => 124
+> arr
+ => [123, 123, 123, 123, 124, 123, 123, 123, 123, 123]
+```
+
+
