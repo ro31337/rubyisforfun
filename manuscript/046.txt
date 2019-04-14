@@ -150,7 +150,9 @@ arr = Array.new(10, 123)
 
 There are no any dangerous methods on _Integer_ class, even if you can access array, you can't modify it, you can't change its state. You will only be able to replace one object with another, but previous object won't disappear. It will remain in computer memory for a while, until garbage collector find it.
 
-So if you type `arr[4] = 124` you'll replace a _reference_ in array to new object (`124`). And references to previous "`123`"-object will remain untouched. And with numbers we're getting what we expect:
+So if you type `arr[4] = 124` you'll replace the _reference_ in array to another reference leading to new object (`124`). And all other references to previous "`123`"-object will remain untouched.
+
+With numbers we're getting what we expect:
 
 ```ruby
 $ irb
@@ -161,5 +163,198 @@ $ irb
 > arr
  => [123, 123, 123, 123, 124, 123, 123, 123, 123, 123]
 ```
+
+It's okay if these details look complicated, because they are. Good news is while doing your everyday job you usually don't deal with these complexities too often. You need only basic understanding and when the moment comes you'll remember that it could be it, and you will do your search over Internet.
+
+Probably some experienced programmers won't like this approach, and you'll hear advice to learn this and that, before you start doing something and move forward. But the experience of Ruby School students shows that moving fast is a good way to go; if you don't understand something, skip it and move on. You'll get back to the part you don't understand later, and often it's more important to spend time on looking for your first software development job, rather than polishing theoretical knowledge.
+
+But let's get back to the beginning, how do we define two-dimensional array? Imagine we're programming "Sea battle" game and we need 10 by 10 array, with 10 rows, where each row contains 10 columns. How do we define array where each element is going to be the reference to new and unique object?
+
+Let's see how we can define arrays in C#:
+
+```csharp
+var arr = new int[10, 10];
+```
+
+For the type of _String_:
+
+```csharp
+var arr = new string[10, 10];
+arr[9, 9] = "something";
+```
+
+For some unknown reason syntax in Ruby and JavaScript looks little bit more complicated. Below is how you define two-dimensional 10 by 10 array in Ruby (empty cells will be filled with `nil` value):
+
+{title="Correct way to define two-dimensional array in Ruby",  lang=ruby, line-numbers=off}
+```ruby
+arr = Array.new(10) { Array.new(10) }
+```
+
+Wow, but why it looks so magic? Let's dive a little bit deeper into this line. "`new`" method accepts one parameter and one block. First parameter is fixed, it's the size of array. Second parameter is actually block which is going to be executed while initializing every individual element. Result of this execution is going to be new element. Block will be executed 10 times in our case. Here is how you can use block with _String_:
+
+```ruby
+arr = Array.new(10) { 'something' }
+```
+
+Result is similar to the result of the following code:
+
+```ruby
+arr = Array.new(10, 'something')
+```
+
+And it looks the same when you execute these two lines in REPL:
+
+```ruby
+$ irb
+> arr1 = Array.new(10) { 'something' }
+ => ["something", "something", "something", "something", "something", "something", "something", "something", "something", "something"]
+
+> arr2 = Array.new(10, 'something')
+ => ["something", "something", "something", "something", "something", "something", "something", "something", "something", "something"]
+```
+
+But there is one subtle difference. While initializing, the first statement calls block. Every time it gets called we have new instance of _String_ class with the value "something" in computer memory.
+
+The second statement (when we define `arr2` variable) Ruby takes already initialized "something" that we're passing as second parameter. It gets created in memory _before_ it gets passed to `Array.new`, and reference to this single instance is used for all cells of array.
+
+Proof is quite easy. For folks who aren't familiar with Ruby too much it looks like a magic trick. Modify element by index 0 in first array where cell has reference to its own object (try steps below in your REPL):
+
+```ruby
+arr1[0].upcase!
+```
+
+Result of `arr1`:
+
+```ruby
+> arr1
+ => ["SOMETHING", "something", "something", "something", "something", "something", "something", "something", "something", "something"]
+```
+
+As you can see, only first element was changed, and it's the proof that every cell has reference to its own object for first array. Now let's follow these steps for the second array:
+
+```ruby
+> arr2[0].upcase!
+ => "SOMETHING"
+> arr2
+ => ["SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING"]
+```
+
+Every element in array was changed, because cells in second array have reference to the same element.
+
+Can you guess how this program would work if before "`arr2[0].upcase!`" we'd reinitialize, let' say, fifth element?
+
+```ruby
+> arr2[4] = 'something' # <-- REINITIALIZING FIFTH ELEMENT HERE
+ => "something"
+> arr2[0].upcase! # <-- CHANGE THE STATE OF OBJECT BY INDEX ZERO
+ => "SOMETHING"
+> arr2
+ => ["SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "something", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING", "SOMETHING"]
+```
+
+That's right, each cells have reference to updated with "`upcase!`" element, except fifth one. Fifth element is different object because it was reinitialized. That's why array of arrays must be defined as follows:
+
+```ruby
+arr = Array.new(10) { Array.new(10) }
+```
+
+If we want to fill array of arrays with some value (by default it's `nil`), we must pass it to the second constructor ("`new`" part of class initialization called "constructor", to be covered later in this book):
+
+```ruby
+arr = Array.new(10) { Array.new(10, 123) }
+```
+
+This is how you define 10 by 10 two-dimensional array and initialize every cell with `0`:
+
+```ruby
+arr = Array.new(10) { Array.new(10, 0) }
+```
+
+Define 2D array with 4 rows and 10 columns and initialize it with "`0`":
+
+```ruby
+arr = Array.new(4) { Array.new(10, 0) }
+``` 
+
+Define 2D array with 2 rows and 3 columns and initialize with "something":
+
+```ruby
+arr = Array.new(2) { Array.new(3, 'something') }
+```
+
+Define 2D array with 3 rows and 2 columns and initialize with "something":
+
+```ruby
+arr = Array.new(3) { Array.new(2, 'something') }
+```
+
+Hopefully, initializing two-dimensional arrays makes more sense now. We have understanding of what array is, and let's see how we can initialize arrays with predefined values. One-dimensional arrays (or just "arrays") is quite easy to initialize with whatever you want. For example:
+
+```ruby
+arr = [1, 2, 3]
+```
+
+Or:
+
+```ruby
+arr = ['one', 'two', 'three']
+```
+
+Every array has objects (technically, "every array holds references to objects"). Two-dimensional array is the same array with only caveat that array has objects of type _Array_.
+
+Pattern to define array of three strings, for example:
+
+```ruby
+arr = [..., ..., ...]
+```
+
+But if you're looking to define array of empty arrays, use `[]` instead of "`...`":
+
+```ruby
+arr = [[], [], []]
+```
+
+Tic-tac-toe game is good example of array of arrays. For the following board let's assume that "`O`" is represented by "`0`", and "`X`" by "`1`", empty cell is `nil`:
+
+|`O`| `O` | `X` |
+|` `| `O` | ` ` |
+|`X`| ` ` | `X` |
+
+This is how this array would look like in Ruby:
+
+```ruby
+arr = [[0, 0, 1], [nil, 0, nil], [1, nil, 1]]
+```
+
+Exactly the same expression looks more clear with multiple lines:
+
+```ruby
+arr = [
+  [0, 0, 1],
+  [nil, 0, nil],
+  [1, nil, 1]
+]
+```
+
+Spaces or empty lines won't affect execution of this program, so you can beautify it more if you want.
+
+X> ## Exercise 1
+X> Try in REPL everything written above, run every example and make sure you understand concepts explained in this chapter (it's okay if you don't understand all of them, make a note and move on, you can come back to this chapter after a couple of months).
+
+X> ## Exercise 2
+X> Create 5 by 4 array (5 rows and 4 columns), fill every cell of a _row_ with random number from 1 to 5 (one random number per row). Example for 2 by 3 array:
+
+```ruby
+[
+  [2, 2, 2],
+  [5, 5, 5]
+]
+```
+
+X> ## Exercise 3
+X> Do the same exercise, but for 4 by 5 array. 
+
+X> ## Exercise 4
+X> Create new 5 by 4 array and fill every cell with random number from 0 to 9.
 
 
