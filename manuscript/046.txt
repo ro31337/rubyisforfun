@@ -82,7 +82,7 @@ Oh no! Something's not right! Here is the program:
 arr = Array.new(10, [])
 element = arr[4]
 element.push('something')
-puts arr.inspect # the way to print information like REPL
+puts arr.inspect # the way to print information similar to REPL
 ```
 
 Where is mistake? If you're programmer converting from another language, it's worth making a break here and think about what could go wrong. This one can be also tricky interview question.
@@ -97,7 +97,7 @@ We can also reproduce this issue with _String_ class:
 arr = Array.new(10, 'something')
 element = arr[4]
 element.upcase!
-puts arr.inspect # the way to print information like REPL
+puts arr.inspect
 ```
 
 Expected result:
@@ -314,7 +314,7 @@ But if you're looking to define array of empty arrays, use `[]` instead of "`...
 arr = [[], [], []]
 ```
 
-Tic-tac-toe game is good example of array of arrays. For the following board let's assume that "O" is represented by "`0`", and "X" by "`1`", empty cell is `nil`:
+Tic-tac-toe game is a good example of array of arrays. For the following board let's assume that "O" is represented by "`0`", and "X" by "`1`", empty cell is `nil`:
 
 {width=25%}
 ![Tic Tac Toe](images/046-tic-tac-toe.png)
@@ -335,10 +335,10 @@ arr = [
 ]
 ```
 
-Spaces or empty lines won't affect execution of this program, so you can beautify it more if you want.
+Spaces or empty lines won't affect execution of this program, so you can beautify it more if you really want.
 
 X> ## Exercise 1
-X> Try in REPL everything written above, run every example and make sure you understand concepts explained in this chapter (it's okay if you don't understand all of them, make a note and move on, you can come back to this chapter after a couple of months).
+X> Try in REPL everything written above, run every example and make sure you understand concepts explained in this chapter (it's okay if you don't understand all of them, make a note and move on, you can come back to this chapter later).
 
 X> ## Exercise 2
 X> Create 5 by 4 array (5 rows and 4 columns), fill every cell of a _row_ with random number from 1 to 5 (one random number per row). Example for 2 by 3 array:
