@@ -316,6 +316,7 @@ arr = [[], [], []]
 
 Tic-tac-toe game is good example of array of arrays. For the following board let's assume that "`O`" is represented by "`0`", and "`X`" by "`1`", empty cell is `nil`:
 
+{width="25%"}
 |`O`| `O` | `X` |
 |` `| `O` | ` ` |
 |`X`| ` ` | `X` |
