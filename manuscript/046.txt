@@ -316,7 +316,7 @@ arr = [[], [], []]
 
 Tic-tac-toe game is good example of array of arrays. For the following board let's assume that "`O`" is represented by "`0`", and "`X`" by "`1`", empty cell is `nil`:
 
-![Tic Tac Toe](images/046-tic-tac-toe.svg)
+![Tic Tac Toe](images/046-tic-tac-toe.png)
 
 This is how this array would look like in Ruby:
 
