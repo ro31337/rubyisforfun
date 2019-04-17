@@ -354,6 +354,6 @@ X> ## Exercise 3
 X> Do the same exercise, but for 4 by 5 array. 
 
 X> ## Exercise 4
-X> Create new 5 by 4 array and fill every cell with random number from 0 to 9.
+X> Create new 5 by 4 array and fill every cell with random numbers from 0 to 9.
 
 

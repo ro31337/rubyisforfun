@@ -1,0 +1,88 @@
+## Gems
+
+So far, all of our experiments were pretty straightforward. However, with two-dimensional arrays you could notice the lack of FIXME (наглядности). For example, array for "Sea battle" game doesn't look super-intuitive in console:
+
+```ruby
+$ irb
+> Array.new(10) { Array.new(10) }
+ => [[nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil]]
+```
+
+We still can understand it, but can you quickly find out where is fifth row and second column? You need to look closely in order to do that. Ruby language designers knew that it's impossible to make something that everyone likes. So instead of having fixed set of tools, it was decided to introduce extensions, so everyone's able to add something new.
+
+Software developers from around the world took advantage of that and built amazing ecosystem of extensions - gems. You may be already familiar with gems if you know how to write code for other languages. In some other languages they call it _library_ or _packet_. For example, there is alternative to Ruby "`gem`" shell command for Node.Js platform called "`npm`" (Node Packets Manager).
+
+Word "gem" sounds more Ruby-ish than just a "packet", but the meaning is the same: something that you can install and use if you know its name. There are few ways of installing gems, we'll use "`gem`" shell command, which is a part of default Ruby language toolset along with other commands like "`irb`" or "`ruby`".
+
+Let's install our first gem:
+
+```
+$ gem install cowsay
+```
+
+Cowsay gem just prints a cow with a bubble with text. Try to find gem documentation by searching Internet with "cowsay gem documentation". Gem will add "`cowsay`" command to your shell, so you'll be able to run it:
+
+```
+$ cowsay 'Hey, Joe!'
+ ___________
+| Hey, Joe! |
+ -----------
+      \   ^__^
+       \  (oo)\_______
+          (__)\       )\/\
+              ||----w |
+              ||     ||
+```
+
+There are lots of gems for (every occasion FIXME на все случаи жизни). Actually, that's what Ruby language is famous for: whatever you do, there is a high chance that there is a gem for that.
+
+Gem doesn't necessarily adds shell command. Often gems are reusable pieces of code you can attach to your program by using "`require`" keyword with gem name as parameter.
+
+We'll need to install another gem for our next chapters. This gem is quite popular, and kinda unofficial standard in Ruby ecosystem. It happens pretty often: independent developers make gems and the crowd loves it so much, so it becomes industry standard.
+
+Gem name is "pry". There is a page on GitHub https://github.com/pry/pry - it's always useful to take a look at official docs before you install something. Moreover, because independent developers from all parts of the world work on gems, lifecycle of some gems can be unpredictable. Gem can be obsolete, deprecated, or just abandoned. You should always know what you install and going to use in your project.
+
+Here is what official docs say about "pry": "An IRB alternative and runtime developer console". We're going to switch from the tool we already familiar with ("irb") to the new one. Let's do it now and see why it's better:
+
+```
+$ gem install pry
+...
+$ pry
+>
+``` 
+
+Well, command prompt looks similar. But let's type array definition and see what happens:
+
+```ruby
+$ pry
+> arr = [[0, 0, 1], [nil, 0, nil], [1, nil, 1]]
+```
+
+You'll see code highlighting. By default numbers are highlighted in blue, and nils with cyan color. Is that it? Actually, this detail is quite important. You're going to work with large amounts of data, and do it on a daily basis. So, multiply this tiny improvement by amount of data human can handle in a day, and then multiple it by the number of days you're going to use Ruby (hopefully you'll be happy with the language for the next 5-10 years).
+
+The second detail is configuration. And here is where things go little bit unexpected. Gem is actually extension for Ruby language. But gems may have their own extensions too. And we're going to install extension for better output formatting. In other words, information you see on your screen is going to be even more awesome. Let's install "awesome print":
+
+```
+gem install awesome_print
+```
+
+This gem doesn't configure itself or add any commands while being installed, so we need to take care of it and attach it to "pry". There are details on how you can do that in official documentation, but the bottom line is to update "`.pryrc`" file located in your home directory. You can do it with any code editor, or by running the following sequence in your shell:
+
+{title="How you attach 'awesome_print' to 'pry'", lang=sh, line-numbers=on}
+```sh
+$ cat > ~/.pryrc
+require 'awesome_print'
+AwesomePrint.pry!
+^D
+```
+
+On the first line we just type "`cat > ~/.pryrc`". You can copy next two lines from this book (if you're reading electronic version of the book, copy lines one by one, so you paste without line numbers). And on line 4 you'll need to press combination of Ctrl+D: it's special sequence to inform your shell about end of input. This is how you can update any file in your filesystem. Basicially, we added only two lines to `~/.pryrc`.
+
+But where did these two lines come from and do I need to remember those? ... and don't worry, you don't need to...
+
+
+
+
+
+
+
