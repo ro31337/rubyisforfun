@@ -28,7 +28,7 @@ In the program above we put a string on the screen and awaiting for the user inp
 
 Run the program above and see what happens. If you run the program from file manager, result won't "disappear", because Ruby will be waiting for your input.
 
-Now let's write super simple program to learn foreign language. Let's take three random Spanish words: la pelota (ball), la puerta (door), la paz (peace). Imagine that you need to learn these words. How would you do that using a computer? One of the ways is to emulate a teacher. Computer will ask questions, and we'll be just spelling translation out loud:
+Now, let's write a super simple program to learn a foreign language. Let's take three random Spanish words: la pelota (ball), la puerta (door), la paz (peace). Imagine that you need to learn these words. How would you do that using a computer? One of the ways is to emulate a teacher. The computer will be the teacher and ask questions, and we will respond by spelling out the translation:
 
 {title="Foreign language teacher program", lang=ruby, line-numbers=on}
 ```ruby
@@ -57,7 +57,7 @@ gets
 
 And so on up to 12th fret (E F F# G G# A A# B C C# D D# E).
 
-Few notes about the listing above. As you may have already noticed, there are comments on some lines. Comments start with pound sign `#` (or "hash").  You can leave as many comments as you won't, including comments on the new line. Comments will not affect behavior of your program.
+Few notes about the listing above. As you may have already noticed, there are comments on some lines. Comments start with pound sign `#` (or "hash").  You can leave as many comments as you want, including comments on the new line. Comments will not affect behavior of your program.
 
 X> ## Exercise 
 X> Finish the program above if you understand music theory. If you don't, create a program to learn 10 foreign words. Try to add some comments to your program so you can understand it better.
@@ -67,11 +67,11 @@ Another note is about encoding. Since our program has only characters from A to 
 * If you're on Windows, first line of your program should be `# encoding: cp866` ("cp866" is the name of encoding). Also, the file should be saved using this encoding.
 * You don't need to do anything if you're on MacOS or Linux
 
-In other words, you may face encoding problems on Windows. There will be other minor issues over the course of this book if you're using Windows. Also, there is no any chance to be solid Ruby programmer on Windows (if you're not using workarounds like virtual machines).
+In other words, you may face encoding problems on Windows. There will be other minor issues over the course of this book if you're using Windows. There is a slim to zero chance to be a solid and productive Ruby programmer with this operating system (if you're not using workarounds like virtual machines).
 
 It doesn't mean that Windows operating system sucks, not at all. The only reason is that some gem authors (gem is a small Ruby module, to be covered later in this book) do not test their code on Windows. Don't blame them, because historically Ruby community and infrastructure evolved around free and open source tools, and Linux was the number one platform for Ruby. MacOS was the second, because it supports POSIX (Portable Operating System Interface), and all existing tools were somewhat compatible. Nobody was thinking about Windows, and to be honest Microsoft didn't pay too much attention to open source when it all started. 
 
-So we highly recommend switching to free operating system like Linux Mint Cinnamon or MacOS.
+So we highly recommend switching to a free operating system like Linux Mint Cinnamon or MacOS.
 
 X> ## Exercise 
 X> If you're running Windows, _make an attempt_ to download and install [VirtualBox](https://www.virtualbox.org/) (free) or VMWare Workstation (requires a license). With this software you'll be able to run Linux inside of your Windows box. You will need to install [Linux Mint Cinnamon 64-bit](https://linuxmint.com/download.php). Try to open up the terminal, install Midnight Commander, and write your first program in Linux. Do not expect immediate success, it might take a couple of tries the first time. If it doesn't work, feel free to come back to this topic later. Important step here is to identify if your computer hardware supports virtualization. If not, you'll probably need to install Linux _instead_ of Windows (recommended) or upgrade your computer. 

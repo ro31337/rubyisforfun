@@ -1,6 +1,6 @@
 ## Shell Survival Guide
 
-The first step for the beginners would be getting familiar with file system basics by using file manager. We could give you comprehensive shell commands crash course, but how many folks would lie on the ground sobbing after that? That's not our goal. We don't want you to have computer science degree before you write your first program. Our goal is to create programs with fun. But before we do that, we'll give you a list of essential commands you don't need to remember (make a bookmark and you'll probably get to this page later, may be even in a year or two).
+The first step for the beginners would be getting familiar with file system basics by using file manager. We could give you comprehensive shell commands crash course, but how many folks would lie on the ground sobbing after that? That's not our goal. You don't need to have a computer science degree before you write your first program. Our goal is to create programs with fun. But before we do that, we'll give you a list of essential commands you don't need to remember (make a bookmark and you'll probably get to this page later, may be even in a year or two).
 
 Create directory (or "make directory") with a name `one` (F7 in Far Manager):
 
@@ -90,7 +90,7 @@ Copy file two levels up:
 $ cp file1.txt ../..
 ```
 
-Here comes command some experienced programmers aren't familiar with: copy multiple files to directory:
+Here comes a command some experienced programmers aren't familiar with: copy multiple files to directory:
 
 ```
 $ cp {file1.txt,file2.txt} my_directory

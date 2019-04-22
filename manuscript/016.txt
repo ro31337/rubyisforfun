@@ -1,6 +1,6 @@
 ## Text Editors
 
-There is plenty of text editors out there for all operating systems: MacOS, Linux, Windows, but we'll be discussing only _code_ editors. What's the difference between text editors and code editors? Well, often text editors do not save the file in plain format. For example, Microsoft Word saves the file along with meta information like formatting, font settings, images, and so on. But our code should be "plain".
+There are plenty of text editors out there for all operating systems: MacOS, Linux, Windows, but we'll be discussing only _code_ editors. What's the difference between text editors and code editors? Well, often text editors do not save the file in plain format. For example, Microsoft Word saves the file along with meta information like formatting, font settings, images, and so on. But our code should be "plain".
 
 In other words, what we type on keyboard should be saved to file. You are already familiar with minimalistic code editor:
 
@@ -40,11 +40,11 @@ $ nano app.rb
 
 ![Nano editor, works right in your terminal](images/016-nano.png)
 
-Footer has hints for available commands. For example, you can quit Nano by pressing Ctrl+X. There are much more advanced code editors like Vim and Emacs. Unfortunately, more advanced editors require more time to capture their functionality. You will probably see many "holy wars" on Internet about picking the right code editor. However, picking the right editor itself won't help you acquiring computer language knowledge and programming skills. So it's not very important which code editor you'll be using.
+Footer has hints for available commands. For example, you can quit Nano by pressing Ctrl+X. There are much more advanced code editors like Vim and Emacs. Unfortunately, more advanced editors require more time to capture their functionality. You can find many "holy wars" on Internet about picking the right code editor. However, picking the right editor itself won't help you acquiring computer language knowledge and programming skills. So it's not very important which code editor you'll be using.
 
 Code editors like cat, nano, vim, emacs are all _console_ editors. It means you run the command from your terminal and you don't need to quit the terminal. It's just a text on your screen. They're quite useful when you work with remote machines. For example, you've logged in to the server and want to edit or view some files. You can do that without quitting the terminal.
 
-But on your own machine you're free to run any programs. And there are some code editors with graphic elements (like icons, different font styles, colors, and so on). Often these editors offer much more useful features (like live error checking, debugging, bookmarks) and make a life of a programmer much easier:
+But on your own machine you're free to run any programs. And there are some code editors with graphic elements (like icons, different font styles, colors, and so on). Often these editors offer much more useful features (like live error checking, debugging, bookmarks) and make the life of a programmer much easier:
 
 * [VsCode](https://code.visualstudio.com/), Visual Studio Code (don't get confused with "Visual Studio")
 * [RubyMine](https://www.jetbrains.com/ruby/) (requires subscription)

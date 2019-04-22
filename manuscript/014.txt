@@ -49,4 +49,4 @@ Some useful file manager hotkeys (also see the bottom bar on screenshot above):
 * `Tab` - switch from one panel to another
 * `Ctrl+L` - toggle system information panel
 
-As you can see, basic file operations are achievable with F-keys. If you're planning to buy new laptop, make sure your new laptop has physical F1, F3, F4... keys (for example, some newer Macs have touchbars instead of F-keys).
+As you can see, basic file operations are achievable with F-keys. If you're planning to buy a new laptop, make sure your new laptop has physical F1, F3, F4... keys (for example, some newer Macs have touchbars instead of F-keys).

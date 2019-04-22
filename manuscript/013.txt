@@ -2,7 +2,7 @@
 
 Software engineers say that file system looks like a tree. Every branch is directory, each directory may have one or more sub-directories (other branches) or files (leaves). Directory can be empty. The top, main directory often called _root_ directory (don't confuse it with _home_ directory, which is the root place for all the files for the _current user_).
 
-And here is where miscommunication begins. If file system is tree-like, why the main directory is called root and not the trunk? In fact, branches always grow off the trunk. Also, when we imagine the tree, we assume that tree grows up. However, in all file managers branches (directories) grow down. You need to press Down key to move your cursor one position down the directory tree. Maybe it's better to say that the top directory is not the root, but trunk?   
+And here is where miscommunication begins. If file system is tree-like, why is the main directory called root and not the trunk? In fact, branches always grow off the trunk. Also, when we imagine the tree, we assume that tree grows up. However, in all file managers branches (directories) grow down. You need to press Down key to move your cursor one position down the directory tree. Maybe it's better to say that the top directory is not the root, but trunk?   
 
 ![Tree structure. Children's art from one of Silicon Valley kindergartens. Curious programmer will ask "where is the root here?" The point is that the root node is located at the very top, which is unusual for the tree. Or do we talk about branches that grow up? There is some uncertainty, but don't let that cool you off.](images/013-tree.png)
 

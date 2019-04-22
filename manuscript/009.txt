@@ -52,7 +52,7 @@ Combination _Ctrl+D_ (also denoted as _^D_ below) will be useful in your further
 
 Command `puts 1+1` is your first program! Congratulations on that! Unfortunately we didn't save it on the disk, because we typed it from our keyboard and it disappeared right after it was executed. But it's not a big deal, your first program was only 8 bytes, and you can always type it again, if you want to.
 
-But what exactly `puts 1+1` does? Before we answer this question, here is exercise for you. Try to run just `1+1`, without `puts`. What happened? We don't see anything on the screen. Actually, calculation has completed successfully, but result wasn't _put_ back. It's possible when you give a long-running task to a computer, some type of complex calculations, and result will never be printed because you've missed out `puts`.
+But what exactly does `puts 1+1` do?  Before we answer this question, here is exercise for you. Try to run just `1+1`, without `puts`. What happened? We don't see anything on the screen. Actually, calculation has completed successfully, but result wasn't _put_ back. It’s possible when you give a long-running task to a computer, such as a set of complex calculations, the result will never be printed because you missed typing in `puts`.
 
 In other words, `puts` just shows result on the screen. It's a combination of words "put" and "string". There are other, but similar commands in other computer languages to put results on the screen. For example in BASIC you need to type `print`, in C programmers often use `printf` (you can also do `printf` in Ruby!).
 

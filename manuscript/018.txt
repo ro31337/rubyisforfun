@@ -1,12 +1,12 @@
 ## Variables in Ruby
 
-A lot of stuff is going on, we hope you're not too overwhelmed too much with information about the right way of running your Ruby program. Let's jump to something fun.
+A lot of stuff is going on. We hope you're not feeling overwhelmed with information about the right way to run your Ruby program. Let's jump to something fun.
 
-Variables. Variable is a place inside of your computer's memory where we can store a value. It's like a cell in honeycomb. One wonders why do wee need to store a value? Well, because we can read it later, or we can modify it later, it's convenient.
+Variables. Variable is a place inside of your computer's memory where we can store a value. It's like a cell in a honeycomb. You may be wondering, why do we need to store a value? Well, because we can read it later, or we can modify it later, it's convenient.
 
 But we are not obligated to modify the values of our variables. Sometimes we can introduce some variables to improve readability of our program. Often such variables named as constants, because we don't modify them! That's why in modern JavaScript programming language we have two keywords: `let` to declare variable, and `const` to introduce a constant, something you can't change in the future. But it's much easier in Ruby.
 
-Let's try to define (declare, create, make) simple variable:
+Let's try to define (declare, create, make) a simple variable:
 
 {lang=ruby, line-numbers=on}
 ```ruby
@@ -25,7 +25,7 @@ Your age is
 20
 ```
 
-Number we typed was stored in variable with the name `age`. We could name it any way we want, for example `a`. But in this case line 4 will look like `puts a`. When it comes to naming variables, there are some important naming conventions out there, you can find them by typing "naming conventions for variables in Ruby" in your favorite search engine (we hope you're using [DuckDuckGo](https://duckduckgo.com/)).
+The number answered in the program was stored in a variable with the name `age`. We could name it any way we want, for example `a`. But in this case line 4 will look like `puts a`. When it comes to naming variables, there are some important naming conventions out there, you can find them by typing "naming conventions for variables in Ruby" in your favorite search engine (we hope you're using [DuckDuckGo](https://duckduckgo.com/)).
 
 But Ruby and JavaScript you'll see three common naming conventions:
 

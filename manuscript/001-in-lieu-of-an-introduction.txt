@@ -24,7 +24,7 @@ So the person starting, or wishing to start, on programming faces a choice. Wher
 
 If you are a scientist at a research institute, your choice will most likely fall on the language "python" or "C++", since a large number of libraries for data processing and analysis exists for these languages.
 
-If for example, you work as a watchman and are quite contented with your work, you could study some exotic programming language not much required in the market, simply to avoid being bored.
+If, for example, you work as a watchman and are quite content with your work, you could study some exotic programming language that’s not high in demand, simply to avoid being bored.
 
 If you live in a society in which ever-increasing accounts are paid every month, where you need to think not only of today, but of tomorrow, your choice will be different. You will need to study something in high demand very quickly, to find work as soon as possible.
 
