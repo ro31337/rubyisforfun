@@ -1,0 +1,139 @@
+## Accessing Array of Arrays
+
+There is a trick while accessing 2D, two-dimensional, or array of arrays. When accessing this type of array you need to access row first, and column next. From previous chapters we know how to access one-dimensional array:
+
+```ruby
+puts arr[4]
+```
+
+Or if we want to change the value:
+
+```ruby
+arr[4] = 123
+```
+
+Where 4 is _index_. With 2D arrays we need to use double square brackets. For example, the following code will change the value of the cell in fifth row and ninth column:
+
+```ruby
+arr[4][8] = 123
+```
+
+For a long time in the school we were told that in math coordinates of some area are usually defined as (x, y). Where "x" is horizontal axis (column), and "y" is vertical one (row). But accessing arrays is little bit confusing, because we need to access row first, and column next, in other words by using (y, x).
+
+To get a better feeling of how it works we can break down this expression into multiple lines:
+
+```ruby
+row = arr[4] # Get the entire array on fifth row into variable
+row[8] = 123 # Change the ninth cell to 123
+```
+
+The way to print the value of fifth row and ninth column:
+
+```ruby
+row = arr[4] # Get entire row into variable
+column = row[8] # Get the value of cell into another variable
+puts column # Print this variable
+```
+
+However, programmers usually use more compact notation: `arr[4][8]`
+
+Depending on the type of work you're doing, different naming convention can be used for rows and columns. Let's look at the most common examples:
+
+* `row`, `column`. Accessing array: `arr[row][column]`. 
+* `y` - row, `x` - column. Accessing array: `arr[y][x]`
+* `j` - row, `i` - column. Accessing array: `arr[j][i]`
+
+You absolutely need to remember that you need to access _row_, _y_, _j_ first when dealing with 2D arrays. This is the most common pitfall of every beginner while doing interviews.
+
+Note that for _index_ we use variable with the name "_i_". If there is more than one index, use next letters from English alphabet: _j_, _k_, and so on. You don't have to do that, and have freedom to name variables as you want. However, sometimes there are naming conventions, and if you follow them, other programmers will understand your code better.
+
+Let's create new two-dimensional array and try to traverse it. Traversal of all kinds of arrays and other data structures is a very common task, make a note for yourself to practice a lot before your next interview. 
+
+{title="Two-dimensional 3 by 3 array traversal",  lang=ruby, line-numbers=on}
+```ruby
+arr = [
+  %w(a b c),
+  %w(d e f),
+  %w(g h i)  
+]
+
+0.upto(2) do |j|
+  0.upto(2) do |i|
+    print arr[j][i]
+  end
+end
+```
+
+Result:
+
+```
+abcdefghi
+```
+
+At the program above (lines 7-11) we see two nested blocks, or one loop inside another (inner loop). But how does it work? We already know that first loop (with "`j`" variable) just "goes over" array. It doesn't know that we have array of arrays. We can rewrite the following lines to demonstrate that:
+
+```ruby
+0.upto(2) do |j|
+  puts arr[j]
+end
+```
+
+So this loop goes over three elements, but each element is array (but loop isn't aware of that). It will print 3 lines:
+
+```
+['a', 'b', 'c']
+['d', 'e', 'f']
+['g', 'h', 'i']
+```
+
+Since each element is array, we have a right to iterate over it one more time, as we already did it before many times. Program above can be rewritten with using `Array#each` method:
+
+{title="Two-dimensional 3 by 3 array traversal with Array#each",  lang=ruby, line-numbers=on}
+```ruby
+arr = [
+  %w(a b c),
+  %w(d e f),
+  %w(g h i)  
+]
+
+arr.each do |row|
+  row.each do |value|
+    print value
+  end
+end
+```
+
+Which is actually more preferred way to go. Can you guess why? Lines 7-11 do not rely on the size of array, and if you add more letters to your initial array, program will work correctly.
+
+There is a way to rewrite this array definition without using "`%w`" helper, but readability in this case will suffer a little bit:
+
+```ruby
+arr = [
+  ['a', 'b', 'c'],
+  ['d', 'e', 'f'],
+  ['g', 'h', 'i']  
+]
+```
+
+X> ## Exercise 1
+X> Traverse 3x3 array defined above manually, without loops, criss-cross, so it prints "`aeiceg`".
+
+X> ## Exercise 2
+X> In REPL create two-dimensional 3 by 3 array where each element has the value of string "`something`". Define this array the way so every element is protected from dangerous operations. For example, "`arr[2][2].upcase!`" statement should modify only on cell and won't affect others. 
+
+X> ## Exercise 3
+X> John Smith has a business where they have large pool of phone numbers, and they sell these phone numbers for advertisements. They want to sign a contract with you, but before they want to ensure you can follow their requirements and capable of delivering quality software. They say: we have phone numbers with letters, like 555-MATRESS. When customers type this phone number on phone keyboard, hey reach "555-628-7377". Write a method in Ruby language that will translate phone numbers without dashes, like "555MATRESS" into phone numbers with digits only, like 5556287377. Method signature:
+
+```ruby
+def phone_to_number(phone)
+  # code here...
+end
+
+puts phone_to_number('555MATRESS') # should print 5556287377
+```
+ 
+Sample image of phone keyboard:
+
+![Phone keyboard](images/048-phone-keyboard.png)
+
+
