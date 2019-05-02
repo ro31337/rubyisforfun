@@ -1,0 +1,45 @@
+## Multi-dimensional Arrays
+
+We are already familiar with two types of arrays: 1 and 2 dimensional. However, there can be multiple dimensions, so it's "array of array of array". Sometimes they call it "tensor". For example, popular framework for machine learning is called TensorFlow, sounds like something flows over multi-dimensional array and changes its inner data. However, machine learning is topic for another book (and it's almost never done in Ruby, mostly Python, C++ and some other languages). 
+
+Here is an example of 3-dimensional array in Ruby:
+
+{title="Three-dimensional array in Ruby",  lang=ruby, line-numbers=on}
+```ruby
+arr = [
+  [
+    %w(a b c),
+    %w(d e f),
+    %w(g h i)	
+  ],
+  [
+    %w(aa bb cc),
+    %w(dd ee ff),
+    %w(gg hh ii)  
+  ]
+]
+```
+
+It's array of 2 by 3 by 3: two blocks, each block has 3 rows, where each row has 3 columns.
+
+Dimension of array is just its property, if you deal with these types of arrays you need to know how to access them. For example, you can reach element "`f`" with "`arr[0][1][2]`" statement.
+
+You probably won't use three or more dimensional arrays in your everyday job too much, but arrays are often combined with another data structure - _Hash_ (with eponymous type in Ruby). Multi-dimensional arrays require the knowledge of their dimensions (depth), and if we add one row or column at the very beginning, we must update indexes everywhere in our program. Not very convenient. Moreover, every update is a risk to introduce new error.
+
+But mixing arrays with hashes is very powerful and wide-spread technique. It's also known as JSON (JavaScript Object Notation). This name sounds a little bit confusing, because JSONs are everywhere, not only in JavaScript: in Ruby, Java, Python, literally in every programming language. And a programmer doesn't need to know _index_ (some number) to access specific row or column in JSON, because JSON objects can be accessed via _keys_, where key is some strings, like "`date_of_birth`". Much easier to remember.
+
+We'll cover JSON objects later in this book.
+
+X> ## Exercise 1
+X> Define array outlined above in your REPL and try to read and write cell with "`ee`" value.
+
+X> ## Exercise 2
+X> Open up official docs for _Array_ class at [http://ruby-doc.org/core-2.5.1/Array.html](http://ruby-doc.org/core-2.5.1/Array.html) to see if you can understand some of the methods explained in documentation, and maybe learn something new!
+
+
+
+
+
+ 
+
+ 
