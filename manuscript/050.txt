@@ -1,0 +1,3 @@
+## Closer Look into Array class
+
+Array is essential data structure. Every programmer should know how to effectively query and update arrays. Ruby offers variety of methods to simplify array operations, like lookups, updates, calculating number of matches based on criteria, adding, removing, bulk operations over all elements, and so on. Ruby's standard library is very powerful, predictable, and straightforward; programmers love to use it. We hope you'll really enjoy manipulating arrays with Ruby. Let's get started!
