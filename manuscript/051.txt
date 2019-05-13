@@ -1,0 +1,73 @@
+## empty? method
+
+Question mark at the end of a method indicates that method returns _Boolean_ type (`true` or `false`). Use "`empty?`" method to check whether array has elements or empty. If array is empty, method returns `true`.
+
+```ruby
+$ pry
+> [].empty?
+ => true
+```
+
+Keep in mind that "`nil`" object doesn't implement "`empty?`" method. So if some method returns `nil` or array (which can be empty), you have to perform double check:
+
+```ruby
+arr = some_method
+
+if !arr.nil? && !arr.empty?
+  puts arr.inspect
+end
+```
+
+Also, there is one important details you don't want to miss. Every Ruby programmer sooner or later will use Rails framework. And Rails has some additional helpers for certain types to simplify your life as developer. For example, Rails will let you avoid double checks like one above:
+
+```ruby
+if !arr.blank?
+  puts arr.inspect
+end
+```
+
+Or by using opposite method "`present?`":
+
+```ruby
+if arr.present?
+  puts arr.inspect
+end
+```
+
+Will you agree that first line looks better than line below?
+
+```ruby
+if !arr.nil? && !arr.empty?
+```
+
+In other words, use "`empty?`" when Rails is missing. But always use "`present?`" and "`blank?`" when you're working on Rails project. These two methods are implemented for many types, and it would be really helpful if you can bookmark this page, so you can always refer to the following table:
+
+![Rails' blank? and present? methods for different types, source: https://stackoverflow.com/a/20663389/337085](images/051-rails-blank-present.png)
+
+As you can see from the table above, "`blank?`" and "`present?`" are opposite (two last columns). And the second column says that only "`nil`" and "`false`" evaluate to "`false`". In other words, all if-statements below are evaluated to "`true`" and will be executed:
+
+```ruby
+if true
+  # will be executed
+end
+
+if ''
+  # will be executed
+end
+
+if ' '
+  # will be executed
+end
+
+if []
+  # will be executed
+end
+
+# ...
+```
+
+And so on...
+
+From the table above we can see that method "`empty?`" is implemented for _String_, _Array_, and _Hash_.
+
+
