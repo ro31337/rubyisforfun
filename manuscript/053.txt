@@ -1,0 +1,18 @@
+## include? method
+
+"`include?`" method performs existence check over array and returns _Boolean_ value. For example:
+
+```ruby
+$ pry
+> [1, 2, 3, 5, 8].include?(3)
+true
+```
+
+Interesting detail is that some folks from Ruby community always wanted to rename this method to "`includes?`", but it didn't happen. So you have to remember that it comes without "s". In JavaScript ES6 existence check uses the "correct" spelling:
+
+```javascript
+$ node
+> [1, 2, 3, 5, 8].includes(3);
+true
+```
+
