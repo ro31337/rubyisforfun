@@ -42,7 +42,7 @@ if !arr.nil? && !arr.empty?
 
 In other words, use "`empty?`" when Rails is missing. But always use "`present?`" and "`blank?`" when you're working on Rails project. These two methods are implemented for many types, and it would be really helpful if you can bookmark this page, so you can always refer to the following table:
 
-![Rails' blank? and present? methods for different types, source: https://stackoverflow.com/a/20663389/337085](images/051-rails-blank-present.png)
+![Rails blank? and present? methods for different types](images/051-rails-blank-present.png)
 
 As you can see from the table above, "`blank?`" and "`present?`" are opposite (two last columns). And the second column says that only "`nil`" and "`false`" evaluate to "`false`". In other words, all if-statements below are evaluated to "`true`" and will be executed:
 
