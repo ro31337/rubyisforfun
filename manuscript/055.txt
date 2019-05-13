@@ -1,0 +1,41 @@
+## Selecting Elements by Criteria
+
+Imagine that we have a list of employees with their ages. We need to pick all the males who are going to retire next year. For simplicity let's assume that employee is represented by an object. We are not familiar with _Hash_ data structure yet, so let's use _Array_. First element of this array is going to be age, and the second is gender. Meet the male with the age of 30:
+
+```ruby
+[30, 1]
+```
+
+Female with the age of 25:
+
+```ruby
+[25, 0]
+```
+
+And we have a list of such objects (array of objects, or two-dimensional array):
+
+```ruby
+[ [30, 1], [25, 0], [64, 1], [64, 0], [33, 1] ] 
+```
+
+Select all males with the age of 64:
+
+```ruby
+$ pry
+> arr = [ [30, 1], [25, 0], [64, 1], [64, 0], [33, 1] ]
+...
+> arr.select { |element| element[0] == 64 && element[1] == 1 }
+(...1 element was selected...)
+```
+
+Select all males:
+
+```ruby
+$ pry
+> arr = [ [30, 1], [25, 0], [64, 1], [64, 0], [33, 1] ]
+...
+> arr.select { |element| element[1] == 1 }
+(...3 elements were selected...)
+```
+
+Practice a bit in your REPL and try to select all females.
