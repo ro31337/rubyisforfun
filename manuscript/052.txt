@@ -1,0 +1,40 @@
+## Methods length, size, count
+
+Methods "`length`" and "`size`" are identical and implemented for _Array_, _String_, _Hash_ types:
+
+```ruby
+[11, 22, 33].size # => 3
+[11, 22, 33].length # => 3
+
+str = 'something'
+str.size # => 9
+str.length # => 9
+
+hh = { a: 1, b: 2 }
+hh.size # => 2
+hh.length # => 2
+```
+
+Method "`count`" works the similar way, but:
+
+* It's not implemented for _String_
+* It can accept block
+
+We can take advantage of block passed to "`count`" method to get some really handy calculations. Here is, for example, how you count a number of zeroes in array:
+
+```ruby
+$ pry
+> [0, 0, 1, 1, 0, 0, 1, 0].count { |x| x == 0 }
+5
+```
+
+"`count`" method can be used with a _pointer to a function_ (we haven't covered this topic yet, but example below gives a basic idea of how it works). The following line does the same thing as the line above:
+
+```ruby
+[0, 0, 1, 1, 0, 0, 1, 0].count(&:zero?)
+```
+
+It's important to know that "`count`" with a block goes over entire collection, and if you use Rails framework with "`count`" you wanna make sure that your query is efficient.
+
+X> ## Exercise
+X> Calculate the number of even elements in the following array: `[11, 22, 33, 44, 55]`
