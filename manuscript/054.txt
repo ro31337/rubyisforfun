@@ -1,0 +1,10 @@
+## Adding Elements to Arrays
+
+Adding and removing elements is implemented with methods we already know: "`push`" and "`pop`". These methods perform operations with the tail of an array: add element to the end, remove from the end. It looks like a stack of plates, where you push and pop from the top.
+
+However, there are "`unshift`" and "`shift`" methods that do the same, but with the head of an array:
+
+* "`unshift`" is similar to "`push`"
+* "`shift`" is similar to "`pop`"
+
+The metaphor here could be that "`shift`" shifts elements and returns one that didn't fit.
