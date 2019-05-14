@@ -1,0 +1,9 @@
+## Take Method
+
+Method "`take`" takes certain number of elements from the beginning of a collection:
+
+```ruby
+$ pry
+> [11, 22, 33, 44, 55].take(2)
+ => [11, 22]
+```
