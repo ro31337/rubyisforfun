@@ -1,0 +1,23 @@
+## Is There Any Match? (any?)
+
+Imagine we have array that represents result of a lottery. Each cell is either true or false. We need to know if there are any wins ("true" element). Method "`any?`" has question mark at the end, so it always returns _Boolean_: true or false.
+
+"`any?`" must be executed with a block, and block should have comparison expression. This comparison expression will be executed sequentially until condition is met (equals true):
+
+```ruby
+$ pry
+> [false, false, false, true, false].any? { |element| element == true }
+true
+```
+
+Code above shows that there is actually a win among these five tickets. Method "`any?`" just indicates that there is a win in this array, but it can't tell which ticket is winning.
+
+In other words, method doesn't return any index. If you want to find index of a winning ticket, Ruby's principle of a least surprise suggests that there should be "`find_index`" method for that. And it actually exists!
+
+```ruby
+$ pry
+> [false, false, false, true, false].find_index { |element| element == true }
+3
+```
+
+And it works!
