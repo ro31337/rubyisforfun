@@ -1,0 +1,9 @@
+## All Elements Should Meet Criteria
+
+Imagine that we have an array with ages of our users. We need to ensure that all of them are 18 or above. How would you do that? By using "`all?`" method:
+
+```ruby
+$ pry
+> [20, 34, 65, 23, 18, 44, 32].all? { |element| element >= 18 }
+true
+```
