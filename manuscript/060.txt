@@ -1,0 +1,19 @@
+## Few Words About Array Methods
+
+We've discovered the following methods for _Array_ class:
+
+* `push`, `pop` - add and remove element from array
+* `arr[i]` - access by index
+* `empty?` - check if array is empty
+* `length`, `size`, `count` - similar methods to get the size of array or get the count of elements by criteria
+* `include?` - check if array includes certain element
+* `select`, `reject` - select or reject elements by criteria
+* `take` - take some elements from the beginning
+* `any?`, `all?` - check if some or all elements meet certain criteria
+
+You don't need to remember all of them now, but it's worth adding a bookmark here. Eventually you will remember and recognize these methods. Moreover, all of these methods were re-implemented in Rails web framework to deal with collections. Here are some examples how you can use them:
+
+* Select all registered users
+* Reject users with unconfirmed email address
+* Select users by certain criteria (age, gender, payment method, etc.)
+* Take first/next 10 users from collection to display them on page 1, page 2, and so on.
