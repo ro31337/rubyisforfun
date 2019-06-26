@@ -1,0 +1,11 @@
+## Hash
+
+Hash data structure has many names: hash, hash table, map, dictionary, and even object in JavaScript. Hash and array are essential data structures for any programmer. These data structures are different, but they were designed for the same goal: to store and retrieve data. The only difference is _how_ these two operations are implemented.
+
+What is array and how do we store and get the data back from array? Imagine that a kid has lots of items (toys). Mother put all these toys to a single shelf and assigned sequential number (1, 2, 3 and so on). We need to visually scan the entire shelf if we want to find our favorite toy. It can take some time if this shelf is long enough. However, we can easily find a toy if we know its number.
+
+Hash looks like a magic bucket. There is no any order, and we don't know how it works. You can put any object to this magic bucket and assign a name: "Hey, magic bucket, here is a ball". We can also get any object from it: "Hey, magic bucket, give me this thing called ball". Important detail is that we name things, and use this name to get objects back. This name is the _key_ (or hash key). And item lookup happens in constant time, immediately.
+
+But how this magic bucket works? Why in case of array we have to look over the entire shelf, and magic bucket just takes no time? Secret is in its inner organization and how it works under the hood: there are multiple small buckets ("bucket" is the actual name for inner data structure) inside of this big one, and object goes to specific small bucket depending on its characteristics (let's say, color). More objects require more inner buckets.
+
+Important note: not "no time", takes logarithmic time
