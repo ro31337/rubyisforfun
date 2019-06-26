@@ -79,7 +79,7 @@ Your program will work fine if you always use strings and never use symbols. But
 
 X> ## Exercise
 X> You're becoming more professional programmer, and this time you were assigned a real story from your technical lead. Here is how it sounds:
-X> _As a user, I want to play rock-scissors-paper game with a computer so I can  spend my time with fun. You can use "`[:rock, :scissors, :paper].sample`" to get the random symbol. Here is how the beginning of a game may look like: _
+X> _As a user, I want to play rock-scissors-paper game with a computer, so I can  spend my time with fun. You can use "`[:rock, :scissors, :paper].sample`" to get the random symbol. Here is how the beginning of a game may look like: _
 
 ```ruby
 print "(R)ock, (S)cissors, (P)aper?"
