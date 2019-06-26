@@ -1,0 +1,89 @@
+## Symbols
+
+Symbols are very similar to strings. Symbols are instances of _Symbol_ class (and strings are instances of _String_ class). Here is how you define a symbol in Ruby:
+
+```ruby
+# assign symbol :something to variable "x"
+x = :something
+```
+
+Compare the code above to strings definition:
+
+```ruby
+x = "something"
+x = 'something' # alternative syntax
+```
+
+We use symbols when logically variable belongs to a set of similar values, for example:
+
+```ruby
+order.status = :confirmed
+order.status = :cancelled
+``` 
+
+Symbol "`:confirmed`" can be used in other parts of a program. But why are we using symbols in Ruby when the code above works well with strings? Consider:
+
+```ruby
+order.status = 'confirmed'
+order.status = 'cancelled'
+```
+
+It's true, we often don't have to use symbols. Moreover, in some programming languages there is no any concept of symbols at all (for example, in JavaScript). But there are few reasons why a Ruby programmer wants to use symbols.
+
+First reason is that symbols are _immutable_. One can't perform dangerous operations on them, but it's possible for strings (like "`upcase!`"). In other words, by using symbols you demonstrate your intent: this value is fixed, and there is probably a limited set of similar values.
+
+It's similar to a theatre ticket. You can write "Sector A" by hand on every ticket or you can use rubber stamp for this purpose. Stamping takes less resources and it is much faster. Moreover, every word written by hand is unique, like strings  - they look the same, but technically located in different parts of computer memory. But stamped words are always the same and lead to the only one source.
+
+Second reason is that symbols are efficient and reusable, and because of immutability Ruby interpreter doesn't need to allocate memory every time you create a new symbol. For example, if you have a string of "`something`" (9 characters), and you define this string in thousands of different places, interpreter will use at least of 9000 bytes of memory when program gets executed.
+
+But that's not the case for symbols. We allocate only one chunk of memory per symbol, so no matter how much definitions of "`something`" we have, we'll use only 9 bytes of memory.
+
+Technically speaking, references to the same symbols are always the same. References to the same strings aren't always the same, they _can_ be the same.
+
+Let's play and use a bit tricky way to create an array of strings, for each create-operation we'll be calling a block:
+
+```ruby
+arr = Array.new(100) { 'something' } 
+```
+
+Code above creates 100 strings of "`something`". These strings are all different objects. Here is how you can verify that (use `__id__` property of _Object_):
+
+```ruby
+> arr[0].__id__
+70100682145140
+> arr[1].__id__
+70100682144840
+```
+
+But when we create an array of symbols using the same trick, result is different - _Object_ identifier is always the same:
+
+```ruby
+$ pry
+> arr = Array.new(100) { :something }
+...
+> arr[0].__id__
+2893788
+> arr[1].__id__
+2893788
+```
+
+In other words, array of symbols has references to the only one object.
+
+Another benefit of symbols is that Ruby compares symbols by reference only. And reference is just a value like `0xDEADBEEF` that fits into one of CPU registers (4-8 bytes, depending on architecture).
+
+That being said, Ruby can compare symbols by comparing two short references. But string comparison implemented with byte-by-byte comparison, with two pointers to different areas of a memory, so it's very inefficient.
+
+Computer scientists say that two symbols comparison operation takes _constant time_ (often represented by big-O notation as _O(1)_). And string comparison takes _linear time_, _O(N)_.
+
+Your program will work fine if you always use strings and never use symbols. But if you're looking to optimize your code, and make it more efficient, or to show your intent to other programmers, you might need symbols.
+
+X> ## Exercise
+X> You're becoming more professional programmer, and this time you were assigned a real story from your technical lead. Here is how it sounds:
+X> _As a user, I want to play rock-scissors-paper game with a computer so I can  spend my time with fun. You can use "`[:rock, :scissors, :paper].sample`" to get the random symbol. Here is how a beginning of the game may look like: _
+
+```ruby
+print "(R)ock, (S)cissors, (P)aper?"
+s = gets.strip.capitalize
+
+if s == ...
+```
