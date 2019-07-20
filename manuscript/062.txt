@@ -6,6 +6,90 @@ What is array and how do we store and get the data back from array? Imagine that
 
 Hash looks like a magic bucket. There is no any order, and we don't know how it works. You can put any object to this magic bucket and assign a name: "Hey, magic bucket, here is a ball". We can also get any object from it: "Hey, magic bucket, give me this thing called ball". Important detail is that we name things, and use this name to get objects back. This name is the _key_ (or hash key). And item lookup happens in constant time, immediately.
 
-But how this magic bucket works? Why in case of array we have to look over the entire shelf, and magic bucket just takes no time? Secret is in its inner organization and how it works under the hood: there are multiple small buckets ("bucket" is the actual name for inner data structure) inside of this big one, and object goes to specific small bucket depending on its characteristics (let's say, color). More objects require more inner buckets.
+But how does this magic bucket work? Why in the case of array we have to scan the entire shelf while magic bucket takes no time[^notime]? Secret is its inner organization and how it works under the hood: there are multiple small buckets ("bucket" is the actual name for inner structure), and object goes to specific small bucket, depending on its characteristics (let's say, color). More objects require more inner buckets to be present.
 
-Important note: not "no time", takes logarithmic time
+If the hashes are so good, why not always use them? 
+
+First, this data structure does not guarantee any order. If we add data to an array using "`push`", we know exactly which element was added first, which one after. But there is no order in the hash once value is there, also there is no way to tell _when_ it got there.
+
+Note: although the hash data structure doesn't guarantee any order, order is guaranteed by Ruby hash implementation (however, the authors wouldn't recommend relying on it). This is what the official documentation at https://ruby-doc.org/core-2.5.1/Hash.html says:
+
+> Hashes enumerate their values **in the order** that the corresponding keys were inserted.
+
+But since any web developer should know JavaScript at least at a minimum level, let's see what the documentation on JS says about it:
+
+> An object is a member of the type Object. It is an **unordered** collection of properties each of which contains a primitive value, object, or function
+
+However, in the newer version of JavaScript (ES6 and above), the `Map` class (one of hash implementations) will return values from the hash _in the order_. So rule of thumb here is not to rely on the hash order.
+
+Secondly, for every data structure there is such a concept as "the worst time of execution". In case of Hash it is linear time, _O(N)_: the code will scan through all the elements. But in case of arrays, lookup by index[^lookup_by_index] _always_ takes constant time, _O(1)_. So if we're okay with using indexes (like 0, 1, 2) instead of keys (like `:red`, `:green`, `:blue`), then it's better to use arrays, it's guaranteed to be faster.
+
+However, the worst cases are not common in practice, and the main reason programmers use hashes is convenience for a human being. It is much easier to say "get the ball" than "get the object by index 148".
+
+To define a hash in a Ruby program we need use curly brackets (square brackets are used for arrays):
+
+```
+$ pry
+> obj = {}
+...
+> obj.class
+Hash < Object
+```
+
+Don't name your variable "`hash`", because it is a reserved language keyword (but you can enter it into the REPL and see what happens). That's why the authors normally use "`obj`" (object) or "`hh`" (double "h" says it's more than just a variable).
+
+Programmers say that the hash is a key-value storage, where each key is assigned a value. For example, the key is a "`ball`" (string), and the value is the physical object "`ball`" itself. The hash is often called "dictionary". This is partly true, because the dictionary of words is a perfect example of hash. Each key (word) has a meaning (description of the word and/or translation). In the Java language hash used to be called "dictionary" too, but since the seventh version this concept has become obsolete and the dictionary has been renamed into "map"[^javamap].
+
+The key and value in the hash can be any object, but most often the key is a _String_ (or _Symbol_), and the value is... The value is the actual object, it is difficult to predict what it will be. It can be a string, a _Symbol_, an array, a number, another hash. So when developers define a hash in a Ruby program, they normally know in advance what _type_ it will keep.
+
+For example, let's agree that the _key_ in the hash is a character, and the _value_ is a number. We'll keep the weight of different types of balls (in grams) inside of our hash:
+
+```
+obj = {}
+obj[:soccer_ball] = 410
+obj[:tennis_ball] = 58
+obj[:golf_ball] = 45 
+```
+
+If you write this program into the REPL and type "`obj`", you will see the following:
+
+```
+{
+    :soccer_ball => 410,
+    :tennis_ball => 58,
+      :golf_ball => 45
+}
+```
+
+Text above is perfectly valid from the Ruby's language perspective, and we could initialize our hash without writing the values (without using assignment operator "`=`"):
+
+```
+obj = {
+    :soccer_ball => 410,
+    :tennis_ball => 58,
+      :golf_ball => 45
+}
+```
+
+The operator "`=>`" in Ruby is called "hash rocket" (in JavaScript "fat arrow", but has a different meaning). However, the "hash rocket" notation is now obsolete. It would be more correct to write the program this way:
+
+```
+obj = {
+  soccer_ball: 410,
+  tennis_ball: 58,
+  golf_ball: 45
+}
+```
+
+Pay attention that despite the fact that the record looks different, if we write "obj" in REPL, we will get the same conclusion as above. In other words, the keys (:soccer_ball, :tennis_ball, :golf_ball) are Symbol types in this case.
+
+To extract the value from the hash, you can use the following construction:
+
+
+
+
+[^notime]: "No time" is technically incorrect, text was simplified for readability. Correct reading is "better time" or "logarithmic time". Scanning of an array is linear operation, and it takes 1,000,000 iterations (worst case) to find the element in 1,000,000 array. However,  "binary search" takes logarithmic time and allows to find element in almost 20 (!) iterations for 1,000,000 items array (`\(2^{20}=1048576\), \(\log_2 1000000\approx19.93\)`{format: latex}).
+
+[^lookup_by_index]: Lookup by index is just accessing array by index, like `arr[4]` to get the fifth element.
+
+[^javamap]: https://docs.oracle.com/javase/7/docs/api/java/util/Dictionary.html
