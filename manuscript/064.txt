@@ -18,6 +18,7 @@ JSON-structure is a universal way of describing almost any data. For example, th
 
 UI part of the app may look like this:
 
+{width=70%}
 ![To-Do app, first item is visible, "Show completed" switch is on](images/064-01.png)
 If we break down this data structure, we'll see that there is no magic:
 
@@ -32,6 +33,7 @@ Value by the key of `:todos` is _Array_. Every element of the array is hash (obj
 
 When we turn off the switch, the UI will look different:
 
+{width=70%}
 ![To-Do app, all items are visible, "Show completed" switch is off](images/064-02.png)
 
 And the state of the program will be represented by slightly different hash:
@@ -69,6 +71,7 @@ When we want to add an item ("Call mom" below), we just push this element to "`t
 
 So the last item gets reflected in UI:
 
+{width=70%}
 ![To-Do app with one extra item](images/064-03.png)
 
 X> ## Exercise 1
