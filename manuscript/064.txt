@@ -1,4 +1,4 @@
-## JSON-structure of real-world application
+## JSON-structure of a real-world application
 
 JSON-structure is a universal way of describing almost any data. For example, the following hash describes the _state_ of UI[^ui] of minimalistic TODO-list application:
 
