@@ -1,0 +1,83 @@
+## JSON-structure of real-world application
+
+JSON-structure is a universal way of describing almost any data. For example, the following hash describes the _state_ of UI[^ui] of minimalistic TODO-list application:
+
+```ruby
+{
+  todos: [{
+    text: 'Eat donut',
+    completed: true
+  }, {
+    text: 'Go to gym',
+    completed: false
+  }],
+  visibility_fiter: :show_completed
+}
+
+```
+
+UI part of the app may look like this:
+
+![To-Do app, first item is visible, "Show completed" switch is on](images/064-01.png)
+If we break down this data structure, we'll see that there is no magic:
+
+```ruby
+{
+  todos: [ { ... }, { ... }, ... ],
+  visibility_fiter: :show_completed
+}
+```
+
+Value by the key of `:todos` is _Array_. Every element of the array is hash (object), which has two properties: 1) text 2) completion flag (_Boolean_ type which is either `true` or `false`). Root level hash has also `:visibility_filter` key with corresponding value of `:show_completed`. It's up to developer to pick the right naming for hash keys or values. We just assume that somewhere some part of our program will be responsible for filtering out items based on the value of the filter. That's why we have two items in todos-array, but show only one on the mockup above.
+
+When we turn off the switch, the UI will look different:
+
+![To-Do app, all items are visible, "Show completed" switch is off](images/064-02.png)
+
+And the state of the program will be represented by slightly different hash:
+
+```ruby
+{
+  todos: [{
+    text: 'Eat donut',
+    completed: true
+  }, {
+    text: 'Go to gym',
+    completed: false
+  }],
+  visibility_fiter: :show_all
+}
+```
+
+When we want to add an item ("Call mom" below), we just push this element to "`todos`" array:
+
+```ruby
+{
+  todos: [{
+    text: 'Eat donut',
+    completed: true
+  }, {
+    text: 'Go to gym',
+    completed: false
+  }, {
+    text: 'Call mom',
+    completed: false  
+  }],
+  visibility_fiter: :show_all
+}
+```
+
+So the last item gets reflected in UI:
+
+![To-Do app with one extra item](images/064-03.png)
+
+X> ## Exercise 1
+X> Create a JSON structure to represent the state of the following online-banking account:
+
+![UI of an online banking account](images/064-04.png)
+
+X> ## Exercise 2
+X> Write a program that accepts hash you created in Exercise 1 and prints the result to the screen. Make sure that switch above works and the program doesn't show any deposits if the switch is off.
+
+[^ui]: User Interface
+
