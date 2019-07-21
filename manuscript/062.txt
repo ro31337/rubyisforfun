@@ -125,8 +125,7 @@ obj = {
 X> ## Exercise 2, the Moon store
 X> Using the hash from the previous exercise write a program that for every type of the ball above will ask the number of items user wants to buy. User should be able to type the number from a console. At the end program should calculate the weight of all items in the cart. Also, program should print both weights: for Moon and Earth.
 
-
-[^notime]: "No time" is technically incorrect, text was simplified for readability. Correct reading is "better time" or "logarithmic time". Scanning of an array is linear operation, and it takes 1,000,000 iterations (worst case) to find the element in 1,000,000 array. However,  "binary search" takes logarithmic time and allows to find element in almost 20 (!) iterations for 1,000,000 items array (`\(2^{20}=1048576\), \(\log_2 1000000\approx19.93\)`{format: latex}).
+[^notime]: "No time" is technically incorrect, text was simplified for readability. Correct reading is "better time" or "logarithmic time". Scanning of an array is linear operation, and it takes 1,000,000 iterations (worst case) to find the element in 1,000,000 array. However,  "binary search" takes logarithmic time and allows to find element in almost 20 (!) iterations for 1,000,000 items array ({$$}\(2^{20}=1048576\), \(\log_2 1000000\approx19.93\){/$$}).
 
 [^lookup_by_index]: Lookup by index is just accessing array by index, like `arr[4]` to get the fifth element.
 
