@@ -20,6 +20,7 @@ UI part of the app may look like this:
 
 {width=70%}
 ![To-Do app, first item is visible, "Show completed" switch is on](images/064-01.png)
+
 If we break down this data structure, we'll see that there is no magic:
 
 ```ruby
@@ -77,6 +78,7 @@ So the last item gets reflected in UI:
 X> ## Exercise 1
 X> Create a JSON structure to represent the state of the following online-banking account:
 
+{width=70%}
 ![UI of an online banking account](images/064-04.png)
 
 X> ## Exercise 2
