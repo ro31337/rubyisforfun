@@ -1,0 +1,110 @@
+## Other types as Hash values
+
+In previous chapter we figured out that hash is a set of key-value pairs, where key is usually _Symbol_ or _String_ and value is an object. We used the type _Integer_ in our examples. However, there is no any limitation here and we can use any types for keys and values, including strings, arrays, and even other hashes!
+
+It's the same for arrays. Array elements can be numbers, strings, array themselves (in this case we'll get two-dimensional arrays), and even hashes. And these hashes can contain other hashes and other arrays. In other words we can use any combination of arrays and hashes, and create deeply nested data structure called JSON (JavaScript Object Notation - we've already mentioned that the hash in JavaScript is often called "object"). Despite the fact that this acronym originates from JavaScript, it is also widely used in Ruby.
+
+Here is how this combination might look like:
+
+```ruby
+obj = {
+  soccer_ball: { weight: 410, colors: [:red, :blue] },
+  tennis_ball: { weight: 58, colors: [:yellow, :white] },
+  golf_ball: { weight: 45, colors: [:white] }
+}
+```
+
+Let's break down the code above into smaller parts. Here is the top-level hash:
+
+```
+obj = {
+  ... this is the hash ...
+}
+```
+
+For every key in the hash above we define another hash, like:
+
+```ruby
+obj = {
+  soccer_ball: { ...this is the hash... },
+  tennis_ball: { ...this is another hash... },
+  golf_ball: { ...and another hash... }
+}
+```
+
+And all of these three hashes have the following keys and corresponding values:
+
+* Key `:weight` (_Symbol_), value type: `Array`
+* Key `:colors` (_Symbol_), value type: `Array`
+
+Note the `:golf_ball` hash,  it has `:colors` key with the type of _Array_, but technically it can be written as follows:
+
+```ruby
+  golf_ball: { weight: 45, color: :white }
+```
+
+We've intentionally chosen the _Array_ type initially, it was programmer's choice. Ruby allows any syntax, but with our decision we wanted to keep the structure (or "schema"). We're doing this for the following reasons:
+
+* To avoid ambiguity. Every line looks similar.
+* To keep array of "colors", so we can add another color in the future. It's a good example of how programmers _plan_ their programs. They have option of choosing any type, but what works better now and what will work better in the future? Is there any information that indicates that we might need this or another type in the future? In our case we have this information - all previous records have more than one color.
+* To keep the code simple. We're not talking about existing code, but about the code that traverses a data structure. If data structure is uniform, the code is going to be more simple, because there won't be any special/edge cases like handling two different types for the same purpose.
+ 
+In other words, often JSON objects have schema, well-defined structure. But how one can access such a nested object? Well, the same way we access arrays and hashes, but combining these access operations. Let's print all the colors for the tennis ball:
+
+```ruby
+arr = obj[:tennis_ball][:colors]
+puts arr
+```
+
+Weight for the golf ball:
+
+```ruby
+weight = obj[:golf_ball][:weight]
+puts weight
+```
+
+Add new "`:green`" color to array of colors for the tennis ball:
+
+```ruby
+obj[:tennis_ball][:colors].push(:green)
+```
+
+Structure we defined above starts with curly bracket. It means that JSON object has the type of _Hash_. But JSON objects can be arrays too. It depends on your application requirements. If the primary goal of our application is to print a list (we don't need any random access to update or read the hash), JSON object above can be represented the other way:
+
+```ruby
+obj = [
+  { type: :soccer_ball, weight: 410, colors: [:red, :blue] },
+  { type: :tennis_ball, weight: 58, colors: [:yellow, :white] },
+  { type: :golf_ball, weight: 45, colors: [:white] }
+]
+```
+
+The structure above is nothing else, but a array of objects with some properties (keys):
+
+```ruby
+obj = [ {}, {}, {} ]
+```
+
+Depending on requirements a programmer defines the right representation of data.
+
+X> ## Exercise 1
+X> Online store defines a shopping cart the following way (`qty` is the quantity of items):
+
+```ruby
+cart = [
+  { type: :soccer_ball, qty: 2 },
+  { type: :tennis_ball, qty: 3 }
+]
+```
+
+X> And the warehouse availability is defined by the following hash:
+
+```
+inventory = {
+  soccer_ball: { available: 2, price_per_item: 100 },
+  tennis_ball: { available: 1, price_per_item: 30 },
+  golf_ball: { available: 5, price_per_item: 5 }
+}
+```
+
+X> Write a program that prints the total price of all items in the cart, and also informs if there is enough items at warehouse. Try to change `cart` and `inventory` and see if your program works correctly.
