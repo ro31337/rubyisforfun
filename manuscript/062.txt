@@ -42,7 +42,7 @@ Programmers say that the hash is a key-value storage, where each key is assigned
 
 The key and value in the hash can be any object, but most often the key is a _String_ (or _Symbol_), and the value is... The value is the actual object, it is difficult to predict what it will be. It can be a string, a _Symbol_, an array, a number, another hash. So when developers define a hash in a Ruby program, they normally know in advance what _type_ it will keep.
 
-For example, let's agree that the _key_ in the hash is a character, and the _value_ is a number. We'll keep the weight of different types of balls (in grams) inside of our hash:
+For example, let's agree that the _key_ in the hash is _Symbol_, and the _value_ is a number (type _Integer_). We'll keep the weight of different types of balls (in grams) inside of our hash:
 
 ```
 obj = {}
