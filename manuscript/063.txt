@@ -97,7 +97,7 @@ cart = [
 ]
 ```
 
-X> And the warehouse availability is defined by the following hash:
+And the warehouse availability is defined by the following hash:
 
 ```
 inventory = {
@@ -107,4 +107,4 @@ inventory = {
 }
 ```
 
-X> Write a program that prints the total price of all items in the cart, and also informs if there is enough items at warehouse. Try to change `cart` and `inventory` and see if your program works correctly.
+Write a program that prints the total price of all items in the cart, and also informs if there is enough items at warehouse. Try to change `cart` and `inventory` and see if your program works correctly.
