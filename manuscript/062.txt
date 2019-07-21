@@ -83,9 +83,47 @@ obj = {
 
 Pay attention that despite the fact that the record looks different, if we write "obj" in REPL, we will get the same conclusion as above. In other words, the keys (:soccer_ball, :tennis_ball, :golf_ball) are Symbol types in this case.
 
-To extract the value from the hash, you can use the following construction:
+To get the value back from the hash, use the following construction:
 
+```ruby
+puts 'Golf ball weight:'
+puts obj[:golf_ball]
+```
 
+So you access hash very similar to array, but instead of index you use the key. Compare:
+
+```ruby
+arr[4]
+obj[:golf_ball]
+```
+
+Keep in mind that symbols (_Symbol_) are not strings (_String_). Consider the following example where we add two entries (with the same value of 45), they visually look very similar, but in practice hash will keep two different objects:
+
+```ruby
+obj = {}
+obj[:golf_ball] = 45
+obj['golf_ball'] = 45
+```
+
+Hash above is initialized with two key-value pairs. First key has the type of _Symbol_, and the second has the type of _String_:
+
+```ruby
+{ :golf_ball => 45, "golf_ball" => 45 }
+```
+
+X> ## Exercise 1
+X> Using the hash below write a program that transforms the hash to Moon conditions. It's known that weights or Moon are 6 times less than weights on Earth:
+
+```ruby
+obj = {
+  soccer_ball: 410,
+  tennis_ball: 58,
+  golf_ball: 45
+}
+```
+
+X> ## Exercise 2, the Moon store
+X> Using the hash from the previous exercise write a program that for every type of the ball above will ask the number of items user wants to buy. User should be able to type the number from a console. At the end program should calculate the weight of all items in the cart. Also, program should print both weights: for Moon and Earth.
 
 
 [^notime]: "No time" is technically incorrect, text was simplified for readability. Correct reading is "better time" or "logarithmic time". Scanning of an array is linear operation, and it takes 1,000,000 iterations (worst case) to find the element in 1,000,000 array. However,  "binary search" takes logarithmic time and allows to find element in almost 20 (!) iterations for 1,000,000 items array (`\(2^{20}=1048576\), \(\log_2 1000000\approx19.93\)`{format: latex}).
