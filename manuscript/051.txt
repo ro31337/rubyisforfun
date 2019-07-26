@@ -34,7 +34,7 @@ if arr.present?
 end
 ```
 
-Will you agree that first line looks better than line below?
+Will you agree that the first line looks better than the line below?
 
 ```ruby
 if !arr.nil? && !arr.empty?
