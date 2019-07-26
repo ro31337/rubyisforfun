@@ -5,7 +5,7 @@ Let's build a simple game together to sum up all information from previous chapt
 * Zero, `0` - when robot is destroyed
 * One, `1` - when robot is still alive
 
-Define two arrays. `1` in example below indicates that we define array with robots who still alive:
+Define two arrays. `1` in example below indicates that we define array with robots who are [still] alive:
 
 ```ruby
 arr1 = Array.new(10, 1)
