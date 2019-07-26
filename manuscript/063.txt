@@ -43,7 +43,7 @@ Note the `:golf_ball` hash,  it has `:colors` key with the type of _Array_, but 
   golf_ball: { weight: 45, color: :white }
 ```
 
-We've intentionally chosen the _Array_ type initially, it was programmer's choice. Ruby allows any syntax, but with our decision we wanted to keep the structure (or "schema"). We're doing this for the following reasons:
+We've intentionally chosen the _Array_ type initially, it was a programmer's choice. Ruby allows any syntax, but our decision was to to keep the structure (or _schema_). We're doing this for the following reasons:
 
 * To avoid ambiguity. Every line looks similar.
 * To keep array of "colors", so we can add another color in the future. It's a good example of how programmers _plan_ their programs. They have option of choosing any type, but what works better now and what will work better in the future? Is there any information that indicates that we might need this or another type in the future? In our case we have this information - all previous records have more than one color.
