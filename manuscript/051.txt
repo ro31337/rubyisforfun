@@ -26,7 +26,7 @@ if !arr.blank?
 end
 ```
 
-Or by using opposite method "`present?`":
+Or the opposite "`present?`":
 
 ```ruby
 if arr.present?
