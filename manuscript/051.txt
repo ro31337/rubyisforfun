@@ -18,7 +18,7 @@ if !arr.nil? && !arr.empty?
 end
 ```
 
-Also, there is one important details you don't want to miss. Every Ruby programmer sooner or later will use Rails framework. And Rails has some additional helpers for certain types to simplify your life as developer. For example, Rails will let you avoid double checks like one above:
+Also, there is one important detail you don't want to miss. Every Ruby programmer sooner or later will use Rails framework. And Rails has some additional helpers for certain types to simplify your life as developer. For example, Rails will let you avoid double checks like one above:
 
 ```ruby
 if !arr.blank?
