@@ -62,9 +62,9 @@ Translation to Spanish: perro
 
 Keep in mind that we have one-way dictionary only, it's English-Spanish. You can't use it reverse to lookup Spanish words, because you access a hash by the key, not by value. There is no any way for reverse-lookup in hashes. The only workaround to create another, reverse-hash for this specific purpose, where keys are Spanish words and values are English ones.
 
-Constant O(1) and linear O(N) times are definitions from Computer Science. Beginner programmers don't need to know all the details, but it's always important to ask yourself - what would be the time complexity if I implement my program this way, is this approach going to be efficient? Time and space complexities for all popular data structures could be found in the following poster: https://github.com/ro31337/bigoposter/blob/master/bigoposter.pdf
+Constant O(1) and linear O(N) times are definitions from Computer Science. Beginner programmers don't need to know all the details, but it's always important to ask yourself - what would be the time complexity if I implement my program this way, is this approach going to be efficient? Time and space complexities for all popular data structures could be found in the following poster: [https://github.com/ro31337/bigoposter/blob/master/bigoposter.pdf](https://github.com/ro31337/bigoposter/blob/master/bigoposter.pdf)
 
-For example, you can see that _average_ time complexity for arrays is linear O(N), while for hashes it is constant O(1):
+For example, you can see that _average_ time complexity to _search_ in array is linear O(N); while for hashes it is constant O(1):
 
 ![Computer Science Poster](images/065-poster.png)
 
