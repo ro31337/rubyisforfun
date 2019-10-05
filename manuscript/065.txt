@@ -1,0 +1,75 @@
+## English-Spanish dictionary
+
+Let's practice to sum up everything we know about hashes, arrays, and their combinations. We're going to build minimalistic English-Spanish dictionary application. You can guess from the title which data structure we'll be using: hash (also known as dictionary, or hash map, or "object" in JavaScript).
+
+The most important thing here is database. We won't be using sophisticated database management systems like Postgres, MySQL, etc. But we'll keep data organized in the data structure in computer's memory. It could look like this:
+
+```ruby
+dict = {
+  'cat' => 'gato',
+  'dog' => 'perro',
+  'girl' => 'chica'
+}
+```
+
+We're saying "it could look like" because there is no single opinion at this time. Feel free to use any other data structure. In our case it's going to be a set of key-value pairs, where key is English word (_String_ type), and value is translation (Spanish word, _String_ type).
+
+Hash data structure allows to perform fast lookups in our database. "Fast" here means lookups in _constant time_ (or _O(1)_). Simply put, no matter how many words do we have in hash, lookup time is going to be about the same.
+
+Compare this approach to arrays. We still can solve this problem using arrays, however there are few caveats. Here is how the code would look like:
+
+```ruby
+arr = [
+  { word: 'cat', translation: 'gato' },
+  { word: 'dog', translation: 'perro' },
+  { word: 'girl', translation: 'chica' }  
+]
+``` 
+
+But to find element in array we'll need to iterate over the each element and perform comparison. More elements we have, more time we need for lookups. In other words, the number of elements we need to check grows along with the size of array. Computer Science says the search complexity takes _linear time_, _O(N)_ (where _N_ is the number of elements).
+
+In real life you probably won't notice this difference for small number of elements. Moreover, newer versions of Ruby language use arrays instead of hashes for 7 elements or below! We won't see it though, because normally programmers don't need to poke around with a language internals. However, anyone can open up Ruby language implementation (which is written with C) and confirm that.
+
+Anyway, hash serves better for our purposes. By using this or another data structure we demonstrate our intention to other programmers: "we're using this specific data structure, and we assume that we're going to use this data structure specific way". The way you implement your programs will "dance" around decisions you made at the very beginning, and picking the right data structure is the most important step.
+
+One can look up an element in array by simply providing an index, which is a number ranging from zero to the size of array. In case of dictionary application we don't know these numbers, we know words. We have a key word, and we need to find out the value word. Here is how you perform lookups in the hash:
+
+```ruby
+dict[input]
+```
+
+Here is how minimalistic application would look like:
+
+```ruby
+dict = {
+  'cat' => 'gato',
+  'dog' => 'perro',
+  'girl' => 'chica'
+}
+
+print 'Type a word to translate: '
+input = gets.chomp
+
+puts "Translation to Spanish: #{dict[input]}"
+```
+
+Result:
+
+```
+Type a word to translate: dog
+Translation to Spanish: perro
+```
+
+Keep in mind that we have one-way dictionary only, it's English-Spanish. You can't use it reverse to lookup Spanish words, because you access a hash by the key, not by value. There is no any way for reverse-lookup in hashes. The only workaround to create another, reverse-hash for this specific purpose, where keys are Spanish words and values are English ones.
+
+Constant O(1) and linear O(N) times are definitions from Computer Science. Beginner programmers don't need to know all the details, but it's always important to ask yourself - what would be the time complexity if I implement my program this way, is this approach going to be efficient? Time and space complexities for all popular data structures could be found in the following poster: https://github.com/ro31337/bigoposter/blob/master/bigoposter.pdf
+
+For example, you can see that _average_ time complexity for arrays is linear O(N), while for hashes it is constant O(1):
+
+![Computer Science Poster](images/065-poster.png)
+
+X> ## Exercise 1
+X> Implement sophisticated English-Spanish dictionary, where one English word is represented by multiple Spanish translations.
+
+X> ## Exercise 2
+X> Implement your own phone book. For every record (key is the last name) specify three additional parameters: email, cell_phone, work_phone. Program should ask for the last name and show contact info.
