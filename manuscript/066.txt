@@ -50,7 +50,7 @@ Array, by index:
 * `arr[1]`
 * `arr[2]`, etc. 
 
-Hash, by key where key is object of any type:
+Hash, by key where the key is an object of any type:
 
 * `hh[key]`
 * `hh['cat']`
@@ -60,7 +60,7 @@ Hash, by key where key is object of any type:
 
 Array: represent elements in sequential order.
 
-Hash: keep data in an associative manner with the fast access by key. Used to keep configuration settings, options, parameters.
+Hash: keeps data in an associative manner with the fast access by a key. Can be used to keep configuration settings, options, parameters.
 
 ### Class
 
