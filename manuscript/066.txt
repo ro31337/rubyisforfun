@@ -1,0 +1,55 @@
+## Comparison of hashes and arrays
+
+### Initialization 
+
+Array: `arr = []`
+Hash: `hh = {}`
+
+### Iteration
+
+Array:
+
+```ruby
+arr.each do |element|
+  # ...
+end
+```
+
+Hash:
+
+```ruby
+hh.each do |key, value|
+  # ...
+end
+```
+
+or
+
+```ruby
+hh.each_key do |key|
+  # ...
+end
+```
+
+### Data representation
+
+Array, sequential collection of elements: 
+![Array](images/066-array.png)
+
+Hash, data stored in an associative manner:
+![Hash](images/066-hash.png)
+
+### Access
+
+Array, by index: `arr[0]`, `arr[1]`, `arr[2]`, etc. 
+Hash, by key where key is object of any type: `hh[key]`, `hh['cat']`, `hh[31337]`, etc.
+
+### Purpose
+
+Array: represent elements in sequential order.
+Hash: keep data in an associative manner with the fast access by key. Used to keep configuration settings, options, parameters.
+
+### Class
+
+Arrays: represented by _Array_ class.
+Hashes: represented by _Hash_ class.
