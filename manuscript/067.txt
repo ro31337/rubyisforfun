@@ -39,3 +39,21 @@ No matter what exactly you're using, either some sort of library (gem), data bas
 * "`get(key)`" - gets the value
 * "`set(key, value)`" - set the value for a specific key
 
+[Documentation for Redis database](https://github.com/redis/redis-rb) has similar example:
+
+```
+redis.set("mykey", "hello world")
+# => "OK"
+
+redis.get("mykey")
+# => "hello world" 
+```
+
+Wikipedia [says](https://en.wikipedia.org/wiki/Redis) that Redis is nothing but a key-value store:
+
+> Redis is... key-value store… 
+
+Curious reader might ask "why do I need Redis while we have hash data structure implemented in Ruby, and it is represented by _Hash_ class?" Well, _Hash_ in Ruby language doesn't keep the data on disk, so every time you restart your program, all the data you stored in hash goes away. For example, your phone book application isn't very useful because of that - you can keep the program running, but if you need to restart your computer you'll need to type in your phone records again. The second reason is that Redis was designed to keep millions and millions of key-value pairs efficiently. And normally we don't keep that number of records in simple hash in Ruby language (or any other language).
+
+Below we'll take a look at the most often used methods of _Hash_ class. All of these methods are also [explained](https://ruby-doc.org/core-2.5.1/Hash.html) in documentation.
+
