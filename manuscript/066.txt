@@ -44,15 +44,15 @@ Hash, data stored in an associative manner:
 
 ### Access
 
-Array, by index:
+Array, access by index (type _Integer_):
 
 * `arr[0]`
 * `arr[1]`
 * `arr[2]`, etc. 
 
-Hash, by key where the key is an object of any type:
+Hash, access by key where the key is an object of any type (_Symbol_, _String_, _Integer_, etc):
 
-* `hh[key]`
+* `hh[:whatever]`
 * `hh['cat']`
 * `hh[31337]`, etc.
 

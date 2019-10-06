@@ -1,0 +1,41 @@
+## Most often used methods of Hash class
+
+In general, "Hash" data structure is pretty straightforward. Ruby language has some methods of Hash class that you will probably see in other languages as well. Here is how, for example, hash access looks like in JavaScript:
+
+```js
+$ node
+> hh = {};
+{}
+> hh['something'] = 'blabla';
+'blabla'
+> hh
+{ something: 'blabla' }
+```
+
+Difference is that JavaScript doesn't have _Symbol_ type, and most of the time strings are used as hash keys. Compare Ruby to JavaScript.
+
+Ruby:
+
+```ruby
+hh[:something]
+```
+
+or (also valid syntax):
+
+```
+hh['something']
+```
+
+JavaScript:
+
+```
+hh['something']
+```
+
+Hash is the data structure that is also implemented in other tools, for example, in databases. Well-known Redis database is nothing but sophisticated key-value storage. In previous chapters we've implemented a phone book. But imagine that we need to persist this data on application restart. We have a couple of ways to do that. For example, we can save (serialize) this information into a file. This approach works great, but it can be a little bit slow when you have millions of records. Another approach is to use this NoSQL database, central storage operated by Redis through an API (Application Program Interface).
+
+No matter what exactly you're using, either some sort of library (gem), data base, or plain old Ruby language (or even other programming language), interface for Hash access remains the same:
+
+* "`get(key)`" - gets the value
+* "`set(key, value)`" - set the value for a specific key
+
