@@ -1,0 +1,90 @@
+## Setting a default value in Hash
+
+It is often useful to have default values in a hash. You might even want to make a bookmark, since that trick can be used while solving interview questions. We'll take a look at one of these questions.
+
+Given a sentence calculate the usage frequency for each word. For example, there are two words "the" in the sentence, one "dog", and so on. How do we solve this problem?
+
+Imagine we have a string "the quick brown fox jumps over the lazy dog", let's _split_ this string into array, so we have array of words for this sentence:
+
+```ruby
+str = 'the quick brown fox jumps over the lazy dog'
+arr = str.split(' ')   
+```
+
+We have array of words in "`arr`" variable, let's traverse the array and put each element into a hash, where hash key is the word itself, and the value is the counter. As the first step we will just set this counter to one (1) for every word:
+
+```ruby
+hh = {}
+arr.each do |word|
+  hh[word] = 1
+end
+```
+
+However, we don't want to set the counter to one ("1"), since we want to calculate the number of occurrences of every word in a sentence. So we need to increase the counter by one. We can's just do  "`hh[word] += 1`" (or "`hh[word] = hh[word] + 1`"), because if the word is not present in the hash, we'll get the following error:
+
+```
+NoMethodError: undefined method `+' for nil:NilClass
+```
+
+In other words, "plus" operation isn't applicable to nils. So we need to perform a comparison: if the word is already in the hash, increase the counter by one. Otherwise, just add this word with initial counter value (which is one):
+
+```ruby
+arr.each do |word|
+  if hh[word].nil?
+    hh[word] = 1
+  else
+    hh[word] += 1
+  end
+end
+```
+
+Here is how full application listing would look like:
+
+{title="Calculate the number of words in a sentence",  lang=ruby, line-numbers=on}
+```ruby
+str = 'the quick brown fox jumps over the lazy dog'
+arr = str.split(' ')
+hh = {}
+
+arr.each do |word|
+  if hh[word].nil?
+    hh[word] = 1
+  else
+    hh[word] += 1
+  end
+end
+
+puts hh.inspect
+```
+
+Program above works as expected, and here is the result:
+
+```ruby
+{"the"=>2, "quick"=>1, "brown"=>1, "fox"=>1, "jumps"=>1, "over"=>1, "lazy"=>1, "dog"=>1}
+```
+
+Readability of the program above can be improved if we could set the initial (default) value for the hash, for example:
+
+{title="Calculate the number of words in a sentence",  lang=ruby, line-numbers=on}
+```ruby
+str = 'the quick brown fox jumps over the lazy dog'
+arr = str.split(' ')
+hh = Hash.new(0)
+
+arr.each do |word|
+  hh[word] += 1
+end
+
+puts hh.inspect
+```
+
+Nine lines of code instead of thirteen!
+
+But what exactly "`Hash.new(0)`" means? It has two parts:
+
+* `Hash.new` - initializing hash, compare it to the shorter alternative: `{}`  
+* `Hash.new(0)` - providing parameter while creating an instance of a _Hash_ class (we'll cover what "creating instance" is in the next chapters). In this case "`0`" is the parameter and initial value for default hash values.
+
+X> ## Exercise
+X> Create a program that calculates the number of occurrences of different letters (characters, not words) for the given sentence and prints result to the screen.
+
