@@ -1,0 +1,232 @@
+## Passing parameters to methods
+
+Let's say we need to call a method and pass multiple parameters to this method. For example, a user has selected specific number of soccer balls, tennis balls, and golf balls. We need to create a method to calculate the total weight. It can be done the following way:
+
+```ruby
+def total_weight(soccer_ball_count, tennis_ball_count, golf_ball_count)
+  # ...
+end
+```
+ 
+And the method call itself would look like:
+
+```ruby
+x = total_weight(3, 2, 1)
+```
+
+Three soccer balls, two tennis balls, and one golf ball. Will you agree that "`total_weight(3, 2, 1)`" doesn't look very readable from the first sight? _We_ know what 3, 2, and 1 are, because we created this method. However, for developers from our team it can be misleading. They have no idea which parameters go first, and they need to examine the source of "`total_weight`" function to understand that.
+
+It's not super convenient, and some IDEs (Integrated Development Environment) and code editors automatically suggest the names of method parameters. For example, this functionality is implemented in RubyMine editor. However, Ruby is dynamically typed programming language, and sometimes even sophisticated code editors can't find out the parameter names for a method. Also, often Ruby programmers don't use these sophisticated code editors, and prefer lightweight (and fast) code editors without these features.
+
+So most programmers would love the "`total_weight`" method to be implemented the slightly different way:
+
+```ruby
+def total_weight(options)
+  a = options[:soccer_ball_count]
+  b = options[:tennis_ball_count]
+  c = options[:golf_ball_count]
+  puts a
+  puts b
+  puts c
+  # ...
+end
+
+params = { soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1 }
+x = total_weight(params)
+```
+
+Will you agree that
+
+```ruby
+total_weight({ soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1 })
+```
+
+looks much more clear than just "`total_weight(3, 2, 1)`"?
+
+Yes, syntax with passing method parameters as a hash takes more space on the screen, but it has the following advantages.
+
+First is that parameter order is not critical anymore, parameters are _named_ now. In case of "`total_weight(3, 2, 1)`" we need to respect the order, and always remember the right order: first parameter is for the number of soccer balls, etc. In case of parameters as a hash we can provide parameters regardless of an order:
+
+```ruby
+total_weight({ golf_ball_count: 1, tennis_ball_count: 2, soccer_ball_count: 3 })
+``` 
+
+Programming is more fun now because we don't have to remember the parameter order. Also, we can simplify that syntax a little bit more and omit curly braces:
+
+```ruby
+total_weight(golf_ball_count: 1, tennis_ball_count: 2, soccer_ball_count: 3)
+``` 
+
+With all these improvements in mind the method call to calculate the weight of an order can be rewritten the following way:
+
+{title="Calculate total weight, accept options as a hash",  lang=ruby, line-numbers=on}
+```ruby
+def total_weight(options)
+  a = options[:soccer_ball_count]
+  b = options[:tennis_ball_count]
+  c = options[:golf_ball_count]
+  puts a
+  puts b
+  puts c
+  # ...
+end
+
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+```
+
+But what if we call the method above without any arguments at all? The initial expectation is that method should return zero. However, we're getting the error: 
+
+> ArgumentError: wrong number of arguments (given 0, expected 1)
+
+Ruby says that method expects one parameter, but zero were given. From the business logic perspective the error above look reasonable: don't call a method the wrong way (especially the method that calculates something); if you need to get the total weight, provide parameters explicitly: how many soccer, tennis, and golf balls do you want.
+
+But imagine that we want "`total_weight`" method to be called without any parameters at all. In other words, we'll have signatures, two ways of calling the method:
+
+* `total_weight(options)` - with options
+* `total_weight` - without any options
+
+If options aren't provided we should return the weight of an empty box (29 grams, for example). How could we do that?
+
+The trick is to assign default value to "`options`" with special Ruby syntax. In our case we can just assign an empty hash: "`{}`". If hash is empty variables "a", "b", and "c" on lines 3-4 will be initialized with "`nil`".
+
+Here is the Ruby syntax to assign default value to a parameter:
+
+``` ruby
+def total_weight(options={})
+...
+```
+
+Let's take advantage of this feature and improve our program:
+
+{title="Calculate total weight, accept options as a hash, where options parameter has default value",  lang=ruby, line-numbers=on}
+```ruby
+def total_weight(options={})
+  a = options[:soccer_ball_count]
+  b = options[:tennis_ball_count]
+  c = options[:golf_ball_count]
+  puts a
+  puts b
+  puts c
+  # ...
+end
+
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+```
+
+"`total_weight`" method now can be called without any parameters (try it yourself in "pry").
+
+The following program is improved version of the code above and does the actual calculation of total weight, including the weight of the box:
+
+{title="Calculate the total weight in grams, including the weight of a shipping box",  lang=ruby, line-numbers=on}
+```ruby
+def total_weight(options={})
+  a = options[:soccer_ball_count]
+  b = options[:tennis_ball_count]
+  c = options[:golf_ball_count]
+  (a * 410) + (b * 58) + (c * 45) + 29
+end
+
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+```
+
+Program above works and calculates the total weight correctly. For three soccer, two tennis, one golf ball, and one shipping box it produces 1420 grams. But what if you call "`total_weight`" without any parameters?
+
+```
+...
+> total_weight
+NoMethodError: undefined method `*' for nil:NilClass
+```
+
+Oops! What is happening here? Well, if you won't specify the parameter, it won't exist in "`options`" hash on lines 2-4, and variables "a", "b", and "c" will equal to nil. And nils can't be multiplied: 
+
+```
+$ pry
+> nil * 410
+NoMethodError: undefined method `*' for nil:NilClass
+```
+
+There is one trick we can do here: use "or" logic operator. Try to guess the result of execution of the following program:
+
+```ruby
+if nil || true
+  puts 'Yay!'
+end
+```
+
+It prints "Yay!" in the terminal. Ruby sees `nil`, which is "falsy" condition. However, "`||`" (double pipe) says there is something else to check. And something else is "`true`".
+
+So "`nil || true`" always produces "true". And result of this expression returns back to if-statement, and at the end we're getting "if true, then print Yay!".
+
+Now try to guess what would be the value of variable "x" after executing the following expression:
+
+```ruby
+x = nil || 123
+```
+
+Correct answer is "123". The same trick can be applied to "a", "b", and "c" variables, for example:
+
+```ruby
+  a = options[:soccer_ball_count] || 0
+```
+
+In other words, "`a = ... || default_value`" is conventional syntax for setting default values to a variable, you'll see it a lot, so don't get confused. If value in options is not specified, it will be set to "`0`" by default.
+
+{title="Calculate total weight and use default values ",  lang=ruby, line-numbers=on}
+```ruby
+def total_weight(options={})
+  a = options[:soccer_ball_count] || 0
+  b = options[:tennis_ball_count] || 0
+  c = options[:golf_ball_count] || 0
+  (a * 410) + (b * 58) + (c * 45) + 29
+end
+
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+```
+
+In the program above we use default value syntax 4 times:
+
+* on line 1, when we define default value `{}` for "`options`"
+* on lines 2-4, when we set default value "`0`" for undefined hash keys
+
+Now "`total_weight`" works without any parameters and returns 29 (grams) for an empty box. You can also pass any number of parameters from zero to three:
+
+```ruby
+> total_weight
+29
+> total_weight(tennis_ball_count: 2, golf_ball_count: 1)
+190
+...
+```
+
+Now imagine that we have a new business requirement. Product owner says "we're giving away one free golf ball for every order". How this requirement would affect the method we've just created? We simply change the default value for a golf ball count from zero to one: 
+
+{title="Calculate total weight and use default values ",  lang=ruby, line-numbers=on}
+```ruby
+def total_weight(options={})
+  a = options[:soccer_ball_count] || 0
+  b = options[:tennis_ball_count] || 0
+  c = options[:golf_ball_count] || 1 # <- changed here
+  (a * 410) + (b * 58) + (c * 45) + 29
+end
+
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+```
+
+We've covered how to pass parameters as a hash to a method. This way of passing parameters is widely used in real life applications, especially when there is a need to pass more than 5 values. Similar approach is used in other programming languages.
+
+X> ## Exercise
+X> Soviet Mission Control Center assigned you a task to implement "`launch`" method for experimental space ship. Method must accept parameters as a hash and send dog astronauts to the space. Parameter names:
+
+* "`angle`" - space ship launch angle. Equals to 90 if not specified.
+* "`astronauts`" - ids of astronauts represented as array of symbols (_Symbol_). Possible values: `:belka` and/or `:strelka`. If not specified, both Belka and Strelka must be sent to the space.
+* "`delay`" - the number of seconds for delay before space ship launch. Equals to 5 if not specified.
+
+Method should interactively (by producing numbers to the terminal) count the time left to start (example: "Time to start: 5 4 3 2 1"). Right after that moment print the names of astronauts who have been sent to the space with information about the space ship angle. Method should accept any number of parameters (from zero to three). Possible ways of calling the method:
+
+
+* `launch`
+* `launch(angle: 91)`
+* `launch(delay: 3)`
+* `launch(delay: 3, angle: 91)`
+* `launch(astronauts: [:belka])` and so on
+

@@ -1,0 +1,38 @@
+## List of keys
+
+There is a way in Ruby language to list all the keys in a hash, here is how this method works:
+
+```ruby
+$ pry
+> hh = {}
+=> {}
+> hh[:red] = 'ff0000'
+=> "ff0000"
+> hh[:green] = '00ff00'
+=> "00ff00"
+> hh[:blue] = '0000ff'
+=> "0000ff"
+> hh.keys
+=> [:red, :green, :blue]
+```
+
+We defined a hash and pushed a few key-value pairs in it. Keys are of a type of _Symbol_, and values are just strings (_String_). Just FYI, these strings (`ff0000`, `00ff00`, `0000ff`) are conventional three-byte representation of color code RGB, where first byte is responsible for red (R) color, second for green (G), and third one for the blue (B).
+
+Getting the list of hash keys isnt't often seen operation. However, there is a need to use keys only in a hash. A programmer still can use hash data structure and use arbitrary data for values (like `true`, for example), but there is a special hash-like data structure designed to keep keys only, without any values - _HashSet_ (in Ruby language just _Set_):
+
+> Set implements a collection of unordered values with no duplicates
+
+In other words, set is a collection of items that usually originate from the common source.
+
+Let's practice to understand _HashSet_ a little bit more: given an English sentence, find out if all the letters of English alphabet were used in this particular sentence. For example, sentence "quick brown fox jumps over the lazy dog" is commonly used to test typewriters, printers, fonts, and so on - because it uses all the letters of English alphabet. And if we omit the first word ("quick"), we won't find the letter "q": "brown fox jumps over the lazy dog".
+
+We'll create a method that will return "true" if all the letters of English alphabet were used for the provided string, otherwise "false". How would you approach this problem?
+
+Well, it's actually pretty straightforward. We'll iterate over the each character in given string, and if it's not space, we'll add it to hash (regardless of its existence in the hash, because keys in a hash are always unique and aren't duplicated). Since there are no duplicates in a hash, we can only have 26 records maximum, one record for each letter of English alphabet.
+
+But there is something that feels off in this challenge. If we use classic hash, we need to set keys _and_ values. And value in this case will be useless:
+
+```
+hh[letter] = true
+```
+
