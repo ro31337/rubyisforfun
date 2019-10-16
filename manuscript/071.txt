@@ -1,0 +1,67 @@
+## Iteration over hash elements
+
+Iteration over hash elements isn't something you see very often, because the main purpose of hash data structure is to add and access elements by a key. However, it's always good to know and have understanding about how to iterate over elements. We already know how to iterate over arrays:
+
+```ruby
+arr.each do |element|
+  # do something with element
+end 
+```
+
+Iteration over key-value pairs looks similar:
+
+```ruby
+hh = {
+  soccer_ball: 410,
+  tennis_ball: 58,
+  golf_ball: 45
+}
+
+hh.each do |k, v|
+  puts "Weight of #{k} is #{v} grams"
+end
+```
+
+Result:
+
+```
+Weight of soccer_ball is 410 grams
+Weight of tennis_ball is 58 grams
+Weight of golf_ball is 45 grams
+```
+
+Variables "`k`" and "`v`" represent key and value of this particular iteration. You can omit value if you don't need it, or just replace "`v`" with a string starting with "`_`" (underscore), or just with a single underscore. It's not a Ruby syntax, but naming conventions everyone understands - if you don't need something, use underscore prefix to _show your intention_:
+
+```ruby
+hh = {
+  soccer_ball: 410,
+  tennis_ball: 58,
+  golf_ball: 45
+}
+
+hh.each do |k, _|
+  puts "Warehouse has #{k}"
+end
+```
+
+Code above can also be rewritten by using "`each_key`" method of a _Hash_ class.
+
+X> ## Exercise
+X> Given the following data:
+
+```ruby
+data = {
+  soccer_ball: { name: 'Soccer ball', weight: 410, qty: 5 },
+  tennis_ball: { name: 'Tennis ball', weight: 58, qty: 10 },
+  golf_ball: { name: 'Golf ball', weight: 45, qty: 15 }
+}
+```
+
+Write a program that prints:
+
+```ruby
+Warehouse availability:
+Soccer ball, weight 410 grams, quantity: 5 items
+Tennis ball, weight 58 grams, quantity: 10 items
+Golf ball, weight 45 grams, quantity: 15 items
+```
