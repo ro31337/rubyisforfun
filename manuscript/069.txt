@@ -215,14 +215,13 @@ x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
 We've covered how to pass parameters as a hash to a method. This way of passing parameters is widely used in real life applications, especially when there is a need to pass more than 5 values. Similar approach is used in other programming languages.
 
 X> ## Exercise
-X> Soviet Mission Control Center assigned you a task to implement "`launch`" method for experimental space ship. Method must accept parameters as a hash and send dog astronauts to the space. Parameter names:
+X> Soviet Mission Control Center assigned you a task to implement "`launch`" method for experimental space ship. Method must accept parameters as a hash and send [dog astronauts](https://en.wikipedia.org/wiki/Soviet_space_dogs) to the space. Parameter names:
 
 * "`angle`" - space ship launch angle. Equals to 90 if not specified.
 * "`astronauts`" - ids of astronauts represented as array of symbols (_Symbol_). Possible values: `:belka` and/or `:strelka`. If not specified, both Belka and Strelka must be sent to the space.
 * "`delay`" - the number of seconds for delay before space ship launch. Equals to 5 if not specified.
 
-Method should interactively (by producing numbers to the terminal) count the time left to start (example: "Time to start: 5 4 3 2 1"). Right after that moment print the names of astronauts who have been sent to the space with information about the space ship angle. Method should accept any number of parameters (from zero to three). Possible ways of calling the method:
-
+Method should interactively (by producing numbers to the terminal) count the time left to start (example: "Time to start: 5 4 3 2 1"). Right after that moment print the names of astronauts who have been sent to the space with information about the space ship angle. Method should accept any number of parameters (from zero to three). Possible ways of calling this method:
 
 * `launch`
 * `launch(angle: 91)`

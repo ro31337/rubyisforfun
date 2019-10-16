@@ -1,4 +1,4 @@
-## List of keys
+## HashSet
 
 There is a way in Ruby language to list all the keys in a hash, here is how this method works:
 
@@ -18,7 +18,9 @@ $ pry
 
 We defined a hash and pushed a few key-value pairs in it. Keys are of a type of _Symbol_, and values are just strings (_String_). Just FYI, these strings (`ff0000`, `00ff00`, `0000ff`) are conventional three-byte representation of color code RGB, where first byte is responsible for red (R) color, second for green (G), and third one for the blue (B).
 
-Getting the list of hash keys isnt't often seen operation. However, there is a need to use keys only in a hash. A programmer still can use hash data structure and use arbitrary data for values (like `true`, for example), but there is a special hash-like data structure designed to keep keys only, without any values - _HashSet_ (in Ruby language just _Set_):
+Getting the list of hash keys isn't very often used operation. However, there is a need to use _keys only_ in a hash.
+
+A programmer is free to use hash data structure and arbitrary data for values (like `true`, for example), but there is a special hash-like data structure designed to keep keys only, without any values. The common name of this data structure is  _HashSet_ (in Ruby language represented by _Set_ class):
 
 > Set implements a collection of unordered values with no duplicates
 
@@ -32,7 +34,59 @@ Well, it's actually pretty straightforward. We'll iterate over the each characte
 
 But there is something that feels off in this challenge. If we use classic hash, we need to set keys _and_ values. And value in this case will be useless:
 
-```
+```ruby
 hh[letter] = true
 ```
 
+`true`, or `false`, one, zero or any string is fine as the value in the line above, because we just do not check it later. We rely on the hash data structure and check "`size`" property, but we never use the value. In other words, we're wasting computer memory for the values we don't need. It would be nice if we could avoid that, and the most important thing it would be nice to show our intention - "we don't need values in hash for this particular purpose".
+
+And it is where _HashSet_ data structure comes into play. Here is how our program listing looks when we use _HashSet_ (represented by _Set_ class in Ruby):
+
+{title="Find out if all letters of English alphabet are used in given sentence",  lang=ruby, line-numbers=on}
+```
+# Import namespace below, because "set"
+# is not imported by default.
+require 'set'
+
+# The main that accepts a string (sentence).
+def f(str)
+  # Create set instance
+  set = Set.new
+
+  # Iterate over each character in a string
+  str.each_char do |c|
+    # Only if character is greater than "a" and less than "z"
+    # (ignore other characters)
+    if c >= 'a' && c <= 'z'
+      # Add to set
+      set.add(c)
+    end
+  end
+
+  # result is true when all letters of English alphabet are present
+  set.size == 26
+end
+
+# prints true, because we use all letters of English
+# alphabet in the following sentence
+puts f('quick brown fox jumps over the lazy dog')
+```
+
+Question "What's the difference between Hash and HashSet?" is one of the popular interview questions. Not knowing these details doesn't indicate that you cannot write computer programs. But knowing that shows that you're familiar with data structures, can understand subtle differences and probably you're just more experienced developer.
+
+One of mistakes you can make here is to start splitting the given string into individual characters (objects, represented by instances of _String_ class) by using "`split`" method:
+
+```ruby
+> "quick brown fox jumps over the lazy dog".split('')
+=> ["q", "u", "i", "c", "k", " ", "b", "r", "o", "w", "n", " ", "f", "o", "x", " ", "j", "u", "m", "p", "s", " ", "o", "v", "e", "r", " ", "t", "h", "e", " ", "l", "a", "z", "y", " ", "d", "o", "g"]
+```
+
+While this might work for relatively short strings, method "`split`" allocates N objects in memory, where N is the length of the string. But there is actually no need to allocate anything more than 26 objects inside of a _HashSet_, and we can use iteration over the string by using native _String_ class methods (which, in fact, will allocate these objects anyway, but one by one. And these objects will be disposed by garbage collector on the way).
+
+Another common pitfall here is iteration to the end of a string. In a normal block of text the probability of not meeting all the letters of English alphabet decreases with every iteration. So most likely you won't need to iterate over each character in four-gigabyte string and update  HashSet on the way.
+
+X> ## Exercise 1
+X> Program above has one of described pitfalls. Can you spot that?
+
+X> ## Exercise 2
+X> After reading this chapter try to implement this program by yourself without looking into the book.
