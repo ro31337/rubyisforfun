@@ -1,0 +1,55 @@
+## "dig" method
+
+Look at the following nested data structure:
+
+```ruby
+users = [
+    { first: 'John', last: 'Smith', address: { city: 'SF', country: 'US' } },
+    { first: 'Pat', last: 'Roberts', address: { country: 'US' } },
+    { first: 'Sam', last: 'Schwartzman' }
+]
+```
+
+The structure above has its own data scheme. The format is the same for every record (there are 3 total records in this array), but two last records are missing something. For example, the second one is missing the "`city`". Third record doesn't have "`address`". And what we want is to print all the cities from all the records (we might have more than three).
+
+First thing that comes to mind is iteration over the array of elements and using standard hash access:
+
+```ruby
+users.each do |user|
+  puts user[:address][:city]
+end
+```
+
+Why that wouldn't work? Let's give it a try:
+
+```
+San Francisco
+
+-:8:in `block in <main>': undefined method `[]' for nil:NilClass (NoMethodError).
+```
+
+Oops, it produces error. But why? Well, let's try to access every element manually:
+
+```ruby
+$ pry
+> users[0][:address][:city]
+=> "SF"
+> users[1][:address][:city]
+=> nil
+> users[2][:address][:city]
+NoMethodError: undefined method `[]' for nil:NilClass
+```
+
+Here we go. It worked for the first element. There was also no any error for the second element, result is just "`nil`". However, for the third user (user with index 2) expression "`users[2][:address]`" gives "`nil`", because there is no "`address`" field for Sam. And then we basically execute "`nil[:city]`" which always produces error, because you can't access nil like that, there is nothing inside nils.
+
+So how do we fix this program? For example, by using if-statement:
+
+```ruby
+users.each do |user|
+  if user[:address]
+    puts user[:address][:city]
+  end
+end
+```
+
+It works now and there is no error, we did a great job! 
