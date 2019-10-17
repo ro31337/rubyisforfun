@@ -4,7 +4,7 @@ Look at the following nested data structure:
 
 ```ruby
 users = [
-    { first: 'John', last: 'Smith', address: { city: 'SF', country: 'US' } },
+    { first: 'John', last: 'Smith', address: { city: 'San Francisco', country: 'US' } },
     { first: 'Pat', last: 'Roberts', address: { country: 'US' } },
     { first: 'Sam', last: 'Schwartzman' }
 ]
@@ -33,7 +33,7 @@ Oops, it produces error. But why? Well, let's try to access every element manual
 ```ruby
 $ pry
 > users[0][:address][:city]
-=> "SF"
+=> "San Francisco"
 > users[1][:address][:city]
 => nil
 > users[2][:address][:city]
@@ -52,4 +52,59 @@ users.each do |user|
 end
 ```
 
-It works now and there is no error, we did a great job! 
+It works now and there is no error, we did a great job! But what if we add one more nested object to "`address`"?
+
+```ruby
+street: { line1: '...', line2: '...' }
+```
+
+So that we always have two lines of street address for "`address`" node. Here is how it looks:
+
+```ruby
+users = [
+    {
+        first: 'John',
+        last: 'Smith',
+        address: {
+            city: 'San Francisco',
+            country: 'US',
+            street: {
+                line1: '555 Market Street',
+                line2: 'apt 123'
+            }
+        }
+    },
+    { first: 'Pat', last: 'Roberts', address: { country: 'US' } },
+    { first: 'Sam', last: 'Schwartzman' }
+]
+```
+
+Now we want to print all "`line1`" addresses for all the records. Can you do that? Here is the first thing we might want to do - improve already existing program by just adding "`[:line1]`" navigation:
+
+```ruby
+users.each do |user|
+  if user[:address]
+    puts user[:address][:street][:line1]
+  end
+end
+```
+
+However, the the code above will choke on the second record, because for the second record "`user[:address][:street]`" is nil. If it is not clear, don't hesitate to try it yourself in your pry/irb console.
+
+What we can do is to add another check for nil:
+
+```ruby
+users.each do |user|
+  if user[:address] && user[:address][:street]
+    puts user[:address][:street][:line1]
+  end
+end
+```
+
+It works great with the second condition. Here we check if "`address`" is not nil and if the following "`street`" is not nil:
+
+```ruby
+if user[:address] && user[:address][:street]
+```
+
+In other words, for every level of nesting we will need to add one more check, so our program won't raise errors on nils. 
