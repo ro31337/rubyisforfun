@@ -1,0 +1,6 @@
+# Part IV. Fun with Object-Oriented Programming
+
+People think that Object-Oriented Programming is something very complicated, magical and not easy to tackle. But in reality it's all pretty straightforward if we talk about things you gonna be working on daily. _The right way_ of doing OOP could simplify the daily life of a programmer. However, it requires more brain power than the _common way_ of doing OOP.
+
+This books covers the essentials, common way of doing OOP, which is a must for every beginner. If you're looking for an elegant way of writing your object-oriented code, start reading "[Elegant Objects](TODO: ссыль амазона реферальная)" by Egor Bugayenko.
+
