@@ -107,4 +107,15 @@ It works great with the second condition. Here we check if "`address`" is not ni
 if user[:address] && user[:address][:street]
 ```
 
-In other words, for every level of nesting we will need to add one more check, so our program won't raise errors on nils. 
+In other words, for every level of nesting we will need to add one more check, so our program won't raise any errors on nils. It wasn't very convenient and programmer-friendly, so Ruby starting from 2.3.0 (you can check your version by running "`ruby -v`") has "`dig`" method:
+
+```ruby
+users.each do |user|
+  puts user.dig(:address, :street, :line1)
+end
+```
+
+Method accepts any number of parameters and you can use it to access deeply nested structure. If one or more keys in the provided chain wasn't found, the method returns nil.
+
+Side note: keep in mind that Rails has similar (but slightly different) "`try`" method, and latest version of Ruby also implements "[safe navigation operator](https://en.wikipedia.org/wiki/Safe_navigation_operator)", which can be useful for nil checks while working with chains of objects and methods.
+
