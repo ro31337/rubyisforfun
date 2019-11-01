@@ -4,3 +4,8 @@ People think that Object-Oriented Programming is something very complicated, mag
 
 This books covers the essentials, common way of doing OOP, which is a must for every beginner. If you're looking for an elegant way of writing your object-oriented code, start reading "[Elegant Objects](TODO: ссыль амазона реферальная)" by Egor Bugayenko.
 
+## Classes and objects
+
+"Object-Oriented Programming" assumes there should be an object somewhere. But what are objects? From our everyday lives we know that everything is an object. Book on the table, for example. A man walking down the street. BMW model E34 crossing the road. But if you look closer, BMW E34 is a certain _class_ of objects. With all the variety of other cars, this particular one is exactly the same as another of the same model. But at the same time they're different _instances_.
+
+The most obvious example of a class is a 
