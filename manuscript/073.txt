@@ -1,6 +1,6 @@
 ## Key presence
 
-We often need to check if key exists in a hash. It could be done without getting the value via "`has_key?`" method:
+We often need to check if the key exists in a hash. It could be done without getting a value via "`has_key?`" method:
 
 ```ruby
 $ pry
@@ -11,7 +11,7 @@ true
 >
 ```
 
-"`has_key?`" is only checking for existence and doesn't perform any value comparison. Example above is fine when you want to ensure that _something_ is present.
+"`has_key?`" only checks for existence and doesn't perform any value comparison. Example above is okay to use when you want to ensure that _something_ is present.
 
 X> ## Exercise
 X> Explain the difference between:
@@ -46,4 +46,4 @@ and
 }
 ```
 
-Which data structure is better if we want to search for a book by id? Which data structure was designed to support constant O(1) search, and which one supports only linear O(N) search, and what would you pick as a programmer? How many hashes and arrays were used in every example? How would you add a book to one of these data structures?
+Which data structure is better if we want to search for a book by id? Which data structure was designed to support constant O(1) search, and which one supports only linear O(N) search, and which one would you pick as a programmer? How many hashes and arrays were used in every example? How would you add a book to each of these data structures?
