@@ -8,4 +8,24 @@ This books covers the essentials, common way of doing OOP, which is a must for e
 
 "Object-Oriented Programming" assumes there should be an object somewhere. But what are objects? From our everyday lives we know that everything is an object. Book on the table, for example. A man walking down the street. BMW model E34 crossing the road. But if you look closer, BMW E34 is a certain _class_ of objects. With all the variety of other cars, this particular one is exactly the same as another of the same model. But at the same time they're different _instances_.
 
-The most obvious example of a class is a 
+The most obvious example of a class is a technical drawing (model) of some product:
+
+![Technical drawing, source: WikiPedia](images/074-drawing.png)
+
+You can see technical details of a product like width, height, radius, and so on. You can see these details before the final product is actually manufactured. _Class_ in programming language is something similar to this drawing. It's a pattern, and based on this pattern we can create _something real_.
+
+And _something real_ is the actual _object_ (or multiple objects) we're building based on this drawing. Objects are also known as _instances_ or _class instances_.
+
+Having one drawing we can create multiple objects, and the same is true for a _class_. There is one _class_, and multiple objects you can create based on this class. For example:
+
+{title="Class and three objects in Ruby",  lang=ruby, line-numbers=on}
+```ruby
+class Car
+end
+
+car1 = Car.new
+car2 = Car.new
+car3 = Car.new
+```
+
+Above we have only _class_, and _three_ objects: three cars created with this drawing. Our "drawing" takes only two lines, but it's only because or drawing is default (empty). There is nothing super special in our class at the moment, but in real life we normally add some characteristics to cars (like color, audio options, license plate number and so on). 
