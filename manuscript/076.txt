@@ -1,0 +1,192 @@
+
+## State, one more example
+
+Now it is more or less clear what the state is. But how it is used in practice? What's the advantage of having a state? Why would we keep the state inside of an object and why do we need to encapsulation?
+
+Well, as you already know, object is a living organism. It turned out that it's much better to combine under one hood multiple variables that affect the flow of a program, and avoid using them separately.
+
+Imagine we have a robot that walks on the ground, and we're observing the scene from the top. Robot starts moving at certain point and can move left, right, up and down by any number of steps.
+
+At the first glance it looks like we could avoid using any classes here. We would have two variables: "`x`" and "`y`". We would add "`1`" to "`x`" when the robot moves right, "`1`" to "`y`" when robot moves up, and so on. There is no need for any objects or classes, and it's all true. However, there is one caveat. Code complexity grows exponentially when you need to add more robots, and program readability plummets. 
+
+With two robots we need four variables, two for each. First tuple is "`x1`" and "`y1`", second is "`x2`" and "`y2`". Not very convenient, but let's say we can deal with that for now. But what if we have more than two of them? "You can use an array" you say. Yes, it's true - you can create an array of variables. It will look like a data structure with specific schema, and a set of methods that know how to work with this data structure, how to read this data schema. But hold on a sec, it's much easier to deal with variables rather than with custom-crafted data structure!
+
+It's easier to have "`x = x + 1`" rather than "`x[5] = x[5] + 1`". So objects and classes make your program easier to read, understand, and modify. Let's practice and create a robot class:
+
+```ruby
+class Robot
+  attr_accessor :x, :y
+
+  def initialize
+    @x = 0
+    @y = 0
+  end
+
+  def right
+    self.x += 1
+  end
+
+  def left
+    self.x -= 1
+  end
+
+  def up
+    self.y += 1
+  end
+
+  def down
+    self.y -= 1
+  end
+end
+
+robot1 = Robot.new
+robot1.up
+robot1.up
+robot1.up
+robot1.right
+
+puts "x = #{robot1.x}, y = #{robot1.y}"
+```
+
+Note the syntax we use to access instance variable: "`self.`". You should have "`self.`" or "`@`" here, because by default Ruby treats unknown literal as a local variable or method. By using this syntax we're saying: "it's instance variable, not local", "this variable is defined on a class level, not inside of our method".
+
+Also, try looking into the code above and guess what would this program print. Here is the right answer:
+
+```ruby
+x = 1, y = 3
+```
+
+The robot has made four moves and its coordinates now are 1 by "`x`", and 3 by "`y`".
+
+We can create ten robots with the following syntax:
+
+```ruby
+arr = Array.new(10) { Robot.new }
+```
+
+And now let's do the trick and call the random method for every robot in array:
+
+```ruby
+arr.each do |robot|
+  m = [:right, :left, :up, :down].sample
+  robot.send(m)
+end
+```
+
+The trick is two lines inside the each-block. First line picks random _Symbol_ from the array. This symbol is the name of a method we're going to call: right, left, up, down. The second line is the actually "tricky way" to call the method by a name.
+
+Only with a couple of lines of code we were able not only to create a set of similar objects, but also do some bulk operations on them. Would you agree it was easier than  dealing with individual variables one by one?
+
+For the sake of experiment, imagine 60 by 25 scene and put every robot right into the middle. Every second we'll iterate over array of robots and change their direction the random way, like we did it above. While doing that we'll be redrawing the map of robots, indicating robot by star, and empty space by dot. We want to see a simple animation of how robots spread out of the middle to the edges.
+
+Below is the code for this program:
+
+```ruby
+class Robot
+  # Accessors, so we can access coordinates from the outside
+  attr_accessor :x, :y
+
+  # Constructor, accepts hash. If not specified, empty hash will be used.
+  # In hash we expect two parameters: initial coordinates of the robot.
+  # If not specified, will equal to zero by default.
+  def initialize(options={})
+    @x = options[:x] || 0
+    @y = options[:y] || 0
+  end
+
+  def right
+    self.x += 1
+  end
+
+  def left
+    self.x -= 1
+  end
+
+  def up
+    self.y += 1
+  end
+
+  def down
+    self.y -= 1
+  end
+end
+
+# Commander is something that moves a robot.
+class Commander
+  # Issue a command to move a robot. Accepts robot object
+  # and sends it a random command.
+  def move(who)
+    m = [:right, :left, :up, :down].sample
+    who.send(m)
+  end
+end
+
+# Create commander object, we'll have only one commander
+# in this example.
+commander = Commander.new
+
+# Array of ten robots.
+arr = Array.new(10) { Robot.new }
+
+# Infinite loop (hit ^C to stop the loop)
+loop do
+  # Tricky way to clear the screen
+  puts "\e[H\e[2J"
+
+  # Draw the grid. It starts with -30 to 30 by X,
+  # and from 12 to -12 by Y
+  (12).downto(-12) do |y|
+    (-30).upto(30) do |x|
+	  # Check if we have a robot with X and Y coordinates
+      found = arr.any? { |robot| robot.x == x && robot.y == y }
+
+      # Draw star if a robot was found. Dot otherwise.
+      if found
+        print '*'
+      else
+        print '.'
+      end
+    end
+
+	# Move to the next line on the screen.
+    puts
+  end
+
+  # Move each robot randomly.
+  arr.each do |robot|
+    commander.move(robot)
+  end
+
+  # Wait for half a second.
+  sleep 0.5
+end
+```
+
+Result:
+
+```
+.............................................................
+.............................................................
+.............................................................
+.............................*...............................
+.............................................................
+...........................*.......*.........................
+.............................................................
+...........................*.................................
+............................*................................
+...............................*.*...........................
+............................*................................
+.............................................................
+.............................................................
+.............................................................
+........................*.......*............................
+.............................................................
+.............................................................
+.............................................................
+.............................................................
+```
+
+Demo: [https://asciinema.org/a/jMB47AhjBnxgMofSgIVzHObIH](https://asciinema.org/a/jMB47AhjBnxgMofSgIVzHObIH)
+
+X> ## Exercise 
+X> Let the "`initialize`" method to accept another option - the number of a robot, so this number is another parameter that defines the state of particular robot instance. Modify "`up`" and "`down`" methods, so these methods are no-op (empty, do not do anything) if the number is odd. If the number is even, "`right`" and "`left`" methods should be no-op. Try to guess how animation would look like with these changes?

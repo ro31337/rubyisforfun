@@ -1,0 +1,359 @@
+## State
+
+_State_ is utterly important concept in any object-oriented language. Ruby is object oriented. There are other object oriented languages out there: Java, C#, JavaScript. There are also object-orientish languages, which aren't 100% object-oriented, but share most or some of these concepts (for example, [Golang]( https://golang.org/doc/faq#Is_Go_an_object-oriented_language), Objective-C and so on).
+
+The main difference between object oriented language and non-object-oriented is that object oriented languages have a concept of _object state_. Let's dive deeper into that.
+
+Back to our example with BMW model E34. Somewhere in Germany, probably in BMW factory in Munchen, there is a drawing of this particular model. Factory produced numerous of instances of this model. However, each model has multiple details:
+
+* Engine
+* Wind shield
+* Body
+* Doors
+* Wheels, and so on.
+
+All of these objects aren't useful without being a part of an actual car - why would you need a wheel without having a car? However, all these components being assembled together represent living organism, something that actually works, and this sophisticated object has its own _state_.
+
+All the BMWs E34 models manufactured in Germany over the course of multiple years were exactly the same. However, all of them have different state. _State_ is what differentiates one car from another. But what does the state look like?
+
+For example, mileage. "Car" object is quite sophisticated mechanism, and it's unlikely that two different cars have exactly the same mileage. The second parameter that defines a state could be the level of gasoline in the tank. Another parameter that defines a state is the actual state of engine: on or off.
+
+All these parameters can be controlled by car owners. These parameters, including some other parameters that we normally don't even think of, define the state of an object.
+
+In other words, object in object-oriented language is a living organism, and this organism has its own state. There is a way to change the state of an object: from inside or outside. When we open the door of a car, we're changing the state from outside. However, we change the state of the engine from the inside. Also, the object itself can change its own state: for example, fan turns on automatically when the engine temperature is too high.
+
+Let's demonstrate what was written above with a simple proof-of-concept code:
+
+```ruby
+class Car
+  def initialize
+    @state = :closed
+  end
+
+  def open
+    @state = :open
+  end
+
+  def how_are_you
+    puts "My state is #{@state}"
+  end
+end
+
+car1 = Car.new
+car1.how_are_you
+
+car2 = Car.new
+car2.open
+car2.how_are_you
+```
+
+Result:
+
+```ruby
+My state is closed
+My state is open
+```
+
+We've created new class "Car" - we've made a "drawing" of an object with Ruby language. Then we created an instance of the class by saying "Car.new" and assigned _reference_ to this object to "car1" variable. It's important to note that "car1" variable doesn't have the object in it; it's only the reference to an object located somewhere in computer memory. Remember the analogy with multi-apartment building, where the bell outside leads to specific apartment. The same rule is applicable here: variable is reference to an object. We might have multiple variables pointing to the same object. Below we're assigning the value of "car1" to "car777", there are two variables, but only one actual object:
+
+```ruby
+car777 = car1
+```
+
+Then we request a status (state) of this object from the outside by asking "how are you?", and object reports its state. First car reported that the state is "closed": "My state is closed", but why did it happen? Because we defined "initialize" method:
+
+```ruby
+def initialize
+  @state = :closed
+end
+```
+
+This method gets called every time we create new instance (new object). In other words, every time you say "`Car.new`", "`initialize`" gets called. Nobody knows why we use lengthy "initialize" (you have to spell it with "z") instead of just "init" or "new" in Ruby. The following looks better, but it's incorrect, you must use "initialize":
+
+```ruby
+class Car
+  def new
+    # ...
+  end
+end
+
+Car.new
+```
+
+"initialize" method is also referred as "constructor" in documentation and programming books. And in JavaScript version ES6 and above it's called this way:
+
+```js
+class Car {
+  constructor() {
+    console.log('hello from constructor!');
+  }
+}
+
+let car1 = new Car();
+```
+
+Run the program above (by typing "`node`" in your terminal and pasting this snippet) to see "hello from constructor!" message. Method was called during the object initialization. Here is exactly the same code in Ruby language:
+
+```ruby
+class Car
+  def initialize
+    puts 'hello from constructor!'
+  end
+end
+
+car1 = Car.new
+```
+
+It's one of the least obvious things in Ruby: we say "new" and "initialize" gets called.
+
+But why do we need a constructor? Use it to define the initial state of an object. For example, we want doors, windows, trunk to be closed when we produce another car.
+
+You might have noticed that we used "@" ("at" sign) before "`state`" variable. This syntax is used to define _instance variable_. We already covered this a little bit in previous chapters. But in general, we have three types of variables:
+
+1) Local variables. These variables are normally defined inside of a method, and not accessible from other methods. For example, the following code will produce the error, because "`aaa`" variable isn't defined in method "`m2`":
+
+```ruby
+class Foo
+  def m1
+    aaa = 123
+    puts aaa
+  end
+
+  def m2
+    puts aaa
+  end
+end
+
+foo = Foo.new
+foo.m1 # works fine, prints 123
+foo.m2 # won't work, variable not defined
+```
+
+2) Instance variables - variables of particular class instance (or "variables of particular object"). You can access these variables with at-sign "`@`":
+
+```ruby
+class Foo
+  def initialize
+    @aaa = 123
+  end
+
+  def m1
+    puts @aaa
+  end
+
+  def m2
+    puts @aaa
+  end
+end
+
+foo = Foo.new
+foo.m1
+foo.m2
+```
+
+
+Instance variables define the _state_ of an object. Nothing prevents you from defining instance variables in class methods, however it's a good practice to define instance variables in constructor only; you are showing your intention: this is my instance variable, and we're going to use it.
+
+The following instance variable is defined inside of a method. This code works fine, but result is actually depends on the call order (last two lines):
+
+```ruby
+class Foo
+  def m1
+    @aaa = 123
+    puts @aaa
+  end
+
+  def m2
+    puts @aaa
+  end
+end
+
+foo = Foo.new
+foo.m1
+foo.m2
+```
+
+Result:
+
+```
+123
+123
+```
+
+But result is different when two last lines are reversed:
+
+```
+123
+```
+
+Ruby tries to call "`m2`" method, and instance variable is not set, so default result is "`nil`", and "`puts nil`" produces nothing on a screen. It's one of the Ruby's curious features: when instance variable is not defined, it's assumed to be nil. But this trick won't work for local variables (without "`@`" prefix): Ruby will raise runtime error.
+
+3) Class variables. Class variables belong to their class and also known as "static variables". It's not the most frequently used feature, and you probably won't see it too often. Class variables have "`@@`" prefix, and their value is shared (remains the same) between all objects. When you change this variable, it will be changed for all other objects as well.
+
+There are also two other types of variables in Ruby language:
+
+* Global variables. They go with the prefix of "`$`". You can access them from any point of your Ruby program. Sounds like a good idea, there is a great temptation to use them everywhere, but you should avoid that. It's not a good practice and excessive use of global variables increases complexity of your program dramatically!
+
+* Special pre-defined "variables" like "`ARGV`", "`ENV`", and others. It's not the actual variables, but Ruby programmers often refer to these pre-defined objects as "variables". "`ARGV`", for example, is used to pass parameters to your program from command-line. "`ENV`" is used to read your shell environment variables from Ruby program.
+
+Normally, to be able to write an object-oriented program, a beginner should understand the difference between local and instance variables.
+
+And now is tricky question. What does the following code do?
+
+```ruby
+# ...
+puts aaa
+```
+
+You say "prints aaa variable to the screen" and you'd be right, because it's possible to rewrite this program into this one:
+
+```ruby
+aaa = 123
+puts aaa
+```
+
+But what if we do it the other way:
+
+```ruby
+def aaa
+  rand(1..9)
+end
+
+puts aaa
+```
+
+Program above prints the random value (from 1 to 9). In other words, we don't know for sure what "`puts aaa`" really means until we understand the context. It's either variable access or method call (or something else - we'll talk about "something else" or "`method_missing`" in the next chapters).
+
+Meanwhile, our class looks like this:
+
+![Car class diagram](images/075-diagram-01.png)
+
+You can see from the picture above that we have two methods to manipulate the state of this object, they're highlighted by pink color. Another one, "`initialize`" is a public constructor - you can only create an object by using this method (you do it with "`Car.new`").
+
+State kept in _instance variable_ "`@state`" (naming is up to you, you can name it as you want), and by default there is no any standard way to access this variable from outside. There is no any limitation about how state should look like, it's all up to you actually. You might want to use ten instance variables and implement sophisticated business logic inside of your class, but API (in our case these two methods, "`open`" and "`how_are_you`") remains the same.
+
+In a similar way to a real car, we might want to play music inside. However, unless it is implemented by our API, nobody will ever notice we have some music playing inside. This principle is known as "encapsulation".
+
+Suppose you were driving down the road and have met a hitchhiker. Hitchhiker is so shy so she doesn't want to open the door. She would like to say "how are you", but before she wants to ensure that the door is open. In other words, we want others to be able to read our state, to read our instance variable(s). How would we do that?
+
+The easiest way is to add a method with a meaningful name that just returns the state. We could add "`aaa`", but let's call it "`state`":
+
+```ruby
+class Car
+  def initialize
+    @state = :closed
+  end
+
+  # new method goes below
+  def state
+    @state
+  end
+
+  def open
+    @state = :open
+  end
+
+  def how_are_you
+    puts "My state is #{@state}"
+  end
+end
+```
+
+Here is the class diagram:
+
+![Car class diagram](images/075-diagram-02.png)
+
+The state itself, represented by instance variable "`@state`", isn't accessible. However, there is a way to read it through "`state`" method. State variable and method use the same word "state", but they are two different things. We could name the method as we want, for example "`aaa`", it's not a mistake. Sounds good, now a hitchhiker can see that the state of a car is "open", because he or she can read the state with the "`state`" method.
+
+Well, you can see (read) the state from the outside, but you can only change the state from the inside. Which is, really, a way to go: we might never need the way to close a door from the outside. But what if it is necessary? It's up to software developers to think about business logic: how are we going to use this or another component? Do we really need this functionality or we can save some time here and avoid implementing that?
+
+If we know for sure we gonna need that, it could be implemented the following way:
+
+```ruby
+def close
+  @state = :closed
+end
+```
+
+It's that simple! Here is one of the final class implementations:
+
+![Car class diagram](images/075-diagram-03.png)
+
+Let's practice a little bit more and think about what if we need to turn on the engine? Our state could be represented by multiple parameters now (mathematicians would say "defined by the following vector"): open, closed, engine_on, engine_off. We would add two methods: "`turn_on`", "`turn_off`" so we have control over the newly defined state subset. We would've end up with quite lengthy class.
+
+Sometimes it's easier to have "superpowers" and allow any state manipulations from the outside: "I trust you so much, please do whatever you want, open doors, turn the engine on and off, play any music, you're the master and I'm the puppet". As you can imagine, this doesn't always lead to the best outcome. However, this way of manipulating state is widely used. The rule of thumb here is to never cross the line when poor software design bites you back.
+
+Here is how you allow full control over your state or any other instance variable:
+
+```ruby
+attr_reader :state
+attr_writer :state
+```
+
+Whoa, looks like magic! It actually is, also known as syntactic sugar. Code above creates two methods: to read and write instance variable:
+
+```ruby
+def state
+  @state
+end
+
+def state=(value)
+  @state = value
+end
+```
+
+First method looks familiar, we had exactly the same implementation to read the state. The second method has "`=`" in its name, so it is used for instance variable assignment.
+
+A curious detail is that these two attr-lines above can be replaced with a single line:
+
+```ruby
+attr_accessor :state
+```
+
+(Don't confuse "`attr_accessor`" with "`attr_accessible`" from Rails framework, these are two different things).
+
+Improved class can be summarized as follows:
+
+```ruby
+class Car
+  attr_accessor :state
+
+  def initialize
+    @state = :closed
+  end
+
+  def how_are_you
+    puts "My state is #{@state}"
+  end
+end
+```
+
+Usage example:
+
+```ruby
+car1 = Car.new
+car1.state = :open
+
+car2 = Car.new
+car2.state = :broken
+
+car1.how_are_you
+car2.how_are_you
+```
+
+Sample output:
+
+```
+My state is open
+My state is broken
+```
+
+Visual representation of the class:
+
+![Car class diagram](images/075-diagram-04.png)
+
+X> ## Exercise 1
+X> Implement "`Monkey`" class with two methods: "`run`" and "`stop`". Each method should change the state of an object. You must expose the state of an object the way it's accessible (readable), but not writeable from the outside. Create a couple of instances of this class, call newly created methods and ensure your program works.
+
+X> ## Exercise 2
+X> Use random state while initializing "`Monkey`" class, so the monkey either runs or not. Create an array of ten monkeys. Print the state of all the objects to the screen.
