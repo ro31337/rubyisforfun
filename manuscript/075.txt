@@ -1,6 +1,6 @@
 ## State
 
-_State_ is utterly important concept in any object-oriented language. Ruby is object oriented. There are other object oriented languages out there: Java, C#, JavaScript. There are also object-orientish languages, which aren't 100% object-oriented, but share most or some of these concepts (for example, [Golang]( https://golang.org/doc/faq#Is_Go_an_object-oriented_language), Objective-C and so on).
+_State_ is utterly important concept in any object-oriented language. Ruby is object oriented one. There are other object oriented languages out there: Java, C#, JavaScript. There are also object-orientish languages, which aren't 100% object-oriented, but share most or some of these concepts (for example, [Golang]( https://golang.org/doc/faq#Is_Go_an_object-oriented_language), Objective-C and so on).
 
 The main difference between object oriented language and non-object-oriented is that object oriented languages have a concept of _object state_. Let's dive deeper into that.
 
