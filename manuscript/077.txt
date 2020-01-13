@@ -1,0 +1,298 @@
+##  Duck typing and polymorphism
+
+There are some intricate definitions in object-oriented programming. However, not all the real programmers (those who make living by doing that) can say what polymorphism and duck typing are, and what is the difference between these two. It happens because the programming practice is often easier than theory, and at later time one can say: "oh, _now_ I understand what it means".
+
+But where did the term "polymorphism" come from? If comes from the greek roots "poly" (many) and "morphe" (form). Wiktionary says "_The ability to assume different forms or shapes_" and biological: "_The coexistence, in the same locality, of two or more distinct forms...  not connected by intermediate gradations_". Wow, that's rather interesting - "distinct coexistence" and "not connected" at the same time!
+
+Polymorphism can be illustrated by the following joke:
+
+Father: son, go and get Red Label.
+Son: 750ml or 1 liter?
+Mother: son, go and get Red Label.
+Son: 500 grams or 1 kg?
+
+"Father" object assumes "Red Label" to be a whiskey, while "mother" object assumes "Red Label" to be a cheese. Basically, the method ("Son") _changes_ based on the type of object it was called upon.
+
+There is similar joke, illustrated by [https://www.youtube.com/watch?v=GLc9n3MV9ZE](Police Academy 3: Back in Training. Sit!). Find the time to watch this 1 minute YouTube video before we proceed to explanation.
+
+What has actually happened here? A programmer would say every object has the same interface. Objects are different, but all of them have received command sent by a commander "`obj.send(:sit)`" and didn't raise any error.
+
+Statically-typed language programmer would define _interface_ for that (don't get confused with GUI acronym - Graphic User Interface, it's not about graphics). Here is C# example:
+
+```csharp
+interface IListener {
+    void Sit();
+}
+
+class Dog : IListener {
+    public void Sit() {
+        // ...
+    }
+}
+
+class Human : IListener {
+    public void Sit() {
+        // ...
+    }
+}
+```
+
+So here we've just defined "listener" interface, "`IListener`". And (class) Dog, along with (class) Human _implement_ this interface. In other words, for dog and human _instances_ we can say "`dog.Sit()`" and "`human.Sit()`", or just "`instance.Sit()`".  When interface is implemented, anyone can use this interface without actually knowing any other object details.
+
+However, there is no any support for _interfaces_ in Ruby! But there is similar concept, we have _duck typing_ instead of _interface_. Here is the widely-used definition of duck typing in computer programming:
+
+> If it walks like a duck, and it quacks like a duck, then it has to be a duck.
+
+But what does it mean? It just means that if we have two classes with the same methods (both name and signature are the same, implementation can be different), then from a consumer standpoint these classes are the same. Consumer here is just a code that calls the method. 
+
+Coming back to the joke from the video about human and dog, from consumer (commander) standpoint human and dog are the same objects that implement "`sit`" method. That's why everyone sits when commander says "sit!".
+
+"`Duck`" class can be implemented the following way:
+
+```ruby
+class Duck
+  def walk
+  end
+
+  def quack
+  end
+end
+```
+
+If we implement "`walk`" and "`quack`" in any other class, from consumer standpoint it's going to be a duck, even if class name isn't "`Duck`". In the following example we're going to define these methods for "`Dog`" class. But from a duck commander this dog looks like a duck. Duck commander might think "_I don't know who you are, but if you really want to be a duck, you have to walk and quack_":
+
+```ruby
+class Duck
+  def walk
+  end
+
+  def quack
+  end
+end
+
+class Dog
+  def walk
+  end
+
+  def quack
+  end
+end
+
+class DuckCommander
+  def command(who)
+    who.walk
+    who.quack
+  end
+end
+
+# Create instances of duck and dog
+duck = Duck.new
+dog = Dog.new
+
+# Note how Duck Commander can command duck and dog
+# without raising any errors!
+dc = DuckCommander.new
+dc.command(duck)
+dc.command(dog)
+```
+
+"Phew! But why do we need all these complications?" - reader might ask, - "what's the real-world benefit from these concepts?"
+
+Well, it duck typing and interfaces simplify our programs. Let's add a dog to our robots game. Dog needs to walk from the top left corner to the bottom right corner and avoid robots on the way. When robot catches the dog, game is over.
+
+Where do we start? The very first thing is that we have to show dog on the screen. Robot is indicated by star "`*`". Dog will use "`@`" symbol. What "interface" our Robot has, which methods it implements from a consumer standpoint? Up, down, left, right, x, y. The same thing works for a dog. However, one piece is missing: we'll need different labels for dog and robots, so let's add this method:
+
+```ruby
+class Robot
+  # ...
+
+  def label
+    '*'
+  end
+end
+
+class Dog
+  # ...
+
+  def label
+    '@'
+  end
+end
+```
+
+So we have two at the same time similar and different classes. They implement the same interface, but underlying behavior is different. Do you remember what polymorphism is? "_The coexistence, in the same locality, of two or more distinct forms_". So we have coexistence in the same locality - both classes implement the same interface. Distinct - they are distinct when it comes to naming, how objects are indicated visually on the screen, and distinct by underlying implementation: robot can walk each way, while dog walks only from left to right and from up to down (see the code below).
+
+Let's change the program we're already familiar with and see how polymorphism works in practice:
+
+```ruby
+class Robot
+  # Accessors, so we can access coordinates from outside
+  attr_accessor :x, :y
+
+  # Constructor, accepts hash. If hash not specified, empty is used.
+  # We expect two parameters in hash: initial robot coordinates;
+  # if not specified, both will equal to zero.
+  def initialize(options={})
+    @x = options[:x] || 0
+    @y = options[:y] || 0
+  end
+
+  def right
+    self.x += 1
+  end
+
+  def left
+    self.x -= 1
+  end
+
+  def up
+    self.y += 1
+  end
+
+  def down
+    self.y -= 1
+  end
+
+  # New method, just a symbol we use for robots.
+  def label
+    '*'
+  end
+end
+
+# Dog class has the similar interface, some methods are empty below.
+class Dog
+  # Accessors, so we can access coordinates from outside
+  attr_accessor :x, :y
+
+  # Constructor, accepts hash. If hash not specified, empty is used.
+  # We expect two parameters in hash: initial dog coordinates;
+  # if not specified, both will equal to zero.
+  def initialize(options={})
+    @x = options[:x] || 0
+    @y = options[:y] || 0
+  end
+
+  def right
+    self.x += 1
+  end
+
+  # Empty method, but it exists. When called does nothing. We need it
+  # to avoid "missing method" error.
+  def left
+  end
+
+  # Another empty method.
+  def up
+  end
+
+  def down
+    self.y -= 1
+  end
+
+  # New method, just a symbol we use for robots.
+  def label
+    '@'
+  end
+end
+
+# Comander class sends commands and moves robots and dogs.
+# Note that THIS CLASS IS EXACTLY THE SAME AS IN PREVIOUS EXAMPLE.
+class Commander
+  # Send command to move an object. Method accept object and sends
+  # it a random command.
+  def move(who)
+    m = [:right, :left, :up, :down].sample
+
+    # Polymorphism is happening here! We're sending command,
+    # but we're unaware of receiver!
+    who.send(m)
+  end
+end
+
+# Create commander object. There is going to be only one commander.
+commander = Commander.new
+
+# Array of 10 robots and...
+arr = Array.new(10) { Robot.new }
+
+# ...one dog. Since dog implements the same interface, all objects
+# in array will be kinda same.
+arr.push(Dog.new(x: -12, y: 12))
+
+# Infinite loop goes here (press ^C to stop)
+loop do
+  # Tricky way to clear the screen
+  puts "\e[H\e[2J"
+
+  # Draw the grid. It goes from -12 to 12 by X, and 12 to -12 by Y.
+  (12).downto(-12) do |y|
+    (-12).upto(12) do |x|
+      # Check if we have somebody with "x" and "y" coordinates.
+      somebody = arr.find { |somebody| somebody.x == x && somebody.y == y }
+
+      # Print label if somebody present. Print dot otherwise.
+      if somebody
+        # POLYMORPHISM GOES HERE.
+        # We print "*" or "@", but we don't know what it is exactly,
+        # and we don't have to know.
+        print somebody.label
+      else
+        print '.'
+      end
+    end
+
+    # Go to the next line.
+    puts
+  end
+
+  # Hit check. If both objects have the same coordinates and their
+  # labels aren't equal, then we assume that a robot caught the dog.
+  game_over = arr.combination(2).any? do |a, b|
+    a.x == b.x && \
+    a.y == b.y && \
+    a.label != b.label
+  end
+
+  if game_over
+    puts 'Game over'
+    exit
+  end
+
+  # Move each object in random order.
+  arr.each do |somebody|
+    # Call move method. Code is the same as in previous example.
+    # Commander doesn't know about the object type.
+    commander.move(somebody)
+  end
+
+  # Sleep for half a second.
+  sleep 0.5
+end
+```
+
+Result:
+
+```
+.........................
+.........*...............
+.........................
+...........*.............
+........@................
+...............*.*.......
+........*.....*..........
+.........................
+............*............
+...*.....................
+``` 
+
+Demo: https://asciinema.org/a/KsenHLiaRbTilZa081EhZSFXF
+
+X> ## Exercise 1
+X> Remove all the comment from program above. Can you understand every single line of it?
+
+X> ## Exercise 2
+X> Add three more dogs to the field.
+
+X> ## Exercise 3
+X> Modify the program, so if all the dogs reached left or bottom margin it prints "Win!"
+
