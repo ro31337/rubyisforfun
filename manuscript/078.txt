@@ -1,0 +1,69 @@
+## Inheritance
+
+> - What inheritance is?
+> - Quick way to get rich!
+
+Inheritance is the third foundation of object oriented programming:
+
+* Encapsulation
+* Polymorphism
+* Inheritance
+
+But at the same time it's pretty controversial concept. There are many opinions about inheritance. Even so, we'll take a quick look into how inheritance works in Ruby, and after that we'll discuss why overusing inheritance is a bad practice. 
+
+Imagine we want to add another player to the robots field along with robots and dogs - Human, so we have three types of objects: dog(s), robots, human(s). What would junior object-oriented programmer do? He or she would use the following trick.
+
+It isn't hard to find out that we've got "`up`", "`down`", "`left`", and "`right`" methods. We also have "`x`" and "`y`" methods (these are actually instance variables, accessible through helper methods created by "`attr_accessor`"). There is also "`label`" which is different for every object type. Methods "`up`", "`down`", "`left`", and "`right`" implement some kind of functionality which is almost always identical.
+
+In other words, there is something exactly the same, and there is something unique. Our "`up`", "`down`", "`left`", and "`right`" are pretty straightforward, it's just one line, and we simply copy them over from one object to another:
+
+```ruby
+class Robot
+  def right
+    self.x += 1
+  end
+
+  def left
+    self.x -= 1
+  end
+
+  def up
+    self.y += 1
+  end
+
+  def down
+    self.y -= 1
+  end
+end
+
+class Dog
+  # ...
+
+  def right
+    self.x += 1
+  end
+
+  def down
+    self.y -= 1
+  end
+end
+
+class Human
+  def right
+    self.x += 1
+  end
+
+  def left
+    self.x -= 1
+  end
+
+  def up
+    self.y += 1
+  end
+
+  def down
+    self.y -= 1
+  end
+end
+```
+
