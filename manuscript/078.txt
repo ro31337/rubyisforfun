@@ -17,6 +17,7 @@ It isn't hard to find out that we've got "`up`", "`down`", "`left`", and "`right
 
 In other words, there is something exactly the same, and there is something unique. Our "`up`", "`down`", "`left`", and "`right`" are pretty straightforward, it's just one line, and we simply copy them over from one object to another:
 
+{title="Three different classes with the similar functionality", lang=ruby, line-numbers=on}
 ```ruby
 class Robot
   def right
@@ -67,3 +68,98 @@ class Human
 end
 ```
 
+But what if each of the methods above has ten or more lines of code and we want to improve something? (like, adding z-axis to get three-dimensional field). We'll need to copy the code between all the existing classes. And in case of an error, we'll need to fix in three places instead of just one. 
+
+The beginner object-oriented programmer would say: "aha, I see repeating functionality, why wouldn't we use inheritance? We have the Robot with four methods implemented, and we can reuse/share them for all other classes" like that:
+
+{title="Same as above, but has less code because of inheritance", lang=ruby, line-numbers=on}
+```ruby
+class Robot
+  attr_accessor :x, :y
+
+  def initialize(options={})
+    @x = options[:x] || 0
+    @y = options[:y] || 0
+  end
+
+  def right
+    self.x += 1
+  end
+
+  def left
+    self.x -= 1
+  end
+
+  def up
+    self.y += 1
+  end
+
+  def down
+    self.y -= 1
+  end
+
+  def label
+    '*'
+  end
+end
+
+class Dog < Robot
+  def up
+  end
+
+  def left
+  end
+
+  def label
+    '@'
+  end
+end
+
+class Human < Robot
+  def label
+    'H'
+  end
+end
+```
+
+We used "`<`" character that says "Human and Dog classes inherit functionality from the Robot". The "`<`" character itself visually shows the flow of functionality. It flows from Robot to Human, from Robot to Dog: "`class Human < Robot`", "`class Dog < Robot`". Programmers say "class Human inherits [functionality/methods] from Robot".
+
+![Class diagram](images/078-diagram.png)
+
+When classes are defined this way, we can create their instances the same way we did it before:
+
+```ruby
+robot = Robot.new
+human = Human.new
+dog = Dog.new
+```
+
+"`Human`" class inherits all methods from "`Robot`", except "`label`". Programmers say "method '`label`' was redefined" (or "overridden"). Diagram above reflects that. Also, Dog class has three redefined methods: "`label`", "`up`", and "`left`".  The rest were inherited from "`Robot`".
+
+This approach looks genius! "`Dog`" class had 28 lines, and now it is 11 lines only. "`Human`" class had 28 lines, and now it is only 5 -- only because we used inheritance. If we use inheritance in the program we had created before, it would work. Unfortunately, there is one flaw to that design.
+
+And this flaw is not technical. From technical standpoint everything works. Image you are the business owner of your own software development shop. Your client asked to created a program we've discussed above, you used inheritance and everything works, you got your money and client got the program that does its job. Client doesn't understand the code, he or she is happy it just works fine, because actual result in on the screen. What can go wrong?
+
+Good news for beginners is that the vast majority of all software written this way. Business is interested in automated business operations. For example, if it's entertaining looking at the screen while four dogs crossing the robots field (and you can make bets), then the business goal is accomplished. Business often doesn't care _how_ software is implemented, and the "_how_" question is always up to a programmer.
+
+From professional standpoint our program is not 100% correct. Inheritance is very powerful tool and it's very easy to misuse. It's the common mistake to use inheritance as code share/reuse/copy-and-paste tool. And there is even [opinion](https://www.yegor256.com/2016/09/13/inheritance-is-procedural.html) that inheritance shouldn't exist in object-oriented programming.
+
+Let's look closer into what was done wrong. Long story short, we used Robot's functionality, but did it without respect. Here is inheritance excerpt from [WikiPedia](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)) (book author strongly recommends to get yourself familiar with entire WikiPedia article):
+
+> ...Inheritance allows programmers to create classes that are built upon existing classes, to specify a new implementation while maintaining the same behaviors ..., to reuse code and to ... extend original software...
+
+It all makes sense. There "`Human`" class and there is "`Dog`" class. There is existing implementation "`Robot`". We used inheritance to reuse code and to extend original software. What's could go wrong? Excerpt from [Oxford dictionary](https://www.lexico.com/en/definition/inherit):
+
+> Derive (a quality, characteristic, or predisposition) genetically from one's parents or ancestors.
+
+The thing is that "`Dog`" and "`Robot`", and "`Human`" and "`Robot`" have nothing in common. "`Dog`" and "`Human`" can't get characteristics from the "`Robot`" genetically. We just pretended that they can, but in the real world these objects are totally different. Mixing things that aren't very mixable isn't a very good idea. Especially at the very beginning, at initial stage of software design.
+
+"`Robot`" isn't living organism anymore. It looks like it is independent, but now we always have to keep in mind that robot methods are reused somewhere else. We can't just drop them. In other words, I've mixed few concepts and introduced extra coupling only for the purpose of code duplication/reuse, only to make our program little bit shorter. 
+
+In other words, we've picked the wrong abstraction. It's the most common mistake of every object-oriented programmer. And there is nothing wrong with mistakes, we all make mistakes, it's totally okay to make them. But you need real experience to recognize this type of mistake. Right way to design software requires more brain power, more knowledge. The advice here is to read books, and write software of course.
+
+Sandi Metz [says](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction) that code duplication is far cheaper than the wrong abstraction. So... it turns out that inheritance we've just covered isn't useful at all, and we're just fine with code duplication?
+
+That's pretty much the summary: use it wisely, do not overuse it, don't use it blindly, think about it before using it. Sad fact is that some software development teams are often over obsessed with code duplication. They try to avoid it at all costs, and often introduce wrong abstractions. Mostly it's because it's visually much easier to spot the code duplication rather than wrong abstraction.
+
+Code duplication isn't always bad: for example, in tests it's okay to introduce little bit of code duplication so tests are more readable. There is also another procedural mechanism to share/reuse functionality in your programs: modules. Let's take a closer look.
