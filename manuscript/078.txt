@@ -162,4 +162,4 @@ Sandi Metz [says](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction
 
 That's pretty much the summary: use it wisely, do not overuse it, don't use it blindly, think about it before using it. Sad fact is that some software development teams are often over obsessed with code duplication. They try to avoid it at all costs, and often introduce wrong abstractions. Mostly it's because it's visually much easier to spot the code duplication rather than wrong abstraction.
 
-Code duplication isn't always bad: for example, in tests it's okay to introduce little bit of code duplication so tests are more readable. There is also another procedural mechanism to share/reuse functionality in your programs: modules. Let's take a closer look.
+Code duplication isn't always bad: for example, in tests it's okay to introduce little bit of code duplication so tests are more readable. There is also another procedural mechanism to share/reuse functionality in your programs: modules. Let's take a look.
