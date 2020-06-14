@@ -1,4 +1,4 @@
-## What We Will Study
+##  What will we study?
 
 As stated earlier, there are many trends in software development. Each trend is unique and requires its own know-how. The author believes that there are currently at least two “tried and tested” trends in programming which give the maximum result in the minimum time. “Results” here means both cash compensation and knowing how to do something with your own hands.
 

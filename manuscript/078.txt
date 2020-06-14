@@ -1,7 +1,7 @@
 ## Inheritance
 
 > - What inheritance is?
-> - Quick way to get rich!
+> - Quickest way to get rich!?
 
 Inheritance is the third foundation of object oriented programming:
 

@@ -1,6 +1,6 @@
 ## Hello, I'm Your File Manager
 
-If you craft programs for more than 20 years, you know that there is hardly too much tools from the past which are relevant today. It is one of many reasons we're using Ruby now: the knowledge gained 10 years ago is still relevant and wasn't devalued over the time. But besides Ruby there are some other tools that still work and quite useful.
+If you craft programs for more than 20 years, you know that there are hardly many tools from the past which are relevant today. It is one of many reasons we're using Ruby now: the knowledge gained ten and more years ago is still relevant today, and hasn't devalued over the time. However, besides Ruby there are some other tools that still work and quite useful.
 
 One of these tools is a file manager. There are many flavors of file managers, the most popular one for Windows is [Far Manager](https://www.farmanager.com/index.php?l=en):
 

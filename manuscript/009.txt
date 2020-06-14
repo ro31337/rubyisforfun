@@ -35,7 +35,7 @@ $ ruby -v
 ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin16]
 ```
 
-If command above doesn't work, try restarting your terminal. Let's run `ruby` again and write your first program. When you type `ruby` (without `-v`) in the terminal, it will be silently awaiting for your input. Just type `puts 1+1` and hit _Ctrl+D_ (sometimes you need to it twice):
+If command above doesn't work, try restarting your terminal. Let's run `ruby` again and write your first program. When you type `ruby` (without `-v`) in the terminal, it will be silently awaiting for your input. Just type `puts 1+1` and hit _Ctrl+D_ (sometimes you need to do it twice):
 
 ```
 $ ruby

@@ -90,7 +90,7 @@ Copy file two levels up:
 $ cp file1.txt ../..
 ```
 
-Here comes a command some experienced programmers aren't familiar with: copy multiple files to directory:
+Here comes the command even some experienced programmers aren't familiar with: copy multiple files to directory:
 
 ```
 $ cp {file1.txt,file2.txt} my_directory
@@ -163,13 +163,15 @@ How would you create empty file right in your terminal? There is useful `touch c
 $ touch file.txt
 ```
 
-This command will update date and time of the file it already exists. If you want to create a file and put some data in it, use `cat` the following way:
+The command above will update date and time of a file if it already exists.
+
+Use "`cat`" when you want to create a file and put some data in it:
 
 ```
 $ cat > file.txt
 ```
 
-Then type your data, for example `foo bar`, and press Ctrl+D (sometimes you need to press Ctrl+D twice). If 
+Then type in your data, for example "`foo bar`", and hit Ctrl+D combination on your keyboard (if it doesn't work, try to Ctrl+D twice). "Ctrl+D" stands for "end of input" in POSIX systems, and your terminal should understand it.
 
 X> ## Exercise 
 X> Create a text file and put your name to this file. Use `ls -lah` command to make sure file has been already created. Use `cat file.txt` to see the contents of the file.
