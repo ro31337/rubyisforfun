@@ -124,6 +124,7 @@ end
 
 We used "`<`" character that says "Human and Dog classes inherit functionality from the Robot". The "`<`" character itself visually shows the flow of functionality. It flows from Robot to Human, from Robot to Dog: "`class Human < Robot`", "`class Dog < Robot`". Programmers say "class Human inherits [functionality/methods] from Robot".
 
+{width=55%}
 ![Class diagram](images/078-diagram.png)
 
 When classes are defined this way, we can create their instances the same way we did it before:

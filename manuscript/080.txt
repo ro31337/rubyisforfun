@@ -4,6 +4,7 @@ Comparing to modules, there is a better way "to specify a new implementation whi
 
 For example, duck, cuckoo and ostrich are subtypes of a bird:
 
+{width=55%}
 ![Subtyping/inheritance demo](images/080-diagram.png)
 
 For the [definition of word "inherit" from Oxford dictionary](https://www.lexico.com/en/definition/inherit) we already mentioned in the previous chapters, the diagram above makes perfect sense:
@@ -50,6 +51,7 @@ And one of the things that is no code for interface, only method definition (or 
 
 We can use similar approach for the program with human, robot, and dog. Instead of modules, introduce some abstract class that is not represented in real life, like "Player". And then inherit from this class all these entities, like:
 
+{width=50%}
 ![Subtyping/inheritance demo for human/robot/dog game](images/080-diagram-02.png)
 
 The approach looks very similar to modules. However, in this case we're saying that explicitly: "we see abstraction, it's some sort of a player". No matter what happens to a player, it always has _left, right, up, down, label_ methods. Any method that accepts Dog, Human, or Robot can assume these methods exist. We also extract entities like Dog, Human, and Robot and letting others know that they're somewhat different. They have something similar, but we do not inherit Human from Robot, like it was before. These five methods are the only interface.

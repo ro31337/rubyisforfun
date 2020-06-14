@@ -62,6 +62,7 @@ end
 
 In the program above we defined the module with "`module... end`" syntax and included the module to our classes with "`include`" keyword. Class diagram would look like this:
 
+{width=50%}
 ![Class diagram using modules, three classes share common functionality](images/079-diagram.png)
 
 Visually it looks pretty much like inheritance. However, using inheritance just to copy/share the code is not cool, it's just not the right tool. It's better to be honest about what are you doing. With modules you are honest and you admit: yes, I'm just copying the code, there is no any inheritance involved.
