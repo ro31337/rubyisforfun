@@ -1,0 +1,133 @@
+## Class methods
+
+We are already familiar with instance methods. However, there is another type of methods - class methods. In some other programming languages they can be referred as "static methods" or "self methods". The same thing is true for variables: there are instance variables, and class variables (less often used). There is also local variables - these are available only inside methods. One should understand the difference between instance and class methods (and variables, of course). But what is the difference?
+
+Imagine the technical drawing of an object (or see it in "Classes and objects" chapter). This drawing has all sizes specified. The drawing (or "class") can be used to produce actual object ("instance"). Sizes from the drawing make sense only when object has been produced. When there is no object, sizes are just numbers on paper. They say "when actual object (instance) is going to be produced, the size should be this". That's why we call it "instance variables".
+
+However, there is also meta-information on the drawing, like who is the author. Imagine we've produced one thousand objects (instances), and it turned out that author is not Sam Smith, but Pat King. We would probably get eraser and replace the wrong name with the right one.
+
+For 1000 already produced objects nothing will change, since it's meta-information. It's not the size of an object, it can exist without this information. However, if somebody is going to ask who is the actual author of this wonderful bolt, the answer will be different.
+
+So, this meta-information is like class methods (or class variables). And sizes, and the actual data that defines behavior of a real object are instance methods (or instance variables).
+
+Many programmers don't like class method and variables, and there is a reason for that. It's not  fun when we got mistaken with the author of a technical drawing. However, we can fix it. We'll iterate over each drawing (or its copies), and replace the name with the right one. But that's half the trouble. What if material was specified incorrectly? Should be steel, but specified as plastic. When already existing objects will try to "get" what they are made of, they all gonna get incorrect answer!
+
+We often see it in a real world. In 2019 author of this book got a letter from Honda car manufacturer saying:
+
+> Statement from American Honda Motor Co., Inc. Re: Confirmed Rupture of Defective Takata Airbag Inflator...
+> On March 29, 2019, following a joint inspection, American Honda and the National Highway Traffic Safety Administration (NHTSA) confirmed that a defective Takata driver’s airbag inflator ruptured in the crash of a 2002 Honda Civic on June 8, 2018, in Buckeye, AZ.
+> ...
+> The vehicle involved in this crash had been under recall since December 2014 for replacement of the Takata driver’s frontal airbag inflator...
+
+Serious issue! Objects (cars) have been already produced. And it turned out that some instance variable (airbag) was specified incorrectly. There was a need for recall, and Honda had to provide instructions on how to replace the airbag and spend millions of dollars to fix the issue for already produced objects (or instances).
+
+So you have to be really careful with class (static) methods and variables. No issue to instance variables, like amount of gas in the tank is a good example of such variable, and we're fine if gasoline is low, it's expected, just go to the gas station and refill your tank. Class methods (and variables) once specified shouldn't change their behavior over time. You have to be extra careful when combining both class and instance variables or methods. Look at his code with a class method:
+
+```ruby
+class Person
+  def self.say_something
+	puts 'Hi there!'
+  end
+end
+
+Person.say_something
+```
+
+At the last line we call the method in a particular way. Pay attention that we do not create any instance here. Compare the code above with the similar code, but with creating class instance:
+
+```ruby
+class Person
+  def say_something
+	puts 'Hi there!'
+  end
+end
+
+dude = Person.new
+dude.say_something 
+```
+
+We defined "`dude`" variable that represents an instance of a person. After that we're asking to "`say_something`".
+
+It looks like these programs are pretty much the same, but everything changes when we introduce the state. Imagine we want the person to say his/her name. What would we do when we write a program the way we did it many times before? Just pass a name to constructor, and it is going to be the part of object state:
+
+{lang=ruby, line-numbers=off}
+```ruby
+class Person
+  def initialize(name)
+	@name = name
+  end
+
+  def say_your_name
+	puts "My name is #{@name}"
+  end
+end
+
+dude = Person.new('Sam')
+dude.say_your_name
+```
+
+Lines 1-11 above is just preparation for setting up the living organism. When it's ready, we literally ask: "`dude.say_your_name`". Object "`dude`" is alive, he's got his own name. We can specify other parameters as well, like blood pressure, list of friends, and so on. However, things are different when we talk about static class (the class that only has class, static, methods). To display a name, we should pass it as an argument. The class looks more like utility, not a living organism:
+
+```ruby
+class Person
+  def self.say_your_name(name)
+	puts "My name is #{name}"
+  end
+end
+
+Person.say_your_name('Sam')
+```
+
+Even though the program looks less lengthy and easier to understand, there is no any living organism here, there is no state. There is just a name, like echo, it exists no matter what. It looks like we're talking to "`Person`", but the class doesn't represent a living person. One can say:
+
+```ruby
+Person.say_your_name('Sam')
+Person.say_your_name('Pat')
+Person.say_your_name('Val')
+```
+
+And all of that will get executed. It doesn't look and feel right. It would be so much better if we rename things a little bit:
+
+```ruby
+class Megaphone
+  def self.shout(whatever)
+	puts whatever.upcase
+  end
+end
+
+Megaphone.shout('Hello')
+```
+
+In other words, there is some megaphone, probably the only one, and there is no any other. And you can say something and it will shout. In this case the usage of a class method is justified, with a few caveats. Even in this case we can always say "wait, megaphone might have different color and other parameters". You don't know it now, but who knows, maybe in the future you'll need to add some attributes to megaphone and it means your program design is incorrect.
+
+The only good news is our class only 5 lines long, it can be modified easily. But imagine what happens to wrong abstractions in, let's say, enterprise software? The price of fixing wrong abstraction is huge.
+
+> duplication is far cheaper than the wrong abstraction
+> ...
+> prefer duplication over the wrong abstraction
+
+https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction
+
+If you're unsure about your choice, it can be better just to duplicate code.
+
+We found that use of class methods sometimes justified, and sometimes it's better to avoid them. Some very seasoned software developers recommend to avoid class methods at all. But the truth is that most likely you'll have to use class methods in libraries, frameworks, and in Ruby language itself. You will have to deal with them.
+
+Rule of thumb is to use class methods when there is no state (and state is not planned in foreseeable future). For such classes statical code analysis tool called Rubocop might give you a [warning](https://github.com/rubocop-hq/ruby-style-guide#modules-vs-classes) like: "_Prefer modules to classes with only class methods. Classes should be used only when it makes sense to create instances out of them_".
+
+So you will avoid static class and use module instead:
+
+```ruby
+module Megaphone
+  module_function
+
+  def shout(whatever)
+	puts whatever.upcase
+  end
+end
+
+Megaphone.shout('Hello')
+```
+
+(if you don't know what "`module_function`" is, follow the "warning" link above and scroll down a bit).
+
+We found that using class (static) methods only in a class is not recommended - use modules instead. And module is just a set of methods, grouped together by certain criteria. We use modules primarily for code duplication, and it is in line with Sandi Metz's advice "prefer duplication over the wrong abstraction". 
