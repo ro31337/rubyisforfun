@@ -1,0 +1,32 @@
+## The truth about Object-Oriented programming
+
+Object-Oriented programming was introduced as a tool with growing code complexity. One of the main goals of OOP is to avoid code duplication, simplify a system, make it more maintainable, and cut down development costs.
+
+However, there are other opinions as well. Some programmers think that "[code] duplication is far cheaper than the wrong abstraction". It sounds reasonable, because OOP is not only encapsulation, polymorphism and inheritance. It's also patterns and practices that have their own pros and cons.
+
+One might need not only theoretical knowledge, but also significant development experience in order to juggle and apply OOP principles. Often multiple programmers work on a single project at the same time, some of them leave, some of them join over the time. Is there any guarantee that all of them are familiar with all of these practices and can understand subtle details of OOP?
+
+Since there can't be standards here, folks with decent knowledge and software development experience might have their own opinions. These opinions can differ, and we end up with two camps of proponents and opponents of Object-Oriented programming.
+
+> Object oriented programs are offered as alternatives to correct ones...
+> Object-oriented programming is an exceptionally bad idea which could only have originated in California.
+
+Edsger W. Dijkstra, one of the most influential figures of computing science's founding generation in "TUG LINES", Issue 32, August 1989
+
+> Object-oriented programming offers a sustainable way to write spaghetti code. 
+...
+> The phrase "object-oriented” means a lot of things. Half are obvious, and the other half are mistakes.
+ 
+Paul Graham, computer scientist and programmer, entrepreneur, venture capitalist, author, and essayist, in  [The Hundred-Year Language](http://www.paulgraham.com/hundred.html), 2003.
+
+> Object-oriented programming, whose essence is nothing more than programming using data with associated behaviors, is a powerful idea. It truly is. But it’s not always the best idea. … Sometimes data is just data and functions are just functions
+
+Rob Pike, one of Go programming language designers.
+
+And so on...
+
+Ruby language offers fun and joy along with human-friendly syntax, and intentionally simplifies classic OOP you can see in C++ and Java. While this simplicity and freedom enables programmers to write code that often far from being perfect, practice and years have demonstrated that Ruby isn't only supports Object-Oriented approach, but can be effectively used in real business applications.
+
+The key to efficient object-oriented software is not to make applications design smarter, but make them simple. It's okay to compromise: duplication is not necessarily a bad thing, if concept and vision is still up in the air, why ignoring what actually works for now? Understanding of objects oriented concepts often comes with time.
+
+While building software keep in mind that a code has two readers: computer and human. Computer doesn't really care about how you create a program: if it works, it works. But a person on the other side of the monitor really cares what and how you create. So try to make it simple, don't make it smart. Making unreadable code is easy, making a code readable is hard.
