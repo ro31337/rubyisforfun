@@ -134,6 +134,7 @@ puts phone_to_number('555MATRESS') # should print 5556287377
  
 Sample image of phone keyboard:
 
+{width=70%}
 ![Phone keyboard](images/048-phone-keyboard.png)
 
 
