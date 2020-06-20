@@ -1,0 +1,117 @@
+## Debugging by using output to console
+
+It is one of the most efficient and easiest ways to debug a program. In any part of a program we can say:
+
+```ruby
+puts something.inspect
+```
+
+"`inspect`" method is implemented for every object. It returns string representation of an object. One might ask "why to use "`puts something.inspect`" while we always can "`puts something`"?
+
+Inspect is more verbose, and its purpose is, yes, to inspect. For example, "`puts nil`" and "`puts ""`" statements put empty line on the screen. While having "`.inspect`" gives you a better idea of what it is:
+
+```ruby
+$ pry
+> puts nil
+
+> puts nil.inspect
+nil
+> puts ""
+
+> puts "".inspect
+""
+```
+
+For programs that produce to your terminal lots of information (applicable to all Ruby on Rails application, for example) you might want to use the following trick:
+
+```ruby
+puts '=' * 80
+puts something.inspect
+puts '=' * 80
+```
+
+Code above will print "`=`" eighty times and then inspection of the variable on the next line. You can easily spot this debugging statement in a lengthy output of other unrelated debug messages. Below is such example, we can see that our "`something`" variables equals to "`123`":
+
+```
+   (11.7ms)  SELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/home
+  Rendered application/_header.html.erb (Duration: 10.5ms | Allocations: 762)
+   (7.0ms)  SELECT promises_stats.* FROM promises_stats
+  ↳ app/models/promise.rb:17:in `amount_sum'
+==================================================
+"123"
+==================================================
+  Rendered application/_footer.html.erb (Duration: 1.3ms | Allocations: 166)
+  Rendered home/index.html.erb within layouts/home (Duration: 4747.1ms | Allocations: 2147650)
+Completed 200 OK in 4765ms (Views: 4745.9ms | ActiveRecord: 7.0ms | Allocations: 2149461)
+```
+
+To "stop the world" at a certain point you can use "`raise`" statement. Ruby will generate "standard error" exception and program will terminate (the Rails framework will terminate only current request):
+
+```ruby
+puts '=' * 80
+puts something.inspect
+puts '=' * 80
+raise
+```
+
+Ruby is dynamically typed language, and it's not always possible to say where exactly this or another method is defined until you run a program. RubyMine IDE from Jetbrains (subscription based) has fantastic feature "Go to declaration" (usually Cmd+B shortcut on macOS and Ctrl+B on other operating systems). It allows you to jump to the place where method is defined. However, even sophisticated IDEs sometimes can't understand where the method is defined because of dynamic nature of Ruby runtime.
+
+In this case the following trick can be used:
+
+```ruby
+puts method(:something).source_location
+```
+
+If object has method "something", path will be displayed along with the line number.
+
+When code gets executed multiple times, single debugging statement can pollute your screen, so having conditional "`puts`" is useful:
+
+```ruby
+puts something.inspect if i == 100
+```
+
+Sometimes you want to print a stack trace. What is stack trace? Basically, the exact picture, evidence of how and why this particular line got executed. Use Ruby's "`caller`" statement, here is example of a program that returns exponentiation for a random number:
+
+{lang=ruby, line-numbers=on}
+```ruby
+def random_pow
+  pow(rand(1..10))
+end
+
+def pow(x)
+  puts "=" * 80
+  puts caller
+  puts "=" * 80
+  x ** 2
+end
+
+puts random_pow
+```
+
+Result:
+
+```
+========================================================
+-:2:in `random_pow'
+-:12:in `<main>'
+========================================================
+64
+```
+
+Stack trace has backwards output. As we can see, the first execution is happening on line 12 where we call "`random_pow`" method. The next is on the second line where we call "`pow`" method. And inside "`pow`" method we print stack trace with "`caller`" statement.
+
+JavaScript has similar syntax to print information to the console (also, this method can accept multiple parameters):
+
+```js
+console.log(some_variable);
+```
+
+"`console`" object also implements "`dir`" and some other methods that look similar and useful for debugging:
+
+```js
+console.dir(some_variable);
+```
+
+You can't debug Ruby programs with JavaScript, but it's always useful to compare implementation. We'll look closer into this option in the next chapters.

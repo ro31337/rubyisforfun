@@ -1,0 +1,17 @@
+## Debugging a program
+
+Debugging is a process of fixing bugs when you interact with active program rather than just only looking into a source code. When computers were quite simple, there was no need for a sophisticated debugger. Programmers used to write a code and look at results. If results were fine, then program was fine.
+
+You probably won't need a debugger for a simple program as well. However, when complexity grows, the probability of introducing a bug grows too. If you have only one "`if...else`" statement, you have only two code branches. With two such statements you multiple two by two. With three statements multiple this number again by two (4 * 2 = 8). In other words, for three statements we have eight combinations of a program flow. For ten "`if...else`" statements this number is 1024! And we're not considering user input.
+
+In other words, the number of ways a program might get executed grows exponentially, while the complexity of the program grows linearly. And the probability of introducing error increases over time.
+
+In real life programmers tend to debug programs the same amount of time they spend on creating these programs. That's why it is crucial to understand how debugger works, and how to debug a program.
+
+There are multiple ways of debugging a Ruby program, for example:
+
+* By using output to the console (with methods like "`puts`" and "`print`")
+* By using text console debugger
+* By using built-in graphical debugger integrated into interactive development environment (IDE)
+
+Let's take a closer look at these options.
