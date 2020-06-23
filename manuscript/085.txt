@@ -1,0 +1,114 @@
+## Debugging by using console debugger
+
+We're already familiar with Pry, which is another REPL (read-execute-print-loop). Pry implements more features rather than IRB (Interactive Ruby, standard REPL). With a little bit of extra effort Pry can be used as a console debugger. We'll look into basics of debugging with Pry. Knowing how to use this tool will save you a lot of time.
+
+If for some reason Pry is not installed on your system yet (you can check it with "`which pry`"), type simple installation command:
+
+```shell
+$ gem install pry pry-doc
+```  
+
+This command installs two gems: "pry" and "pry-doc". Last one is a plugin for "pry" (normally plugin names for Pry start with "pry-" prefix) and contains documentation about native Ruby methods.
+
+You can type Pry commands once Pry is executed with just typing "`pry`" in your terminal:
+
+```shell
+$ pry
+> help
+
+Help
+  help               Show a list of commands or information about a specific command.
+
+Context
+  cd                 Move into a new context (object or scope).
+  find-method        Recursively search for a method within a class/module or the current namespace.
+  ls                 Show the list of vars and methods in the current scope.
+  pry-backtrace      Show the backtrace for the pry session.
+  raise-up           Raise an exception out of the current pry instance.
+  reset              Reset the repl to a clean state.
+  watch              Watch the value of an expression and print a notification whenever it changes.
+  whereami           Show code surrounding the current context.
+  wtf?               Show the backtrace of the most recent exception.
+
+(and so on...)
+```
+
+You can get help for any command from the list above by adding "`-h`", for example:
+
+```
+[1] pry(main)> whereami -h
+Usage: whereami [-qn] [LINES]
+
+Describe the current location. If you use `binding.pry` inside a method then
+whereami will print out the source for that method.
+...
+```
+
+Look at the Ruby program that is supposed to raise a number to the second power, so for 2 result is 4, for 3 result is 9, for 4 is 16, and so on (this operation equals to multiplying number by self one time):
+
+```ruby
+def random_pow
+  pow(rand(1..10))
+end
+
+def pow(x)
+  x ^ 2
+end
+
+puts random_pow
+```
+
+Can you spot anything wrong above? Looks pretty legit: it generates random number and raises the number to the second power. However, it is weird. Give it a try. For example, it prints 6 when it shouldn't. Program can print only 1, 4, 9, 16, 25, 36, 49, 64, 81, 100.
+
+The program was made intentionally with the bug. Can you spot it? It's okay if you can't, that's why we need a debugger. Let's try to debug it together by applying technique from the previous chapter "Debugging by using output to console":
+
+{lang=ruby, line-numbers=on}
+```ruby
+def random_pow
+  pow(rand(1..10))
+end
+
+def pow(x)
+  puts "Pow parameter: #{x}"
+  x ^ 2
+end
+
+puts random_pow
+```
+
+We added line 6, and it is supposed to print the value we pass in into "`pow`" method. Here is the result of a sample run:
+
+```
+Pow parameter: 3
+1
+```
+
+Hm... Very strange. Input parameter is 3. The second power of 3 is 9, not 1. What's going on?
+
+When program is simple enough, the answer is obvious. However, when program is huge, and it's not easy to reproduce the bug with just running a program (for example, when you need to go though multiple steps like registration, email confirmation, and so on), debugging the program can be a hassle and can take some time.
+
+Programmers say we "need to set a breakpoint". When execution reaches to this certain point, the program will stop and will be ready for thorough investigation. By using some tools a programmer can try to find out what's going wrong at this exact breakpoint, what variables are, what's the parameters, how call stack looks like, and so on. In other words, there is going to be a context ready for review and manipulation, not only code and final result on the screen.
+
+Let's see how to set a breakpoint with Pry:
+
+{lang=ruby, line-numbers=on}
+```ruby
+require 'pry'
+
+def random_pow
+  pow(rand(1..10))
+end
+
+def pow(x)
+  binding.pry
+  x ^ 2
+end
+
+puts random_pow
+```
+
+We've set a breakpoint by adding two lines (1 and 8). First line requires gem "pry" to be included. For performance reasons installed gems aren't included in Ruby programs by default. so we need "`require ...`" statement. From Ruby's standpoint Gem is just a side code written by some enthusiast. So when we say "`gem install ...`", we download gems from Internet. And when we say "`require...`", we include already downloaded gem from some default place in our local filesystem.
+
+Highly likely that you'll deal with Ruby on Rails (RoR) framework in the future, and it has "`Gemfile`" support by default. You just need to add your gem names to this file, and if it's done correctly, RoR will load these gems automatically. 
+
+Line 8 in the listing above says to
