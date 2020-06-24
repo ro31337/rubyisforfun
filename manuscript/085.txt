@@ -111,4 +111,98 @@ We've set a breakpoint by adding two lines (1 and 8). First line requires gem "p
 
 Highly likely that you'll deal with Ruby on Rails (RoR) framework in the future, and it has "`Gemfile`" support by default. You just need to add your gem names to this file, and if it's done correctly, RoR will load these gems automatically. 
 
-Line 8 in the listing above says to
+Line 8 in the listing above has "`binding.pry`" statement. It's a special syntax indicating breakpoint: "stop the program at exactly this point and show debugger prompt".
+
+Note that before we were running Pry from the command line, but now we need to execute the program as we normally do:
+
+```shell
+$ ruby app.rb
+```
+
+Program started, Ruby found method definitions on lines 3 and 7 and the last line is the actual entry point which is "`puts random_pow`" (or "`puts(random_pow)`", or "`puts(random_pow())`" - as you already know, parenthesis are optional). In other words, we want to put a string on the screen, and it should be result of "`random_pow`" method, so Ruby starts with executing "`random_pow`" first.
+
+"`random_pow`" generates random number and calls "`pow`" where our breakpoint is:
+
+```
+$ ruby app.rb
+
+From: /Users/ro/work/book/app.rb @ line 8 Object#pow:
+
+     7: def pow(x)
+ =>  8:   binding.pry
+     9:   x ^ 2
+    10: end
+
+[1] pry(main)>
+```
+
+Arrow on the left shows where you are. You can type "`whereami`" Pry command to bring this screen back if you mixed up somehow and the listing has disappeared.
+
+So now, instead of empty Pry state we had by running "`pry`" from the terminal, we are inside of a running program! We have the state of the interrupted program, with all its memory, initialized variables, parameters, and so on. So exciting, it's like debugging a Robot and investigating what's on its mind! Here is what we can do:
+
+* See variables values (variable "`x`" in our case)
+* We can change variable values
+* We can call any method one or more times
+* We can paste some code from the clipboard and see how it works
+* We can execute the next line and go step by step gradually changing the state of a program
+
+Some useful Pry commands are: 
+
+* "`next`" executes the next statement (next line). After that you can read (and write) variables again.
+* "`exit`" to continue execution of a program. This command tells Pry to exit back to the program. The better name for this command would be "continue".
+* "`exit!`" - hard exit, stop execution right now and go back to the terminal.
+* "`whereami`" - where am I? Shows the debugger prompt with arrow pointing to the current line.
+
+These are essential commands, and there is more (type "`help`" to see the list, but you probably won't need them for this chapter).
+
+So, how do we find the bug we were talking about? Let's print "`x`" variable and then type in "`x ^ 2`" and see what happens:
+
+```
+[2] pry(main)> whereami
+
+From: /Users/ro/work/book/app.rb @ line 8 Object#pow:
+
+     7: def pow(x)
+ =>  8:   binding.pry
+     9:   x ^ 2
+    10: end
+
+[3] pry(main)> x
+2
+[4] pry(main)> x ^ 2
+0
+```
+
+That's rather interesting! We found that "`x`" equals to 2, and result of "`x ^ 2`" is zero. It is not something we expected. We expect to see 4, not zero. So we were able to identify the problem line. And there was no need to run the program multiple times.
+
+Statement "`x ^ 2`" is syntactically correct, but in Ruby language it won't raise the number to the second power. "`^`" operator is used to perform "exclusive-or". But in some other programming languages it is "raise to the Nth power" operator, but in Ruby one should use "`**`" for that. Here is correct version of the program:
+
+```ruby
+def random_pow
+  pow(rand(1..10))
+end
+
+def pow(x)
+  x ** 2 # THIS LINE HAS BEEN FIXED 
+end
+
+puts random_pow
+```
+
+We're familiar with Pry basics now. From now on, if you face a bug, you know what to do: set a breakpoint and go step by step examining your variables.
+
+To conclude, there is another useful, but not very well known command: "`system('reset')`". It's not a Pry command: "`system`" is reserved Ruby method that runs a system command. And "`reset`" is command to reset your terminal settings to default (not to reset your computer). Typing "`system('ls')`" resulting in printing the list of files in current directory, and "`system('pwd')`" prints working directory (p.w.d.).
+
+Running "`man reset`" in your terminal (manual for "`reset`" command) says "initialize a terminal..."
+
+But why do we need it and why one would want to call "`reset`" from Pry? If you're working on small programs you will probably never need it. However, large Rails applications have multiple gems which can inadvertently pollute your terminal and change its settings (for example, when you type, but don't see yourself typing). Use "`system('reset')`" to bring back default terminal settings without restarting the terminal. You can also do it by omitting "`system`" and wrapping actual command in backticks:
+
+```
+[1] pry(main)> `reset`
+
+(screen cleared)
+
+""
+[2] pry(main)> whereami
+...
+```
