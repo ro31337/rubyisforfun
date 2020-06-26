@@ -1,0 +1,37 @@
+## Debugging with IDE
+
+Until now we've been using only console tools for debugging. Many programmers prefer to use console tools, not only debuggers, but also text editors like Vim, Emacs, and other application.
+
+The advantage of console tools is that they work at any "host": on developer's computer or on remote Linux server (which often is used for purposes of serving clients, not for development). In other words, knowing how these tools work allows you to debug a program not only locally, but remotely as well, one needs only SSH connection.
+
+However, convenience of IDE debugging has been deeply appreciated. Authors of this book do not use IDE debugging quite often, but it's something definitely worth mentioning. Here is how RubyMine IDE looks like:
+
+{width=100%}
+![Debugging with IDE](images/086-ide-debug.png)
+
+As you can see from the image above there is no need for "`binding.pry`" and "`gem install pry`", normally IDE will take care of this magic. With a mouse pointer you can activate breakpoint: you'll see the red circle on the left. You can also start debugging from the menu:
+
+{width=40%}
+![Running debugger from the menu](images/086-start-debugging.png)
+
+When debugger has been started and the flow of a program has been successfully interrupted at the breakpoint, we can do the same things we already did with Pry, like:
+
+* Going to the next line (F8 instead of "`next`")
+* Adding other breakpoints
+* Using advantages of the IDE. For example Cmd+B on MacOS (or Ctrl+B on Linux/Windows) to go to the method definition.
+
+Using IDE debugger is somewhat easier than using Pry. However, there can be some dance around setting this up. Some options are located not in the very obvious places:
+
+{width=100%}
+![RubyMine settings](images/086-rubymine-settings.png)
+
+From the other side, it's a matter of habit. RubyMine requires subscription and customer support is always ready to answer your question.
+
+At the moment of writing there is also a free way of installing RubyMine available. It can be done though an EAP - Early Access Program. You will need to install Jetbrains Toolbox first to unlock this feature. After that, icon of the app with "EAP" label can be picked up from the dropdown menu:
+
+{width=50%}
+![Installing RubyMine EAP](images/086-jetbrains-toolbox.png)
+
+You might need to update this tool the similar way every month or so.
+
+The similar debugging functionality is available through free and open source tool called VsCode (Visual Studio Code, not to confused with Visual Studio) from Microsoft.
