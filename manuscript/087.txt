@@ -1,0 +1,135 @@
+## Practice: save the world with Ruby
+
+At this point we know how Ruby debugger works, so we can not only create programs, but debug them as well. Debugger allows to interrupt a program and examine internals, and it means we can observe the execution flow, also without interfering with it.
+
+Imagine you are building a program that tries to download something from Internet. Everything looks correct, but there is always some uncertainty when it comes to a server reply. Server can generate error. Sometimes there is no Internet connection. Sometimes you're getting response in unexpected format, and so on. In this cases it is useful to set a breakpoint and look at the response.
+
+In this chapter we're going to practice. Machines took over the world. Your name is John, and you should save the universe. In order to do that, you should reach the central server and type correct password. However, you know only the username: "`admin`". You will need to hack the password.
+
+For this exercise you're going to install Docker (also known as "Docker for developers" or "Docker community edition (CE)"). You can download Docker from [official website](https://www.docker.com/get-started) for Windows and Macs. There is also Linux instructions, which can be summed up to:
+
+```shell
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+```
+
+You might need to restart your computer and/or terminal. Make sure Docker works by checking its version:
+
+```shell
+$ docker -v
+Docker version 17.06.2-ce, build cec0b72
+```
+
+Once Docker is installed, we can start our training host. Theory behind it is that Docker is virtualization platform. It allows to execute mini-operating systems inside your own operating systems. These operating system are based on Linux images. In other words, one can run hundreds of miscellaneous Linux servers. But how this need has emerged?
+
+The fact is programmers often deal with numerous third-party software, like databases, web servers, caching systems, and so on. Complexity of software products is increasing, and for local development purposes you might need to install multiple versions of, let's say, the same database. Only problem is that  two versions can be incompatible. What would you do?
+
+The rescue came from Docker. It allows to run fully isolated software inside these mini-operating systems. Since they're isolated, you can run as many of them as you need to. With the help of command line parameters you can specify port numbers to listen to (like 1234,or 5555) without being worried about what's going on inside these containers.
+
+Such image was created for your convenience by author of this book. You can download and safely execute it with the following commands:
+
+```shell
+$ docker rm xxx; docker run -it --name xxx -p 4567:4567 ro31337/rubybook-save-the-world
+```
+
+Command above actually contains two commands:
+
+* "`docker rm xxx`"  - remove container by the name "`xxx`". If it doesn't exist, Docker will generate the error "_Error: No such container: xxx_" - just ignore it.
+* "`docker run -it --name xxx -p 4567:4567 ro31337/rubybook-save-the-world`" - downloads and runs the container, while mapping the port from inside of the container to your local network interface.
+
+(These two commands are separated with "`;`" and not with "`&&`" intentionally. If first command fails, the second one gets executed anyway)
+
+Output of the command above (hit Ctrl+C to stop the container, but don't hurry - we'll need to access it from the browser below):
+
+```
+Unable to find image 'ro31337/rubybook-save-the-world:latest' locally
+latest: Pulling from ro31337/rubybook-save-the-world
+...
+Digest: sha256:bb0eb57fb52db2be2214d978cb304101b3cb883ccc454c1ad97faee84b088b0d
+Status: Downloaded newer image for ro31337/rubybook-save-the-world:latest
+[2018-08-15 02:25:13] INFO  WEBrick 1.4.2
+[2018-08-15 02:25:13] INFO  ruby 2.5.1 (2018-03-29) [x86_64-linux]
+== Sinatra (v2.0.3) has taken the stage on 4567 for development with backup from WEBrick
+[2018-08-15 02:25:13] INFO  WEBrick::HTTPServer#start: pid=1 port=4567
+```
+
+Open up your browser at [http://localhost:4567/](http://localhost:4567/) and you'll see the following prompt:
+
+{width=100%}
+![Protected area we need to get access to](images/087-protected-area.png)
+
+What we can do here is just to type login and incorrect password, since the right password is unknown (give it a try). But how do we get the right password?
+
+The very first thing we need is the most commonly used passwords file. It's already available at our host at [http://localhost:4567/passwords.txt](http://localhost:4567/passwords.txt) - there is 10 thousand different password like "love", "god" and so on. You can grab this file to your local file system with wget command (or just save the file from your browser):
+
+```
+$ wget http://localhost:4567/passwords.txt
+```
+
+We know for sure that one of these passwords is correct. Think about how you can utilize your Ruby language knowledge and advance further?
+
+The first step would be iteration (loop) over every password in this list. We need to store the current password in some kind of a variable so we can perform comparison later. So how one would iterate over each line in a text file ("`passwords.txt`" in our case)?
+
+There are many ways to iterate over each line in a text file:
+
+* Read the entire file into memory as a single string and split this string into array of strings with "`split("\n")`"
+* Get the array of lines from a file, and iterate over array
+* Use already existing method for this purpose: read lines one by one from a text file
+
+All of the above ways can be implemented by a programmer. We'll stick to the last option, because it won't read the entire file into memory, but reads lines one by one. Imagine that you have a very large file (few gigabytes, for example). Why would you inefficiently use computer memory to read this file at once instead of reading it by chunks?
+
+Hold on, careful reader might say, we'll need to read the file into memory anyway, and while reading it Ruby will produce string objects for every single line in the file. That's true. However, after accessing these objects and redefining variable value, those will be marked as "garbage". Ruby does some background garbage collection, and will free up the memory taken by garbage, unused objects. So the memory consumption will remain at about the same level.
+
+This probably doesn't matter for files like we have (with the size of about 10KB), but it's important to think about computer resources in a way so they're not consumed in a wasteful manner.
+
+Look at the "`each_line`" method from [IO class](http://ruby-doc.org/core-2.5.1/IO.html#method-i-each_line ) (which stands for input-output). Fore we move further, try to do the following exercise.
+
+X> ## Exercise
+X> Without looking to solution below use the provided documentation link and implement the program that reads lines from a file one by one and prints the length of every single line.
+
+Below is the code of such program, it reads "`passwords.txt`" and prints the line size:
+
+```ruby
+File.new('passwords.txt').each do |line|
+  password = line.chomp
+  puts password.size
+end
+```
+
+Result of running the program:
+
+```
+$ ruby save_the_world.rb
+...
+6
+5
+8
+6
+6
+```
+
+Yay! We got something on the screen. However, the real programmer never believes herself (himself). You need to make sure that it works, you need to perform some additional validations. Let's use pipe method from our shell. With the pipe symbol "`|`" we can redirect the output to somewhere else. For instance, to "`wc -l`" command.
+
+"`wc`" manual ("`man wc`") says that "`-l`" flag is used to count the number of lines. In other words, POSIX operating systems (MacOS, Linux, but not Windows) should have this command available, and we should be able to calculate the number of lines in standard input. In our case it should print 10000.
+
+Let's give it a try:
+
+```
+$ ruby save_the_world.rb | wc -l
+   10000
+```
+
+Looks good, but what about the number of lines in "`passwords.txt`"?
+
+```
+$ cat passwords.txt | wc -l
+   10000
+```
+
+Looks good as well.
+
+
+
+
+
+
