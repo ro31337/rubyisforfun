@@ -114,22 +114,83 @@ Yay! We got something on the screen. However, the real programmer never believes
 
 Let's give it a try:
 
-```
+```shell
 $ ruby save_the_world.rb | wc -l
    10000
 ```
 
 Looks good, but what about the number of lines in "`passwords.txt`"?
 
-```
+```shell
 $ cat passwords.txt | wc -l
    10000
 ```
 
-Looks good as well.
+Looks good as well. Since "`ruby save_the_world.rb`" prints the line sizes one by one, let's print the last five lines to make sure the output makes sense:
 
+```shell
+$ tail -5 passwords.txt
+eighty
+epson
+evangeli
+eeeee1
+eyphed
+```
 
+Compare lengths of these lines to the output we have:
 
+```
+6
+5
+8
+6
+6
+```
 
+Looks good. Recommendation is that every time you step forward through your solution, make sure the current step is correct. It's like computer game: move forward, save. If something goes wrong, roll back to the previous save point.
 
+The mistake a beginner programmer could had made here is to forget "`chomp`". And output in this case is different: "`...8, 7, 10, 8, 8`", and it's two characters more in every word. "`passwords.txt`" has non-standard line endings for POSIX (macOS, Linux) systems: CRLF (or "`\r\n`") instead of LF ("`\n`").
+
+The next step is to submit data to the server. Let's dig into how it looks like when a user types in some data. We'll need Chrome browser. Open up the [http://localhost:4567](http://localhost:4567).
+
+Open context menu (right click or click with two fingers on an empty space) and pick "Inspect" from the drop down menu:
+
+{width=50%}
+![Chrome context menu](images/087-inspect.png)
+
+You'll see Chrome Developer Tools panel at the bottom::
+
+{width=100%}
+![Chrome Developer Tools](images/087-chrome-dev-tools.png)
+
+It is very powerful tool that has elements navigator ("Elements" tab, active on the image above), JavaScript console (REPL, "Console" tab), debugger ("Sources" tab), network packet view tool ("Network" tab) and other utilities.
+
+Depending on your computer screen you can dock this panel to different parts of the screen, or bring it as a separate window:
+
+{width=50%}
+![Chrome Developer Tools dock options](images/087-dock-it.png)
+
+What we need is "Network" tab where we can look closer into network connections happening in the browser. Open up this tab, fill out login and password on the page (you can type "admin" and "123456" as a password) and hit "Login" button. You'll see the message about incorrect username and password (it is expected, nothing wrong with it) on the page and the line with 200 status code below:
+
+{width=100%}
+![Network tab in Chrome Developer Tools](images/087-network-tab.png)
+
+Selecting this line gives you the parameters of the query:
+
+{width=60%}
+![Query parameters](images/087-query-params.png)
+
+We need these:
+
+* Request URL (also known as "endpoint"): `http://localhost:4567/login`
+* Request method (or just "method"): `POST`
+* `username`
+* `password`
+
+Unfortunately, Chrome Developer Tools doesn't show you original query as a plain text. However, tools like Fiddler (for Windows) or Charles Proxy (macOS) can show the raw data:
+
+{width=100%}
+![Charles Proxy shows the raw HTTP request](images/087-charles-proxy.png)
+
+If we connect from a simple tool like telnet and send the _text_ you see on the right, you'll give exactly the same answer. This is basically how browsers work, most of the time they operate with text request and responses.
 
