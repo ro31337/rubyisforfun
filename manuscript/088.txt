@@ -42,12 +42,12 @@ While working with Docker it's crucial to distinguish between "container" and "i
 
 With having this picture in mind it is much easier to understand how Docker actually works. We do not intend to provide you a comprehensive Docker guide, but some essential commands are always useful. If you don't know what Docker is, there is a very high change you'll hear about it in the future:
 
-* `docker version` - show docker version
-* `docker ps` - show the list of running containers (similar to `ps` shell command)
-* `docker ps -a` - show all containers (not only running containers)
-* `docker images` - show the list of images
-* `docker rm container_name` - remove container by name
-* `docker rm f767ff6ecebf` - remove container by ID
+* "`docker version`" - show docker version
+* "`docker ps`" - show the list of running containers (similar to `ps` shell command)
+* "`docker ps -a`" - show all containers (not only running containers)
+* "`docker images`" - show the list of images
+* "`docker rm container_name`" - remove container by name
+* "`docker rm f767ff6ecebf`" - remove container by ID
 
 Example of a command to start a container (we already did it in the previous chapter):
 
@@ -59,8 +59,8 @@ Use "`docker run --help`" to get the help for "run" or any other command.
 
 Also, here are some useful combinations of commands/parameters (used below):
 
-* `docker ps -a -q` - show all container identifiers in a quiet mode (list only).
-* `docker images -q` - show all images identifier in a quiet mode (list only).
+* "`docker ps -a -q`" - show all container identifiers in a quiet mode (list only).
+* "`docker images -q`" - show all images identifier in a quiet mode (list only).
 
 The most useful script to fix things up if you messed up something and want to start from scratch. These three commands will stop and remove all containers and images:
 
