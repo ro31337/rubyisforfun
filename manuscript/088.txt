@@ -21,17 +21,18 @@ Sometimes Vagrant is used as development environment operating system. You can c
 
 Imagine it is your first day as a programmer, you're getting new computer and instructions and it says:
 
-> Dear friend! Welcome to the team. We're working on Project X, it is Ruby On Rails web application. You need to install and configure the following tools before you can start working on the project:
-> - MySQL, time burden is ~1 hour
-> - Ruby, Node.js, rvm, nvm, time burden is ~3 hours
-> - Redis (20 minutes)
-> - Git and related tools like git-lfs, ~1 hour
-> - Clone the latest code
-> - Run commands to seed the database
+_Dear friend! Welcome to the team. We're working on Project X, it is Ruby On Rails web application. You need to install and configure the following tools before you can start working on the project_:
+
+* _MySQL, time burden is ~1 hour_
+* _Ruby, Node.js, rvm, nvm, time burden is ~3 hours_
+* _Redis (20 minutes)_
+* _Git and related tools like git-lfs, ~1 hour_
+* _Clone the latest code_
+* _Run commands to seed the database_
 
 Every item in the list has its own instructions for a human. Where to go, where to download, which parameters you need to specify and so on. More professional team would provide you the better instructions, like:
 
-> Dear friend! Welcome to the team. We're working on Project X, it is Ruby On Rails web application. So you can start you need to install Vagrant, download this Vagrantfile and run "`vargant up`". It will take some time to provision guest OS, but it is going to happen automatically while you can read some manuals and enjoy your coffee. Once everything is done, you'll see the app. If something goes wrong, we won't put a blame on you, because we want to unify our development environment provisioning, it's our standard for everyone on the team. We keep this Vagrant file in a good shape, so everyone has exactly the same experience!
+_Dear friend! Welcome to the team. We're working on Project X, it is Ruby On Rails web application. So you can start you need to install Vagrant, download this Vagrantfile and run "`vargant up`". It will take some time to provision guest OS, but it is going to happen automatically while you can read some manuals and enjoy your coffee. Once everything is done, you'll see the app. If something goes wrong, we won't put a blame on you, because we want to unify our development environment provisioning, it's our standard for everyone on the team. We keep this Vagrant file in a good shape, so everyone has exactly the same experience!_
 
 Third approach (and the most commonly used) is virtualization through Docker. We're already familiar with this approach a little bit. Docker allows to run lightweight containers which were made for virtualization purposes. For example, Linux Alpine is only 5 MB docker image. So on one machine you can run tens or even hundreds such lightweight containers.
 
