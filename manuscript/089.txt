@@ -1,0 +1,148 @@
+## Ruby Version Manager (RVM)
+
+Information in this chapter is very important for a Ruby beginner. Probably it would worth to keep it at the beginning of the book. However, it can take some time to digest the information about RVM, and our focus was on a quick start. Now when you know how Ruby works and (hopefully) did a lot of exercise, you can exercise with setting up some useful tools.
+
+RVM is a thin layer for your shell (which is "bash", but hopefully [Oh-My-Zsh](https://ohmyz.sh/)) or IDE. Every programmer often runs Ruby app with "`ruby app.rb`", but where the actual "`ruby`" comes from? Let's look at the "`which`" command output when RVM isn't installed:
+
+```shell
+$ which ruby
+/usr/bin/ruby
+```
+
+So Ruby programming language is just a binary executable file located at "`/usr/bin/ruby`". Here is how it looks like when you open this file with Far Manager:
+
+{width=100%}
+![Ruby binary](images/089-ruby-binary.png)
+
+If you delete the file, you won't be able to run Ruby programs. But how does the shell know that Ruby needs to be started from "`/usr/bin`" directory? Look at the `$PATH` environment variable for your shell (your output can be slightly different):
+
+```shell
+$ echo $PATH
+/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+```
+
+So `$PATH` variable has multiple directories, separated by "`:`" (colon):
+
+* `/usr/local/bin`
+* `/usr/bin` (where "`ruby`" is actually located)
+* `/bin`
+* `/usr/sbin`
+* `/sbin`
+
+When you type "`ruby`" command, your shell tries to find the file in the first directory. If the file wasn't found, it iterates over the next directories until the file is found. One can redefine this variable such a way, so shell looks up the file somewhere else first (you're getting it right, you need to prepend new directory to the `$PATH`, not to append). But where you should do that?
+
+All shells (bash, zsh, etc) keep its settings in home directory. You can find out what's your home directory by typing "`echo $HOME`" or "`echo ~`". Bash keeps settings in "`.bashrc`" dot-file in home directory.
+
+In POSIX/UNIX-compatible systems (not on Windows) "Dot-file" is a file prefixed with dot, and "hidden" by default. It's not visible with "`ls`" command, but visible with "`ls -a`" ("list all"). Dot-files in Windows aren't hidden, and visibility is controlled by so-called file attributes. There is Ctrl+A combination in Far Manager to control this attribute on Windows (for Far Manager on POSIX/UNIX-compatible systems this dialog is slightly different).
+
+Zsh settings can be found at home directory in "`.zshrc`" file (full path is "`~/.zshrc`"). `$PATH` environment variable almost always defined in dot-files that keep settings for your shell.
+
+But why do we need RVM and all of that jazz?
+
+We already know that Ruby is a standalone program located somewhere on your disk. But what if new version is released? The fact is that releases are happening quite often, and new versions have new features, improved performance, and so on. We were talking about Ruby language, but what was the actual language on your system? You can get the version banner with the following shell command:
+
+```shell
+$ ruby -v
+ruby 2.6.1p33 (2019-01-30 revision 66950) [x86_64-darwin16]
+```
+
+"System" Ruby is the "`ruby`" located in your "`/usr/bin`" directory and ships with your operating system.
+
+However, it's not the case for Windows, and the latest news for the macOS 10.15 say:
+
+> Scripting language runtimes such as Python, Ruby, and Perl are included in macOS for compatibility with legacy software. Future versions of macOS won’t include scripting language runtimes by default, and might require you to install additional packages. If your software depends on scripting languages, it’s recommended that you bundle the runtime within the app. 
+
+Moreover, system Ruby often isn't the latest Ruby released, there is probably newer version with new features and performance improvements. But how do you know that's the latest version?
+
+Hold on for a moment, you probably won't like the latest-latest Ruby. It doesn't mean that new versions are always bad. The very latest versions are almost always "nightly builds". All changes that were introduced during the day go the single branch and get built automatically.
+
+Side note: compilation is translation of the source into machine language. Programs written with Ruby language don't get compiled, but interpreted: we run Ruby programs with "`ruby app.rb`", not just "`./app`". So there is no such a thing as build for Ruby programs. However, lots of programmers do refer to "build" as to successful run of all the tests, sometimes with some magic to additional assets like images, CSS files, and so on. But the Ruby itself is written with C. As could be seen if you call "`show-method loop`" in Pry (you might need to install pry-doc with "`gem install pry-doc`"):
+
+```
+$ pry
+[1] pry(main)> show-method loop
+
+From: vm_eval.c (C Method):
+Owner: Kernel
+Visibility: private
+Number of lines: 6
+
+static VALUE
+rb_f_loop(VALUE self)
+{
+    RETURN_SIZED_ENUMERATOR(self, 0, 0, rb_f_loop_size);
+    return rb_rescue2(loop_i, (VALUE)0, loop_stop, (VALUE)0, rb_eStopIteration, (VALUE)0);
+}
+```
+
+So the nightly builds for Ruby language itself actually exist. But for Ruby programs programmers often refer to "build" as to successful execution of all the tests with some extra magic.
+
+For the record, popular Firefox browser is available as nightly builds. Here is what nightly build is, according to [Firefox developers](https://wiki.mozilla.org/Nightly):
+
+> Every day, Mozilla developers write code that is merged into a common code repository (mozilla-central) and every day that code is compiled so as to create a pre-release version of Firefox based on this code for testing purposes, this is what we call a Nightly build. Once this code matures, it is merged into stabilization repositories (Beta and Dev Edition) where that code will be polished until we reach a level of quality that allows us to ship a new final version of Firefox to hundreds of millions of people.
+
+In addition, there are also "preview" builds. The difference between nightly and preview is that the latter is more stable. But what we're really interested in is "stable" or "LTS" build. In other words, there are different kinds of builds:
+
+* nightly build
+* preview
+* alpha
+* beta
+* stable
+* LTS (long-term support) - not really a build, more like a version tag
+
+To find out what's the latest stable is, go to [official Ruby language downloads](https://www.ruby-lang.org/en/downloads/) and scroll down a bit to see "Stable releases section". You can download it right from the website. It comes as "tar.gz" archive, use the following command to unpack it:
+
+```
+$ tar xzf ~/Downloads/ruby-X.Y.Z.tar.gz
+```
+
+Don't forget to change "X.Y.Z" to the Ruby version you've downloaded. After unpacking this file you'll see directory with the source code. You can "`cd ruby-X.Y.Z`" and "`ls -lah`" to see contents. You can't run the source code, so you need to build the Ruby so you have executable "`ruby`" file. You can do it with running "`./configure`" and "`make`":
+
+```
+$ cd ruby-X.Y.Z
+$ ./configure
+checking for ruby... /usr/bin/ruby
+tool/config.guess already exists
+tool/config.sub already exists
+checking build system type... x86_64-apple-darwin17.6.0
+checking host system type... x86_64-apple-darwin17.6.0
+checking target system type... x86_64-apple-darwin17.6.0
+checking for clang... clang
+checking for gcc... (cached) clang
+...
+$ make
+    CC = clang
+    LD = ld
+...
+```
+
+At the end you'll end up with "`ruby`" file in your current directory. You can run the file to check the version:
+
+```shell
+$ ./ruby -v
+ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin17]
+```
+
+Prefix "`./`" says that the file needs to be executed from the current directory, not from the file located in one of the `$PATH` directories. Compare the following with what's written above:
+
+```shell
+$ ruby -v
+ruby 2.3.3p222 (2016-11-21 revision 56859) [universal.x86_64-darwin17]
+```
+
+If you do "`sudo make install`", you'll replace your system Ruby with newly compiled version. However, on macOS it will probably end up in "`/usr/local/bin`", while the system Ruby is in "`/usr/bin`". It shouldn't be a problem, because "`/usr/local/bin`" goes before "`/usr/bin`" in `$PATH`.
+
+You might need to restart the terminal, or "`source ~/.bashrc`", "`source ~/.zshrc`", depending on your shell.
+
+Would you agree that all of that was somewhat complicated? Why the Ruby team did things this way? The answer is that there is only one Ruby, but many operating systems. Not only Windows, macOS, Linux, but also different versions of these operating systems. Every operating system has its own settings, related to performance, for example. So Ruby can take advantage of these settings, one need to build Ruby on exactly the same computer that you have (or on your own). Also, CPUs can differ for the same operating system. And one CPU optimization can work on one computer, but won't work on another. For example, when one computer is newer, and another is older.
+
+We've built Ruby language, replaced the system Ruby with newer version, and we won't have to go through all of that again. Great! Hold on a second, there is one more thing. It's not always that easy in software development world (and it's why we're getting paid a lot as programmers).
+
+You have probably already noticed that version is represented by three numbers. Not the Ruby 1, 10, 42. But Ruby 2.3.3, Ruby 2.5.1, and so on. Why do we need three numbers instead of just one?
+
+There is such thing as "Semantic Versioning".
+
+
+
+
+
