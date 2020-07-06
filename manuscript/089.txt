@@ -140,7 +140,155 @@ We've built Ruby language, replaced the system Ruby with newer version, and we w
 
 You have probably already noticed that version is represented by three numbers. Not the Ruby 1, 10, 42. But Ruby 2.3.3, Ruby 2.5.1, and so on. Why do we need three numbers instead of just one?
 
-There is such thing as "Semantic Versioning".
+There is such thing as [Semantic Versioning](https://semver.org/) (or SemVer). The summary says:
+
+_Given a version number MAJOR.MINOR.PATCH, increment the:_
+
+* _MAJOR version when you make incompatible API changes,_
+* _MINOR version when you add functionality in a backwards compatible manner, and_
+* _PATCH version when you make backwards compatible bug fixes._
+_Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format._
+
+For Ruby 2.3.1, the major is 2, the minor is 3, and the patch is 1. We'll look closer into this, because it is important.
+
+Software development process can include:
+
+* bug fixes - patch version is increasing
+* adding features and improvements, minor version is increasing
+* breaking (not compatible with previous release) changes were introduced, major version is increasing
+
+While we fixing bugs, the program logic mostly stays the same. Two versions may differ, but not that much. Two versions of Ruby would have one or more bug fixes. You can drop-in replace one version with another and everything will work exactly the same way. Developers increase patch number because they want to emphasize that new version is better, it has more fixes.
+
+Let's say we had version "0.1.0" (recommended initial version in SemVer), and new version is "0.1.1". It means something was fixed, and "0.1.1" is better. Or, for example, we had version "0.1.9", and the new one is "0.1.10". Something was fixed in "0.1.9", and patch number was increased by 1. In fact, you can replace "0.1.10" with "0.1.0", and nothing serious should happen (except unfixed bugs, of course).
+
+While improving functionality or introducing features, old versions do not have this functionality or features. What does it mean for Ruby?
+
+Say, new version has "`yeah`" operator that prints "Oh, yeah!". We use this new feature to create a program that works. But for some reason we roll back to the previous version. But the old Ruby doesn't implement "`yeah`" and our program won't work, we're get---ting error now!
+
+So to let others know that this version is new, and you can't roll back, we increase the minor version (the number in the middle), and at the same time we drop the patch number to zero. For example, an app version will increase from "0.1.10" to "0.2.0". New version will increase all the patches from the previous one. Since new version has new features, minor number was increased by 1.
+
+If you look at Ruby, versions 2.3.3 and 2.5.1 differ by 2 minor releases. It means that we had 2.4.x, and later on some new features we release in 2.5.x. If you write a program that uses 2.5.x-specific language features, it won't work on versions below this number, like 2.4.x, 2.3.x and so on.
+
+Major version can be increased in the following cases:
+
+* When software is ready for production, major version can be increased from 0 to 1.
+* When breaking changes have been introduced, the version can be increased from 1 or above by 1.
+ 
+Often developers say that this change "breaks backwards compatibility": programs written with new Ruby most likely won't work while executed with the previous version.
+
+But that's the worst case. When major version of Ruby is released, we often have instructions on how to upgrade already existing software to the new Ruby.
+
+This raises some philosophical aspects of software development, especially when it comes to computer languages or frameworks. What would be your long-term release strategy?
+
+* Would you go fast, break things, and don't look back?
+* Or would you be more conservative, support old versions, because there is plenty of already existing code out there, and nobody is going to rewrite it only because new language/framework has been released?
+
+Many development teams try to find the balance. They're open about what versions are maintained, which versions are LTS (have long-term support), which versions are EOL (end of life), which versions are in security maintenance phase (have only security bug fixes). Anyway, Ruby doesn't stay still, companies have to upgrade their Ruby versions. Nobody wants to deal with EOL Ruby version, because it's much easier to upgrade gradually over the time, step by step. And that's why we, as programmers, are getting paid to do these upgrades (and our unit tests here come into play and help us a lot).
+
+We've figured out the source of issues related to the Ruby language growing and getting more fun and performant. And businesses have reasonable questions: "okay, Ruby language exists in multiple versions. Some projects can be upgraded to the latest, some require more time and money. But the system Ruby is always the same! What would we do if we have two projects? One project requires new version, and another requires older Ruby. What if these two projects need to talk to each other (micro-service architecture), and we need to keep it running on the same computer?"
+
+Solution to the problem is quite simple and little bit smart: we'll create directories where we'll keep all Ruby versions:
+
+* 2.5.1
+* 2.3.3
+* 2.0.0
+
+and so on. Every Ruby binary is going to be named as "`ruby-2.5.1`", "`ruby-2.3.3`", and so on. Instead of running "`ruby app.rb`", we'll be running "`ruby-2.5.1 app.rb`". It's that simple. But there is one more thing...
+
+Besides "`ruby`", there is also "`gem`" binary (type "`which gem`" to locate the binary, for system Ruby it should be in "`/usr/bin/gem`"). We use "`gem`" to install "gems" (libraries) available at [RubyGems](https://rubygems.org/) that were written by people like you and me from around the world. Being downloaded, these files live somewhere on your local filesystem.
+
+Every gem has a parameter called "`required_ruby_version`". So if you installed a gem for 2.5.1, there is a chance that this gem won't work for 2.3.3. So along with directories for rubies, somehow we need to create directories for gems as well. Turns out that it's impossible to have multiple Ruby versions?
+
+It is possible. If we continued to experiment, we would find the way to keep multiple rubies on our filesystem, and all them would work seamlessly without a hassle. As you can imagine, this problem already existed a long time ago, when developers realized they need multiple rubies, and some way to switch between them. This is how Ruby Version Manager (RVM) was born.
+
+RVM is not unique, the similar concepts with slightly different variations exist for other languages as well. There is NVM for Node.js, Node Version Manager. We'll look closer into RVM, but the fundamentals are the same.
+
+Installation. Instructions are available at [RVM website](https://rvm.io/) and short summary explains what it is:
+
+> RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
+
+You need to run these two commands to install RVM:
+
+```
+$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+$ \curl -sSL https://get.rvm.io | bash -s stable
+```
+
+Installation log says:
+
+```
+Installing RVM to /Users/ro/.rvm/
+	Adding rvm PATH line … /Users/ro/.bashrc /Users/ro/.zshrc.
+	Adding rvm loading line to ... /Users/ro/.bash_profile /Users/ro/.zlogin.
+Installation of RVM in /Users/ro/.rvm/ is almost complete:
+
+  * To start using RVM you need to run `source /Users/ro/.rvm/scripts/rvm`
+	in all your open shell windows, in rare cases you need to reopen all shell windows.
+```
+
+It recommends to run "`source /Users/ro/.rvm/scripts/rvm`" (your path is probably different) if you want to use RVM right now without restarting a terminal. Now we can run RVM to see its version:
+
+```
+$ rvm -v
+rvm 1.29.4 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
+```
+
+Or help:
+
+```
+$ rvm --help
+
+Usage:
+
+	rvm [--debug][--trace][--nice] <command> <options>
+
+  for example:
+
+	rvm list            	# list installed interpreters
+	rvm list known      	# list available interpreters
+	rvm install <version>   # install ruby interpreter
+	rvm use <version>   	# switch to specified ruby interpreter
+	rvm remove <version>	# remove ruby interpreter
+	rvm get <version>   	# upgrade rvm: stable, master
+...
+```
+
+RVM installer modified `$PATH` variable we mentioned above, and installed itself into "`~/.rvm`" directory (you can see what's inside with "`ls -lah ~/.rvm`"). RVM has hijacked the `$PATH`, prefixing it with its own directories, and will feed you this or another Ruby language depending on certain circumstances. What what exactly are those circumstances that define which Ruby version is going to be used at the moment?
+
+Here is the magic of RVM comes into play, and some people don't like RVM because of this magic. RVM will replace the "`cd`" (change directory) command of your shell. When you change a directory, RVM tries to detect which Ruby needs to be used right now. The detection algorithm is rather simple and explained below, but RVM has two options when directory gets changed:
+
+* Silently (or almost silently) feed you the right Ruby version so you won't notice anything.
+* Don't do anything.
+
+But how does RVM know what version do you need, what's the logic? It is quite simple. There is convention in Ruby community that Ruby version for a project should be specified in "`.ruby-version`" dot-file right in the root directory of a project. This file has the semantic version, like "2.5.1". When you change directories, RVM will read up this file, and will change the current version to the version that is needed. If the Ruby version hasn't been downloaded yet, RVM will notify you, and show the command you need to run to download this specific Ruby version.
+
+Why won't we experiment with RVM? We'll create test directory, write down "`.ruby-version`" file, then change directory to the parent and change into this directory again - you need this for RVM to trigger things. Because initially there won't be any "`.ruby-version`" file. But before we do that, look at the current Ruby version:
+
+```
+$ ruby -v
+ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin17]
+
+$ which ruby
+/usr/local/bin/ruby
+```
+
+Now we can test the RVM magic:
+
+
+```shell
+$ mkdir rvm-test # create rvm-test
+$ cd rvm-test # switch to rvm-test
+$ echo "2.3.1" > .ruby-version # write down 2.3.1 to the file
+$ cd .. # go to the parent directory
+$ cd rvm-test # and back
+Required ruby-2.3.1 is not installed.
+To install do: 'rvm install "ruby-2.3.1"'
+```
+
+It worked! RVM shows there is no Ruby 
+
+
+
 
 
 
