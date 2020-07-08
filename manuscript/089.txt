@@ -285,12 +285,115 @@ Required ruby-2.3.1 is not installed.
 To install do: 'rvm install "ruby-2.3.1"'
 ```
 
-It worked! RVM shows there is no Ruby 
+It worked! RVM said "ruby-2.3.1" isn't installed, and suggested a command to install (other commands are available with "`rvm --help`"). 
+
+Let's give it a try and run the command. RVM tries to find precompiled binary for your operating system:
+
+```
+Searching for binary rubies, this might take some time.
+No binary rubies available for: osx/10.13/x86_64/ruby-2.3.1.
+```
+
+If file was not found, the source code will be downloaded from the official Ruby website and will get compiled on your computer - the same way we did before manually! So RVM is just a set of handy scripts, and it's much easier to use than reinventing the wheel and do it yourself with "`./configure`" and "`make`".
+
+When everything's done, we can check the version to make sure it's installed and works:
+
+```
+$ ruby -v
+ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin17]
+
+$ which ruby
+/Users/ro/.rvm/rubies/ruby-2.3.1/bin/ruby
+```
+
+These manipulations allowed RVM to override the default Ruby with the Ruby specified in "`.ruby-version`":
+
+Before:
+
+* Version: "`ruby 2.5.1p57`"
+* Path: "`/usr/local/bin/ruby`"
+
+After:
+
+* Version: "`ruby 2.3.1p112`"
+* Path: "`/Users/ro/.rvm/rubies/ruby-2.3.1/bin/ruby`"
+
+Keep in mind that the old file "`/usr/local/bin/ruby`" still exists, we just modified environment variables. And all of that was done automatically, while changing directory ("`cd`").
+
+As you might already noticed, having "`.ruby-version`"  is crucial for RVM and similar tools to work without issues. This also allows to avoid questions in a team, like "Which Ruby version should I use for the project?", everyone knows where to look. It's convention and a good practice.
+
+We've installed specific Ruby version knowing how RVM internals work. But can you install and use a Ruby language binary of specific version without that trick with creating the file? Yes, it's possible. There are few commands available:
+
+* "`rvm list known`" - shows the list of rubies available to install. We need MRI (Matz's Ruby Interpreter) releases.
+* "`rvm install ...`" - install specific version of Ruby runtime.
+
+```
+$ rvm install 2.5.1
+Searching for binary rubies, this might take some time.
+No binary rubies available for: osx/10.12/x86_64/ruby-2.5.1.
+Continuing with compilation. Please read 'rvm help mount' to get more information on binary rubies.
+...
+```
+
+We're installing Ruby 2.5.1 above. Debugging info says that there is no precompiled binary for our operating system and we're about to download and compile from the source code.
+
+RVM did the search for Ruby based on the following features:
+
+* `osx` - type of the operating system, "osx" for macOS (legacy name for macOS), Linux, Windows, and so on.
+* `10.12` - version of operating system.
+* `x86_64` - CPU architecture.
+* `ruby-2.5.1` - Ruby version.
+
+If you multiply the number of supported operating systems by the number of different versions for these operating systems, then by the number of CPU architectures, and then by the number of Ruby versions you'll get the number of Ruby binaries that RVM needs to keep on its servers.
+
+But why there is a need for that? Downloading Ruby binary takes seconds, while compilation takes much more time and less eco-friendly. Imagine how many computers need to consume electricity for a significant amount of time to get exactly the same binary! This could be optimized, and thanks to RVM for keeping at least some of the Ruby binaries.
+
+From a "consumer" perspective, we don't need to know too much about these details. What we wanted to do is to understand how to install and use RVM without a dot-file. We know how to install certain version of Ruby ("`rvm install 2.5.1`"), but how do we use it?
+
+Imagine we have multiple versions: 1, 2, 3. If there is no any "`.ruby-version`" in current directory, somehow we need to pick the version we want to use. For that purpose we have RVM "`use`" sub-command, with a clear syntax:
 
 
+```shell
+$ rvm use 2.5.1
+Using /Users/ro/.rvm/gems/ruby-2.5.1
+$ ruby -v
+ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin16]
+$ rvm use 2.3.1
+Using /Users/ro/.rvm/gems/ruby-2.3.1
+$ ruby -v
+ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin16]
+```
 
+To see all the rubies installed in your system use "`list`" sub-command, like:
 
+```shell
+$ rvm list
+   ruby-2.3.1 [ x86_64 ]
+   ruby-2.4.2 [ x86_64 ]
+ * ruby-2.5.0 [ x86_64 ]
+=> ruby-2.5.1 [ x86_64 ]
 
+# => - current
+# =* - current && default
+#  * - default
+```
 
+RVM also has "`default`" version concept. In other words, the version that you currently prefer when no configuration is specified. You can enable default version with the following commands:
 
+```shell
+$ rvm alias create default 2.5.1
+Creating alias default for ruby-2.5.1.....
+$ rvm use default
+Using /Users/ro/.rvm/gems/ruby-2.5.1
+```
 
+You can now "`rvm use default`" to use 2.5.1. You can create as many aliases as you want. In practice you probably won't need to use this feature very often. 
+
+Our quick introduction to RVM is over. You might hear the definition "gemset" in some docs or while talking to your team. It's not used that often at the moment, because latest versions of Bundler solved the problem RVM gemsets used to solve in the past. But so you know, gemsets are sets of gems, RVM allows you to keep the certain set of gems for the same Ruby version.
+
+You don't need to remember all the RVM settings, but knowing how it works is always useful. Without that knowledge RVM looks magical, but it's a standard practice today. There are some other tools for other languages:
+
+* NVM - Node.js version manager
+* VirtualEnv - the similar version manager, but for Python
+
+and so on.
