@@ -1,0 +1,24 @@
+## Testing Ruby programs
+
+What is software testing? The definition is quite broad, therefore there is plenty of testing methodologies exist.
+
+Imagine a hardware engineer just built the radio from a set of components, and wants to understand if it works or not. She'll probably use so called smoke testing, when you turn on and off the power supply quickly to see if there isn't any smoke, to find out there is no fundamental failures. If there is no any smoke, one can proceed to "happy path" testing, turning on the radio, and trying to tune it in to some radio station to check if there is any sound.
+
+There can be other tests before the radio goes for production. For example, load testing to measure the electricity consumption. The radio probably should be power-efficient, so people won't need to change batteries every day. Even if the radio works, and there is a sound, battery drain problem can be a marketing failure, and the product won't succeed.
+
+Some tests can involve assembly testing, so it works as expected over extended period of time when it is installed inside of a truck or any other vehicle. The number and depth of these tests depend on requirements. Are we just building pocket radio or military-grade radio? Answers to this fundamental questions define the product quality, and define the testing methodologies we're going to use.
+
+The same is true in software testing. There are numerous of testing methodologies, like manual testing, automated testing, unit testing, integration, load, and so on. It takes a lot of time to get familiar with all of these concepts, each methodology is probably represented by hundreds of books. We'll take a look into the most popular tests software developers face on their day-to-day basis: unit tests. What are unit tests and why there is a need for them?
+
+About 30 years ago almost nobody was looking at software testing like at something important. Programs were made in text editors, and folks used to just run them (or send to their clients on floppy disks, CD-ROMs and later through Internet). In case of an error or incorrect behavior programmers used to fix the software and ship the new release. Normally, these releases included a set of bug fixes. 
+
+However, complexity of software products was increasing. The number of developers in a teams was increasing. Often a small change could introduce a bug. For sure, some number of these bugs used to get caught by manual testing (or testers). However, it was not enough.
+
+The question of identifying bugs on early stages has emerged. If there is a software module, or critical unit, is it possible to make it fool-proof, so it will be harder to break? It's like in real life, morning routine says to double check the iron and stove are off before you go to work. You are almost certain that these are off, but the price to verify that is almost nothing compared to the damage it can cause in case something is not right. 
+
+The same is true for programming:
+
+* Instead of checking the iron or gas stove, we double check software units of the same program.
+* Instead of checking it only once, programmers run automated checks after every change.
+
+Will you agree that it's much easier?
