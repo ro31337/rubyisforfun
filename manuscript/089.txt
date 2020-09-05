@@ -395,5 +395,6 @@ You don't need to remember all the RVM settings, but knowing how it works is alw
 
 * NVM - Node.js version manager
 * VirtualEnv - the similar version manager, but for Python
+* Version managers for Golang, Elixir, Java, and so on.
 
-and so on.
+Software developers often deal with multiple languages at the same project. For example, Ruby programmers often use JavaScript and Golang. Setting up multiple versions managers takes time, let alone you need to remember command line options for each of them. Fortunately, there is an open source tool (with GPL-compatible license) that lets you to manage multiple runtime versions with a single command line-interface! The tool is [asdf-vm](https://asdf-vm.com/) and has more than 50 plugins for programming languages and other environments.
