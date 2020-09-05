@@ -21,4 +21,18 @@ The same is true for programming:
 * Instead of checking the iron or gas stove, we double check software units of the same program.
 * Instead of checking it only once, programmers run automated checks after every change.
 
-Will you agree that it's much easier?
+Will you agree that it's much easier? Software developers change their programs, run tests, and make sure that everything works as expected. If something breaks, one can fix it right away, without shipping a software to end users and releasing broken version to production. So identifying bugs is a matter of seconds or minutes (for example, running 500 automated tests normally takes a couple of minutes), not days.
+
+For a relatively simple project, for every 100 changes we'll run 500 tests for each, which gives about 50 thousand test runs. As you can imagine, it's much harder to introduce bugs having tests culture on a project in place, and software quality improves dramatically. However, unit-testing is not free.
+
+Engineers need to write these tests. While writing tests isn't hard, it requires time, and businesses need to invest time and money into tests. Good tests require the knowledge of testing frameworks, testing methodologies, and some experience writing these tests.
+
+At the same time it's not possible to cover absolutely everything with tests. Ten `if...else` statements in your program are 2 (number of possible branches for each statement) in the power of 10 (number of statements) code flow combinations, 1024 total for such a small number of conditions.
+
+Some programs use "code coverage" term, represented in percentage. You can hear something like "the code coverage for our project is 80%", which is often something to be proud about. The question though is how this number was calculated. Yes, some modules can be covered with tests pretty extensively. But even with 100% coverage, the number of possible ways of how a real-life program can be executed is much more than the number of tests (assuming the program has at least a thousand lines of code).
+
+Also, developers often create tests as soon as they write some code. But on initial stages, the software design often isn't fixed. Programmers do experiment as artists do multiple sketches before in putting the final details to a landscape drawing. Making design final at the first attempt is close to impossible. And good amount of unit tests fix application design at the stage when it is still fresh.
+
+With removing unnecessary code one needs to remove related tests. From a business perspective you are doubling your expenses while getting rid of something you've spent money on.
+
+With all these cons, unit testing is no question practice that greatly improved software quality. Businesses understand the value, and heavily invest in building reliable software solutions. Unit testing is a standard, and there is no any software frameworks that don't come with built-in test tools today. In the next chapter we'll take a closer look into popular testing framework for Ruby called "Rspec".
