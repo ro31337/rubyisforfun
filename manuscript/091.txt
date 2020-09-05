@@ -1,0 +1,95 @@
+## Rspec
+
+According to [The Ruby Toolbox](https://www.ruby-toolbox.com/categories/testing_frameworks) website, Rspec is the most popular testing library for Ruby:
+
+{width=100%}
+![Ruby testing frameworks, Rspec is the most popular](images/091-testing-frameworks.png)
+
+Some folks from Ruby community don't like it though:
+
+> RSpec offends me aesthetically with no discernible benefit for its added complexity over test/unit.
+
+[DHH on Twitter](https://twitter.com/dhh/status/52807321499340800)
+
+It's actually a matter of preference, the question is quite controversial. To some degree DHH is right, RSpec often emphasizes the smart, not simple way of writing tests. It feels like a sports car changing lanes fast on a highway, but at the end result is about the same.
+
+The Rspec configuration can take up some time, the good news is that Rspec has completed its maturing phase, and configuration is rather simple, and for almost every question there is an answer you can search online.
+
+In reality, the readability (and developer happiness) of tests solely depends on a team. A development tool is not the first factor here. There is no such tool that solves all the problems, and any tool can be misused. The question is more about balance and producing simple and readable tests rather than smart tests.
+
+Rspec is based on its own DSL - domain-specific language. Read it as "language extensions". Rspec introduces few new keywords, like "describe", "let", "it", "before", "after" and so on. We haven't covered any DSL in this book before, so let's just assume it's a new language syntax that you need to be familiar with.
+
+We are going to install and configure Rspec from scratch. Let's start with a latest Ruby, type "`rvm list known`" to get the list of available rubies for download. We need "MRI" flavor (Matz's Ruby Interpreter - classic Ruby developed by Yukihiro Matsumoto). Once you get the version, type the command to install:
+
+```
+$ rvm install 2.7.0
+```  
+
+Or any other version without "-preview" suffix. Then let's create a directory and fix the Ruby version for this directory:
+
+```
+$ mkdir rspec_demo
+$ cd rspec_demo
+$ echo "2.7.0" > .ruby-version
+```
+
+Make sure you have the version you expect:
+
+```
+$ ruby -v
+ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-darwin16]
+```
+
+If the version is different, do cd-trick. Change directory to one level up and switch back, that's how some Ruby version managers work, they hijack your "`cd`" command:
+
+```
+$ cd ..
+$ cd rspec_demo
+```
+
+In previous chapters we were using "`gem install...`" command to download and use Ruby libraries from Internet. Once a library gets downloaded, it will be located somewhere on the disk, and programs can use it. However, it's nice if we can keep a list of dependencies somewhere. Like "hey, here is our program, but it depends on this, this and this, you must download these libraries, so the program works file".
+
+"`Gemfile`" is such mechanism. It's just a list of libraries, with some features. For example, you can specify a source, or you can stick to particular version of a library. Imagine new versions gets released, and API (the way you use the library) changes. You still want your old program to work, right? Let's create new "`Gemfile`":
+
+```
+$ bundle init
+```
+
+Here is how default "`Gemfile`" looks like:
+
+```
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# gem "rails"
+```
+
+Looks a bit scary, but at the moment we need only one line that defines a place where to look for gems.  We'll keep the "`source ...`" line and add "`rspec`" dependency. So here is how your "`Gemfile`" should look like:
+
+```
+source "https://rubygems.org"
+gem "rspec"
+```
+
+And we can run "`bundle`". Basically this command will execute "`gem install ...`" for every gem located in "`Gemfile`" (we have only one at the moment):
+
+```
+$ bundle
+Fetching gem metadata from https://rubygems.org/...
+Resolving dependencies...
+...
+Fetching rspec 3.9.0
+Installing rspec 3.9.0
+Bundle complete! 1 Gemfile dependency, 7 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+```
+
+If you "`ls`" in the directory, you'll see "`Gemfile.lock`" which was created automatically. You're not supposed to modify this file with your code editor, it gets updated automatically by "`bundle`" command if needed. Lock-file locks your application to specific version of library, so the app will work forever. Imagine in 30 years from now you'll need to execute the same program. Your "`Gemfile.lock`" comes into play and says: "I don't care which year it is now, and I don't care about any newly released software, I need to download these versions from Internet". Unless you explicitly update your dependencies, you'll stick to the specific version of Rspec (or any other library).
+
+You should have three files in your directory: "`.ruby-version`", "`Gemfile`", and "`Gemfile.lock`". Type "`ls -a`" to get the full list. Yes, you need to specify "`-a`" (all) parameter, so the list has hidden (dot) files as well, including "`.ruby-version`".
+
+If you type "`gem which rspec`" you'll see the path where exactly Rspec has been downloaded. It's outside your project, and it is understandable, because you might want to use it in other project on the same computer.
+
