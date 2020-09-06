@@ -443,3 +443,24 @@ It all works fine. Note that we were only dealing with a static method above. On
 
 It's impossible to cover Rspec with one chapter, but there are few good books out there (for example, [Everyday Rspec](https://leanpub.com/everydayrailsrspec)). The best advice we can  give is to think about how would you test the code as you write it.
 
+X> ## Exercise
+X> Change 1420 above to 1421, run tests and see what happens.
+
+X> ## Exercise
+X> Your fellow programmer has changed the function so now it raises an exception if you provide no parameters to the method:
+
+```ruby
+module Shipment
+  module_function
+
+  def total_weight(options={})
+	raise "Can't calculate weight with empty options" if options.empty?
+	a = options[:soccer_ball_count] || 0
+	b = options[:tennis_ball_count] || 0
+	c = options[:golf_ball_count] || 0
+	(a * 410) + (b * 58) + (c * 45) + 29
+  end
+end
+```
+
+Add a test that passes no options to "`total_weight`" method and checks if exception gets raised.
