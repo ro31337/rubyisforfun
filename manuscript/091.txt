@@ -105,7 +105,7 @@ We have two more files, "`.rspec`" and "`spec_helper.rb`", and one "`spec`" dire
 
 "`.spec_helper.rb`" is quite lengthy, about one hundred lines, but it is mostly comments. It's auxiliary file that aims to provide a way to tune Rspec to your needs. We'll skip doing any adjustments for now. Look at the file structure of our newly created project:
 
-{width=100%}
+{width=50%}
 ![List of files](images/091-files.png)
 
 Whoa, we haven't done anything yet, and we've gotten five files, including two dot-files! We have one snake case file (snake_case, where words delimiter is underscore), and one kebab case file (kebab-case, where words delimiter is dash). We have files with extension, and files without extension. Well, the world is not perfect, and the world of software development is never perfect. There are always trade offs and imperfections.
@@ -165,7 +165,7 @@ With limited resources (say you only have one hour while coding on a train), you
 
 We'll create "`lib`" directory and two files "`shipment.rb`" and "`app.rb`" the following way:
 
-{width=100%}
+{width=50%}
 ![Adding more files to the project](images/091-files2.png)
 
 Here is the "`app.rb`":
@@ -208,7 +208,7 @@ So we've split the program into two units:
 
 We'll create a test for the first unit. Add "`shipment_spec.rb`" to the "`spec`" directory:
 
-{width=100%}
+{width=50%}
 ![Adding shipment_spec.rb](images/091-files3.png)
 
 With the following code:
