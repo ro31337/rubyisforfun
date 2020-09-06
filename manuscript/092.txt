@@ -1,0 +1,7 @@
+## Final words
+
+We've covered only some aspects of software development and Ruby language. You did exercises and established a foundation for a confident future. Don't stop! Use your chance! Being programmer is a constant learning process. You don't need to move fast, you just need to move forward.
+
+Knowledge represented in this book is the process of filtering out tons of information. You definitely have the competitive advantage over folks who haven't read the book yet. Don't worry if you missed some concepts, keep on learning and re-read the book in a few months, so you will uncover what's been hidden from your eyes. Information often comes in layers, and every time your picture becomes more clear and precise.
+
+We wish you the very best of luck in your programming career! 
