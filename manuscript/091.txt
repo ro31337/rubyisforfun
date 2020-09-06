@@ -93,3 +93,353 @@ You should have three files in your directory: "`.ruby-version`", "`Gemfile`", a
 
 If you type "`gem which rspec`" you'll see the path where exactly Rspec has been downloaded. It's outside your project, and it is understandable, because you might want to use it in other project on the same computer.
 
+"`rspec --help`" says that we need to "`rspec --init`" to initialize the project:
+
+```
+$ rspec --init
+  create   .rspec
+  create   spec/spec_helper.rb 
+```
+
+We have two more files, "`.rspec`" and "`spec_helper.rb`", and one "`spec`" directory. Simply put, "spec" is specification, or "test". Developers often use words "spec" and "test" interchangeably.
+
+"`.spec_helper.rb`" is quite lengthy, about one hundred lines, but it is mostly comments. It's auxiliary file that aims to provide a way to tune Rspec to your needs. We'll skip doing any adjustments for now. Look at the file structure of our newly created project:
+
+{width=100%}
+![List of files](images/091-files.png)
+
+Whoa, we haven't done anything yet, and we've gotten five files, including two dot-files! We have one snake case file (snake_case, where words delimiter is underscore), and one kebab case file (kebab-case, where words delimiter is dash). We have files with extension, and files without extension. Well, the world is not perfect, and the world of software development is never perfect. There are always trade offs and imperfections.
+
+It's time to write something meaningful now and covering it with tests. And here we have to add a note about important question: what do you do first?
+
+* Do you write tests first? (TDD, Test Driven Development)
+* Or do you write code first?
+
+The answer is not easy. There were many controversial debates about what is actually better. In our case we already have some code, so we'll start with writing code first:
+
+```ruby
+def total_weight(options={})
+  a = options[:soccer_ball_count] || 0
+  b = options[:tennis_ball_count] || 0
+  c = options[:golf_ball_count] || 0
+  (a * 410) + (b * 58) + (c * 45) + 29
+end
+
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+```
+
+It's example from previous chapters where we calculate order shipping weight. We just do basic multiplications above, like multiplying the number of soccer balls ("`a`" variable) by the weight of one soccer ball in grams (410), adding it to the weights of tennis balls, and golf balls. And the 29 is the weight of a shipping box.
+
+Method works perfectly fine, but why do we want to cover the method with tests? To answer this question, let's try to imagine what could go wrong here.
+
+First, it is about money. Code should be reliable when it comes to calculating costs. A programmer, in a year or two, might want to improve the code by adding new features. For example, adding support for baseball balls. It would be nice if we keep things under control and have ability at least to run the method and compare result with expectations.
+
+Second, somebody can decide that "`|| 0`" is redundant. It can be true, because the following code works okay (try to run it):
+
+```ruby
+def total_weight(options={})
+  a = options[:soccer_ball_count]
+  b = options[:tennis_ball_count]
+  c = options[:golf_ball_count]
+  (a * 410) + (b * 58) + (c * 45) + 29
+end
+
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+```
+
+But it works only when you specify all parameters to "`total_weight`" function. When you omit the parameter, the code throws an exception:
+
+```
+$ pry
+...
+x = total_weight(soccer_ball_count: 3, tennis_ball_count: 2)
+NoMethodError: undefined method `*' for nil:NilClass
+from (pry):12:in `total_weight'
+```
+
+A good test will prevent this error.
+
+Third, imagine a more sophisticated scenario. Like if the total weight is more than a certain threshold, we might need a different kind of box. Or two boxes. Or we want to add a gift weight once we have two or more tennis balls in the cart.
+
+With limited resources (say you only have one hour while coding on a train), you can skip test files and just test the method manually with Pry. But will you agree that sharing your code is better when you have a test that checks that the code works fine, so anyone can run all tests with one single command and ensure everything is in place!
+
+We'll create "`lib`" directory and two files "`shipment.rb`" and "`app.rb`" the following way:
+
+{width=100%}
+![Adding more files to the project](images/091-files2.png)
+
+Here is the "`app.rb`":
+
+```ruby
+require './lib/shipment'
+
+x = Shipment.total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+puts x
+```
+ 
+"`lib/shipment.rb`" has the method we discussed above plus the module wrapper:
+
+```ruby
+module Shipment
+  module_function
+
+  def total_weight(options={})
+    a = options[:soccer_ball_count] || 0
+    b = options[:tennis_ball_count] || 0
+    c = options[:golf_ball_count] || 0
+    (a * 410) + (b * 58) + (c * 45) + 29
+  end
+end
+```
+
+The similar way we could have created a class instead of a module, and define the method as "`def self.totalweight`", but it's [not recommended](https://github.com/rubocop-hq/ruby-style-guide#modules-vs-classes) to create a class without intent to create its instance.
+
+Once you run "`app.rb`", you'll see the total shipping weight:
+
+```
+$ ruby app.rb
+1420
+```
+
+So we've split the program into two units:
+
+* The actual logic in "`shipment.rb`" (should be tested)
+* And the entry point in "`app.rb`" (untested, and it's okay)
+
+We'll create a test for the first unit. Add "`shipment_spec.rb`" to the "`spec`" directory:
+
+{width=100%}
+![Adding shipment_spec.rb](images/091-files3.png)
+
+With the following code:
+
+```ruby
+require './lib/shipment'
+
+describe Shipment do
+  it 'should work without options' do
+    expect(Shipment.total_weight).to eq(29)
+  end
+end
+```
+
+And run tests with "`rspec`" command. Below we use "`d`" (documentation) format option, so the output is more verbose:
+
+```
+$ rspec -f d
+
+Shipment
+  should work without options
+
+Finished in 0.00154 seconds (files took 0.09464 seconds to load)
+1 example, 0 failures
+```
+
+It says "1 example, 0 failures", great result, you did it! Was it your first Rspec test?
+
+But what was this Rspec weird syntax about? Let's look closer:
+
+```ruby
+# Require the unit, so we have something to test
+require './lib/shipment'
+
+# Describing "Shipment" within a block, letting Rspec know
+# that we're going to test "Shipment" class or module
+describe Shipment do
+
+  # Syntax to say almost in plain English:
+  # "It should work without options"
+  # "it" is Rspec keyword (DSL) that accepts block
+  it 'should work without options' do
+
+    # Syntax to say almost in plain English:
+    # "Expect shipment total weight to equal 29"
+    expect(Shipment.total_weight).to eq(29)
+  end
+end
+```
+
+The code looks a little bit magical and friendly at the same time. We were using plain English instructions, like "it should work", "expect shipment total weight to equal...".
+
+We will add one more test to our test suite:
+
+```ruby
+require './lib/shipment'
+
+describe Shipment do
+  it 'should work without options' do
+    expect(Shipment.total_weight).to eq(29)
+  end
+
+  it 'should calculate shipment with only one item' do
+    expect(Shipment.total_weight(soccer_ball_count: 1)).to eq(439)
+    expect(Shipment.total_weight(tennis_ball_count: 1)).to eq(87)
+    expect(Shipment.total_weight(golf_ball_count: 1)).to eq(74)
+  end
+end
+```
+
+Result:
+
+```
+$ rspec -f d
+
+Shipment
+  should work without options
+  should calculate shipment with only one item
+
+Finished in 0.00156 seconds (files took 0.09641 seconds to load)
+2 examples, 0 failures
+```
+
+The second test checks executes the code and checks the outcome to equal to certain values plus shipping cost. Readability can be slightly improved if we specify the final numbers the following way:
+
+```ruby
+expect(Shipment.total_weight(soccer_ball_count: 1)).to eq(410 + 29)
+expect(Shipment.total_weight(tennis_ball_count: 1)).to eq(58 + 29)
+expect(Shipment.total_weight(golf_ball_count: 1)).to eq(45 + 29)
+```
+
+You might have already noticed the pattern here:
+
+```ruby
+expect(something).to eq(some_value)
+```
+
+which can be written with "`be`" keyword as well:
+
+```ruby
+expect(something).to be(some_value)
+```
+
+We gonna cover difference between "`eq`" and "`be`" in a bit. The pattern itself looks like a plain English sentence: "Son, when you go to school, I expect you to be a good boy". Rspec DSL for this english sentence would look like:
+
+```ruby
+expect(son).to be(a_good_boy)
+```
+
+or
+
+```ruby
+expect(son).not_to be(a_bad_boy)
+```
+
+Without Rspec DSL the program might look like:
+
+```ruby
+if son != a_good_boy
+  panic
+end
+```
+
+But Rspec provides the way to represent it in a more elegant (from Rspec point of view) way. There is, of course, "`if...else`" statement under the hood. But in tests we use more declarative way of writing code, we express our expectations, we don't say "if", "then", "else", and so on. So mommy doesn't tell _what_ to do ("listen to the teacher", "don't fight"), she  sets expectations ("be a good boy"). In other words, spec is specification that the code needs to follow.
+
+Expressions like "`expect(son).to`" and "`expect(son).not_to`" are expectations, and  "`eq(...)`"  and "`be(...)`" are matchers. There are quite a few matchers for Rspec. Expectations might look like in-place expressions or code blocks.
+
+Examples of expectations with expressions:
+
+```ruby
+expect(son).to be(a_good_boy)
+expect(soccer_ball_weight).to eq(410)
+expect(Shipment.total_weight(soccer_ball_count: 1)).to eq(439)
+```
+
+Expressions are:
+
+* `son`
+* `soccer_ball_weight`
+* `Shipment.total_weight(soccer_ball_count: 1)`
+
+Blocks are used together with corresponding matchers. The benefits of providing a block is that code execution is not happening right away and feed the result to Rspec for comparison. We feed the block to Rspec -the code that can be executed. Rspec decides when to execute this code. This approach is little bit more flexible, because Rspec can execute code and measure something.
+
+Imagine you want to test a water bucket. One way of testing it is to compare the reading at the bottom to the value you expect. Another way to test it is to fill the bucket with the certain amount of water to check if the bucket handle works as expected and it is not loose.
+
+This syntax in Rspec looks little bit clunky:
+
+```ruby
+expect { Shipment.total_weight(ford_trucks: 100) }.to raise_error
+expect { some_order.add(item) }.to change { order.item_count }.by(1)
+```
+
+Blocks are:
+
+* `{ Shipment.total_weight(ford_trucks: 100) }`
+* `{ some_order.add(item) }`
+
+And matchers are:
+
+* `raise_error`
+* `change { order.item_count }.by(1)` (yes, matcher actually accepts another block and does method chaining after that)
+
+Good news is that it is pretty much the most complicated part about Rspec. Looking at how others test their code often helps. So we encourage you to look at how your team mates do their Rspec expectations and ask questions! Also, [the full list of built-in matchers](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers) looks like something worth looking at.
+
+In this chapter we won't be able to cover all Rspec aspects, but knowing the difference between "`eq`" and "`be`" is important.
+
+"Be" means "_to be exactly this_". While "eq" means "_equal to, you don't have to be exactly this, just equal is fine_".
+
+For example, "Om" sign tattoos are all equal, but not exactly the same.
+
+{width=100%}
+![Google search for Om sign tattoos](images/091-tattoo.png)
+
+Someone would say:
+
+```ruby
+expect(boyfriend_tattoo).to eq(:om_sign)
+```
+
+But not:
+
+```ruby
+expect(boyfriend_tattoo).to be(om_sign)
+```
+
+However, if someone is missing, the expectation can be used with "`be`" keyword:
+
+```ruby
+expect(missing_person_tattoo).to be(om_sign)
+```
+
+Because in this case we compare tattoo to the actual photo of the tattoo we have.
+
+Same with Ruby objects. Everything is an object in Ruby. There can be equal "`a`" and "`b`" variables, but these can be independent objects located in different parts of computer memory:
+
+```
+$ pry
+> a = "XXX"
+> b = "XXX"
+> a == b
+ => true
+> a.__id__ == b.__id__
+ => false
+```
+
+Let's add one more test case for our Ruby program:
+
+```ruby
+  it 'should calculate shipment with multiple items' do
+    expect(
+      Shipment.total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+    ).to eq(1420)
+  end
+```
+(There is no any code blocks here, only expression because we've just added some new lines for readability)
+
+Result:
+
+```
+$ rspec -f d
+
+Shipment
+  should work without options
+  should calculate shipment with only one item
+  should calculate shipment with multiple items
+
+Finished in 0.00291 seconds (files took 0.19016 seconds to load)
+3 examples, 0 failures
+```
+
+It all works fine. Note that we were only dealing with a static method above. Once you have object(s) to test, it will get more interesting!
+
+It's impossible to cover Rspec with one chapter, but there are few good books out there (for example, [Everyday Rspec](https://leanpub.com/everydayrailsrspec)). The best advice we can  give is to think about how would you test the code as you write it.
+
