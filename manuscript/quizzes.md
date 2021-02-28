@@ -146,3 +146,56 @@ A: `3`
 020
 ===
 
+Q: Variable `tmp` is initialized (holds a reference to an object). How do you find out the name of the class for this object?
+A: `tmp.class`
+
+021
+===
+
+Q: Everything is ...(select from the list below)... in Ruby.
+A: an object
+
+022
+===
+
+Q: What method do we use to convert/coerce a string to an integer?
+A: `to_i`
+
+Q: What method do we use to convert/coerce an arbitrary object to a string?
+A: `to_s`
+
+023
+===
+
+Q: What class is okay to use if we want to represent `3.14` in Ruby for simple calculations?
+A: Float
+(don't provide BigDecimal in the list of answers)
+
+Q: What class should we use if we want to represent `3.141592653589793238462643383279502884197169399375105820974944592307816406286` in Ruby for precise calculations?
+A: BigDecimal
+(you can add Float as incorrect answer here)
+
+024
+===
+
+Q: Interpolation is ... ?
+A: a handy way to concatenate strings
+
+025
+===
+
+Q: Dangerous method of an object is a ...
+A: method to perform operation on the object itself
+(possible incorrect answers: method that should never get called, method that has security vulnerabilities)
+
+026
+===
+
+Q: How many lines of code are allowed in a Ruby blocks?
+A: as much as you want
+
+Q: Ruby blocks are...
+A: little anonymous functions that can be passed into methods
+
+
+
