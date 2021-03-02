@@ -191,11 +191,48 @@ A: method to perform operation on the object itself
 026
 ===
 
-Q: How many lines of code are allowed in a Ruby blocks?
-A: as much as you want
+Q: What's the max number of lines of code is allowed in a Ruby block?
+A: no max number, blocks can be as long as they need to be
 
 Q: Ruby blocks are...
 A: little anonymous functions that can be passed into methods
+
+
+027
+===
+
+Q: Block parameters are surrounded by this character
+A: pipe
+(possible answers: colon, semicolon) 
+
+029
+===
+
+Q: "Testing a variable" (in the context of branching) means
+A: checking if variable equals to a certain value
+
+Q: We use the following operator to test a variable
+A: `if`
+
+Q: Testing if variable equals to a certain value can be done with the following operator
+A: `==`
+(possible answers: `=`, `==`, `===`, `is`, `====`)
+
+030
+===
+
+Q: To combine multiple conditions in `if...end` block we can use the following boolean operator
+A: `&&`, `||`, `and`, `or`
+(the correct answer is "all of the above")
+
+031
+===
+
+Q: We use this statement to tell Ruby program to wait some amount of time
+A: `sleep`
+
+032
+===
 
 
 
