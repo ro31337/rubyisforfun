@@ -2,7 +2,7 @@
 
 Careful reader would have already noticed unknown prefix `@` before variable name. In Ruby you can't access variables out of scope of the current method. The exception is _instance variables_ (this may sound confusing, but we'll cover what "instance" is later, now just think of them as global-ish variables). For example, the following Ruby code won't be executed and will produce error:
 
-{title="Program that doesn't work", lang=ruby, line-numbers=off}
+{title="This program doesn't work", lang=ruby, line-numbers=off}
 ```ruby
 x = 123
 

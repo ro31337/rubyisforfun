@@ -234,5 +234,187 @@ A: `sleep`
 032
 ===
 
+Q: What statement should we use to generate a random number from 1 to 10?
+A: `rand(1..10)`
+(on of the possible incorrect answers: `rand(1,10)` or `rand(10)` which will generate numbers from 0 to 9)
+
+033
+===
+
+Q: Which program is the correct implementation of an infinite loop?
+A:
+
+```ruby
+loop do
+  puts 'hello'
+end
+```
+
+possible incorrect answers:
+
+```ruby
+loop
+  puts 'hello'
+end
+```
+
+or (incorrect):
+
+```ruby
+loop:
+  puts 'hello'
+end
+```
+
+or (incorrect):
+
+```ruby
+loop(
+  puts 'hello
+)
+```
+
+034
+===
+
+Q: Ternary operator is
+A: a short way to write `if...else` statement
+
+(possible answers: a way to exit a program, a way to wait for some amount of time)
+
+035
+===
+
+Q: What would be the output of the following Ruby program: `puts "100\r500"` ?
+A: `500`
+(possible incorrect answers: 100500, 100, 1500, 10500)
+
+036
+===
+
+Q: What's the right syntax to define a method in Ruby?
+A:
+
+```ruby
+def say_hello
+  puts 'hello'
+end
+```
+
+possible incorrect answers:
+
+```ruby
+method say_hello
+  puts 'hello'
+end
+```
+
+or (incorrect):
+
+```ruby
+function say_hello
+  puts 'hello'
+end
+```
+
+or (incorrect)
+
+```ruby
+func say_hello()
+  puts 'hello'
+end
+```
+
+037
+===
+
+038
+===
+
+Q: Select the right statement
+A: instance variables have `@` prefix
+
+(possible incorrect answers: local have `@` prefix)
+
+Q: Local variables
+A: do not have any prefix
+
+039
+===
+
+Q: What is the range of `tmp` variable?
+
+```ruby
+x = rand(0..5)
+y = rand(0..5)
+z = rand(0..5)
+tmp = x + y + z
+```
+
+A:  From 0 to 15
+
+040
+===
+
+Q: What is the result of `['1', '30', '20', '100'].sort` expression? Why?
+A: `["1", "100", "20", "30"]` (because numbers are strings)
+
+041
+===
+
+Q: What method do we use to iterate over an array?
+A: `each`
+
+
+042
+===
+
+Q: Empty array can be initialized with the following statement
+A: `arr = []`
+
+(possible incorrect answers: `arr = [0]`, `arr = [-1]`, `arr = ''`)
+
+043
+===
+
+Q: What's the result of the following program?
+
+```ruby
+arr = [1,2,3,4,5,6,7,8,9]
+puts arr[1] + arr[2] + arr[3]
+```
+
+A: 9
+
+044
+===
+
+Q: What is `%w` syntax in Ruby?
+A: A quick way to define array of strings
+
+Q: What is `%i`  syntax in Ruby?
+A: A quick way to define array of symbols
+
+045
+===
+
+046
+===
+
+Q: What's the result of the following program?
+
+```ruby
+arr = [
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12]
+]
+puts arr[1][2] + arr[2][1]
+```
+
+A: 17
+
+
+
 
 
