@@ -476,7 +476,80 @@ A: 7
 053
 ===
 
+Q: What is the result of the following expression?
+
+```ruby
+%w(H E L L O).include?('L')
+```
+
+A: true
+
+(one of incorrect answers can be 2, so it derails folks who thinks `include?` does the same job as `count` in previous example)
+
+054
+===
+
+Q: What is the result of the following expression? (hint: normally result of an expression is the result of the last statement; it is the last line on the screen once you paste the code below into your REPL)
+
+```ruby
+arr = [1, 2, 3]
+arr.push(4)
+arr.inspect
+```
+
+A: `[1, 2, 3, 4]`
+
+Q: What is the result of the following expression?
+
+```ruby
+arr = [1, 2, 3, 4]
+arr.pop
+```
+
+A: 4
 
 
+Q: What is the result of the following expression?
+
+```ruby
+arr = [1, 2, 3]
+arr.unshift(4)
+arr.inspect
+```
+
+A: `[4, 1, 2, 3]`
+
+Q: What is the result of the following expression?
+
+```ruby
+arr = [4, 1, 2, 3]
+arr.shift
+```
+
+A: 4
+
+055
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+arr = [1, 2, 3, 4]
+arr.select { |x| x > 2 }
+```
+
+A: [3, 4]
+
+056
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+arr = [true, false, true, false, 1, 2, 3]
+arr.reject { |x| x == false }
+```
+
+A: [3, 4]
 
 

@@ -2,7 +2,7 @@
 
 Method "`reject`" works the opposite way, comparing to "`select`". It rejects elements by criteria.
 
-Reject all males of age 30 or above:
+Reject all males of the age 30 or above:
 
 ```ruby
 $ pry
