@@ -550,6 +550,105 @@ arr = [true, false, true, false, 1, 2, 3]
 arr.reject { |x| x == false }
 ```
 
-A: [3, 4]
+A: `[true, true, 1, 2, 3]`
 
+057
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+%w(B E N J A M I N).take(3)
+```
+
+A:`['B', 'E', 'N']`
+
+058
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+[0, 2, 3, 4, 5].any? { |element| element == 1 + 3 }
+```
+
+A: true
+
+059
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+legal_age = 18
+[17, 18, 19, 20, 21].all? { |age| age >= legal_age }
+```
+
+A: false
+
+060
+===
+
+Q: There is a syntax from the next chapters below, but try to guess, what would be the result of the following expression?
+
+```ruby
+students = [
+  { name: 'Sam', age: 17, class: :math, score: 5 },
+  { name: 'Pat', age: 18, class: :arts, score: 10 },
+  { name: 'Joe', age: 19, class: :math, score: 1 },
+  { name: 'Ann', age: 20, class: :arts, score: 2 },
+  { name: 'Lev', age: 21, class: :math, score: 3 }     
+]
+students.select { |student| student[:age] >= 18 }.take(2).reject { |student| student[:class] == :math }[0][:name]
+```
+
+A: Pat
+
+061
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+if 'blabla' == :blabla
+  true
+else
+  false
+end
+```
+
+A: false
+
+Q: What is the result of the following expression?
+
+```ruby
+if 'blabla'.to_sym == :blabla
+  true
+else
+  false
+end
+```
+
+A: false
+
+062
+===
+
+Q: Hashes in Ruby are ...
+A: key-value in-memory storage
+(possible incorrect answers: improved version of an array, key-value storage with database backend)
+
+Q: When program ends, what happens with keys and  values of a Ruby hash on the next run?
+A: everything goes away, hash will be empty
+(possible incorrect answers: data remains in the hash and can be reused, only keys are present, only values are present)
+
+063
+===
+
+Q: Hash values are...
+A: objects of any type or nils
+(possible incorrect answers: always string values; always integer values; objects, but not nils)
+
+064
+===
 
