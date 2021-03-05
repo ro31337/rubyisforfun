@@ -401,6 +401,18 @@ A: A quick way to define array of symbols
 046
 ===
 
+047
+===
+
+Q: Ruby gems are ...
+A: Libraries created by developers from around the world with useful functionality
+
+Q: To use a Ruby gem you must...
+A: (two correct answers) 1) Install it from the command line 2) `require` gem in your program
+
+048
+===
+
 Q: What's the result of the following program?
 
 ```ruby
@@ -413,6 +425,56 @@ puts arr[1][2] + arr[2][1]
 ```
 
 A: 17
+
+049
+===
+
+Q: Consider this 3-dimensional array:
+
+```ruby
+arr = [
+  [
+    %w(a b c),
+    %w(d e f),
+    %w(g h i)	
+  ],
+  [
+    %w(aa bb cc),
+    %w(dd ee ff),
+    %w(gg hh ii)  
+  ]
+]
+```
+
+What is the result of `arr[0][0][1] + arr[1][1][1] + arr[0][1][2]` expression?
+
+A: beef
+
+050
+===
+
+051
+===
+
+Q: What is the result of `''.empty?` expression?
+A: true
+
+Q: What is the result of `''.nil?` expression and why?
+A: false, because even empty strings are objects in Ruby (with the type of String), and objects can't be nils.
+
+052
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+'HELLO'.size + %w(H E L L O).count { |x| x == 'L' }
+```
+
+A: 7
+
+053
+===
 
 
 
