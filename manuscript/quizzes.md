@@ -652,3 +652,97 @@ A: objects of any type or nils
 064
 ===
 
+Q: Normally JSON structure is...
+A: a mix of hashes, arrays, and simple types, and can be used in Ruby language
+possible incorrect answers:
+* a mix of hashes, arrays, and simple types and cannot be used in Ruby language
+* JavaScript Object Notation, and there is no JSON support in Ruby language 
+
+065
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+dict = {
+  'hello' => 'привет',
+  'Vladimir' => 'Володя',
+  'bye' => 'пока',
+  'Sarah' => 'Сара'  
+}
+dict['hello'] + ', ' + dict['Vladimir']
+```
+
+A: `Привет, Володя`
+
+(possible incorrect answers: 'hello, Vladimir'; 'bye, Sarah', 'привет, пока', etc.)
+
+066
+===
+
+Q: On average, a hash data structure has ... lookup complexity
+A: constant, O(1) - because you don't have to scan the hash to find elements 
+
+Q: Array has ... lookup complexity
+A: linear, O(N) - because you need to scan the N elements in the array to find one element
+
+067
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+hh = {}
+hh['sam'] = 'math';
+hh['pat'] = 'arts';
+hh[:pat]
+```
+
+A: nil
+
+068
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+hh = Hash.new(0)
+hh['sam'] = 'math';
+hh['pat'] = 'arts';
+hh[:pat]
+```
+
+A: `0`
+
+069
+===
+
+Q: What is the result of the following expression?
+
+```ruby
+def calc(a, b)
+  a ** b
+end
+
+calc(2, 8)  
+```
+
+A: 256
+
+070
+===
+
+Q: When you should prefer hash set over a regular hash?
+A: when there is no need for keeping values in a hash, and you have only keys to add
+
+071
+===
+
+Q: While iterating over a hash key-value pairs in Ruby language, the order of inserted elements ...
+A: is guaranteed in the [documentation](https://ruby-doc.org/core-2.2.2/Hash.html), but in other programming languages there is no such guarantee
+
+072
+===
+
+
+ 
