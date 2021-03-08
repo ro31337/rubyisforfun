@@ -744,5 +744,30 @@ A: is guaranteed in the [documentation](https://ruby-doc.org/core-2.2.2/Hash.htm
 072
 ===
 
+Q: What is the result of the following expression?
+
+```ruby
+users = [
+  {
+    address1: {
+      street1: '123 Market street',
+      street2: 'apt 504'
+    }
+  },
+  {
+    address2: {
+      street1: '555 El Camino',
+      street2: 'unit 5'
+    }
+  },  
+]
+
+users[1].dig(:address2, :street2)
+```
+
+A: unit 5
+
+
+
 
  
