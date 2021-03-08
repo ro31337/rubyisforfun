@@ -2,12 +2,14 @@
 ===
 
 Q: What is one of the principles of Ruby language?
+
 A: Principle of least surprise
 
 002
 ===
 
 Q: Which programming language was primarily used to build GitHub, AirBnB, Shopify?
+
 A: Ruby
 
 003
@@ -17,15 +19,18 @@ A: Ruby
 ===
 
 Q: Is Ruby dynamically or statically-typed language?
+
 A: Dynamically
 
 Q: Which web framework is often used along with Ruby?
+
 A: Rails
 
 005
 ===
 
 Q: For which type of software engineering Ruby is often used for?
+
 A: Web development
 
 006
@@ -35,102 +40,128 @@ A: Web development
 ===
 
 Q: What works best for your resume and improving your programming skill? 
+
 A: Personal Ruby project
 
 008
 ===
 
 Q: What is the recommended operating system for a Ruby developer?
+
 A: Linux or MacOS
 
 009
 ===
 
 Q: You typed "`ruby`" from the terminal and nothing happens, why?
+
 A: Ruby interpreter is waiting for your input
 
-Q: Which key sequence you have to press to indicate the end of input in the terminal? 
+Q: Which key sequence you have to press to indicate the end of input in the terminal?
+
 A: Ctrl+D
 
 010
 ===
 
 Q: What REPL stands for?
+
 A: Read, Evaluate, Print Loop
 
 Q: How do you run default REPL for Ruby?
+
 A: By typing "`irb`"
 
 011
 ===
 
 Q: How do you run a Ruby program from the terminal?
+
 A: `ruby app.rb`
 
 012
 ===
 
 Q: Why file manager is a useful tool?
+
 A: Because new Ruby on Rails projects have many files
+
 A: Because it is easier for a beginner to navigate the file system with arrow keys
+
 A: Because it is faster to manipulate files and directories
+
 A: Because it provides visual representation of a file system
+
 (^all of the answers)
 
 013
 ===
 
 Q: File system can be represented as a ... ?
+
 A: tree
 
 014
 ===
 
 Q: What shell command do we use to change directory in Linux/macOS?
+
 A: `cd`
 
 Q: What shell command do we use to change to a _parent_ directory in Linux/macOS?
+
 A: `cd ..`
 
-Q: What shell command do we use to list files in current directory? 
+Q: What shell command do we use to list files in current directory?
+
 A: `ls`
 
 015
 ===
 
 Q: What shell command do we use to show the contents of a file?
+
 A: `cat file.txt`
 
 Q: What shell command do we use to make a directory?
+
 A: `mkdir`
 
 Q: What shell command do we use to copy files?
+
 A: `cp`
 
 Q: What shell command do we use to move files?
+
 A: `mv`
 
 016
 ===
 
 Q: What of the following is _not_ a code editor?
+
 A: Microsoft Word
+
 (the possible list of answers here, all of them are valid code editors: Visual Studio Code, Vim, Sublime Text, Notepad++)
 
 017
 ===
 
 Q: What statement do we use to put a string to the console (screen)?
+
 A: `puts`
 
 Q: What statement do we use to get a string from the console?
+
 A: `gets`
 
 018
 ===
 
 Q: What naming convention is preferred for a variable names in Ruby?
+
 A: snake_case
+
 (possible incorrect answers: camelCase, kebab-case)
 
 
@@ -138,40 +169,48 @@ A: snake_case
 ===
 
 Q: What is the result of `"1" + "2"` expression  in Ruby?
+
 A: `"12"`
 
 Q: What is the result of `1 + 2` expression  in Ruby?
+
 A: `3`
 
 020
 ===
 
 Q: Variable `tmp` is initialized (holds a reference to an object). How do you find out the name of the class for this object?
+
 A: `tmp.class`
 
 021
 ===
 
 Q: Everything is ...(select from the list below)... in Ruby.
+
 A: an object
 
 022
 ===
 
 Q: What method do we use to convert/coerce a string to an integer?
+
 A: `to_i`
 
 Q: What method do we use to convert/coerce an arbitrary object to a string?
+
 A: `to_s`
 
 023
 ===
 
 Q: What class is okay to use if we want to represent `3.14` in Ruby for simple calculations?
+
 A: Float
 (don't provide BigDecimal in the list of answers)
 
 Q: What class should we use if we want to represent `3.141592653589793238462643383279502884197169399375105820974944592307816406286` in Ruby for precise calculations?
+
 A: BigDecimal
 (you can add Float as incorrect answer here)
 
@@ -179,12 +218,14 @@ A: BigDecimal
 ===
 
 Q: Interpolation is ... ?
+
 A: a handy way to concatenate strings
 
 025
 ===
 
 Q: Dangerous method of an object is a ...
+
 A: method to perform operation on the object itself
 (possible incorrect answers: method that should never get called, method that has security vulnerabilities)
 
@@ -192,9 +233,11 @@ A: method to perform operation on the object itself
 ===
 
 Q: What's the max number of lines of code is allowed in a Ruby block?
+
 A: no max number, blocks can be as long as they need to be
 
 Q: Ruby blocks are...
+
 A: little anonymous functions that can be passed into methods
 
 
@@ -202,19 +245,24 @@ A: little anonymous functions that can be passed into methods
 ===
 
 Q: Block parameters are surrounded by this character
+
 A: pipe
-(possible answers: colon, semicolon) 
+
+(possible answers: colon, semicolon)
 
 029
 ===
 
 Q: "Testing a variable" (in the context of branching) means
+
 A: checking if variable equals to a certain value
 
 Q: We use the following operator to test a variable
+
 A: `if`
 
 Q: Testing if variable equals to a certain value can be done with the following operator
+
 A: `==`
 (possible answers: `=`, `==`, `===`, `is`, `====`)
 
@@ -222,26 +270,32 @@ A: `==`
 ===
 
 Q: To combine multiple conditions in `if...end` block we can use the following boolean operator
+
 A: `&&`, `||`, `and`, `or`
+
 (the correct answer is "all of the above")
 
 031
 ===
 
 Q: We use this statement to tell Ruby program to wait some amount of time
+
 A: `sleep`
 
 032
 ===
 
 Q: What statement should we use to generate a random number from 1 to 10?
+
 A: `rand(1..10)`
+
 (on of the possible incorrect answers: `rand(1,10)` or `rand(10)` which will generate numbers from 0 to 9)
 
 033
 ===
 
 Q: Which program is the correct implementation of an infinite loop?
+
 A:
 
 ```ruby
@@ -278,6 +332,7 @@ loop(
 ===
 
 Q: Ternary operator is
+
 A: a short way to write `if...else` statement
 
 (possible answers: a way to exit a program, a way to wait for some amount of time)
@@ -286,13 +341,16 @@ A: a short way to write `if...else` statement
 ===
 
 Q: What would be the output of the following Ruby program: `puts "100\r500"` ?
+
 A: `500`
+
 (possible incorrect answers: 100500, 100, 1500, 10500)
 
 036
 ===
 
 Q: What's the right syntax to define a method in Ruby?
+
 A:
 
 ```ruby
@@ -332,11 +390,13 @@ end
 ===
 
 Q: Select the right statement
+
 A: instance variables have `@` prefix
 
 (possible incorrect answers: local have `@` prefix)
 
 Q: Local variables
+
 A: do not have any prefix
 
 039
@@ -357,19 +417,21 @@ A:  From 0 to 15
 ===
 
 Q: What is the result of `['1', '30', '20', '100'].sort` expression? Why?
+
 A: `["1", "100", "20", "30"]` (because numbers are strings)
 
 041
 ===
 
 Q: What method do we use to iterate over an array?
-A: `each`
 
+A: `each`
 
 042
 ===
 
 Q: Empty array can be initialized with the following statement
+
 A: `arr = []`
 
 (possible incorrect answers: `arr = [0]`, `arr = [-1]`, `arr = ''`)
@@ -390,9 +452,11 @@ A: 9
 ===
 
 Q: What is `%w` syntax in Ruby?
+
 A: A quick way to define array of strings
 
 Q: What is `%i`  syntax in Ruby?
+
 A: A quick way to define array of symbols
 
 045
@@ -405,9 +469,11 @@ A: A quick way to define array of symbols
 ===
 
 Q: Ruby gems are ...
+
 A: Libraries created by developers from around the world with useful functionality
 
 Q: To use a Ruby gem you must...
+
 A: (two correct answers) 1) Install it from the command line 2) `require` gem in your program
 
 048
@@ -436,7 +502,7 @@ arr = [
   [
     %w(a b c),
     %w(d e f),
-    %w(g h i)	
+    %w(g h i)
   ],
   [
     %w(aa bb cc),
@@ -457,9 +523,11 @@ A: beef
 ===
 
 Q: What is the result of `''.empty?` expression?
+
 A: true
 
 Q: What is the result of `''.nil?` expression and why?
+
 A: false, because even empty strings are objects in Ruby (with the type of String), and objects can't be nils.
 
 052
@@ -597,7 +665,7 @@ students = [
   { name: 'Pat', age: 18, class: :arts, score: 10 },
   { name: 'Joe', age: 19, class: :math, score: 1 },
   { name: 'Ann', age: 20, class: :arts, score: 2 },
-  { name: 'Lev', age: 21, class: :math, score: 3 }     
+  { name: 'Lev', age: 21, class: :math, score: 3 }
 ]
 students.select { |student| student[:age] >= 18 }.take(2).reject { |student| student[:class] == :math }[0][:name]
 ```
@@ -635,10 +703,12 @@ A: false
 ===
 
 Q: Hashes in Ruby are ...
+
 A: key-value in-memory storage
 (possible incorrect answers: improved version of an array, key-value storage with database backend)
 
 Q: When program ends, what happens with keys and  values of a Ruby hash on the next run?
+
 A: everything goes away, hash will be empty
 (possible incorrect answers: data remains in the hash and can be reused, only keys are present, only values are present)
 
@@ -646,6 +716,7 @@ A: everything goes away, hash will be empty
 ===
 
 Q: Hash values are...
+
 A: objects of any type or nils
 (possible incorrect answers: always string values; always integer values; objects, but not nils)
 
@@ -653,10 +724,13 @@ A: objects of any type or nils
 ===
 
 Q: Normally JSON structure is...
+
 A: a mix of hashes, arrays, and simple types, and can be used in Ruby language
+
 possible incorrect answers:
+
 * a mix of hashes, arrays, and simple types and cannot be used in Ruby language
-* JavaScript Object Notation, and there is no JSON support in Ruby language 
+* JavaScript Object Notation, and there is no JSON support in Ruby language
 
 065
 ===
@@ -681,9 +755,11 @@ A: `Привет, Володя`
 ===
 
 Q: On average, a hash data structure has ... lookup complexity
-A: constant, O(1) - because you don't have to scan the hash to find elements 
+
+A: constant, O(1) - because you don't have to scan the hash to find elements
 
 Q: Array has ... lookup complexity
+
 A: linear, O(N) - because you need to scan the N elements in the array to find one element
 
 067
@@ -733,12 +809,14 @@ A: 256
 ===
 
 Q: When you should prefer hash set over a regular hash?
+
 A: when there is no need for keeping values in a hash, and you have only keys to add
 
 071
 ===
 
 Q: While iterating over a hash key-value pairs in Ruby language, the order of inserted elements ...
+
 A: is guaranteed in the [documentation](https://ruby-doc.org/core-2.2.2/Hash.html), but in other programming languages there is no such guarantee
 
 072
@@ -979,4 +1057,4 @@ Possible incorrect answers:
 
 * It's only about convenience and developer happiness, these matchers are interchangeable
 * "Be" means "_equal to, you don't have to be exactly this, just equal is fine_". While "eq" means "_to be exactly this_".
-* It doesn't affect the way the shell works
+
