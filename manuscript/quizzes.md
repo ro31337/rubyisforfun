@@ -759,7 +759,7 @@ users = [
       street1: '555 El Camino',
       street2: 'unit 5'
     }
-  },  
+  },
 ]
 
 users[1].dig(:address2, :street2)
@@ -767,7 +767,216 @@ users[1].dig(:address2, :street2)
 
 A: unit 5
 
+073
+===
 
+Q: What is the result of the following expression?
 
+```ruby
+hh = { admin: false, login: 'pat', password: '123456' }
+hh.has_key?(:admin)
+```
 
- 
+A: true
+
+074
+===
+
+Q: Select correct statement below
+
+A: objects are class instances
+(possible incorrect answers: object is the synonym for "class" in computer programming; classes are object instances)
+
+075
+===
+
+Q: What is state (of a system)?
+
+A: A system is described as stateful if it is designed to remember preceding events or user interactions; the remembered information is called the state of the system.
+
+Possible incorrect answers:
+* State is a programming structure that repeats a sequence of instructions until a specific condition is met.
+* Unix or Linux system call to create a new process from an existing running process.
+* Electronic or electromechanical hardware device that can be used for entering data into, and transcribing data from, a computer or a computing system.
+
+076
+===
+
+Q: Given the Ruby program below, what will be printed on the screen?
+
+```ruby
+print 100
+print "\e[H\e[2J"
+puts 500
+```
+
+A: 500
+(possible incorrect answers: 100, 100500, 15, `100\e[H\e[2J500`)
+
+077
+===
+
+Q: Polymorphism is ...
+
+A: Ability of objects to act in different ways based on their class or data type
+
+Possible incorrect answers:
+
+* Bundling of data with the methods that operate on that data, or the restricting of direct access to some of an object's components
+* Ability of an object to take on one or more characteristics from other classes of objects
+
+078
+===
+
+Q: Inheritance is ...
+
+A: Ability of an object to take on one or more characteristics from other classes of objects
+
+Possible incorrect answers:
+
+* Bundling of data with the methods that operate on that data, or the restricting of direct access to some of an object's components
+* Ability of objects to act in different ways based on their class or data type
+
+079
+===
+
+Q: Modules in Ruby are...
+
+A: A way to group together methods, classes and constants.
+
+Possible incorrect answers:
+
+* Objects that need to be garbage collected immediately.
+* Expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+080
+===
+
+081
+===
+
+Q: Given the Ruby program below, what will be printed on the screen?
+
+```ruby
+class Megaphone
+  def shout
+    puts 'friend'
+  end
+
+  def self.shout
+    puts 'hello'
+  end
+end
+
+Megaphone.shout
+```
+
+A: hello
+
+082
+===
+
+Q: Object-oriented programming is a ...
+A: Programming paradigm based on the concept of "objects". However, it does not generate advantages of great orders of magnitude.
+
+Possible incorrect answers:
+
+* Solution to all computer science problems
+* Cheap way to organize your code and deliver quick results
+
+083
+===
+
+Q: Debugging is ...
+
+A: The process of identifying and removing errors from computer software.
+
+Possible incorrect answers:
+
+* The way to organize and write tests
+* Testing methodology that implies that one introduces bugs for stress testing a Ruby program.
+* Termite treatment process in Texas.
+
+084
+===
+
+Q: How do you debug by using output to a console/terminal?
+
+A: Just print variables and other information to console using standard `print` and `puts` methods.
+
+Possible incorrect answers:
+
+* Install interactive debugger that supports large number of simultaneous connections with remote servers.
+* Patch console driver so your visual development environment is connected to the terminal.
+
+085
+===
+
+Q: How do you call Pry console debugger from a Ruby program?
+
+A: By using `binding.pry` expression
+
+Possible incorrect answers:
+
+* By using `console.debug` expression
+* By using `debugit` statement
+* By setting a breakpoint in your IDE
+
+086
+===
+
+087
+===
+
+Q: What was the password from the excersice of saving the world?
+A: it's a secret
+
+Possible incorrect answers:
+
+* love
+* god
+* letmein
+
+(note for author: "secret" is the actual password for this exercise)
+
+088
+===
+
+Q: Docker is a ...
+
+A: Container engine that allows to create multiple running containers with inner operating systems on top of an operating system.
+
+Possible incorrect answers:
+
+* Virtual machine that allows to "dock" an operating system
+* Collection of operating system images
+* Source control utility
+
+089
+===
+
+Q: How Ruby Version Manager (RVM) integrates into your shell?
+
+A: By replacing/hijacking `cd` command.
+
+Possible incorrect answers:
+
+* By installing sophisticated integration scripts
+* By hijacking system calls on a kernel level
+* It doesn't affect the way the shell works
+
+090
+===
+
+091
+===
+
+Q: What is the difference between "`eq`" and "`be`" rspec matchers?
+
+A: "Be" means "_to be exactly this_". While "eq" means "_equal to, you don't have to be exactly this, just equal is fine_".
+
+Possible incorrect answers:
+
+* It's only about convenience and developer happiness, these matchers are interchangeable
+* "Be" means "_equal to, you don't have to be exactly this, just equal is fine_". While "eq" means "_to be exactly this_".
+* It doesn't affect the way the shell works
