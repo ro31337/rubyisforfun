@@ -22,4 +22,4 @@ X> Calculate the number of _seconds_ in a day, inside of a REPL without using `p
 
 Principle of a least surprise says that to exit REPL you should type `exit`. Let's do it... And it works!
 
-We would like to point out that authors rarely use default `irb` as a REPL. There is a better alternative called [Pry](http://pryrepl.org/). It has the same functionality, but offers more flexibility and configuration (to be discussed later in this book).
+We would like to point out that authors rarely use default `irb` as a REPL. There is a better alternative called [Pry](http://pry.github.io/). It has the same functionality, but offers more flexibility and configuration (to be discussed later in this book).
