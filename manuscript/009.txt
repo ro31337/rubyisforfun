@@ -74,7 +74,7 @@ There are few basic math operators that you can use in Ruby:
 * `/` to divide one number by another. For example: `120 / 12`
 * `*` to multiply. For example: `2 * 5`
 
-X> ## Exercise 
+X> ## Exercise
 X> Without looking to solution below, try to write a program that calculates the number of milliseconds in one day. How would you approach this problem? How many hours in one day? How many minutes in one hour? How many seconds in one minute? How many milliseconds in one second? 
 
 Here is the answer to exercise above:

@@ -75,7 +75,7 @@ Copy file to directory:
 $ cp file1.txt my_directory
 ```
 
-X> ## Exercise 
+X> ## Exercise 1
 X> Open up your terminal. List all files (`ls -lah`). Create directory with the name `my_directory`. List all files again, make sure directory exists now. Pick any file from current directory and copy this file to directory you just created. Use file manager to ensure you did the right job.
 
 Copy file one level up:
@@ -144,7 +144,7 @@ As you can see, there are many ways of finding files in _current directory_. Cur
 
               $ find / -name '*.log'
 
-X> ## Exercise 
+X> ## Exercise 2
 X> Try to find all log files in your root directory.
 
 Far Manager has built-in dialog (which is quite friendly) for searching files. You can search files by using Alt+F7 combination. By default search file mask is `*.*` (all files). You can also specify a substring you want to be present in these files.
@@ -173,7 +173,7 @@ $ cat > file.txt
 
 Then type in your data, for example "`foo bar`", and hit Ctrl+D combination on your keyboard (if it doesn't work, try to Ctrl+D twice). "Ctrl+D" stands for "end of input" in POSIX systems, and your terminal should understand it.
 
-X> ## Exercise 
+X> ## Exercise 3
 X> Create a text file and put your name to this file. Use `ls -lah` command to make sure file has been already created. Use `cat file.txt` to see the contents of the file.
 
 E> ## Be Careful
