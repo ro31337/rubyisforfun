@@ -224,3 +224,69 @@ Year 29, left to pay: 16686. You are paying 16666 plus 667.44 of interest (total
 ===
 
 Skip for now
+
+029
+===
+
+Skip for now
+
+030
+===
+
+### Exercise 1
+
+Answers:
+1) true
+2) false
+3) false
+
+### Exercise 2
+
+```ruby
+puts "Login:"
+login = gets.chomp
+puts "Password:"
+password = gets.chomp
+
+if login == "admin" && password == "12345"
+  puts "Granted access to online banking"
+else
+  puts "Access denied"
+end
+```
+
+### Exercise 3
+
+```ruby
+puts "Width (for example, type 5 for 5 meters):"
+width = gets.to_i
+puts "Length (for example, type 20 for 20 meters):"
+length = gets.to_i
+
+area = width * length
+puts "Area is #{area} square meters"
+
+price = 0
+if area < 50
+  price = 1000
+elsif area >= 50 && area < 100
+  price = 1500
+else
+  price = area * 25
+end
+
+puts "Price for the land is $#{price}"
+```
+
+Output:
+
+```
+$ ruby app.rb
+Width (for example, type 5 for 5 meters):
+1000
+Length (for example, type 20 for 20 meters):
+1100
+Area is 1100000 square meters
+Price for the land is $27500000
+```
+
