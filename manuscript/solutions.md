@@ -581,3 +581,16 @@ end
 
 phone_to_number('555MATRESS') # should print 5556287377
 ```
+
+049
+===
+
+Skip for now
+
+052
+===
+
+```ruby
+[11, 22, 33, 44, 55].count(&:even?)
+```
+
