@@ -349,3 +349,35 @@ Nope, the number is less than that, try again: 497891
 You guessed it!
 ```
 
+034
+===
+
+Skip for now
+
+035
+===
+
+```ruby
+loop do
+  print "/\r"
+  sleep 0.1
+
+  print "-\r"
+  sleep 0.1
+
+  print "\\\r"
+  sleep 0.1
+
+  print "|\r"
+  sleep 0.1
+end
+```
+
+037
+===
+
+Skip for now
+
+039
+===
+
