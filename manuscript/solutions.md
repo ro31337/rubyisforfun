@@ -594,3 +594,11 @@ Skip for now
 [11, 22, 33, 44, 55].count(&:even?)
 ```
 
+061
+===
+
+Skip for now
+
+062
+===
+
