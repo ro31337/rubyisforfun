@@ -436,3 +436,73 @@ end
 
 No need for a solution (because of "use your imagination")
 
+040
+===
+
+Skip for now
+
+044
+===
+
+```
+$ irb
+2.7.0 :001 > ['one', 'two', 'three'] # Standard
+ => ["one", "two", "three"]
+
+2.7.0 :002 > %w(one two three) # Shortcut
+ => ["one", "two", "three"]
+
+2.7.0 :003 > [:one, :two, :three] # Standard
+ => [:one, :two, :three]
+
+2.7.0 :004 > %i(one two three) # Shortcut
+ => [:one, :two, :three]
+```
+
+045
+===
+
+Skip for now
+
+046
+===
+
+### Exercise 1
+
+No need for a solution ("try things out" type)
+
+### Exercise 2
+
+```ruby
+Array.new(5) { Array.new(4) { rand(1..5) } }
+```
+
+or
+
+```ruby
+Array.new(5) do
+  Array.new(4) { rand(1..5) }
+end
+```
+
+or
+
+```ruby
+Array.new(5) do
+  Array.new(4) do
+    rand(1..5)
+  end
+end
+```
+
+### Exercise 3
+
+```ruby
+Array.new(4) { Array.new(5) { rand(1..5) } }
+```
+
+### Exercise 4
+
+```ruby
+Array.new(5) { Array.new(4) { rand(0..9) } }
+```
