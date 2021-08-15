@@ -290,3 +290,62 @@ Area is 1100000 square meters
 Price for the land is $27500000
 ```
 
+032
+===
+
+Skip for now
+
+033
+===
+
+```ruby
+number = rand(1..1_000_000)
+print 'Hi! I picked the number from 1 to 1 million, try to guess it: '
+
+loop do
+  input = gets.to_i
+
+  if input == number
+    puts 'You guessed it!'
+    exit
+  else
+    if number > input
+      print 'Nope, the number is greater than that, try again: '
+    else
+      print 'Nope, the number is less than that, try again: '
+    end
+  end
+end
+```
+
+Output:
+
+```
+$ ruby app.rb
+ruby app.rb
+Hi! I picked the number from 1 to 1 million, try to guess it: 500000
+Nope, the number is less than that, try again: 250000
+Nope, the number is greater than that, try again: 350000
+Nope, the number is greater than that, try again: 400000
+Nope, the number is greater than that, try again: 450000
+Nope, the number is greater than that, try again: 475000
+Nope, the number is greater than that, try again: 490000
+Nope, the number is greater than that, try again: 495000
+Nope, the number is greater than that, try again: 499999
+Nope, the number is less than that, try again: 498000
+Nope, the number is less than that, try again: 497000
+Nope, the number is greater than that, try again: 497500
+Nope, the number is greater than that, try again: 497750
+Nope, the number is greater than that, try again: 498000
+Nope, the number is less than that, try again: 497900
+Nope, the number is less than that, try again: 497800
+Nope, the number is greater than that, try again: 497850
+Nope, the number is greater than that, try again: 497875
+Nope, the number is greater than that, try again: 497890
+Nope, the number is greater than that, try again: 497899
+Nope, the number is less than that, try again: 497895
+Nope, the number is less than that, try again: 497893
+Nope, the number is less than that, try again: 497891
+You guessed it!
+```
+
