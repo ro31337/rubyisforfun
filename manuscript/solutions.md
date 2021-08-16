@@ -755,3 +755,45 @@ McDonalds, withdrawal, $40
 Lawyer, withdrawal, $200
 Lunch with friends, withdrawal, $100
 ```
+
+065
+===
+
+Skip for now
+
+068
+===
+
+One way to implement the program is to use default hash value of `0`:
+
+```ruby
+def f(sentence)
+  hash = Hash.new(0)
+
+  sentence.each_char do |ch|
+    hash[ch] += 1
+  end
+
+  hash
+end
+
+puts f('quick brown fox jumps over the lazy dog').inspect
+```
+
+Another is to use `Array#tally` method (Ruby 2.7.0+)
+
+```ruby
+def f(sentence)
+  sentence.split('').tally
+end
+
+puts f('quick brown fox jumps over the lazy dog').inspect
+```
+
+The output is the same:
+
+```ruby
+{"q"=>1, "u"=>2, "i"=>1, "c"=>1, "k"=>1, " "=>7, "b"=>1, "r"=>2, "o"=>4, "w"=>1, "n"=>1, "f"=>1, "x"=>1, "j"=>1, "m"=>1, "p"=>1, "s"=>1, "v"=>1, "e"=>2, "t"=>1, "h"=>1, "l"=>1, "a"=>1, "z"=>1, "y"=>1, "d"=>1, "g"=>1}
+```
+
+E.g. there are four "o" letters in the sentence above and 7 spaces.
