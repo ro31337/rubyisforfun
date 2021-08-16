@@ -669,3 +669,89 @@ Total weight of all items on the Earth is 1.039 kg or 2.29060018 lb
 Total weight of all items on the Moon is 0.17316666666666666 kg or 0.3817666966666667 lb
 ```
 
+063
+===
+
+Skip for now
+
+064
+===
+
+### Exercise 1
+
+```ruby
+{
+  client: "Mark Zuck",
+  balance_usd: 123.45,
+  show_deposits: true,
+  transactions: [
+    { description: "McDonalds",          type: :withdrawal, amount: 40 },
+    { description: "Selling ads",        type: :deposit,    amount: 1000 },
+    { description: "Selling user data",  type: :deposit,    amount: 300 },
+    { description: "Lawyer",             type: :withdrawal, amount: 200 },
+    { description: "Lunch with friends", type: :withdrawal, amount: 100 },
+  ]
+}
+```
+
+### Exercise 2
+
+```ruby
+def show(info)
+  puts "Name: #{info[:client]}"
+  puts "Balance: $#{info[:balance_usd]}"
+  puts "Show deposits: #{info[:show_deposits]}"
+  puts
+
+  puts "Transactions:"
+
+  info[:transactions].each do |t|
+    next if !info[:show_deposits] && t[:type] == :deposit
+
+    puts "#{t[:description]}, #{t[:type]}, $#{t[:amount]}"
+  end
+end
+
+show({
+  client: "Mark Zuck",
+  balance_usd: 123.45,
+  show_deposits: true, # Change to false to hide deposits
+  transactions: [
+    { description: "McDonalds",          type: :withdrawal, amount: 40 },
+    { description: "Selling ads",        type: :deposit,    amount: 1000 },
+    { description: "Selling user data",  type: :deposit,    amount: 300 },
+    { description: "Lawyer",             type: :withdrawal, amount: 200 },
+    { description: "Lunch with friends", type: :withdrawal, amount: 100 },
+  ]
+})
+```
+
+Output 1:
+
+```
+$ ruby app.rb
+Name: Mark Zuck
+Balance: $123.45
+Show deposits: true
+
+Transactions:
+McDonalds, withdrawal, $40
+Selling ads, deposit, $1000
+Selling user data, deposit, $300
+Lawyer, withdrawal, $200
+Lunch with friends, withdrawal, $100
+```
+
+Output 2:
+
+```
+$ ruby app.rb
+Name: Mark Zuck
+Balance: $123.45
+Show deposits: false
+
+Transactions:
+McDonalds, withdrawal, $40
+Lawyer, withdrawal, $200
+Lunch with friends, withdrawal, $100
+```
