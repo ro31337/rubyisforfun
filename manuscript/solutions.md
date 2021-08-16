@@ -846,3 +846,35 @@ puts f('quick brown fox jumps over the lazy dog')
 
 No need for a solution ("try to implement yourself").
 
+071
+===
+
+Skip for now
+
+073
+===
+
+The first block has books defined as array independent objects, like:
+
+```ruby
+books = [
+  { ... },
+  { ... },
+  { ... }
+] 
+```
+
+Since books are represented as array, the order is always guaranteed. However, if we want to find a book by its id, we'll need to scan the entire array and compare ids one by one. Imagine we have 1 million books defined the following way:
+
+```ruby
+books = [
+  { isbn: '9783161484100', ... }, # 1st book
+  { isbn: '8372684193990', ... }, # 2nd book
+  ...
+  { isbn: '0388819938812', ... }  # 1.000.000th book
+] 
+```
+
+This data has sequential nature, and looking up an object takes _linear time_ - in other words, the only way to go is to iterate and compare isbn to get the right one.
+
+However, when books are represented as hash (second block), ids are the hash key. There is no specific order (well, in Ruby language there is an order for convenience, but normally hash data structure has no order), but knowing how hashes work allows us to do quick search in _constant time_. We do not explain how exactly hashes achieve this performance, it's not the purpose of this book. However, we highly encourage to read up on that, the algorithm is simple enough and quite interesting.
