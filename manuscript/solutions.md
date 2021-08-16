@@ -797,3 +797,52 @@ The output is the same:
 ```
 
 E.g. there are four "o" letters in the sentence above and 7 spaces.
+
+069
+===
+
+Skip for now
+
+070
+===
+
+### Exercise 1
+
+Here is how the program can be optimized. Look for "`OPTIMIZATION`" comment in 2 places below:
+
+```ruby
+# Import namespace below, because "set"
+# is not imported by default.
+require 'set'
+
+# The main that accepts a string (sentence).
+def f(str)
+  # Create set instance
+  set = Set.new
+
+  # Iterate over each character in a string
+  str.each_char do |c|
+    # Only if character is greater than "a" and less than "z"
+    # (ignore other characters)
+    if c >= 'a' && c <= 'z'
+      # Add to set
+      set.add(c)
+    end
+    
+    # OPTIMIZATION: return immediately,
+    # no need to scan the rest of the string 
+    return true if set.size == 26
+  end
+
+  false # OPTIMIZATION: we know that set size is not 26
+end
+
+# prints true, because we use all letters of English
+# alphabet in the following sentence
+puts f('quick brown fox jumps over the lazy dog')
+```
+
+### Exercise 2
+
+No need for a solution ("try to implement yourself").
+
