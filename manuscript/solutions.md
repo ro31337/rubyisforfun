@@ -602,3 +602,70 @@ Skip for now
 062
 ===
 
+### Exercise 1
+
+```ruby
+obj = {
+  soccer_ball: 410,
+  tennis_ball: 58,
+  golf_ball: 45
+}
+
+puts 'Golf ball weight on the Moon (grams):'
+puts obj[:golf_ball] / 6
+
+puts 'Soccer ball weight on the Moon (grams):'
+puts obj[:soccer_ball] / 6
+
+puts 'Tennis ball weight on the Moon (grams):'
+puts obj[:tennis_ball] / 6
+```
+
+### Exercise 2
+
+```ruby
+obj = {
+  soccer_ball: 410,
+  tennis_ball: 58,
+  golf_ball: 45
+}
+
+puts "***************"
+puts "The Moon Store"
+puts "***************"
+puts
+
+print 'How many golf balls are you willing to buy? '
+golf_ball_cnt = gets.to_i
+
+print 'How many soccer balls are you willing to buy? '
+soccer_ball_cnt = gets.to_i
+
+print 'How many tennis balls are you willing to buy? '
+tennis_ball_cnt = gets.to_i
+
+weight_on_earth = \
+  golf_ball_cnt   * obj[:golf_ball]   +
+  soccer_ball_cnt * obj[:soccer_ball] +
+  tennis_ball_cnt * obj[:tennis_ball]
+
+puts "Total weight of all items on the Earth is #{(weight_on_earth.to_f / 1000)} kg or #{(weight_on_earth * 0.00220462)} lb"
+puts "Total weight of all items on the Moon is #{(weight_on_earth.to_f / 1000 / 6)} kg or #{(weight_on_earth * 0.00220462 / 6)} lb"
+```
+
+Output:
+
+```
+$ ruby
+ruby app.rb
+***************
+The Moon Store
+***************
+
+How many golf balls are you willing to buy? 1
+How many soccer balls are you willing to buy? 2
+How many tennis balls are you willing to buy? 3
+Total weight of all items on the Earth is 1.039 kg or 2.29060018 lb
+Total weight of all items on the Moon is 0.17316666666666666 kg or 0.3817666966666667 lb
+```
+

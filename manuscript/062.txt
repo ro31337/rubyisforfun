@@ -112,7 +112,7 @@ Hash above is initialized with two key-value pairs. First key has the type of _S
 ```
 
 X> ## Exercise 1
-X> Using the hash below write a program that transforms the hash to Moon conditions. It's known that weights or Moon are 6 times less than weights on Earth:
+X> Using the hash below write a program that transforms the hash to the Moon conditions. It's known that weights on the Moon are 6 times less than weights on the Earth:
 
 ```ruby
 obj = {
