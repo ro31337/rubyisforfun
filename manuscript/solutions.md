@@ -1306,3 +1306,54 @@ end
 
 No need for a solution (solution is inline).
 
+087
+===
+
+Skip for now
+
+091
+===
+
+### Exercise 1
+
+The answer to the question: test is going to fail
+
+### Exercise 2
+
+The `./spec/shipment_spec.rb` can look like:
+
+```ruby
+require './lib/shipment'
+
+describe Shipment do
+  it 'should calculate shipment with only one item' do
+    expect(Shipment.total_weight(soccer_ball_count: 1)).to eq(439)
+    expect(Shipment.total_weight(tennis_ball_count: 1)).to eq(87)
+    expect(Shipment.total_weight(golf_ball_count: 1)).to eq(74)
+  end
+
+  it 'should calculate shipment with multiple items' do
+    expect(
+      Shipment.total_weight(soccer_ball_count: 3, tennis_ball_count: 2, golf_ball_count: 1)
+    ).to eq(1420)
+  end
+
+  it 'should raise error when no options provided' do
+    expect { Shipment.total_weight }.to raise_error("Can't calculate weight with empty options")
+  end
+end
+```
+
+Output:
+
+```
+$ rspec -f d
+
+Shipment
+  should calculate shipment with only one item
+  should calculate shipment with multiple items
+  should raise error when no options provided
+
+Finished in 0.00478 seconds (files took 0.13979 seconds to load)
+3 examples, 0 failures
+```

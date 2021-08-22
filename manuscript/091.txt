@@ -443,10 +443,10 @@ It all works fine. Note that we were only dealing with a static method above. On
 
 It's impossible to cover Rspec with one chapter, but there are few good books out there (for example, [Everyday Rspec](https://leanpub.com/everydayrailsrspec)). The best advice we can  give is to think about how would you test the code as you write it.
 
-X> ## Exercise
+X> ## Exercise 1
 X> Change 1420 above to 1421, run tests and see what happens.
 
-X> ## Exercise
+X> ## Exercise 2
 X> Your fellow programmer has changed the function so now it raises an exception if you provide no parameters to the method:
 
 ```ruby
