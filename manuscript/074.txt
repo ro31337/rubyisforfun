@@ -10,9 +10,13 @@ This books covers the essentials, common way of doing OOP, which is a must for e
 
 The most obvious example of a class is a technical drawing (model) of some product:
 
-![Technical drawing, source: WikiPedia](images/074-drawing.png)
+{width=70%}
+![Technical drawing](images/074-drawing.png)
 
-You can see technical details of a product like width, height, radius, and so on. You can see these details before the final product is actually manufactured. _Class_ in programming language is something similar to this drawing. It's a pattern, and based on this pattern we can create _something real_.
+You can see technical details of a product like width, height, radius, and so on. You can see these details before the final product is actually manufactured. _Class_ in programming language is something similar to this drawing. It's a pattern, and based on this pattern we can create _something real_:
+
+{width=40%}
+![Real object based on technical drawing above](images/074-drawing-2.png)
 
 And _something real_ is the actual _object_ (or multiple objects) we're building based on this drawing. Objects are also known as _instances_ or _class instances_.
 
