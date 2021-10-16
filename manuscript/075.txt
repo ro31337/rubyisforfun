@@ -226,6 +226,7 @@ Program above prints the random value (from 1 to 9). In other words, we don't kn
 
 Meanwhile, our class looks like this:
 
+{width=30%}
 ![Car class diagram](images/075-diagram-01.png)
 
 You can see from the picture above that we have two methods to manipulate the state of this object, they're highlighted by pink color. Another one, "`initialize`" is a public constructor - you can only create an object by using this method (you do it with "`Car.new`").
@@ -261,6 +262,7 @@ end
 
 Here is the class diagram:
 
+{width=30%}
 ![Car class diagram](images/075-diagram-02.png)
 
 The state itself, represented by instance variable "`@state`", isn't accessible. However, there is a way to read it through "`state`" method. State variable and method use the same word "state", but they are two different things. We could name the method as we want, for example "`aaa`", it's not a mistake. Sounds good, now a hitchhiker can see that the state of a car is "open", because he or she can read the state with the "`state`" method.
@@ -277,6 +279,7 @@ end
 
 It's that simple! Here is one of the final class implementations:
 
+{width=30%}
 ![Car class diagram](images/075-diagram-03.png)
 
 Let's practice a little bit more and think about what if we need to turn on the engine? Our state could be represented by multiple parameters now (mathematicians would say "defined by the following vector"): open, closed, engine_on, engine_off. We would add two methods: "`turn_on`", "`turn_off`" so we have control over the newly defined state subset. We would've end up with quite lengthy class.
@@ -350,6 +353,7 @@ My state is broken
 
 Visual representation of the class:
 
+{width=30%}
 ![Car class diagram](images/075-diagram-04.png)
 
 X> ## Exercise 1
