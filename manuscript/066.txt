@@ -36,10 +36,12 @@ end
 
 Array, sequential collection of elements: 
 
+{width=35%}
 ![Array](images/066-array.png)
 
 Hash, data stored in an associative manner:
 
+{width=35%}
 ![Hash](images/066-hash.png)
 
 ### Access

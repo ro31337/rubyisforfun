@@ -8,10 +8,12 @@ Looking ahead, it's worth mentioning that there are numerous kinds of shells wit
 
 But all the above is valid for MacOS and Linux. The standard shell for Windows is "_cmd.exe_". If you click "Start", then "Run", and type `cmd.exe`:
 
+{width=50%}
 ![Run cmd.exe in Windows](images/009-run.png)
 
 You'll see the black screen and command prompt:
 
+{width=80%}
 ![Windows shell](images/009-cmd-exe.png)
 
 "Prompt" ends with `>` symbol, meaning the shell is expecting your input. For the future note that every shell has its own environment and runtime settings. Some programs and commands can mess up these settings, and if you found yourself struggling with weird shell behavior, consider restarting the shell. Even experienced programmers can take advantage of this advice. You can exit the shell by typing `exit` or by clicking the close button.
