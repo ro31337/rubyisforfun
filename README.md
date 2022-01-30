@@ -2,6 +2,8 @@
 
 # Ruby Is For Fun
 
+![image](https://user-images.githubusercontent.com/1477672/151709731-bb271f46-953e-4e09-bf8a-2b97eaf1bf5f.png)
+
 I wrote this book for my son. He is only 8, and hopefully he'll enjoy it soon.
 
 It was for sale, but now it's free and under CC license. I decided to share the knowledge, and make the book even better with your help (see how to contribute below).
