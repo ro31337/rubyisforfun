@@ -2,7 +2,7 @@
 
 ## In Lieu Of an Introduction
 
-In the 21st century, programming has become one of the most important sciences in any economy. Processes which used to take place without the aid of computers have been partly or completely optimized. Businesses and private individuals have realized how useful electronic machines are, and the age of a flourishing IT industry has begin.
+In the 21st century, programming has become one of the most important sciences in any economy. Processes which used to take place without the aid of computers have been partly or completely optimized. Businesses and private individuals have realized how useful electronic machines are, and the age of a flourishing IT industry has begun.
 
 Certain specific trends have formed within all this variety of technologies. The most convenient tools for carrying out particular tasks have been determined. Programming languages have undergone significant changes. It is not as easy for the ordinary reader to understand all these languages and technologies as it might appear at first glance.
 
