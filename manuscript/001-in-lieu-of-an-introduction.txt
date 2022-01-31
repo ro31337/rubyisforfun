@@ -12,7 +12,7 @@ Before answering these questions, the most important question of all must be ans
 
 Some will want to become a programmer to develop micro-programs for intercontinental ballistic missiles and the space industry. Some will want to become a programmer to create their own games. Some will want to learn programming in electronic tables to calculate taxes more efficiently.
 
-But the purpose of this book is more mundane. The author assumes that to the question “Why do I need to become a programmer?” will give the answer “to earn money as a programmer.” Such an answer is usually given by people who have already tried some profession and want to use their time more efficiently to earn good money.
+But the purpose of this book is more mundane. The author assumes that to the question “Why do I need to become a programmer?” you will give the answer “To earn money as a programmer.” Such an answer is usually given by people who have already tried some profession and want to use their time more efficiently to earn good money.
 
 They could also be young people forced to keep up with the times and to learn technologies, and the quickest way of getting a result from such knowledge, as quickly as possible. Furthermore, this means a result not only in the form of the knowledge of how to write this or that program, but a result in terms of money.
 
@@ -30,6 +30,6 @@ If you live in a society in which ever-increasing accounts are paid every month,
 
 The language “Ruby”, used in web programming, is something between “finding work quickly”, “studying something simple and interesting” and “will come in useful in the future”. Ruby not only enables you to compile boring programs while working in an office, but can also be useful at home, in everyday life. (One of my recent programs was about teaching how to play the guitar).
 
-Furthermore, the philosophy of the language itself assumes that the study and use of programs will not be boring. For example, one of the principles of the language is the Principle of Least Surprise, which is explained as follows: “whatever you do, you will most likely succeed”. That is inspiring, you must agree!
+Furthermore, the philosophy of the language itself assumes that the study and use of programs will not be boring. For example, one of the principles of the language is the Principle of Least Surprise, which is explained as follows: “Whatever you do, you will most likely succeed”. That is inspiring, you must agree!
 
 Other programming languages also exist. I am not saying they are bad, not at all. Each language is good for a certain purpose. But let us remember our own task and make the comparison with some other languages.
