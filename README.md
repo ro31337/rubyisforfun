@@ -13,7 +13,7 @@ I tried to make things super easy to understand, at the same time emphasize impo
 # Downloads
 
 - LeanPub link: https://leanpub.com/rubyisforfun
-- Direct download: https://leanpub.com/s/DuyDzcc1XhSfh5ks0Crj4g.pdf
+- Direct download: https://leanpub.com/s/DuyDzcc1XhSfh5ks0Crj4g.pdf (Updated Feb 1, 2022)
 
 # About the book
 
