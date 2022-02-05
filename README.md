@@ -21,6 +21,17 @@ This self-study course written as a book is your first step towards making money
 
 In this book you will find 78 easy to follow tasks, so even people without any programming skill can solve them. Beginners will learn how to create, debug, and understand programs in Ruby. Those who are already familiar with the language will rediscover object-oriented concepts, memory organization, find career advice, and save the planet from a nuclear apocalypse.
 
+## 🌟 Project Sponsors
+
+Shown below are our bronze, silver and gold project sponsors.
+Big thanks to these companies for supporting the project.
+Note: Listed services are not tested, vetted nor supported by the author(s) in any manner.
+
+[No sponsors at the moment, become a first sponsor!](https://github.com/sponsors/ro31337)
+
+[View all sponsors](https://github.com/sponsors/ro31337)
+
+
 # How to Contribute
 
 Found typo, grammar error, or area of improvement? Contribute to this repo. I'll regenerate the PDF within 24-48 hours, and will update the LeanPub and PDF link in this readme.
