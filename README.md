@@ -15,6 +15,10 @@ I tried to make things super easy to understand, at the same time emphasize impo
 - LeanPub link: https://leanpub.com/rubyisforfun
 - Direct download: https://leanpub.com/s/DuyDzcc1XhSfh5ks0Crj4g.pdf (Updated Feb 1, 2022)
 
+# Translations
+
+- [Русский](https://github.com/ro31337/rubyisforfun_ru)
+
 # About the book
 
 This self-study course written as a book is your first step towards making money by coding and programming from home, and doing that with fun. You will understand how the Ruby language works, and establish a foundation for being successful freelance developer. This book gives you not only technical detail, but presents knowledge in a friendly format, understandable by all ages, providing a thorough explanation of modern concepts for absolute beginners.
